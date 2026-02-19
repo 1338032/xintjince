@@ -167,6 +167,7 @@ input[type="file"]{display:none}
 .decl .ct{color:var(--ac);font-weight:500}
 .fmt-info{background:var(--p);border:1px solid var(--bc);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--ts);line-height:1.6;margin-bottom:12px}
 .fmt-info code{background:var(--bc);padding:1px 5px;border-radius:4px;font-size:11px;color:var(--tp)}
+#statusBar.open{display:block!important}
 </style>
 </head>
 <body>
@@ -174,7 +175,7 @@ input[type="file"]{display:none}
 <div class="top">
 <div class="top-l">
 <div class="avw" id="topAv" title="长按拍一拍">蔚</div>
-<div><div class="top-n" id="topN">谢蔚安</div><div class="top-s" id="topS">未连接</div></div>
+<div style="flex:1;min-width:0"> <div style="display:flex;align-items:center;gap:6px"> <div class="top-n" id="topN">谢蔚安</div> <button id="statusToggle" style="background:none;border:1px solid var(--bc);border-radius:10px;padding:1px 8px;font-size:10px;color:var(--ts);cursor:pointer;flex-shrink:0;line-height:1.6">状态</button> </div> <div class="top-s" id="topS">未连接</div> <div id="statusBar" style="display:none;margin-top:4px;padding:6px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.8;color:var(--ts)"> <div>🎭 <span id="stMood">未知</span></div> <div>🎬 <span id="stAction">未知</span></div> <div>💭 <span id="stThought">未知</span></div> <div>📍 <span id="stLocation">未知</span></div> </div> </div>
 </div>
 <div class="top-r">
 <button class="tbtn" id="pyqBtn" title="朋友圈">◉</button>
@@ -417,6 +418,58 @@ Q：数据会丢失吗？<br>
 A：数据存在浏览器本地，清除浏览器数据会丢失，建议定期导出。<br><br>
 Q：换手机/浏览器怎么办？<br>
 A：先导出JSON，新设备导入即可。<br>
+
+<strong>十三、使用技巧</strong><br><br>
+
+<strong>💡 让角色回复更自然</strong><br>
+- Temperature 建议设 0.95-1.0，太低回复会死板<br>
+- 记忆条数建议 20-40，太少角色会忘记前面聊了什么<br>
+- 最少回复条数建议 2-4，设1容易太简短<br><br>
+
+<strong>💡 善用备注栏</strong><br>
+- 设置 → 人设 → 备注栏可以写当前情境<br>
+- 比如："现在是深夜，燕世失眠了，两人在床上"<br>
+- 比如："今天是周末，谢蔚安休息，两人在家"<br>
+- 随时修改不影响主人设，能让角色回复更贴合当下<br><br>
+
+<strong>💡 角色语气不对怎么办</strong><br>
+- 角色太冷漠 → 备注栏写"今天状态轻松，语气温柔一些"<br>
+- 角色太啰嗦 → 备注栏写"对话简洁自然，不要长篇大论"<br>
+- 角色照着人设念台词 → 备注栏写"不要复述人设内容，自然对话"<br>
+- 改完备注下一次回复就会生效<br><br>
+
+<strong>💡 聊天节奏</strong><br>
+- 发1条消息点1次 ▼ = 正常对话节奏<br>
+- 连发好几条再点 ▼ = 角色会一起回应<br>
+- 不发消息直接点 ▼ = 角色主动找你说话<br>
+- 可以用这些方式制造不同的聊天感觉<br><br>
+
+<strong>💡 省token技巧</strong><br>
+- 记忆条数越多越耗token，日常聊天20-30条够用<br>
+- 聊天记录太长时可以用"选择性清除"删掉早期对话<br>
+- 定期导出备份后清空对话，重新开始也不会丢设定<br><br>
+
+<strong>💡 朋友圈玩法</strong><br>
+- 添加NPC后发朋友圈会更热闹<br>
+- NPC的设定写得越详细，评论越有个性<br>
+- 在角色的朋友圈下评论，角色会回复你<br>
+- 让角色发朋友圈可以看到他"私下"的状态<br><br>
+
+<strong>💡 表情包技巧</strong><br>
+- 表情包名称起得有描述性，角色更容易主动用<br>
+- 比如起名"开心撒花"比"表情1"好<br>
+- 在人设备注里写"适当使用表情包"可以提高使用频率<br><br>
+
+<strong>💡 模型推荐</strong><br>
+- 角色扮演效果好：gpt-4o、claude-3.5-sonnet、deepseek-v3<br>
+- 性价比高：gpt-4o-mini、deepseek-chat<br>
+- 模型越强，角色越自然，越不会照本宣科<br><br>
+
+<strong>💡 遇到奇怪回复</strong><br>
+- 角色突然性格大变 → 检查人设是否被误改，点"恢复默认"<br>
+- 角色开始说英文 → 格式提示词里已经要求中文，重新回复即可<br>
+- 角色重复同样的话 → Temperature调高，或清除最近几条对话<br>
+- 回复出现乱码标记 → 状态标记解析偶尔出错，忽略即可，不影响使用<br>
 
 <strong>你第一次打开页面，人设和世界书就已经有内容了，不是空的。<strong><br><br>
 实际发给AI的系统提示是从 `S.cp`（人设）和 `S.wb`（世界书）读取的，清空了它就真的没有了，AI就不知道自己是谢蔚安。<br>
@@ -737,7 +790,17 @@ var DW='# 世界书\n\
 - 身体不适：主动拿药热敷，煮清淡粥汤，时不时确认状态不打扰\n\
 - 燕世夜间惊醒/失眠：全程陪伴，次日行程后延';
 
-var DF='# 回复格式（最重要）\n\
+var DF='# 状态标记（必须）\n\
+每次回复的第一行必须是状态标记，格式如下：\n\
+[STATUS:{"mood":"当前心情","action":"当前动作","thought":"当前心里所想","location":"当前所在地点"}]\n\
+- mood：用简短词语描述情绪（如：平静、担忧、微笑、心疼、困倦）\n\
+- action：当前正在做什么（如：坐在书桌前、在厨房煮粥、躺在床上看书）\n\
+- thought：此刻脑海中的想法（如：他今天好像没什么精神、该给花浇水了）\n\
+- location：当前位置（如：诊所办公室、家中客厅、后花园）\n\
+- 状态标记后换行，然后正常写回复内容\n\
+- 状态标记不会显示给用户看，仅用于界面展示\n\
+\n\
+# 回复格式（最重要）\n\
 - 使用中文\n\
 - （括号里是动作描写）"双引号是语音"\n\
 - 用 --- 分隔多条消息，每条像微信中的一条独立消息\n\
@@ -770,6 +833,16 @@ var DF='# 回复格式（最重要）\n\
 2. 如果现实中有人这么对我说，我会怎么回应？\n\
 3. 这个回应是否让{charName}变成了没有立场的「好好先生」？\n\
 4. 我是否为了避免冲突而牺牲了角色的真实性？\n\
+\n\
+# 反机械规则\n\
+- 不要每次都用相同的开场方式\n\
+- 不要把人设里的描述直接变成台词\n\
+- 人设写「习惯摸后颈」不代表每次都要写这个动作\n\
+- 小习惯随机出现才自然，刻意展示就变成表演\n\
+- 回复冷漠度自检：如果这条消息让人觉得「他是不是不想理我」，重写\n\
+- 简短回复也要有情感锚点：语气词、标点、微小动作，至少占一个\n\
+- 错误示范：「嗯。」「好。」「知道了。」（连续冷淡）\n\
+- 正确示范：「嗯，去吧。」「好。路上慢点。」「知道了。（把手边的杯子推过去）」\n\
 如果犹豫，选择更真实、更有棱角的回应。';
 
 var KEYS='messages apiUrl apiKey modell tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt'.split(' ');
@@ -921,9 +994,28 @@ var data=await resp.json();
 if(!data.choices||!data.choices[0])throw new Error('无效响应');
 return data.choices[0].message.content}
 
+function parseStatus(raw){
+var m=raw.match(/^\[STATUS:(.*?)\]\s*/);
+if(!m)return{status:null,body:raw};
+try{
+var s=JSON.parse(m[1]);
+return{status:s,body:raw.substring(m[0].length)}}
+catch(e){return{status:null,body:raw}}}
+
+function applyStatus(s){
+if(!s)return;
+if(s.mood)$('stMood').textContent=s.mood;
+if(s.action)$('stAction').textContent=s.action;
+if(s.thought)$('stThought').textContent=s.thought;
+if(s.location)$('stLocation').textContent=s.location;
+save()}
+
 function splitReply(r){
-var parts=r.split(/\n*---\n*/).map(function(s){return s.trim()}).filter(Boolean);
-if(!parts.length)parts=[r.trim()||'...'];
+var parsed=parseStatus(r);
+if(parsed.status)applyStatus(parsed.status);
+var body=parsed.body;
+var parts=body.split(/\n*---\n*/).map(function(s){return s.trim()}).filter(Boolean);
+if(!parts.length)parts=[body.trim()||'...'];
 while(parts.length<S.minR&&parts.length>0){
 var li=0,ll=0;for(var i=0;i<parts.length;i++)if(parts[i].length>ll){ll=parts[i].length;li=i}
 var t=parts[li],h=Math.floor(t.length/2);
@@ -1127,6 +1219,10 @@ r.readAsText(f)}
 
 /* ========== 事件绑定 ========== */
 function initEv(){
+  $('statusToggle').onclick=function(){
+var sb=$('statusBar');
+sb.classList.toggle('open');
+this.textContent=sb.classList.contains('open')?'收起':'状态'};
 sendBtn.onclick=sendMsg;
 inBox.onkeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg()}};
 inBox.oninput=function(){sendBtn.disabled=!inBox.value.trim();inBox.style.height='auto';inBox.style.height=Math.min(inBox.scrollHeight,100)+'px'};
