@@ -10,17 +10,28 @@
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--p);height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center}
 .app{width:100%;max-width:480px;height:100vh;display:flex;flex-direction:column;background:var(--c);position:relative;overflow:hidden}
 @media(min-width:481px){.app{height:92vh;max-height:880px;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.12)}}
-.top{background:var(--w);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;z-index:10}
-.top-l{display:flex;align-items:center;gap:10px}
-.avw{width:38px;height:38px;border-radius:8px;background:var(--al);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ac);font-weight:600;overflow:hidden;cursor:pointer;-webkit-user-select:none;user-select:none}
+.top{background:var(--w);padding:10px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;z-index:10}
+.top-l{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0}
+.avw{width:38px;height:38px;border-radius:8px;background:var(--al);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ac);font-weight:600;overflow:hidden;cursor:pointer;-webkit-user-select:none;user-select:none;margin-top:2px}
 .avw img{width:100%;height:100%;object-fit:cover;display:block}
+.top-info{flex:1;min-width:0}
+.top-row{display:flex;align-items:center;gap:6px}
 .top-n{font-size:16px;font-weight:600;color:var(--tp)}
-.top-s{font-size:11px;color:var(--ts);transition:all .3s}
+.top-s{font-size:11px;color:var(--ts);transition:all .3s;margin-top:1px}
 .top-s.typing{color:var(--ac);font-weight:500}
-.top-r{display:flex;gap:8px}
+.top-r{display:flex;gap:4px;flex-shrink:0;margin-top:4px}
 .tbtn{background:none;border:none;font-size:18px;cursor:pointer;color:var(--tp);padding:6px;border-radius:6px;transition:background .15s}
 .tbtn:hover{background:var(--p)}
 .tbtn:active{background:var(--bc)}
+.st-btn{background:none;border:1px solid var(--bc);border-radius:10px;padding:1px 8px;font-size:10px;color:var(--ts);cursor:pointer;flex-shrink:0;line-height:1.6;transition:all .15s}
+.st-btn:hover{background:var(--p);border-color:var(--ac);color:var(--ac)}
+.st-btn.open{background:var(--al);border-color:var(--ac);color:var(--ac)}
+#statusBar{display:none;margin-top:6px;padding:8px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);animation:fadeDown .2s ease}
+#statusBar.open{display:block}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.st-row{display:flex;align-items:center;gap:4px}
+.st-row span:first-child{flex-shrink:0}
+.st-val{color:var(--tp);font-weight:500}
 .chat{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px;background-size:cover;background-position:center;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
 .chat::-webkit-scrollbar{width:3px}
 .chat::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px}
@@ -161,13 +172,17 @@ input[type="file"]{display:none}
 .pyq-ci input:focus{border-color:var(--ac)}
 .pyq-ci button{padding:6px 14px;border-radius:6px;border:none;background:var(--ac);color:#fff;font-size:12px;cursor:pointer}
 .pyq-empty{text-align:center;padding:40px;color:var(--tl);font-size:14px}
-.pyq-loading{text-align:center;padding:12px;color:var(--ac);font-size:12px}
 .decl{padding:24px 20px;text-align:center;color:var(--ts);font-size:12px;line-height:2;border:1px solid var(--bc);border-radius:12px;background:var(--p)}
 .decl strong{color:var(--tp);font-size:13px}
 .decl .ct{color:var(--ac);font-weight:500}
 .fmt-info{background:var(--p);border:1px solid var(--bc);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--ts);line-height:1.6;margin-bottom:12px}
 .fmt-info code{background:var(--bc);padding:1px 5px;border-radius:4px;font-size:11px;color:var(--tp)}
-#statusBar.open{display:block!important}
+.manual-body{font-size:13px;color:var(--tp);line-height:2;padding:4px 0 40px 0}
+.manual-body strong{color:var(--tp)}
+.manual-body .m-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.manual-body .m-q{color:var(--ac);font-weight:600}
+.manual-body .m-a{color:var(--ts)}
+.manual-body .m-tip{background:var(--al);border-radius:6px;padding:8px 10px;margin:6px 0 10px 0;border-left:3px solid var(--ac);font-size:12px;line-height:1.7}
 </style>
 </head>
 <body>
@@ -175,7 +190,19 @@ input[type="file"]{display:none}
 <div class="top">
 <div class="top-l">
 <div class="avw" id="topAv" title="长按拍一拍">蔚</div>
-<div style="flex:1;min-width:0"> <div style="display:flex;align-items:center;gap:6px"> <div class="top-n" id="topN">谢蔚安</div> <button id="statusToggle" style="background:none;border:1px solid var(--bc);border-radius:10px;padding:1px 8px;font-size:10px;color:var(--ts);cursor:pointer;flex-shrink:0;line-height:1.6">状态</button> </div> <div class="top-s" id="topS">未连接</div> <div id="statusBar" style="display:none;margin-top:4px;padding:6px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.8;color:var(--ts)"> <div>🎭 <span id="stMood">未知</span></div> <div>🎬 <span id="stAction">未知</span></div> <div>💭 <span id="stThought">未知</span></div> <div>📍 <span id="stLocation">未知</span></div> </div> </div>
+<div class="top-info">
+<div class="top-row">
+<div class="top-n" id="topN">谢蔚安</div>
+<button class="st-btn" id="statusToggle">状态</button>
+</div>
+<div class="top-s" id="topS">未连接</div>
+<div id="statusBar">
+<div class="st-row">🎭 <span class="st-val" id="stMood">未知</span></div>
+<div class="st-row">🎬 <span class="st-val" id="stAction">未知</span></div>
+<div class="st-row">💭 <span class="st-val" id="stThought">未知</span></div>
+<div class="st-row">📍 <span class="st-val" id="stLocation">未知</span></div>
+</div>
+</div>
 </div>
 <div class="top-r">
 <button class="tbtn" id="pyqBtn" title="朋友圈">◉</button>
@@ -194,7 +221,6 @@ input[type="file"]{display:none}
 <textarea class="ib" id="inBox" placeholder="输入消息..." rows="1"></textarea>
 <button class="sdb" id="sendBtn" disabled>➤</button>
 </div>
-
 <!-- 朋友圈 -->
 <div class="fp" id="pyqPanel">
 <div class="fh">
@@ -213,7 +239,6 @@ input[type="file"]{display:none}
 <div id="pyqFeed"></div>
 </div>
 </div>
-
 <!-- 设置 -->
 <div class="fp" id="setPanel">
 <div class="fh"><button class="fc2" id="closeSet">✕</button><h2>设置</h2><div style="width:26px"></div></div>
@@ -226,7 +251,8 @@ input[type="file"]{display:none}
 <button class="tbn" data-tab="sticker">表情包</button>
 <button class="tbn" data-tab="look">外观</button>
 <button class="tbn" data-tab="data">数据</button>
-<button class="tbn" data-tab="about">关于</button> <button class="tbn" data-tab="manual">手册</button>
+<button class="tbn" data-tab="about">关于</button>
+<button class="tbn" data-tab="manual">手册</button>
 </div>
 <div class="sct">
 <!-- API -->
@@ -250,14 +276,14 @@ input[type="file"]{display:none}
 <div class="fg"><label class="fl">备注</label><textarea class="ft" id="fNote" placeholder="给角色添加额外信息..."></textarea></div>
 <div class="fg"><div style="display:flex;justify-content:space-between"><label class="fl" style="margin:0">角色人设</label><span class="cc" id="cCnt">0</span></div>
 <span class="fs">⬇️ 粘贴完整角色人设提示词</span>
-<textarea class="ft" id="fCP" style="min-height:300px" placeholder="在此粘贴完整人设...&#10;&#10;建议包含：&#10;- 基本信息与外貌&#10;- 性格与行为模式&#10;- 与燕世的关系&#10;- 小习惯与不完美&#10;- 转账[转账:金额:备注]&#10;- 表情包[表情:名称]"></textarea></div>
+<textarea class="ft" id="fCP" style="min-height:300px" placeholder="在此粘贴完整人设..."></textarea></div>
 <div class="bg3"><button class="btn bp" id="saveCh">保存</button><button class="btn bs2" id="rstCh">恢复默认</button></div>
 </div>
 <!-- 世界书 -->
 <div class="tp3" id="tab-world">
 <div class="fg"><div style="display:flex;justify-content:space-between"><label class="fl" style="margin:0">世界书</label><span class="cc" id="wCnt">0</span></div>
 <span class="fs">⬇️ 粘贴世界书（行为限制、规则等）</span>
-<textarea class="ft" id="fWB" style="min-height:300px" placeholder="在此粘贴世界书...&#10;&#10;建议包含：&#10;- 行为红线&#10;- 回复节奏规则&#10;- 情绪感知规则&#10;- 文风限制&#10;- 燕世核心信息&#10;- 家庭背景"></textarea></div>
+<textarea class="ft" id="fWB" style="min-height:300px" placeholder="在此粘贴世界书..."></textarea></div>
 <div class="bg3"><button class="btn bp" id="saveW">保存</button><button class="btn bs2" id="rstW">恢复默认</button></div>
 </div>
 <!-- 格式提示词 -->
@@ -335,16 +361,14 @@ input[type="file"]{display:none}
 <span style="font-size:11px;color:var(--tl)">侵权必究</span>
 </div>
 </div>
-</div>
 <!-- 手册 -->
-<div class="tp3" id="tab-manual" style="overflow-y:auto;max-height:100%">
-<div style="font-size:13px;color:var(--tp);line-height:2;padding:4px 0">
-
-<strong style="font-size:15px">📖 使用手册</strong><br><br>
+<div class="tp3" id="tab-manual">
+<div class="manual-body">
+<div class="m-title">📖 使用手册</div><br>
 
 <strong>一、首次使用</strong><br>
 1. 打开设置 → API 标签<br>
-2. 填入你的 API 地址（如 https://api.openai.com/v1）<br>
+2. 填入 API 地址（如 https://api.openai.com/v1）<br>
 3. 填入 API Key（sk-开头）<br>
 4. 选择模型（点"拉取"可查看可用模型）<br>
 5. 点"测试连接"确认成功后点"保存"<br><br>
@@ -407,78 +431,34 @@ input[type="file"]{display:none}
 - 记忆条数：发给AI的历史消息数量，越多越耗token<br>
 - 最少回复条数：角色每次至少回复几条消息<br><br>
 
-<strong>十二、常见问题</strong><br>
-Q：角色不回复？<br>
-A：发完消息要点 ▼ 按钮触发回复。<br><br>
-Q：回复很慢？<br>
-A：取决于API服务商速度，属正常现象。<br><br>
-Q：角色性格不对？<br>
-A：检查人设是否被修改或清空，点"恢复默认"。<br><br>
-Q：数据会丢失吗？<br>
-A：数据存在浏览器本地，清除浏览器数据会丢失，建议定期导出。<br><br>
-Q：换手机/浏览器怎么办？<br>
-A：先导出JSON，新设备导入即可。<br>
+<strong>十二、状态栏</strong><br>
+- 点击名称旁的"状态"按钮展开/收起<br>
+- 显示角色当前心情、动作、思绪、地点<br>
+- 每次角色回复时自动更新，不额外消耗API<br><br>
 
-<strong>十三、使用技巧</strong><br><br>
+<strong>十三、常见问题</strong><br>
+<span class="m-q">Q：角色不回复？</span><br>
+<span class="m-a">A：发完消息要点 ▼ 按钮触发回复。</span><br><br>
+<span class="m-q">Q：回复很慢？</span><br>
+<span class="m-a">A：取决于API服务商速度，属正常现象。</span><br><br>
+<span class="m-q">Q：角色性格不对？</span><br>
+<span class="m-a">A：检查人设是否被修改或清空，点"恢复默认"。</span><br><br>
+<span class="m-q">Q：状态栏不更新？</span><br>
+<span class="m-a">A：去设置→格式→点"恢复默认"，让状态标记指令生效。</span><br><br>
+<span class="m-q">Q：数据会丢失吗？</span><br>
+<span class="m-a">A：数据存在浏览器本地，清除浏览器数据会丢失，建议定期导出。</span><br><br>
+<span class="m-q">Q：换手机/浏览器怎么办？</span><br>
+<span class="m-a">A：先导出JSON，新设备导入即可。</span><br><br>
 
-<strong>💡 让角色回复更自然</strong><br>
-- Temperature 建议设 0.95-1.0，太低回复会死板<br>
-- 记忆条数建议 20-40，太少角色会忘记前面聊了什么<br>
-- 最少回复条数建议 2-4，设1容易太简短<br><br>
+<strong>十四、使用技巧</strong><br><br>
+<div class="m-tip">💡 Temperature 建议 0.95-1.0，太低回复会死板。记忆条数建议 20-40。最少回复条数建议 2-4。</div>
+<div class="m-tip">💡 备注栏可以写当前情境，比如"现在是深夜，燕世失眠了"，随时修改不影响主人设。</div>
+<div class="m-tip">💡 发1条消息点1次 ▼ = 正常节奏。连发好几条再点 ▼ = 角色一起回应。不发消息直接点 ▼ = 角色主动找你。</div>
+<div class="m-tip">💡 表情包名称起得有描述性，角色更容易主动用。比如"开心撒花"比"表情1"好。</div>
+<div class="m-tip">💡 角色扮演推荐模型：gpt-4o、claude-3.5-sonnet、deepseek-v3。性价比：gpt-4o-mini、deepseek-chat。</div>
 
-<strong>💡 善用备注栏</strong><br>
-- 设置 → 人设 → 备注栏可以写当前情境<br>
-- 比如："现在是深夜，燕世失眠了，两人在床上"<br>
-- 比如："今天是周末，谢蔚安休息，两人在家"<br>
-- 随时修改不影响主人设，能让角色回复更贴合当下<br><br>
-
-<strong>💡 角色语气不对怎么办</strong><br>
-- 角色太冷漠 → 备注栏写"今天状态轻松，语气温柔一些"<br>
-- 角色太啰嗦 → 备注栏写"对话简洁自然，不要长篇大论"<br>
-- 角色照着人设念台词 → 备注栏写"不要复述人设内容，自然对话"<br>
-- 改完备注下一次回复就会生效<br><br>
-
-<strong>💡 聊天节奏</strong><br>
-- 发1条消息点1次 ▼ = 正常对话节奏<br>
-- 连发好几条再点 ▼ = 角色会一起回应<br>
-- 不发消息直接点 ▼ = 角色主动找你说话<br>
-- 可以用这些方式制造不同的聊天感觉<br><br>
-
-<strong>💡 省token技巧</strong><br>
-- 记忆条数越多越耗token，日常聊天20-30条够用<br>
-- 聊天记录太长时可以用"选择性清除"删掉早期对话<br>
-- 定期导出备份后清空对话，重新开始也不会丢设定<br><br>
-
-<strong>💡 朋友圈玩法</strong><br>
-- 添加NPC后发朋友圈会更热闹<br>
-- NPC的设定写得越详细，评论越有个性<br>
-- 在角色的朋友圈下评论，角色会回复你<br>
-- 让角色发朋友圈可以看到他"私下"的状态<br><br>
-
-<strong>💡 表情包技巧</strong><br>
-- 表情包名称起得有描述性，角色更容易主动用<br>
-- 比如起名"开心撒花"比"表情1"好<br>
-- 在人设备注里写"适当使用表情包"可以提高使用频率<br><br>
-
-<strong>💡 模型推荐</strong><br>
-- 角色扮演效果好：gpt-4o、claude-3.5-sonnet、deepseek-v3<br>
-- 性价比高：gpt-4o-mini、deepseek-chat<br>
-- 模型越强，角色越自然，越不会照本宣科<br><br>
-
-<strong>💡 遇到奇怪回复</strong><br>
-- 角色突然性格大变 → 检查人设是否被误改，点"恢复默认"<br>
-- 角色开始说英文 → 格式提示词里已经要求中文，重新回复即可<br>
-- 角色重复同样的话 → Temperature调高，或清除最近几条对话<br>
-- 回复出现乱码标记 → 状态标记解析偶尔出错，忽略即可，不影响使用<br>
-
-<strong>你第一次打开页面，人设和世界书就已经有内容了，不是空的。<strong><br><br>
-实际发给AI的系统提示是从 `S.cp`（人设）和 `S.wb`（世界书）读取的，清空了它就真的没有了，AI就不知道自己是谢蔚安。<br>
-简单说：
-- 不动它 → 默认人设生效，正常用<br>
-- 手动改 → 用作者改的版本<br>
-- 清空 → AI就没人设了，会乱回复<br>
-- 点"恢复默认" →<br> 重新填回内置的默认内容<br>
-所以这是一个内置了固定人设的网站/软件，专属于谢蔚安的微信，只有创作者可见修改，人设和世书用户可自行补充<br>
+<br>
+本页面内置了固定人设，专属于谢蔚安。人设和世界书可在设置中自行查看和补充修改。
 </div>
 </div>
 </div>
@@ -816,6 +796,7 @@ var DF='# 状态标记（必须）\n\
 - 情感涓流而非洪水——通过行动、沉默、细微反常传达，不直白告白\n\
 \n\
 示例（---分隔）：\n\
+[STATUS:{"mood":"温和","action":"从厨房探出头","thought":"他醒了吗","location":"家中厨房"}]\n\
 （从厨房探出头）\n\
 ---\n\
 "吃了吗？"\n\
@@ -845,10 +826,9 @@ var DF='# 状态标记（必须）\n\
 - 正确示范：「嗯，去吧。」「好。路上慢点。」「知道了。（把手边的杯子推过去）」\n\
 如果犹豫，选择更真实、更有棱角的回应。';
 
-var KEYS='messages apiUrl apiKey modell tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt'.split(' ');
-var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus'.split(' ');
+var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 
-/* --- 工具 --- */
 var $=function(id){return document.getElementById(id)};
 var chatArea=$('chatArea'),inBox=$('inBox'),sendBtn=$('sendBtn'),recvBtn=$('recvBtn');
 var ttm;
@@ -861,12 +841,10 @@ function shouldShowTime(c,p){if(!p)return true;return c.ts&&p.ts?(c.ts-p.ts)>300
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML.replace(/\n/g,'<br>')}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
 
-/* --- 存取 --- */
 function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||''}
 function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)delete o.imageData;return o});localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){console.warn('save err',e)}}
-function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF}catch(e){}}
+function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'}}catch(e){}}
 
-/* --- 渲染工具 --- */
 function mkAv(src,fb){var w=document.createElement('div');w.className='mav';if(src){var im=document.createElement('img');im.src=src;im.alt=fb;im.onerror=function(){this.remove();w.textContent=fb};w.appendChild(im)}else w.textContent=fb;return w}
 function findStk(n){for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n)return S.stickers[i];return null}
 function parseTr(t){var m=t.match(/^\[转账:([^:]+):([^\]]*)\]$/);return m?{a:m[1],n:m[2]||''}:null}
@@ -879,7 +857,6 @@ if(msg.type==='image'&&msg.imageUrl){var ii=document.createElement('img');ii.cla
 if(msg.type==='sticker'&&msg.stickerUrl){var si=document.createElement('img');si.className='si2';si.src=msg.stickerUrl;return{el:si,tp:'sk'}}
 return null}
 
-/* --- 聊天渲染 --- */
 function render(animFrom){
 chatArea.innerHTML='';var prev=null;
 S.messages.forEach(function(m,idx){
@@ -905,7 +882,6 @@ chatArea.scrollTop=chatArea.scrollHeight}
 function addMsg(r,c,ex){var n=getNow();var m={id:gid(),role:r,content:c,time:n.time,date:n.date,ts:n.ts};if(ex)for(var k in ex)if(ex.hasOwnProperty(k))m[k]=ex[k];S.messages.push(m);save();return m}
 function addRender(r,c,ex){var i=S.messages.length;addMsg(r,c,ex);render(i)}
 
-/* --- 打字状态 --- */
 function setTyping(on){
 $('topS').textContent=on?'对方正在输入...':(S.connected?'在线':'未连接');
 $('topS').className='top-s'+(on?' typing':'');
@@ -913,7 +889,6 @@ $('topS').style.color=on?'':(S.connected?'#4CAF50':'');
 if(on){if(!$('typR')){var row=document.createElement('div');row.className='mr ai';row.id='typR';row.appendChild(mkAv(S.aiAv,(S.cn||'蔚').charAt(0)));var w=document.createElement('div');w.className='mw';var b=document.createElement('div');b.className='mb';b.innerHTML='<div class="ti"><span></span><span></span><span></span></div>';w.appendChild(b);row.appendChild(w);chatArea.appendChild(row);chatArea.scrollTop=chatArea.scrollHeight}}
 else{var t=$('typR');if(t)t.remove()}}
 
-/* --- UI更新 --- */
 function updTop(){
 $('topN').textContent=S.cn||'谢蔚安';
 var ta=$('topAv');ta.innerHTML='';
@@ -923,23 +898,20 @@ if(!S.isGen){$('topS').textContent=S.connected?'在线':'未连接';$('topS').cl
 function updConn(){$('cDot').className='dot '+(S.connected?'on':'off');$('cTxt').textContent=S.connected?'已连接 · '+S.model:'未连接';updTop()}
 function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:''}
 function setIp(id,src,fb){var el=$(id);el.innerHTML='';if(src){var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove();el.textContent=fb};el.appendChild(im)}else el.textContent=fb}
+function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location}}
 function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');renderStkM();renderNpcL()}
 function updBg(){chatArea.style.backgroundImage=S.cBg?'url('+S.cBg+')':'none'}
-function updAll(){fillForm();updTop();updConn();updBg();updBdg()}
+function updAll(){fillForm();updTop();updConn();updBg();updBdg();restoreStatus()}
 
-/* --- 格式提示词处理 --- */
 function buildFmt(){
 var f=S.fmt||DF;
 return f.replace(/\{charName\}/g,S.cn||'谢蔚安').replace(/\{userName\}/g,S.un||'燕世').replace(/\{minReply\}/g,String(S.minR||1))}
 
-/* --- 表情包 --- */
 function renderStkM(){var c=$('stkMgr');c.innerHTML='';$('stkCnt').textContent='('+S.stickers.length+')';if(!S.stickers.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0">暂无</div>';return}S.stickers.forEach(function(s,i){var d=document.createElement('div');d.className='smi';var ig=document.createElement('img');ig.src=s.url;ig.onerror=function(){this.style.display='none'};var nm=document.createElement('span');nm.className='sn';nm.textContent=s.name;var dl=document.createElement('button');dl.className='sdl';dl.textContent='✕';(function(x){dl.onclick=function(){S.stickers.splice(x,1);save();renderStkM();toast('已删除')}})(i);d.appendChild(ig);d.appendChild(nm);d.appendChild(dl);c.appendChild(d)})}
 function renderStkG(){var g=$('stkGrid');g.innerHTML='';if(!S.stickers.length){g.innerHTML='<div class="ske">暂无</div>';return}S.stickers.forEach(function(s){var it=document.createElement('div');it.className='ski';it.title=s.name;var ig=document.createElement('img');ig.src=s.url;it.appendChild(ig);it.onclick=function(){addRender('user','[表情:'+s.name+']',{type:'sticker',stickerUrl:s.url});S.pc++;updBdg();$('stkPanel').classList.remove('active')};g.appendChild(it)})}
 
-/* --- NPC --- */
 function renderNpcL(){var c=$('npcList');c.innerHTML='';$('npcCnt').textContent='('+S.npcs.length+')';if(!S.npcs.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0">暂无</div>';return}S.npcs.forEach(function(n,i){var d=document.createElement('div');d.className='npc-card';var top=document.createElement('div');top.className='npc-top';var nm=document.createElement('span');nm.className='npc-name';nm.textContent=n.name;var dl=document.createElement('button');dl.className='npc-del';dl.textContent='✕';(function(x){dl.onclick=function(){S.npcs.splice(x,1);save();renderNpcL();toast('已删除')}})(i);top.appendChild(nm);top.appendChild(dl);d.appendChild(top);if(n.desc){var ds=document.createElement('div');ds.className='npc-desc';ds.textContent=n.desc;d.appendChild(ds)}c.appendChild(d)})}
 
-/* --- 拍一拍 --- */
 var patTimer=null,patPressing=false;
 function initPat(){
 var av=$('topAv');
@@ -948,16 +920,12 @@ function endPat(){patPressing=false;clearTimeout(patTimer)}
 av.addEventListener('touchstart',startPat,{passive:false});
 av.addEventListener('touchend',endPat);av.addEventListener('touchcancel',endPat);
 av.addEventListener('mousedown',startPat);av.addEventListener('mouseup',endPat);av.addEventListener('mouseleave',endPat)}
-
 function doPat(){
 var text=S.un+' 拍了拍 '+S.cn+(S.pat||'');
-addMsg('user',text,{type:'pat'});
-render(S.messages.length-1);
-S.pc++;updBdg();
-toast(text);
+addMsg('user',text,{type:'pat'});render(S.messages.length-1);
+S.pc++;updBdg();toast(text);
 if(navigator.vibrate)navigator.vibrate(50)}
 
-/* --- API --- */
 function getRecentPyq(){var recent=S.pyqPosts.slice(-3);if(!recent.length)return'';var t='\n\n【最近朋友圈】\n';recent.forEach(function(p,i){t+='\n'+(i+1)+'. '+p.author+'：'+p.text+' ('+p.date+')';if(p.likes.length)t+='\n   ♥ '+p.likes.join('、');if(p.comments.length)p.comments.forEach(function(c){t+='\n   💬 '+c.name+(c.replyTo?' → '+c.replyTo:'')+': '+c.text})});return t}
 
 function buildSys(){
@@ -995,19 +963,17 @@ if(!data.choices||!data.choices[0])throw new Error('无效响应');
 return data.choices[0].message.content}
 
 function parseStatus(raw){
-var m=raw.match(/^\[STATUS:(.*?)\]\s*/);
+var m=raw.match(/\[STATUS:\s*(\{[^}]*\})\s*\]/);
 if(!m)return{status:null,body:raw};
-try{
-var s=JSON.parse(m[1]);
-return{status:s,body:raw.substring(m[0].length)}}
+try{var s=JSON.parse(m[1]);return{status:s,body:raw.replace(m[0],'').trim()}}
 catch(e){return{status:null,body:raw}}}
 
 function applyStatus(s){
 if(!s)return;
-if(s.mood)$('stMood').textContent=s.mood;
-if(s.action)$('stAction').textContent=s.action;
-if(s.thought)$('stThought').textContent=s.thought;
-if(s.location)$('stLocation').textContent=s.location;
+if(s.mood){$('stMood').textContent=s.mood;S.stStatus.mood=s.mood}
+if(s.action){$('stAction').textContent=s.action;S.stStatus.action=s.action}
+if(s.thought){$('stThought').textContent=s.thought;S.stStatus.thought=s.thought}
+if(s.location){$('stLocation').textContent=s.location;S.stStatus.location=s.location}
 save()}
 
 function splitReply(r){
@@ -1031,7 +997,6 @@ if(i>0){setTyping(true);await sleep(500+Math.random()*400+Math.min(p.length*25,1
 var ex={};var sn=parseStk(p);if(sn){var sk=findStk(sn);if(sk)ex={type:'sticker',stickerUrl:sk.url}}
 var idx=S.messages.length;addMsg('ai',p,ex);render(idx);await sleep(100)}}
 
-/* --- 发送/接收 --- */
 function sendMsg(){var t=inBox.value.trim();if(!t||S.isGen)return;sync();if(!S.apiKey){toast('设置API Key');return}addRender('user',t);inBox.value='';inBox.style.height='auto';sendBtn.disabled=true;S.pc++;updBdg()}
 
 async function recvReply(){
@@ -1051,15 +1016,12 @@ S.isGen=false;recvBtn.classList.remove('ld');updConn();updBdg()}
 async function testConn(){sync();if(!S.apiKey){toast('填Key');return}$('cDot').className='dot tw';$('cTxt').textContent='测试...';try{var r=await fetch(apiB()+'/chat/completions',{method:'POST',headers:apiH(),body:JSON.stringify({model:S.model,messages:[{role:'user',content:'OK'}],max_tokens:10})});S.connected=r.ok;toast(r.ok?'连接成功！':'失败: '+r.status)}catch(e){S.connected=false;toast('失败: '+e.message,3e3)}updConn()}
 async function fetchMod(){sync();if(!S.apiKey){toast('填Key');return}var btn=$('fetchBtn');btn.textContent='...';btn.disabled=true;try{var r=await fetch(apiB()+'/models',{headers:{'Authorization':'Bearer '+S.apiKey}});if(!r.ok)throw new Error(r.status);var d=await r.json();var mods=(d.data||d||[]).map(function(m){return m.id||m}).filter(Boolean).sort();var list=$('modList');list.innerHTML='';list.style.display='block';mods.forEach(function(m){var it=document.createElement('div');it.className='mi'+(m===S.model?' sel':'');it.textContent=m;it.onclick=function(){S.model=m;$('fMod').value=m;list.querySelectorAll('.mi').forEach(function(el){el.classList.remove('sel')});it.classList.add('sel');toast('已选: '+m)};list.appendChild(it)});toast(mods.length+'个模型')}catch(e){toast('失败',3e3)}btn.textContent='拉取';btn.disabled=false}
 
-/* --- 选择删除 --- */
 function togSelMode(){S.selMode=!S.selMode;S.selIds={};$('selBar').classList.toggle('active',S.selMode);$('inputArea').style.display=S.selMode?'none':'flex';$('selBtn').textContent=S.selMode?'✕':'☐';$('selCnt').textContent='已选 0';$('stkPanel').classList.remove('active');render()}
 function togSel(id){if(S.selIds[id])delete S.selIds[id];else S.selIds[id]=true;$('selCnt').textContent='已选 '+Object.keys(S.selIds).length;render()}
 function delSel(){var c=Object.keys(S.selIds).length;if(!c)return;if(!confirm('删除 '+c+' 条？'))return;S.messages=S.messages.filter(function(m){return!S.selIds[m.id]});S.selIds={};togSelMode();save();render();toast('已删除')}
 
-/* --- 图片处理 --- */
 function handleImg(fid,cb){$(fid).addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){cb(ev.target.result)};r.readAsDataURL(f);e.target.value=''})}
 
-/* ========== 朋友圈 ========== */
 function renderPyq(){
 var feed=$('pyqFeed');feed.innerHTML='';
 var ha=$('pyqHAv');ha.innerHTML='';if(S.usAv){var im2=document.createElement('img');im2.src=S.usAv;ha.appendChild(im2)}else ha.textContent=(S.un||'燕').charAt(0);
@@ -1069,8 +1031,7 @@ if(!S.pyqPosts.length){feed.innerHTML='<div class="pyq-empty">暂无动态</div>
 for(var pi=S.pyqPosts.length-1;pi>=0;pi--)(function(post,pidx){
 var item=document.createElement('div');item.className='pyq-item';
 var isChar=post.author===S.cn;
-var isNpc=false;
-for(var ni=0;ni<S.npcs.length;ni++){if(S.npcs[ni].name===post.author){isNpc=true;break}}
+var isNpc=false;for(var ni=0;ni<S.npcs.length;ni++){if(S.npcs[ni].name===post.author){isNpc=true;break}}
 var avSrc=isChar?S.aiAv:(isNpc?'':S.usAv);
 var row=document.createElement('div');row.className='pyq-row';
 var avd=document.createElement('div');avd.className='pyq-av';
@@ -1084,11 +1045,10 @@ var acts=document.createElement('div');acts.className='pyq-acts';
 var lk=document.createElement('button');lk.className='pyq-abtn'+(post.likes.indexOf(S.un)>=0?' liked':'');lk.textContent='♥ '+post.likes.length;
 lk.onclick=function(){var ui=post.likes.indexOf(S.un);ui>=0?post.likes.splice(ui,1):post.likes.push(S.un);save();renderPyq()};
 var del=document.createElement('button');del.className='pyq-dbtn';del.textContent='删除';
-del.onclick=function(){if(!confirm('删除？'))return;S.pyqPosts.splice(pidx,1);save();renderPyq()};
+del.onclick=function(){if(!confirm('删除？'))return;S.pyqPosts.splice(pidx,1);save();renderPyq();$('pCntD').textContent=S.pyqPosts.length};
 acts.appendChild(lk);meta.appendChild(ts);meta.appendChild(acts);meta.appendChild(del);
 main.appendChild(au);main.appendChild(tx);main.appendChild(meta);
 row.appendChild(avd);row.appendChild(main);item.appendChild(row);
-/* 互动区 - 修复：确保评论正确append */
 if(post.likes.length||post.comments.length){
 var inter=document.createElement('div');inter.className='pyq-inter';
 if(post.likes.length){var ld=document.createElement('div');ld.className='pyq-lk';ld.innerHTML='♥ '+post.likes.map(esc).join('、');inter.appendChild(ld)}
@@ -1099,7 +1059,6 @@ cm.innerHTML='<b>'+esc(c.name)+'</b>'+(c.replyTo?' → <b>'+esc(c.replyTo)+'</b>
 cms.appendChild(cm)});
 inter.appendChild(cms)}
 item.appendChild(inter)}
-/* 评论框 */
 var ci=document.createElement('div');ci.className='pyq-ci';
 var cin=document.createElement('input');cin.placeholder='评论...';
 var cib=document.createElement('button');cib.textContent='发送';
@@ -1108,14 +1067,11 @@ cib.onclick=function(){
 var t=theInput.value.trim();if(!t)return;
 thePost.comments.push({name:S.un,text:t,replyTo:''});
 save();renderPyq();
-/* 如果是角色的朋友圈，角色回复user的评论 */
 if(thePost.author===S.cn){autoCharReplyComment(theIdx,t)}
-/* 如果是user自己的朋友圈，不需要额外操作（角色已在发布时互动过） */
 }})(post,pidx,cin);
 ci.appendChild(cin);ci.appendChild(cib);item.appendChild(ci);
 feed.appendChild(item)})(S.pyqPosts[pi],pi)}
 
-/* char 100% 评论+点赞 user的朋友圈 */
 async function autoCharOnUserPost(pidx){
 if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 if(post.likes.indexOf(S.cn)<0)post.likes.push(S.cn);save();renderPyq();
@@ -1124,7 +1080,6 @@ var r=await callApi([{role:'system',content:buildSys()},{role:'user',content:S.u
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:''});save();renderPyq()
 }catch(e){console.warn('char comment err',e)}}
 
-/* char回复user在char朋友圈下的评论 */
 async function autoCharReplyComment(pidx,userComment){
 if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 try{
@@ -1132,7 +1087,6 @@ var r=await callApi([{role:'system',content:buildSys()},{role:'user',content:S.u
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:S.un});save();renderPyq()
 }catch(e){console.warn('char reply err',e)}}
 
-/* NPC 100% 点赞+评论 */
 async function autoNpcInteract(pidx){
 if(!S.npcs.length||!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 for(var i=0;i<S.npcs.length;i++){
@@ -1144,21 +1098,16 @@ post.comments.push({name:npc.name,text:r.trim().replace(/^["「」"]/g,'').repla
 }catch(e){console.warn('npc interact err',e)}
 save();renderPyq();await sleep(600)}}
 
-/* user发布 */
 function userPostPyq(){
 var t=$('pyqInput').value.trim();if(!t||S.pyqBusy)return;
 var n=getNow();S.pyqPosts.push({id:gid(),author:S.un,text:t,date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
-save();$('pyqInput').value='';renderPyq();toast('已发布');
+save();$('pyqInput').value='';renderPyq();toast('已发布');$('pCntD').textContent=S.pyqPosts.length;
 var pidx=S.pyqPosts.length-1;
 S.pyqBusy=true;
 setTimeout(async function(){
-try{
-await autoCharOnUserPost(pidx);
-await autoNpcInteract(pidx);
-}catch(e){console.warn('pyq auto err',e)}
+try{await autoCharOnUserPost(pidx);await autoNpcInteract(pidx)}catch(e){console.warn('pyq auto err',e)}
 S.pyqBusy=false},1200)}
 
-/* char发布 */
 async function charPostPyq(){
 if(!S.apiKey){toast('设置API Key');return}if(S.isGen||S.pyqBusy){toast('请等待');return}
 toast(S.cn+'正在编辑...');S.pyqBusy=true;
@@ -1166,15 +1115,14 @@ try{
 var r=await callApi([{role:'system',content:buildSys()},{role:'user',content:'请发一条朋友圈。根据时间和生活状态，1-3句自然的朋友圈。只输出文字。'}],300);
 var n=getNow();
 S.pyqPosts.push({id:gid(),author:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
-save();renderPyq();toast(S.cn+'发了朋友圈');
+save();renderPyq();toast(S.cn+'发了朋友圈');$('pCntD').textContent=S.pyqPosts.length;
 await autoNpcInteract(S.pyqPosts.length-1)
 }catch(e){toast('失败',3e3)}
 S.pyqBusy=false}
 
-/* ========== 导出 ========== */
 function expData(){
 sync();
-var d={_type:'xwa_export',_ver:11,_date:new Date().toISOString()};
+var d={_type:'xwa_export',_ver:12,_date:new Date().toISOString()};
 KEYS.forEach(function(k){d[k]=S[k]});
 d.messages=d.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)o.imageData='[省略]';return o});
 var json=JSON.stringify(d,null,2);
@@ -1183,25 +1131,12 @@ try{
 var blob=new Blob([json],{type:'application/json'});
 if(navigator.userAgent.indexOf('wv')>-1||navigator.userAgent.indexOf('WebView')>-1){
 var reader=new FileReader();
-reader.onload=function(){
-var a=document.createElement('a');a.href=reader.result;a.download=filename;
-a.style.display='none';document.body.appendChild(a);a.click();
-setTimeout(function(){document.body.removeChild(a)},100);
-toast('导出成功')};
+reader.onload=function(){var a=document.createElement('a');a.href=reader.result;a.download=filename;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a)},100);toast('导出成功')};
 reader.readAsDataURL(blob)}
-else{
-var url=URL.createObjectURL(blob);
-var a=document.createElement('a');a.href=url;a.download=filename;
-a.style.display='none';document.body.appendChild(a);a.click();
-setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url)},200);
-toast('导出成功')}}
-catch(e){
-try{navigator.clipboard.writeText(json).then(function(){toast('已复制到剪贴板，请手动保存为.json文件',4e3)}).catch(function(){fallbackExp(json)})}catch(e2){fallbackExp(json)}}}
+else{var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=filename;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url)},200);toast('导出成功')}}
+catch(e){try{navigator.clipboard.writeText(json).then(function(){toast('已复制到剪贴板',4e3)}).catch(function(){fallbackExp(json)})}catch(e2){fallbackExp(json)}}}
 
-function fallbackExp(json){
-var w=window.open('','_blank');
-if(w){w.document.write('<pre>'+json.replace(/</g,'&lt;')+'</pre>');toast('请手动复制保存',3e3)}
-else toast('导出失败，请允许弹出窗口',3e3)}
+function fallbackExp(json){var w=window.open('','_blank');if(w){w.document.write('<pre>'+json.replace(/</g,'&lt;')+'</pre>');toast('请手动复制保存',3e3)}else toast('导出失败',3e3)}
 
 function impData(f){
 var r=new FileReader();r.onload=function(ev){
@@ -1213,16 +1148,17 @@ KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});
 ['stickers','npcs','pyqPosts'].forEach(function(k){if(!S[k])S[k]=[]});
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 if(!S.pat)S.pat='的肩膀';if(!S.pyqBg)S.pyqBg='';if(!S.note)S.note='';if(!S.fmt)S.fmt=DF;
+if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
 save();updAll();render();toast('导入成功')
 }catch(e){toast('失败: '+e.message,3e3)}};
 r.readAsText(f)}
 
-/* ========== 事件绑定 ========== */
 function initEv(){
-  $('statusToggle').onclick=function(){
-var sb=$('statusBar');
-sb.classList.toggle('open');
+$('statusToggle').onclick=function(){
+var sb=$('statusBar');sb.classList.toggle('open');
+this.classList.toggle('open');
 this.textContent=sb.classList.contains('open')?'收起':'状态'};
+
 sendBtn.onclick=sendMsg;
 inBox.onkeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg()}};
 inBox.oninput=function(){sendBtn.disabled=!inBox.value.trim();inBox.style.height='auto';inBox.style.height=Math.min(inBox.scrollHeight,100)+'px'};
@@ -1258,21 +1194,18 @@ $('delSel').onclick=delSel;
 $('fMinR').onchange=function(){S.minR=Math.max(1,parseInt(this.value)||1);save()};
 $('fPat').onchange=function(){S.pat=this.value.trim()||'的肩膀';save()};
 
-/* NPC */
 $('addNpc').onclick=function(){
 var n=$('npcNI').value.trim(),d=$('npcDI').value.trim();
 if(!n){toast('填名称');return}
 for(var i=0;i<S.npcs.length;i++)if(S.npcs[i].name===n){toast('已存在');return}
 S.npcs.push({name:n,desc:d});save();renderNpcL();$('npcNI').value='';$('npcDI').value='';toast('已添加')};
 
-/* 表情包 */
 $('addStk').onclick=function(){
 var u=$('stkUrl').value.trim(),n=$('stkName').value.trim();
 if(!u||!n){toast('填完整');return}
 for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n){toast('名称重复');return}
 S.stickers.push({url:u,name:n});save();renderStkM();$('stkUrl').value='';$('stkName').value='';toast('已添加')};
 
-/* 头像上传 */
 handleImg('aiF',function(d){S.aiAv=d;save();setIp('aiPv',d,'蔚');updTop();toast('已设置')});
 handleImg('usF',function(d){S.usAv=d;save();setIp('usPv',d,'燕');toast('已设置')});
 handleImg('bgF',function(d){S.cBg=d;save();setIp('bgPv',d,'无');updBg();toast('已设置')});
@@ -1282,7 +1215,6 @@ $('clrUs').onclick=function(){S.usAv='';save();setIp('usPv','','燕');toast('已
 $('clrBg').onclick=function(){S.cBg='';save();setIp('bgPv','','无');updBg();toast('已清除')};
 $('clrPyqBg').onclick=function(){S.pyqBg='';save();setIp('pyqBgPv','','无');toast('已清除')};
 
-/* 数据管理 */
 $('clrChat').onclick=function(){if(!confirm('清空所有对话？'))return;S.messages=[];save();render();$('mCntD').textContent='0';toast('已清空')};
 $('clrPyq').onclick=function(){if(!confirm('清空所有朋友圈？'))return;S.pyqPosts=[];save();renderPyq();$('pCntD').textContent='0';toast('已清空')};
 $('clrChatPart').onclick=function(){
@@ -1297,32 +1229,17 @@ $('expBtn').onclick=expData;
 $('impF').onchange=function(e){var f=e.target.files[0];if(f)impData(f);e.target.value=''};
 $('rstAll').onclick=function(){if(!confirm('重置所有数据？此操作不可恢复！'))return;if(!confirm('确认重置？'))return;localStorage.removeItem('xwa9');location.reload()};
 
-/* 朋友圈滚动加载占位（预留） */
-var pyqScroll=$('pyqScroll');
-pyqScroll.addEventListener('scroll',function(){
-/* 可扩展：滚动到底部加载更多 */
-});
-
-/* 阻止面板内滚动穿透 */
 document.querySelectorAll('.fp').forEach(function(fp){
 fp.addEventListener('touchmove',function(e){e.stopPropagation()},{passive:true})});
-
-/* 点击聊天区域关闭表情包面板 */
 chatArea.addEventListener('click',function(){$('stkPanel').classList.remove('active')});
-
-/* 窗口关闭前保存 */
 window.addEventListener('beforeunload',function(){sync();save()});
-
-/* 移动端键盘弹出时滚动到底部 */
 if(/Mobi|Android/i.test(navigator.userAgent)){
 window.addEventListener('resize',function(){setTimeout(function(){chatArea.scrollTop=chatArea.scrollHeight},150)});
 inBox.addEventListener('focus',function(){setTimeout(function(){chatArea.scrollTop=chatArea.scrollHeight},300)})}
 }
 
-/* ========== 初始化 ========== */
 function init(){
 load();
-/* 兼容旧数据 */
 if(!S.stickers)S.stickers=[];
 if(!S.npcs)S.npcs=[];
 if(!S.pyqPosts)S.pyqPosts=[];
@@ -1330,16 +1247,14 @@ if(!S.pat)S.pat='的肩膀';
 if(!S.pyqBg)S.pyqBg='';
 if(!S.note)S.note='';
 if(!S.fmt)S.fmt=DF;
+if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
 if(typeof S.minR==='undefined')S.minR=1;
-/* 旧NPC格式兼容 */
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
-/* 计算待接收 */
 S.pc=0;
 for(var i=S.messages.length-1;i>=0;i--){
 if(S.messages[i].role==='ai')break;
 if(S.messages[i].role==='user')S.pc++}
 initEv();initPat();updAll();render();
-/* 欢迎消息 */
 if(!S.messages.length){
 var n=getNow();
 S.messages.push({id:gid(),role:'ai',content:'（手指轻轻敲了敲桌面，抬眼看向屏幕）',time:n.time,date:n.date,ts:n.ts});
