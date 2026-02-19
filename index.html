@@ -26,8 +26,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .st-btn{background:none;border:1px solid var(--bc);border-radius:10px;padding:1px 8px;font-size:10px;color:var(--ts);cursor:pointer;flex-shrink:0;line-height:1.6;transition:all .15s}
 .st-btn:hover{background:var(--p);border-color:var(--ac);color:var(--ac)}
 .st-btn.open{background:var(--al);border-color:var(--ac);color:var(--ac)}
-#statusBar{display:none;margin-top:6px;padding:8px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);animation:fadeDown .2s ease}
+#statusBar{display:none;margin-top:6px;padding:8px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);animation:fadeDown .2s ease;word-break:break-word;overflow:hidden}
 #statusBar.open{display:block}
+.st-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px}
+.st-row span:first-child{flex-shrink:0}
+.st-val{color:var(--tp);font-weight:500;word-break:break-word;min-width:0}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .st-row{display:flex;align-items:center;gap:4px}
 .st-row span:first-child{flex-shrink:0}
@@ -123,6 +126,9 @@ input[type="file"]{display:none}
 .mr .mb.skb{background:transparent!important;box-shadow:none!important;padding:4px!important}
 .mimg{max-width:200px;max-height:200px;border-radius:8px;cursor:pointer;display:block}
 .mr .mb.imb{background:transparent!important;box-shadow:none!important;padding:4px!important}
+.txt-img{background:linear-gradient(135deg,#f0f0f0,#e8e8e8);border-radius:8px;padding:16px;text-align:center;min-width:160px;max-width:220px}
+.txt-img-icon{font-size:32px;margin-bottom:6px}
+.txt-img-desc{font-size:12px;color:var(--ts);line-height:1.5;word-break:break-word}
 .skp{position:absolute;bottom:56px;left:8px;right:8px;background:var(--w);border:1px solid var(--bc);border-radius:14px;box-shadow:0 -4px 24px rgba(0,0,0,.08);z-index:50;display:none;flex-direction:column;max-height:260px}
 .skp.active{display:flex}
 .skh{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:.5px solid var(--bc)}.skh span{font-size:14px;font-weight:600}.skh button{background:none;border:none;font-size:18px;cursor:pointer;color:var(--ts)}
@@ -197,10 +203,10 @@ input[type="file"]{display:none}
 </div>
 <div class="top-s" id="topS">未连接</div>
 <div id="statusBar">
-<div class="st-row">🎭 <span class="st-val" id="stMood">未知</span></div>
-<div class="st-row">🎬 <span class="st-val" id="stAction">未知</span></div>
-<div class="st-row">💭 <span class="st-val" id="stThought">未知</span></div>
-<div class="st-row">📍 <span class="st-val" id="stLocation">未知</span></div>
+<div class="st-row"><span>🎭</span><span class="st-val" id="stMood">未知</span></div>
+<div class="st-row"><span>🎬</span><span class="st-val" id="stAction">未知</span></div>
+<div class="st-row"><span>💭</span><span class="st-val" id="stThought">未知</span></div>
+<div class="st-row"><span>📍</span><span class="st-val" id="stLocation">未知</span></div>
 </div>
 </div>
 </div>
@@ -809,6 +815,11 @@ var DF='# 状态标记（必须）\n\
 # 表情包\n\
 想发表情包时格式：[表情:名称]，单独一条，名称必须在可用列表中\n\
 \n\
+# 文字图片\n\
+想分享图片时格式：[图片：图片内容描述]，单独一条\n\
+描述要具体生动，如：[图片：窗台上的薄荷盆栽，阳光透过叶片]\n\
+不要频繁使用，在合适的场景自然地分享\n\
+\n\
 # 生成前自检\n\
 1. 我是在表达{charName}的真实想法，还是在说{userName}想听的话？\n\
 2. 如果现实中有人这么对我说，我会怎么回应？\n\
@@ -855,6 +866,8 @@ if(tr){var cd=document.createElement('div');cd.className='tc';cd.innerHTML='<div
 var sn=parseStk(c);if(sn){var sk=findStk(sn);if(sk){var ig=document.createElement('img');ig.className='si2';ig.src=sk.url;ig.onerror=function(){this.replaceWith(document.createTextNode('[表情:'+sn+']'))};return{el:ig,tp:'sk'}}}
 if(msg.type==='image'&&msg.imageUrl){var ii=document.createElement('img');ii.className='mimg';ii.src=msg.imageUrl;ii.onclick=function(){window.open(msg.imageUrl)};return{el:ii,tp:'im'}}
 if(msg.type==='sticker'&&msg.stickerUrl){var si=document.createElement('img');si.className='si2';si.src=msg.stickerUrl;return{el:si,tp:'sk'}}
+var tim=c.match(/^\[图片[：:]\s*(.+)\]$/);
+if(tim){var td2=document.createElement('div');td2.className='txt-img';td2.innerHTML='<div class="txt-img-icon">🖼</div><div class="txt-img-desc">'+esc(tim[1])+'</div>';return{el:td2,tp:'ti'}}
 return null}
 
 function render(animFrom){
@@ -1038,7 +1051,7 @@ var avd=document.createElement('div');avd.className='pyq-av';
 if(avSrc){var ai=document.createElement('img');ai.src=avSrc;avd.appendChild(ai)}else avd.textContent=(post.author||'?').charAt(0);
 var main=document.createElement('div');main.className='pyq-main';
 var au=document.createElement('div');au.className='pyq-author';au.textContent=post.author;
-var tx=document.createElement('div');tx.className='pyq-text';tx.textContent=post.text;
+var tx=document.createElement('div');tx.className='pyq-text'; var pyqImgMatch=post.text.match(/\[图片[：:]\s*(.+)\]/); if(pyqImgMatch){ var beforeImg=post.text.substring(0,post.text.indexOf(pyqImgMatch[0])).trim(); var afterImg=post.text.substring(post.text.indexOf(pyqImgMatch[0])+pyqImgMatch[0].length).trim(); if(beforeImg)tx.appendChild(document.createTextNode(beforeImg+'\n')); var pyqTi=document.createElement('div');pyqTi.className='txt-img';pyqTi.style.margin='6px 0';pyqTi.innerHTML='<div class="txt-img-icon">🖼</div><div class="txt-img-desc">'+esc(pyqImgMatch[1])+'</div>'; tx.appendChild(pyqTi); if(afterImg)tx.appendChild(document.createTextNode(afterImg)); }else{tx.textContent=post.text}
 var meta=document.createElement('div');meta.className='pyq-meta';
 var ts=document.createElement('span');ts.textContent=smartDate(post.date)+' '+post.time;
 var acts=document.createElement('div');acts.className='pyq-acts';
@@ -1076,14 +1089,14 @@ async function autoCharOnUserPost(pidx){
 if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 if(post.likes.indexOf(S.cn)<0)post.likes.push(S.cn);save();renderPyq();
 try{
-var r=await callApi([{role:'system',content:buildSys()},{role:'user',content:S.un+'发了朋友圈："'+post.text+'"。用你的风格简短评论，自然真实，像微信朋友圈评论。只输出评论内容，不加引号。'}],200);
+var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字评论，不要输出任何标记、代码或格式符号。'; var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'发了朋友圈："'+post.text+'"。用你的风格简短评论一句，自然真实，像微信朋友圈评论。只输出评论内容，不加引号，不加任何标记。'}],200);
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:''});save();renderPyq()
 }catch(e){console.warn('char comment err',e)}}
 
 async function autoCharReplyComment(pidx,userComment){
 if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 try{
-var r=await callApi([{role:'system',content:buildSys()},{role:'user',content:S.un+'在你的朋友圈"'+post.text+'"下评论了："'+userComment+'"。简短回复。只输出回复。'}],200);
+var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字回复，不要输出任何标记、代码或格式符号。'; var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'在你的朋友圈"'+post.text+'"下评论了："'+userComment+'"。简短回复一句。只输出回复内容，不加引号，不加任何标记。'}],200);
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:S.un});save();renderPyq()
 }catch(e){console.warn('char reply err',e)}}
 
