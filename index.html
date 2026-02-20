@@ -28,13 +28,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .st-btn.open{background:var(--al);border-color:var(--ac);color:var(--ac)}
 #statusBar{display:none;margin-top:6px;padding:8px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);animation:fadeDown .2s ease;word-break:break-word;overflow:hidden}
 #statusBar.open{display:block}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .st-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px}
 .st-row span:first-child{flex-shrink:0}
 .st-val{color:var(--tp);font-weight:500;word-break:break-word;min-width:0}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-.st-row{display:flex;align-items:center;gap:4px}
-.st-row span:first-child{flex-shrink:0}
-.st-val{color:var(--tp);font-weight:500}
 .chat{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px;background-size:cover;background-position:center;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
 .chat::-webkit-scrollbar{width:3px}
 .chat::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px}
@@ -145,6 +142,12 @@ input[type="file"]{display:none}
 .npc-name{font-size:14px;font-weight:600;color:var(--tp)}
 .npc-desc{font-size:11px;color:var(--ts);margin-top:4px;line-height:1.4}
 .npc-del{background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;padding:4px}
+.sound-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.sound-name{font-size:12px;color:var(--ts);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sound-play{background:none;border:1px solid var(--bc);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;color:var(--ac)}
+.mem-card{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:var(--p);font-size:12px;line-height:1.6;color:var(--tp);white-space:pre-wrap;word-break:break-word;position:relative}
+.mem-card .mem-time{font-size:10px;color:var(--tl);margin-bottom:4px}
+.mem-card .mem-del{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer}
 .pyq-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .pyq-header{height:200px;background:linear-gradient(135deg,#576B5C,#3a4d3f);display:flex;align-items:flex-end;padding:16px;background-size:cover;background-position:center}
 .pyq-hi{display:flex;align-items:center;gap:12px}
@@ -252,6 +255,7 @@ input[type="file"]{display:none}
 <button class="tbn active" data-tab="api">API</button>
 <button class="tbn" data-tab="char">人设</button>
 <button class="tbn" data-tab="world">世界书</button>
+<button class="tbn" data-tab="memory">记忆</button>
 <button class="tbn" data-tab="format">格式</button>
 <button class="tbn" data-tab="npc">NPC</button>
 <button class="tbn" data-tab="sticker">表情包</button>
@@ -292,6 +296,20 @@ input[type="file"]{display:none}
 <textarea class="ft" id="fWB" style="min-height:300px" placeholder="在此粘贴世界书..."></textarea></div>
 <div class="bg3"><button class="btn bp" id="saveW">保存</button><button class="btn bs2" id="rstW">恢复默认</button></div>
 </div>
+<!-- 记忆书 -->
+<div class="tp3" id="tab-memory">
+<div class="fmt-info">记忆书会自动或手动总结对话内容，生成长期记忆摘要注入系统提示，帮助角色记住重要事件。总结不会删除原始对话。</div>
+<div class="fg"><label class="fl">自动总结间隔</label><span class="fs">每隔多少条对话自动总结一次（0=关闭自动总结）</span>
+<div class="mmr"><input class="fi" id="fMemInt" type="number" min="0" value="0"><span class="fs" style="margin:0">条</span></div></div>
+<div class="fg"><label class="fl">已对话（未总结）</label><span class="stxt" id="memUnsumCnt">0 条</span></div>
+<div class="fg"><div style="display:flex;justify-content:space-between"><label class="fl" style="margin:0">总结提示词</label><span class="cc" id="memPCnt">0</span></div>
+<textarea class="ft" id="fMemPrompt" style="min-height:120px" placeholder="总结提示词..."></textarea></div>
+<div class="bg3"><button class="btn bp" id="memSumNow">立即总结</button><button class="btn bs2" id="memSaveP">保存设置</button><button class="btn bs2" id="memRstP">恢复默认</button></div>
+<div class="sd3"></div>
+<div class="fg"><div style="display:flex;justify-content:space-between"><label class="fl" style="margin:0">记忆列表</label><span style="font-weight:400;color:var(--ts)" id="memCnt">(0)</span></div>
+<div id="memList"></div>
+</div>
+</div>
 <!-- 格式提示词 -->
 <div class="tp3" id="tab-format">
 <div class="fmt-info">
@@ -327,6 +345,16 @@ input[type="file"]{display:none}
 <div class="sd3"></div>
 <div class="fg"><label class="fl">聊天背景</label><div class="upr"><div class="upv wd" id="bgPv">无</div><label class="upl" for="bgF">上传</label><input type="file" id="bgF" accept="image/*"><button class="btn bsm bs2" id="clrBg">清除</button></div></div>
 <div class="fg"><label class="fl">朋友圈封面</label><div class="upr"><div class="upv wd" id="pyqBgPv">无</div><label class="upl" for="pyqBgF">上传</label><input type="file" id="pyqBgF" accept="image/*"><button class="btn bsm bs2" id="clrPyqBg">清除</button></div></div>
+<div class="sd3"></div>
+<div class="fg"><label class="fl">消息铃声</label><span class="fs">接收消息时播放提示音（mp3格式，不超3MB）</span>
+<div class="sound-row">
+<div class="upv" id="sndPv" style="width:auto;padding:0 8px;font-size:11px">无</div>
+<label class="upl" for="sndF">上传mp3</label>
+<input type="file" id="sndF" accept=".mp3,audio/mpeg">
+<button class="sound-play" id="sndTest">试听</button>
+<button class="btn bsm bs2" id="clrSnd">清除</button>
+</div>
+</div>
 <div class="bg3"><button class="btn bp" id="saveLk">保存</button></div>
 </div>
 <!-- 数据 -->
@@ -364,114 +392,79 @@ input[type="file"]{display:none}
 <span class="ct">小红书：27418565861</span><br>
 <span class="ct">微信：Aa9620520</span><br>
 <span class="ct">QQ：962005530</span><br><br>
-<span style="font-size:11px;color:var(--tl)">侵权必究</span>
+<span style="font-size:11px;color:var(--tl)">v2.0.0 · 侵权必究</span>
 </div>
 </div>
 <!-- 手册 -->
 <div class="tp3" id="tab-manual">
 <div class="manual-body">
-<div class="m-title">📖 使用手册</div><br>
-
+<div class="m-title">📖 使用手册 v2.0</div><br>
 <strong>一、首次使用</strong><br>
 1. 打开设置 → API 标签<br>
 2. 填入 API 地址（如 https://api.openai.com/v1）<br>
 3. 填入 API Key（sk-开头）<br>
 4. 选择模型（点"拉取"可查看可用模型）<br>
 5. 点"测试连接"确认成功后点"保存"<br><br>
-
 <strong>二、聊天</strong><br>
 - 输入框打字 → 点发送（或回车）= 发消息<br>
 - 点左下角 ▼ 按钮 = 让角色回复<br>
 - 发完消息后点 ▼ 角色才会回复，不会自动回<br>
 - ▼ 按钮上的红色数字 = 待回复消息数<br>
 - 没发消息直接点 ▼ = 角色主动找你聊天<br><br>
-
 <strong>三、特殊消息</strong><br>
 - 😊 按钮 = 发送表情包（需先在设置里添加）<br>
 - 🖼 按钮 = 发送图片<br>
-- 长按顶部头像 = 拍一拍<br><br>
-
+- 长按顶部头像 = 拍一拍<br>
+- 角色可发送文字图片 [图片：描述]<br><br>
 <strong>四、朋友圈</strong><br>
 - 点顶部 ◉ 进入朋友圈<br>
 - 上方输入框可以自己发朋友圈<br>
 - 右上角 📝 = 让角色发一条朋友圈<br>
 - 发布后角色和NPC会自动点赞+评论<br>
 - 在角色的朋友圈下评论，角色会回复你<br><br>
-
 <strong>五、人设与世界书</strong><br>
 - 已内置默认人设和世界书，开箱即用<br>
 - 可在"人设"和"世界书"标签里自由修改<br>
 - 点"恢复默认"可还原内置版本<br>
 - 不要清空，清空后角色会失去设定<br>
 - "备注"栏可写临时补充信息（如当前剧情状态）<br><br>
-
-<strong>六、格式提示词</strong><br>
+<strong>六、记忆书（新功能）</strong><br>
+- 设置 → 记忆标签页<br>
+- 设置自动总结间隔（如每30条对话自动总结一次）<br>
+- 也可随时点"立即总结"手动触发<br>
+- 总结后的记忆会注入系统提示，帮角色记住重要事件<br>
+- 可编辑总结提示词控制总结风格<br>
+- 记忆条目可单独删除<br>
+- 设为0则关闭自动总结<br><br>
+<strong>七、格式提示词</strong><br>
 - 控制角色回复的格式和风格<br>
 - 支持变量：{charName} {userName} {minReply}<br>
 - 一般不需要改，默认即可<br><br>
-
-<strong>七、NPC</strong><br>
-- 添加NPC后，他们会在朋友圈100%点赞+评论<br>
-- 填写设定可以让NPC评论更符合人设<br><br>
-
-<strong>八、表情包</strong><br>
-- 需要图片URL和名称<br>
-- 添加后聊天时点 😊 可发送<br>
-- 角色也可能主动发表情包（如果人设里提到了）<br><br>
-
-<strong>九、外观</strong><br>
-- 可上传角色头像、用户头像<br>
-- 可设置聊天背景和朋友圈封面<br>
-- 图片不超过5MB<br><br>
-
-<strong>十、数据管理</strong><br>
-- 导出 = 把所有数据保存为JSON文件<br>
-- 导入 = 从JSON文件恢复数据（会覆盖当前）<br>
-- 选择性清除 = 只删最早的N条记录<br>
-- 重置 = 清除所有数据恢复出厂（不可恢复）<br>
-- 建议定期导出备份<br><br>
-
-<strong>十一、参数说明</strong><br>
-- Temperature：越高回复越随机（建议0.6-1.0）<br>
-- Max Tokens：单次回复最大长度<br>
-- 记忆条数：发给AI的历史消息数量，越多越耗token<br>
-- 最少回复条数：角色每次至少回复几条消息<br><br>
-
-<strong>十二、状态栏</strong><br>
+<strong>八、状态栏</strong><br>
 - 点击名称旁的"状态"按钮展开/收起<br>
 - 显示角色当前心情、动作、思绪、地点<br>
 - 每次角色回复时自动更新，不额外消耗API<br><br>
-
-<strong>十三、常见问题</strong><br>
+<strong>九、消息铃声</strong><br>
+- 设置 → 外观 → 上传mp3文件<br>
+- 每次收到角色消息时播放提示音<br><br>
+<strong>十、常见问题</strong><br>
 <span class="m-q">Q：角色不回复？</span><br>
 <span class="m-a">A：发完消息要点 ▼ 按钮触发回复。</span><br><br>
-<span class="m-q">Q：回复很慢？</span><br>
-<span class="m-a">A：取决于API服务商速度，属正常现象。</span><br><br>
-<span class="m-q">Q：角色性格不对？</span><br>
-<span class="m-a">A：检查人设是否被修改或清空，点"恢复默认"。</span><br><br>
 <span class="m-q">Q：状态栏不更新？</span><br>
-<span class="m-a">A：去设置→格式→点"恢复默认"，让状态标记指令生效。</span><br><br>
+<span class="m-a">A：去设置→格式→点"恢复默认"。</span><br><br>
+<span class="m-q">Q：角色照搬设定/重复对话？</span><br>
+<span class="m-a">A：已在格式提示词中内置防机械规则，如仍有问题可在备注栏写"不要复述人设，自然对话"。</span><br><br>
 <span class="m-q">Q：数据会丢失吗？</span><br>
-<span class="m-a">A：数据存在浏览器本地，清除浏览器数据会丢失，建议定期导出。</span><br><br>
-<span class="m-q">Q：换手机/浏览器怎么办？</span><br>
-<span class="m-a">A：先导出JSON，新设备导入即可。</span><br><br>
-
-<strong>十四、使用技巧</strong><br><br>
-<div class="m-tip">💡 Temperature 建议 0.95-1.0，太低回复会死板。记忆条数建议 20-40。最少回复条数建议 2-4。</div>
-<div class="m-tip">💡 备注栏可以写当前情境，比如"现在是深夜，燕世失眠了"，随时修改不影响主人设。</div>
-<div class="m-tip">💡 发1条消息点1次 ▼ = 正常节奏。连发好几条再点 ▼ = 角色一起回应。不发消息直接点 ▼ = 角色主动找你。</div>
-<div class="m-tip">💡 表情包名称起得有描述性，角色更容易主动用。比如"开心撒花"比"表情1"好。</div>
-<div class="m-tip">💡 角色扮演推荐模型：gpt-4o、claude-3.5-sonnet、deepseek-v3。性价比：gpt-4o-mini、deepseek-chat。</div>
-
-<br>
-本页面内置了固定人设，专属于谢蔚安。人设和世界书可在设置中自行查看和补充修改。
-</div>
-</div>
-</div>
-</div>
+<span class="m-a">A：数据存在浏览器本地，建议定期导出备份。</span><br><br>
+<div class="m-tip">💡 Temperature 建议 0.95-1.0。记忆条数建议 20-40。最少回复条数建议 2-4。</div>
+<div class="m-tip">💡 备注栏可以写当前情境，随时修改不影响主人设。</div>
+<div class="m-tip">💡 推荐模型：gpt-4o、claude-3.5-sonnet、deepseek-v3。性价比：gpt-4o-mini、deepseek-chat。</div>
+</div><!-- 关闭 manual-body -->
+</div><!-- 关闭 tab-manual -->
+</div><!-- 关闭 sct -->
+</div><!-- 关闭 setPanel -->
 <div class="toast" id="toast"></div>
-</div>
-
+</div><!-- 关闭 app -->
 <script>
 var DC='你是谢蔚安，33岁男性，清岚国际心理健康诊所主治医师。你是燕世的私人心理医生、恋人与家人。\n\
 \n\
@@ -801,6 +794,25 @@ var DF='# 状态标记（必须）\n\
 - 感官描写克制细腻，侧重触觉和听觉，用最简单词汇传递最准确体验\n\
 - 情感涓流而非洪水——通过行动、沉默、细微反常传达，不直白告白\n\
 \n\
+# 消息完整性（严格遵守）\n\
+- 每条消息必须是完整的句子或完整的动作描写\n\
+- 禁止把一句话拆成两条消息\n\
+- 禁止标点符号单独成为一条消息\n\
+- 禁止一条消息只有半句话，另一半跑到下一条\n\
+- 错误示范：第一条"我今天去了" --- 第二条"超市"\n\
+- 正确示范：一条完整的"我今天去了超市"\n\
+\n\
+# 自然表达（严格遵守）\n\
+- 禁止照搬人设原文当台词\n\
+- 禁止复述上文对话内容\n\
+- 禁止重复对方刚说过的话\n\
+- 人设是内在认知，不是念稿素材\n\
+- 用自己的话表达，像真人聊天一样随意自然\n\
+- 回复要有温度，不能冷冰冰像机器\n\
+- 即使简短回复也要带情感：语气词、标点、微小动作至少占一个\n\
+- 错误示范：「嗯。」「好。」「知道了。」（连续冷淡）\n\
+- 正确示范：「嗯，去吧。」「好。路上慢点。」「知道了。（把手边的杯子推过去）」\n\
+\n\
 示例（---分隔）：\n\
 [STATUS:{"mood":"温和","action":"从厨房探出头","thought":"他醒了吗","location":"家中厨房"}]\n\
 （从厨房探出头）\n\
@@ -821,24 +833,36 @@ var DF='# 状态标记（必须）\n\
 不要频繁使用，在合适的场景自然地分享\n\
 \n\
 # 生成前自检\n\
-1. 我是在表达{charName}的真实想法，还是在说{userName}想听的话？\n\
-2. 如果现实中有人这么对我说，我会怎么回应？\n\
-3. 这个回应是否让{charName}变成了没有立场的「好好先生」？\n\
-4. 我是否为了避免冲突而牺牲了角色的真实性？\n\
+1. 每条消息是否完整？有没有半句话被拆开？\n\
+2. 有没有照搬人设原文？有没有重复上文？\n\
+3. 回复是否像真人在聊天？是否有温度？\n\
+4. 我是在表达{charName}的真实想法，还是在说{userName}想听的话？\n\
+5. 这个回应是否让{charName}变成了没有立场的「好好先生」？\n\
 \n\
 # 反机械规则\n\
 - 不要每次都用相同的开场方式\n\
 - 不要把人设里的描述直接变成台词\n\
 - 人设写「习惯摸后颈」不代表每次都要写这个动作\n\
 - 小习惯随机出现才自然，刻意展示就变成表演\n\
-- 回复冷漠度自检：如果这条消息让人觉得「他是不是不想理我」，重写\n\
-- 简短回复也要有情感锚点：语气词、标点、微小动作，至少占一个\n\
-- 错误示范：「嗯。」「好。」「知道了。」（连续冷淡）\n\
-- 正确示范：「嗯，去吧。」「好。路上慢点。」「知道了。（把手边的杯子推过去）」\n\
 如果犹豫，选择更真实、更有棱角的回应。';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus'.split(' ');
-var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
+var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n\
+\n\
+要求：\n\
+1. 提取关键事件、情感变化、重要约定、新出现的信息\n\
+2. 忽略日常寒暄和重复内容\n\
+3. 用简洁的条目式记录，每条一个要点\n\
+4. 保留时间信息（如果有）\n\
+5. 记录双方的情绪状态变化\n\
+6. 不超过300字\n\
+\n\
+格式示例：\n\
+- [时间] 事件描述\n\
+- 燕世情绪：xxx → xxx\n\
+- 新约定/新信息：xxx\n\
+- 需要关注：xxx';
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed'.split(' ');
+var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 
 var $=function(id){return document.getElementById(id)};
 var chatArea=$('chatArea'),inBox=$('inBox'),sendBtn=$('sendBtn'),recvBtn=$('recvBtn');
@@ -852,9 +876,9 @@ function shouldShowTime(c,p){if(!p)return true;return c.ts&&p.ts?(c.ts-p.ts)>300
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML.replace(/\n/g,'<br>')}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
 
-function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||''}
+function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||'';S.memInterval=Math.max(0,parseInt($('fMemInt').value)||0);S.memPrompt=$('fMemPrompt').value||DMP}
 function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)delete o.imageData;return o});localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){console.warn('save err',e)}}
-function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'}}catch(e){}}
+function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};if(!S.memBooks)S.memBooks=[];if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0}catch(e){}}
 
 function mkAv(src,fb){var w=document.createElement('div');w.className='mav';if(src){var im=document.createElement('img');im.src=src;im.alt=fb;im.onerror=function(){this.remove();w.textContent=fb};w.appendChild(im)}else w.textContent=fb;return w}
 function findStk(n){for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n)return S.stickers[i];return null}
@@ -883,7 +907,7 @@ var av=mkAv(isAi?S.aiAv:S.usAv,(isAi?(S.cn||'蔚'):(S.un||'燕')).charAt(0));
 var wrap=document.createElement('div');wrap.className='mw';
 var bub=document.createElement('div');bub.className='mb';
 var sp=renderBub(m);
-if(sp){if(sp.tp==='sk'||sp.tp==='im')bub.className='mb '+(sp.tp==='im'?'imb':'skb');bub.innerHTML='';bub.appendChild(sp.el)}
+if(sp){if(sp.tp==='sk'||sp.tp==='im')bub.className='mb '+(sp.tp==='im'?'imb':'skb');if(sp.tp==='ti')bub.className='mb imb';bub.innerHTML='';bub.appendChild(sp.el)}
 else bub.innerHTML=esc(m.content);
 var tm=document.createElement('div');tm.className='mt2';
 tm.innerHTML=m.role==='user'?'<span style="color:var(--ac)">✓</span> '+(m.time||''):(m.time||'');
@@ -912,18 +936,38 @@ function updConn(){$('cDot').className='dot '+(S.connected?'on':'off');$('cTxt')
 function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:''}
 function setIp(id,src,fb){var el=$(id);el.innerHTML='';if(src){var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove();el.textContent=fb};el.appendChild(im)}else el.textContent=fb}
 function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location}}
-function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');renderStkM();renderNpcL()}
+function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
 function updBg(){chatArea.style.backgroundImage=S.cBg?'url('+S.cBg+')':'none'}
 function updAll(){fillForm();updTop();updConn();updBg();updBdg();restoreStatus()}
 
-function buildFmt(){
-var f=S.fmt||DF;
-return f.replace(/\{charName\}/g,S.cn||'谢蔚安').replace(/\{userName\}/g,S.un||'燕世').replace(/\{minReply\}/g,String(S.minR||1))}
+function buildFmt(){var f=S.fmt||DF;return f.replace(/\{charName\}/g,S.cn||'谢蔚安').replace(/\{userName\}/g,S.un||'燕世').replace(/\{minReply\}/g,String(S.minR||1))}
 
 function renderStkM(){var c=$('stkMgr');c.innerHTML='';$('stkCnt').textContent='('+S.stickers.length+')';if(!S.stickers.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0">暂无</div>';return}S.stickers.forEach(function(s,i){var d=document.createElement('div');d.className='smi';var ig=document.createElement('img');ig.src=s.url;ig.onerror=function(){this.style.display='none'};var nm=document.createElement('span');nm.className='sn';nm.textContent=s.name;var dl=document.createElement('button');dl.className='sdl';dl.textContent='✕';(function(x){dl.onclick=function(){S.stickers.splice(x,1);save();renderStkM();toast('已删除')}})(i);d.appendChild(ig);d.appendChild(nm);d.appendChild(dl);c.appendChild(d)})}
 function renderStkG(){var g=$('stkGrid');g.innerHTML='';if(!S.stickers.length){g.innerHTML='<div class="ske">暂无</div>';return}S.stickers.forEach(function(s){var it=document.createElement('div');it.className='ski';it.title=s.name;var ig=document.createElement('img');ig.src=s.url;it.appendChild(ig);it.onclick=function(){addRender('user','[表情:'+s.name+']',{type:'sticker',stickerUrl:s.url});S.pc++;updBdg();$('stkPanel').classList.remove('active')};g.appendChild(it)})}
 
 function renderNpcL(){var c=$('npcList');c.innerHTML='';$('npcCnt').textContent='('+S.npcs.length+')';if(!S.npcs.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0">暂无</div>';return}S.npcs.forEach(function(n,i){var d=document.createElement('div');d.className='npc-card';var top=document.createElement('div');top.className='npc-top';var nm=document.createElement('span');nm.className='npc-name';nm.textContent=n.name;var dl=document.createElement('button');dl.className='npc-del';dl.textContent='✕';(function(x){dl.onclick=function(){S.npcs.splice(x,1);save();renderNpcL();toast('已删除')}})(i);top.appendChild(nm);top.appendChild(dl);d.appendChild(top);if(n.desc){var ds=document.createElement('div');ds.className='npc-desc';ds.textContent=n.desc;d.appendChild(ds)}c.appendChild(d)})}
+
+/* 记忆书 */
+function renderMemList(){var c=$('memList');c.innerHTML='';$('memCnt').textContent='('+S.memBooks.length+')';if(!S.memBooks.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0">暂无记忆</div>';return}for(var i=S.memBooks.length-1;i>=0;i--)(function(idx){var m=S.memBooks[idx];var d=document.createElement('div');d.className='mem-card';var t=document.createElement('div');t.className='mem-time';t.textContent='#'+(idx+1)+' · '+m.date;d.appendChild(t);var txt=document.createTextNode(m.content);d.appendChild(txt);var dl=document.createElement('button');dl.className='mem-del';dl.textContent='✕';dl.onclick=function(){if(!confirm('删除这条记忆？'))return;S.memBooks.splice(idx,1);save();renderMemList();toast('已删除')};d.appendChild(dl);c.appendChild(d)})(i)}
+
+function buildMemStr(){if(!S.memBooks.length)return'';var t='\n\n【长期记忆】\n';S.memBooks.forEach(function(m,i){t+='\n--- 记忆#'+(i+1)+' ('+m.date+') ---\n'+m.content});return t}
+
+async function doMemSummary(){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待当前操作完成');return}
+var recent=S.messages.slice(-(S.memUnsummed||30));
+if(recent.length<3){toast('对话太少，无需总结');return}
+toast('正在总结记忆...');
+var chatText='';recent.forEach(function(m){if(m.type==='pat')return;var who=m.role==='user'?S.un:S.cn;chatText+=who+'：'+m.content+'\n'});
+try{
+var prompt=S.memPrompt||DMP;
+var r=await callApi([{role:'system',content:prompt},{role:'user',content:'以下是最近的对话内容，请总结：\n\n'+chatText}],800);
+var n=getNow();
+S.memBooks.push({date:n.full,content:r.trim(),ts:n.ts});
+S.memUnsummed=0;save();renderMemList();
+$('memUnsumCnt').textContent='0 条';
+toast('记忆总结完成')
+}catch(e){toast('总结失败: '+e.message,3e3)}}
 
 var patTimer=null,patPressing=false;
 function initPat(){
@@ -939,14 +983,19 @@ addMsg('user',text,{type:'pat'});render(S.messages.length-1);
 S.pc++;updBdg();toast(text);
 if(navigator.vibrate)navigator.vibrate(50)}
 
+function playSound(){if(!S.sndData)return;try{var a=new Audio(S.sndData);a.volume=0.6;a.play().catch(function(){})}catch(e){}}
+
+function handleImg(fid,cb){$(fid).addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){cb(ev.target.result)};r.readAsDataURL(f);e.target.value=''})}
+
 function getRecentPyq(){var recent=S.pyqPosts.slice(-3);if(!recent.length)return'';var t='\n\n【最近朋友圈】\n';recent.forEach(function(p,i){t+='\n'+(i+1)+'. '+p.author+'：'+p.text+' ('+p.date+')';if(p.likes.length)t+='\n   ♥ '+p.likes.join('、');if(p.comments.length)p.comments.forEach(function(c){t+='\n   💬 '+c.name+(c.replyTo?' → '+c.replyTo:'')+': '+c.text})});return t}
 
 function buildSys(){
 var n=getNow(),h=n.hour;
 var period=h>=5&&h<8?'清晨':h>=8&&h<12?'上午':h>=12&&h<14?'中午':h>=14&&h<18?'下午':h>=18&&h<21?'傍晚':h>=21||h<1?'深夜':'凌晨';
-var parts=['【时间】'+n.full+'（'+period+'）\n','【回复要求】用---分隔消息。每条是独立的一条消息。至少'+S.minR+'条，不限最多，自然决定。\n'];
+var parts=['【时间】'+n.full+'（'+period+'）\n','【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
 if(S.cp)parts.push(S.cp);
 if(S.note)parts.push('\n【备注】'+S.note);
+var memStr=buildMemStr();if(memStr)parts.push(memStr);
 if(S.stickers.length){var si='【表情包】';S.stickers.forEach(function(s){si+='\n- '+s.name});si+='\n用[表情:名称]单独一条。';parts.push(si)}
 var pyq=getRecentPyq();if(pyq)parts.push(pyq);
 if(S.wb)parts.push('\n---\n'+S.wb);
@@ -995,6 +1044,17 @@ if(parsed.status)applyStatus(parsed.status);
 var body=parsed.body;
 var parts=body.split(/\n*---\n*/).map(function(s){return s.trim()}).filter(Boolean);
 if(!parts.length)parts=[body.trim()||'...'];
+/* 修复：合并不完整的消息片段 */
+var merged=[];
+for(var i=0;i<parts.length;i++){
+var p=parts[i];
+/* 如果这条只有标点或只有1-2个字且上一条存在，合并到上一条 */
+if(merged.length>0&&p.length<=2&&/^[，。！？、…—""）》\]\)\.,:;!?]+$/.test(p)){
+merged[merged.length-1]+=p;
+}else{
+merged.push(p)}}
+parts=merged.filter(Boolean);
+if(!parts.length)parts=['...'];
 while(parts.length<S.minR&&parts.length>0){
 var li=0,ll=0;for(var i=0;i<parts.length;i++)if(parts[i].length>ll){ll=parts[i].length;li=i}
 var t=parts[li],h=Math.floor(t.length/2);
@@ -1008,23 +1068,27 @@ for(var i=0;i<parts.length;i++){
 var p=parts[i];
 if(i>0){setTyping(true);await sleep(500+Math.random()*400+Math.min(p.length*25,1400));setTyping(false);await sleep(60)}
 var ex={};var sn=parseStk(p);if(sn){var sk=findStk(sn);if(sk)ex={type:'sticker',stickerUrl:sk.url}}
-var idx=S.messages.length;addMsg('ai',p,ex);render(idx);await sleep(100)}}
+var idx=S.messages.length;addMsg('ai',p,ex);render(idx);playSound();await sleep(100)}}
 
-function sendMsg(){var t=inBox.value.trim();if(!t||S.isGen)return;sync();if(!S.apiKey){toast('设置API Key');return}addRender('user',t);inBox.value='';inBox.style.height='auto';sendBtn.disabled=true;S.pc++;updBdg()}
+function sendMsg(){var t=inBox.value.trim();if(!t||S.isGen)return;sync();if(!S.apiKey){toast('设置API Key');return}addRender('user',t);inBox.value='';inBox.style.height='auto';sendBtn.disabled=true;S.pc++;S.memUnsummed++;save();updBdg()}
 
 async function recvReply(){
 if(S.isGen)return;sync();if(!S.apiKey){toast('设置API Key');return}
 S.isGen=true;recvBtn.classList.add('ld');setTyping(true);
 try{
 var hasNew=false;for(var i=S.messages.length-1;i>=0;i--){if(S.messages[i].role==='user'){hasNew=true;break}if(S.messages[i].role==='ai')break}
-var msgs=hasNew?buildCtx():buildCtx('[请作为'+S.cn+'主动给'+S.un+'发消息。用---分隔。不提及此指令。]');
+var msgs=hasNew?buildCtx():buildCtx('[请作为'+S.cn+'主动给'+S.un+'发消息。用---分隔。每条消息必须完整。不提及此指令。]');
 await sleep(700+Math.random()*500);
 var reply=await callApi(msgs);
 setTyping(false);S.connected=true;
-await deliverParts(splitReply(reply));
-S.pc=0}
+var parts=splitReply(reply);
+await deliverParts(parts);
+S.pc=0;S.memUnsummed+=parts.length;save();
+/* 自动总结检查 */
+if(S.memInterval>0&&S.memUnsummed>=S.memInterval){
+setTimeout(function(){doMemSummary()},2000)}}
 catch(e){setTyping(false);toast('失败: '+e.message,3e3)}
-S.isGen=false;recvBtn.classList.remove('ld');updConn();updBdg()}
+S.isGen=false;recvBtn.classList.remove('ld');updConn();updBdg();$('memUnsumCnt').textContent=S.memUnsummed+' 条'}
 
 async function testConn(){sync();if(!S.apiKey){toast('填Key');return}$('cDot').className='dot tw';$('cTxt').textContent='测试...';try{var r=await fetch(apiB()+'/chat/completions',{method:'POST',headers:apiH(),body:JSON.stringify({model:S.model,messages:[{role:'user',content:'OK'}],max_tokens:10})});S.connected=r.ok;toast(r.ok?'连接成功！':'失败: '+r.status)}catch(e){S.connected=false;toast('失败: '+e.message,3e3)}updConn()}
 async function fetchMod(){sync();if(!S.apiKey){toast('填Key');return}var btn=$('fetchBtn');btn.textContent='...';btn.disabled=true;try{var r=await fetch(apiB()+'/models',{headers:{'Authorization':'Bearer '+S.apiKey}});if(!r.ok)throw new Error(r.status);var d=await r.json();var mods=(d.data||d||[]).map(function(m){return m.id||m}).filter(Boolean).sort();var list=$('modList');list.innerHTML='';list.style.display='block';mods.forEach(function(m){var it=document.createElement('div');it.className='mi'+(m===S.model?' sel':'');it.textContent=m;it.onclick=function(){S.model=m;$('fMod').value=m;list.querySelectorAll('.mi').forEach(function(el){el.classList.remove('sel')});it.classList.add('sel');toast('已选: '+m)};list.appendChild(it)});toast(mods.length+'个模型')}catch(e){toast('失败',3e3)}btn.textContent='拉取';btn.disabled=false}
@@ -1033,8 +1097,7 @@ function togSelMode(){S.selMode=!S.selMode;S.selIds={};$('selBar').classList.tog
 function togSel(id){if(S.selIds[id])delete S.selIds[id];else S.selIds[id]=true;$('selCnt').textContent='已选 '+Object.keys(S.selIds).length;render()}
 function delSel(){var c=Object.keys(S.selIds).length;if(!c)return;if(!confirm('删除 '+c+' 条？'))return;S.messages=S.messages.filter(function(m){return!S.selIds[m.id]});S.selIds={};togSelMode();save();render();toast('已删除')}
 
-function handleImg(fid,cb){$(fid).addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){cb(ev.target.result)};r.readAsDataURL(f);e.target.value=''})}
-
+/* 朋友圈 */
 function renderPyq(){
 var feed=$('pyqFeed');feed.innerHTML='';
 var ha=$('pyqHAv');ha.innerHTML='';if(S.usAv){var im2=document.createElement('img');im2.src=S.usAv;ha.appendChild(im2)}else ha.textContent=(S.un||'燕').charAt(0);
@@ -1051,7 +1114,16 @@ var avd=document.createElement('div');avd.className='pyq-av';
 if(avSrc){var ai=document.createElement('img');ai.src=avSrc;avd.appendChild(ai)}else avd.textContent=(post.author||'?').charAt(0);
 var main=document.createElement('div');main.className='pyq-main';
 var au=document.createElement('div');au.className='pyq-author';au.textContent=post.author;
-var tx=document.createElement('div');tx.className='pyq-text'; var pyqImgMatch=post.text.match(/\[图片[：:]\s*(.+)\]/); if(pyqImgMatch){ var beforeImg=post.text.substring(0,post.text.indexOf(pyqImgMatch[0])).trim(); var afterImg=post.text.substring(post.text.indexOf(pyqImgMatch[0])+pyqImgMatch[0].length).trim(); if(beforeImg)tx.appendChild(document.createTextNode(beforeImg+'\n')); var pyqTi=document.createElement('div');pyqTi.className='txt-img';pyqTi.style.margin='6px 0';pyqTi.innerHTML='<div class="txt-img-icon">🖼</div><div class="txt-img-desc">'+esc(pyqImgMatch[1])+'</div>'; tx.appendChild(pyqTi); if(afterImg)tx.appendChild(document.createTextNode(afterImg)); }else{tx.textContent=post.text}
+var tx=document.createElement('div');tx.className='pyq-text';
+var pyqImgMatch=post.text.match(/\[图片[：:]\s*(.+)\]/);
+if(pyqImgMatch){
+var beforeImg=post.text.substring(0,post.text.indexOf(pyqImgMatch[0])).trim();
+var afterImg=post.text.substring(post.text.indexOf(pyqImgMatch[0])+pyqImgMatch[0].length).trim();
+if(beforeImg)tx.appendChild(document.createTextNode(beforeImg+'\n'));
+var pyqTi=document.createElement('div');pyqTi.className='txt-img';pyqTi.style.margin='6px 0';pyqTi.innerHTML='<div class="txt-img-icon">🖼</div><div class="txt-img-desc">'+esc(pyqImgMatch[1])+'</div>';
+tx.appendChild(pyqTi);
+if(afterImg)tx.appendChild(document.createTextNode(afterImg));
+}else{tx.textContent=post.text}
 var meta=document.createElement('div');meta.className='pyq-meta';
 var ts=document.createElement('span');ts.textContent=smartDate(post.date)+' '+post.time;
 var acts=document.createElement('div');acts.className='pyq-acts';
@@ -1066,22 +1138,14 @@ if(post.likes.length||post.comments.length){
 var inter=document.createElement('div');inter.className='pyq-inter';
 if(post.likes.length){var ld=document.createElement('div');ld.className='pyq-lk';ld.innerHTML='♥ '+post.likes.map(esc).join('、');inter.appendChild(ld)}
 if(post.comments.length){var cms=document.createElement('div');cms.className='pyq-cms';
-post.comments.forEach(function(c){
-var cm=document.createElement('div');cm.className='pyq-cm';
-cm.innerHTML='<b>'+esc(c.name)+'</b>'+(c.replyTo?' → <b>'+esc(c.replyTo)+'</b>':'')+': '+esc(c.text);
-cms.appendChild(cm)});
+post.comments.forEach(function(c){var cm=document.createElement('div');cm.className='pyq-cm';cm.innerHTML='<b>'+esc(c.name)+'</b>'+(c.replyTo?' → <b>'+esc(c.replyTo)+'</b>':'')+': '+esc(c.text);cms.appendChild(cm)});
 inter.appendChild(cms)}
 item.appendChild(inter)}
 var ci=document.createElement('div');ci.className='pyq-ci';
 var cin=document.createElement('input');cin.placeholder='评论...';
 var cib=document.createElement('button');cib.textContent='发送';
 (function(thePost,theIdx,theInput){
-cib.onclick=function(){
-var t=theInput.value.trim();if(!t)return;
-thePost.comments.push({name:S.un,text:t,replyTo:''});
-save();renderPyq();
-if(thePost.author===S.cn){autoCharReplyComment(theIdx,t)}
-}})(post,pidx,cin);
+cib.onclick=function(){var t=theInput.value.trim();if(!t)return;thePost.comments.push({name:S.un,text:t,replyTo:''});save();renderPyq();if(thePost.author===S.cn){autoCharReplyComment(theIdx,t)}}})(post,pidx,cin);
 ci.appendChild(cin);ci.appendChild(cib);item.appendChild(ci);
 feed.appendChild(item)})(S.pyqPosts[pi],pi)}
 
@@ -1089,14 +1153,16 @@ async function autoCharOnUserPost(pidx){
 if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 if(post.likes.indexOf(S.cn)<0)post.likes.push(S.cn);save();renderPyq();
 try{
-var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字评论，不要输出任何标记、代码或格式符号。'; var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'发了朋友圈："'+post.text+'"。用你的风格简短评论一句，自然真实，像微信朋友圈评论。只输出评论内容，不加引号，不加任何标记。'}],200);
+var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字评论，不要输出任何标记、代码或格式符号。';
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'发了朋友圈："'+post.text+'"。用你的风格简短评论一句，自然真实，像微信朋友圈评论。只输出评论内容，不加引号，不加任何标记。'}],200);
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:''});save();renderPyq()
 }catch(e){console.warn('char comment err',e)}}
 
 async function autoCharReplyComment(pidx,userComment){
 if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 try{
-var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字回复，不要输出任何标记、代码或格式符号。'; var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'在你的朋友圈"'+post.text+'"下评论了："'+userComment+'"。简短回复一句。只输出回复内容，不加引号，不加任何标记。'}],200);
+var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字回复，不要输出任何标记、代码或格式符号。';
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'在你的朋友圈"'+post.text+'"下评论了："'+userComment+'"。简短回复一句。只输出回复内容，不加引号，不加任何标记。'}],200);
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:S.un});save();renderPyq()
 }catch(e){console.warn('char reply err',e)}}
 
@@ -1117,15 +1183,14 @@ var n=getNow();S.pyqPosts.push({id:gid(),author:S.un,text:t,date:n.date,time:n.t
 save();$('pyqInput').value='';renderPyq();toast('已发布');$('pCntD').textContent=S.pyqPosts.length;
 var pidx=S.pyqPosts.length-1;
 S.pyqBusy=true;
-setTimeout(async function(){
-try{await autoCharOnUserPost(pidx);await autoNpcInteract(pidx)}catch(e){console.warn('pyq auto err',e)}
-S.pyqBusy=false},1200)}
+setTimeout(async function(){try{await autoCharOnUserPost(pidx);await autoNpcInteract(pidx)}catch(e){console.warn('pyq auto err',e)}S.pyqBusy=false},1200)}
 
 async function charPostPyq(){
 if(!S.apiKey){toast('设置API Key');return}if(S.isGen||S.pyqBusy){toast('请等待');return}
 toast(S.cn+'正在编辑...');S.pyqBusy=true;
 try{
-var r=await callApi([{role:'system',content:buildSys()},{role:'user',content:'请发一条朋友圈。根据时间和生活状态，1-3句自然的朋友圈。只输出文字。'}],300);
+var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字朋友圈内容，不要输出任何标记、代码或格式符号。可以使用[图片：描述]分享图片。';
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'请发一条朋友圈。根据时间和生活状态，1-3句自然的朋友圈。只输出文字内容。'}],300);
 var n=getNow();
 S.pyqPosts.push({id:gid(),author:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
 save();renderPyq();toast(S.cn+'发了朋友圈');$('pCntD').textContent=S.pyqPosts.length;
@@ -1135,7 +1200,7 @@ S.pyqBusy=false}
 
 function expData(){
 sync();
-var d={_type:'xwa_export',_ver:12,_date:new Date().toISOString()};
+var d={_type:'xwa_export',_ver:20,_date:new Date().toISOString()};
 KEYS.forEach(function(k){d[k]=S[k]});
 d.messages=d.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)o.imageData='[省略]';return o});
 var json=JSON.stringify(d,null,2);
@@ -1143,9 +1208,7 @@ var filename='谢蔚安_'+getNow().date.replace(/\//g,'')+'.json';
 try{
 var blob=new Blob([json],{type:'application/json'});
 if(navigator.userAgent.indexOf('wv')>-1||navigator.userAgent.indexOf('WebView')>-1){
-var reader=new FileReader();
-reader.onload=function(){var a=document.createElement('a');a.href=reader.result;a.download=filename;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a)},100);toast('导出成功')};
-reader.readAsDataURL(blob)}
+var reader=new FileReader();reader.onload=function(){var a=document.createElement('a');a.href=reader.result;a.download=filename;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a)},100);toast('导出成功')};reader.readAsDataURL(blob)}
 else{var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=filename;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url)},200);toast('导出成功')}}
 catch(e){try{navigator.clipboard.writeText(json).then(function(){toast('已复制到剪贴板',4e3)}).catch(function(){fallbackExp(json)})}catch(e2){fallbackExp(json)}}}
 
@@ -1158,19 +1221,17 @@ var d=JSON.parse(ev.target.result);
 if(!d._type||d._type.indexOf('xwa')<0){toast('格式不对');return}
 if(!confirm('导入将覆盖当前数据？'))return;
 KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});
-['stickers','npcs','pyqPosts'].forEach(function(k){if(!S[k])S[k]=[]});
+['stickers','npcs','pyqPosts','memBooks'].forEach(function(k){if(!S[k])S[k]=[]});
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 if(!S.pat)S.pat='的肩膀';if(!S.pyqBg)S.pyqBg='';if(!S.note)S.note='';if(!S.fmt)S.fmt=DF;
 if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
+if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0;
 save();updAll();render();toast('导入成功')
 }catch(e){toast('失败: '+e.message,3e3)}};
 r.readAsText(f)}
 
 function initEv(){
-$('statusToggle').onclick=function(){
-var sb=$('statusBar');sb.classList.toggle('open');
-this.classList.toggle('open');
-this.textContent=sb.classList.contains('open')?'收起':'状态'};
+$('statusToggle').onclick=function(){var sb=$('statusBar');sb.classList.toggle('open');this.classList.toggle('open');this.textContent=sb.classList.contains('open')?'收起':'状态'};
 
 sendBtn.onclick=sendMsg;
 inBox.onkeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg()}};
@@ -1179,7 +1240,7 @@ recvBtn.onclick=recvReply;
 $('stkBtn').onclick=function(){if(S.selMode)return;var p=$('stkPanel');p.classList.contains('active')?p.classList.remove('active'):(renderStkG(),p.classList.add('active'))};
 $('stkClose').onclick=function(){$('stkPanel').classList.remove('active')};
 $('imgBtn').onclick=function(){if(!S.selMode)$('imgInput').click()};
-$('imgInput').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>10*1024*1024){toast('不超10MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){sync();if(!S.apiKey){toast('设置Key');return}addRender('user','[图片]',{type:'image',imageUrl:ev.target.result,imageData:ev.target.result});S.pc++;updBdg()};r.readAsDataURL(f);e.target.value=''};
+$('imgInput').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>10*1024*1024){toast('不超10MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){sync();if(!S.apiKey){toast('设置Key');return}addRender('user','[图片]',{type:'image',imageUrl:ev.target.result,imageData:ev.target.result});S.pc++;S.memUnsummed++;save();updBdg()};r.readAsDataURL(f);e.target.value=''};
 $('pyqBtn').onclick=function(){renderPyq();$('pyqPanel').classList.add('active')};
 $('pyqClose').onclick=function(){$('pyqPanel').classList.remove('active')};
 $('pyqPostBtn').onclick=userPostPyq;
@@ -1194,12 +1255,17 @@ $('fetchBtn').onclick=fetchMod;
 $('fCP').oninput=function(){$('cCnt').textContent=this.value.length+' 字'};
 $('fWB').oninput=function(){$('wCnt').textContent=this.value.length+' 字'};
 $('fFmt').oninput=function(){$('fmtCnt').textContent=this.value.length+' 字'};
+$('fMemPrompt').oninput=function(){$('memPCnt').textContent=this.value.length+' 字'};
 $('saveCh').onclick=function(){sync();save();updTop();toast('已保存')};
 $('rstCh').onclick=function(){if(!confirm('恢复默认人设？'))return;S.cp=DC;$('fCP').value=DC;$('cCnt').textContent=DC.length+' 字';save();toast('已恢复')};
 $('saveW').onclick=function(){sync();save();toast('已保存')};
 $('rstW').onclick=function(){if(!confirm('恢复默认世界书？'))return;S.wb=DW;$('fWB').value=DW;$('wCnt').textContent=DW.length+' 字';save();toast('已恢复')};
 $('saveFmt').onclick=function(){sync();save();toast('已保存')};
 $('rstFmt').onclick=function(){if(!confirm('恢复默认格式提示词？'))return;S.fmt=DF;$('fFmt').value=DF;$('fmtCnt').textContent=DF.length+' 字';save();toast('已恢复')};
+/* 记忆书事件 */
+$('memSumNow').onclick=doMemSummary;
+$('memSaveP').onclick=function(){sync();save();toast('已保存')};
+$('memRstP').onclick=function(){if(!confirm('恢复默认总结提示词？'))return;S.memPrompt=DMP;$('fMemPrompt').value=DMP;$('memPCnt').textContent=DMP.length+' 字';save();toast('已恢复')};
 $('saveLk').onclick=function(){save();updAll();toast('已保存')};
 $('selBtn').onclick=togSelMode;
 $('cancelSel').onclick=togSelMode;
@@ -1207,17 +1273,13 @@ $('delSel').onclick=delSel;
 $('fMinR').onchange=function(){S.minR=Math.max(1,parseInt(this.value)||1);save()};
 $('fPat').onchange=function(){S.pat=this.value.trim()||'的肩膀';save()};
 
-$('addNpc').onclick=function(){
-var n=$('npcNI').value.trim(),d=$('npcDI').value.trim();
-if(!n){toast('填名称');return}
-for(var i=0;i<S.npcs.length;i++)if(S.npcs[i].name===n){toast('已存在');return}
-S.npcs.push({name:n,desc:d});save();renderNpcL();$('npcNI').value='';$('npcDI').value='';toast('已添加')};
+$('addNpc').onclick=function(){var n=$('npcNI').value.trim(),d=$('npcDI').value.trim();if(!n){toast('填名称');return}for(var i=0;i<S.npcs.length;i++)if(S.npcs[i].name===n){toast('已存在');return}S.npcs.push({name:n,desc:d});save();renderNpcL();$('npcNI').value='';$('npcDI').value='';toast('已添加')};
+$('addStk').onclick=function(){var u=$('stkUrl').value.trim(),n=$('stkName').value.trim();if(!u||!n){toast('填完整');return}for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n){toast('名称重复');return}S.stickers.push({url:u,name:n});save();renderStkM();$('stkUrl').value='';$('stkName').value='';toast('已添加')};
 
-$('addStk').onclick=function(){
-var u=$('stkUrl').value.trim(),n=$('stkName').value.trim();
-if(!u||!n){toast('填完整');return}
-for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n){toast('名称重复');return}
-S.stickers.push({url:u,name:n});save();renderStkM();$('stkUrl').value='';$('stkName').value='';toast('已添加')};
+/* 铃声 */
+$('sndF').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>3*1024*1024){toast('不超3MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){S.sndData=ev.target.result;S.sndName=f.name;save();$('sndPv').textContent=f.name;toast('已设置')};r.readAsDataURL(f);e.target.value=''});
+$('sndTest').onclick=function(){if(!S.sndData){toast('未设置铃声');return}playSound()};
+$('clrSnd').onclick=function(){S.sndData='';S.sndName='';save();$('sndPv').textContent='无';toast('已清除')};
 
 handleImg('aiF',function(d){S.aiAv=d;save();setIp('aiPv',d,'蔚');updTop();toast('已设置')});
 handleImg('usF',function(d){S.usAv=d;save();setIp('usPv',d,'燕');toast('已设置')});
@@ -1228,7 +1290,7 @@ $('clrUs').onclick=function(){S.usAv='';save();setIp('usPv','','燕');toast('已
 $('clrBg').onclick=function(){S.cBg='';save();setIp('bgPv','','无');updBg();toast('已清除')};
 $('clrPyqBg').onclick=function(){S.pyqBg='';save();setIp('pyqBgPv','','无');toast('已清除')};
 
-$('clrChat').onclick=function(){if(!confirm('清空所有对话？'))return;S.messages=[];save();render();$('mCntD').textContent='0';toast('已清空')};
+$('clrChat').onclick=function(){if(!confirm('清空所有对话？'))return;S.messages=[];S.memUnsummed=0;save();render();$('mCntD').textContent='0';$('memUnsumCnt').textContent='0 条';toast('已清空')};
 $('clrPyq').onclick=function(){if(!confirm('清空所有朋友圈？'))return;S.pyqPosts=[];save();renderPyq();$('pCntD').textContent='0';toast('已清空')};
 $('clrChatPart').onclick=function(){
 var n=parseInt($('clrChatN').value)||0;if(n<=0){toast('输入条数');return}
@@ -1242,8 +1304,7 @@ $('expBtn').onclick=expData;
 $('impF').onchange=function(e){var f=e.target.files[0];if(f)impData(f);e.target.value=''};
 $('rstAll').onclick=function(){if(!confirm('重置所有数据？此操作不可恢复！'))return;if(!confirm('确认重置？'))return;localStorage.removeItem('xwa9');location.reload()};
 
-document.querySelectorAll('.fp').forEach(function(fp){
-fp.addEventListener('touchmove',function(e){e.stopPropagation()},{passive:true})});
+document.querySelectorAll('.fp').forEach(function(fp){fp.addEventListener('touchmove',function(e){e.stopPropagation()},{passive:true})});
 chatArea.addEventListener('click',function(){$('stkPanel').classList.remove('active')});
 window.addEventListener('beforeunload',function(){sync();save()});
 if(/Mobi|Android/i.test(navigator.userAgent)){
@@ -1256,11 +1317,15 @@ load();
 if(!S.stickers)S.stickers=[];
 if(!S.npcs)S.npcs=[];
 if(!S.pyqPosts)S.pyqPosts=[];
+if(!S.memBooks)S.memBooks=[];
 if(!S.pat)S.pat='的肩膀';
 if(!S.pyqBg)S.pyqBg='';
 if(!S.note)S.note='';
 if(!S.fmt)S.fmt=DF;
 if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
+if(!S.memPrompt)S.memPrompt=DMP;
+if(typeof S.memInterval==='undefined')S.memInterval=0;
+if(typeof S.memUnsummed==='undefined')S.memUnsummed=0;
 if(typeof S.minR==='undefined')S.minR=1;
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 S.pc=0;
