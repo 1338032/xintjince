@@ -366,6 +366,62 @@ input[type="file"]{display:none}
 .mm-name{font-size:13px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mm-controls{display:flex;gap:4px;flex-shrink:0}
 .mm-btn{background:none;border:none;font-size:16px;cursor:pointer;color:var(--tp);padding:4px}
+.gd-wrap{padding:12px}
+.gd-fence{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gd-plot{border:2px solid #8B7355;border-radius:12px;padding:12px;background:linear-gradient(180deg,#f0f7f0 0%,#e8f5e9 50%,#d7ccc8 100%);position:relative;min-height:160px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.gd-plot-icon{font-size:36px;margin-bottom:4px;transition:transform .3s}
+.gd-plot-name{font-size:13px;font-weight:600;color:var(--tp)}
+.gd-plot-desc{font-size:10px;color:var(--ts);margin-top:2px;line-height:1.4}
+.gd-bars{width:100%;margin-top:8px}
+.gd-bar-row{display:flex;align-items:center;gap:4px;margin-bottom:4px}
+.gd-bar-label{font-size:10px;color:var(--ts);width:28px;flex-shrink:0}
+.gd-bar{flex:1;height:6px;background:var(--bc);border-radius:3px;overflow:hidden}
+.gd-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.gd-bar-fill.grow{background:linear-gradient(90deg,#81C784,#4CAF50)}
+.gd-bar-fill.hp{background:linear-gradient(90deg,#EF9A9A,#E53935)}
+.gd-bar-val{font-size:10px;color:var(--ts);width:28px;text-align:right;flex-shrink:0}
+.gd-btns{display:flex;gap:6px;margin-top:8px;width:100%}
+.gd-btn{flex:1;padding:6px 0;border-radius:6px;border:none;font-size:11px;cursor:pointer;font-weight:500;transition:all .15s}
+.gd-btn.water{background:#E3F2FD;color:#1565C0}
+.gd-btn.water:hover{background:#BBDEFB}
+.gd-btn.water:disabled{opacity:.4;cursor:default}
+.gd-btn.break{background:#FBE9E7;color:#BF360C}
+.gd-btn.break:hover{background:#FFCCBC}
+.gd-btn.break:disabled{opacity:.4;cursor:default}
+.gd-plot.wilted .gd-plot-icon{filter:grayscale(.8);transform:rotate(-15deg)}
+.gd-plot.full .gd-plot-icon{animation:bloom 1s ease infinite alternate}
+@keyframes bloom{0%{transform:scale(1)}100%{transform:scale(1.15)}}
+.gd-status{font-size:10px;margin-top:4px;padding:2px 8px;border-radius:4px;font-weight:500}
+.gd-status.growing{background:#E8F5E9;color:#2E7D32}
+.gd-status.wilted{background:#FFEBEE;color:#C62828}
+.gd-status.blooming{background:#FFF8E1;color:#F57F17}
+.gd-header{text-align:center;margin-bottom:12px}
+.gd-header-icon{font-size:28px}
+.gd-header-title{font-size:15px;font-weight:600;color:var(--tp);margin-top:2px}
+.gd-header-sub{font-size:11px;color:var(--ts);margin-top:2px}
+.crane-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;display:flex;align-items:center;justify-content:center;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.crane-card{width:280px;background:linear-gradient(145deg,#FFF8E7,#FFF3D6);border-radius:16px;padding:28px 24px;text-align:center;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.18);animation:craneFloat .4s ease}
+@keyframes craneFloat{from{opacity:0;transform:translateY(20px) scale(.9)}to{opacity:1;transform:none}}
+.crane-card::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border-radius:18px;background:linear-gradient(135deg,#FFD700,#FFA000,#FFD700);z-index:-1;opacity:.4}
+.crane-icon{font-size:48px;margin-bottom:12px;display:inline-block;animation:craneSway 3s ease-in-out infinite}
+@keyframes craneSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.crane-text{font-size:15px;line-height:1.8;color:#5D4037;font-weight:500;margin-bottom:16px;min-height:40px;word-break:break-word;font-style:italic}
+.crane-from{font-size:11px;color:#A1887F;margin-bottom:16px}
+.crane-close{background:none;border:1.5px solid #D7CCC8;border-radius:8px;padding:8px 24px;font-size:13px;color:#8D6E63;cursor:pointer;transition:all .15s}
+.crane-close:hover{background:#EFEBE9;border-color:#BCAAA4}
+.crane-jar-panel{position:absolute;inset:0;background:var(--w);z-index:100;display:none;flex-direction:column}
+.crane-jar-panel.active{display:flex}
+.cj-jar{display:flex;flex-direction:column;align-items:center;padding:24px 16px}
+.cj-jar-icon{font-size:64px;margin-bottom:8px;animation:craneSway 3s ease-in-out infinite}
+.cj-jar-count{font-size:13px;color:var(--ts);margin-bottom:16px}
+.cj-btns{display:flex;gap:10px;margin-bottom:20px}
+.cj-list{width:100%;max-height:none}
+.cj-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:6px;background:var(--p)}
+.cj-item-icon{font-size:20px;flex-shrink:0}
+.cj-item-text{flex:1;font-size:13px;color:var(--tp);line-height:1.5;word-break:break-word}
+.cj-item-from{font-size:10px;color:var(--tl);flex-shrink:0}
+.cj-item-del{background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;padding:2px 4px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -409,6 +465,7 @@ input[type="file"]{display:none}
 <div class="plus-item" id="pmImg">🖼<span>图片</span></div>
 <div class="plus-item" id="pmGift">🛒<span>购物车</span></div>
 <div class="plus-item" id="pmCustomGift">✨<span>自定义礼物</span></div>
+<div class="plus-item" id="pmCrane">🪶<span>千纸鹤</span></div>
 <div class="plus-item" id="pmMusic">🎵<span>一起听歌</span></div>
 </div>
 <!-- 音乐播放器 -->
@@ -460,6 +517,37 @@ input[type="file"]{display:none}
 <div class="disc-item" id="discPyq"><div class="disc-icon">◉</div><div class="disc-info"><div class="disc-name">朋友圈</div><div class="disc-desc">查看好友动态</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
 <div class="disc-item" id="discZhihu"><div class="disc-icon">知</div><div class="disc-info"><div class="disc-name">知乎</div><div class="disc-desc">发现更多内容</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
 <div class="disc-item" id="discShop"><div class="disc-icon">🛒</div><div class="disc-info"><div class="disc-name">商店</div><div class="disc-desc">浏览商品</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
+<div class="disc-item" id="discGarden"><div class="disc-icon">🌿</div><div class="disc-info"><div class="disc-name">后花园</div><div class="disc-desc">照料药草花园</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
+</div>
+</div>
+<!-- 千纸鹤罐子 -->
+<div class="crane-jar-panel" id="craneJarPanel">
+<div class="fh"><button class="fc2" id="craneJarClose">✕</button><h2>🪶 千纸鹤罐子</h2><div style="width:26px"></div></div>
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 16px">
+<div class="cj-jar">
+<div class="cj-jar-icon">🏺</div>
+<div class="cj-jar-count" id="cjCount">罐子里有 0 只千纸鹤</div>
+<div class="cj-btns">
+<button class="btn bp" id="cjDraw">✨ 随机抽一只</button>
+<button class="btn bs2" id="cjAdd">🪶 放一只进去</button>
+</div>
+</div>
+<div class="fg"><label class="fl">罐子里的千纸鹤</label></div>
+<div class="cj-list" id="cjList"></div>
+</div>
+</div>
+<!-- 后花园 -->
+<div class="fp" id="gardenPanel">
+<div class="fh"><button class="fc2" id="gardenClose">✕</button><h2>🌿 后花园</h2><div style="width:26px"></div></div>
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch">
+<div class="gd-wrap">
+<div class="gd-header">
+<div class="gd-header-icon">🏡</div>
+<div class="gd-header-title">谢蔚安的药草花园</div>
+<div class="gd-header-sub" id="gdLastWater">今天还没浇水哦</div>
+</div>
+<div class="gd-fence" id="gdFence"></div>
+</div>
 </div>
 </div>
 <!-- 知乎 -->
@@ -1515,7 +1603,7 @@ var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n
 - 新约定/新信息：xxx\n\
 - 需要关注：xxx';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper'.split(' ');
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar'.split(' ');
 var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],zhCharBg:'',musicLib:[],connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 /* IndexedDB 音乐存储 */
 var musicDB=null;
@@ -1560,6 +1648,8 @@ tx.onerror=function(){reject(tx.error)}})})}
 var $=function(id){return document.getElementById(id)};
 var chatArea=$('chatArea'),inBox=$('inBox'),sendBtn=$('sendBtn'),recvBtn=$('recvBtn');
 var ttm;
+var pyqPendingImg='';
+var zhUPostPendingImg='';
 function toast(m,d){d=d||2e3;clearTimeout(ttm);$('toast').textContent=m;$('toast').classList.add('show');ttm=setTimeout(function(){$('toast').classList.remove('show')},d)}
 function gid(){return Date.now().toString(36)+Math.random().toString(36).substr(2,6)}
 function pad(n){return n<10?'0'+n:''+n}
@@ -1582,7 +1672,7 @@ img.onerror=function(){cb(dataUrl)};
 img.src=dataUrl}
 
 function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||'';S.memInterval=Math.max(0,parseInt($('fMemInt').value)||0);S.memPrompt=$('fMemPrompt').value||DMP}
-function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>800000)delete o.imageData;return o});
+function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>800000)delete o.imageData;return o});if(j.pyqPosts)j.pyqPosts=j.pyqPosts.map(function(p){var o=Object.assign({},p);if(o.image&&o.image.length>500000)o.image='';return o});
 /* 音乐数据存IndexedDB */
 if(j.musicLib&&j.musicLib.length){
 saveMusicToDB(j.musicLib).catch(function(e){console.warn('music save err',e)});
@@ -1659,7 +1749,23 @@ row.appendChild(av);row.appendChild(wrap);chatArea.appendChild(row);prev=m
 chatArea.scrollTop=chatArea.scrollHeight}
 
 function addMsg(r,c,ex){var n=getNow();var m={id:gid(),role:r,content:c,time:n.time,date:n.date,ts:n.ts};if(ex)for(var k in ex)if(ex.hasOwnProperty(k))m[k]=ex[k];S.messages.push(m);save();return m}
-function addRender(r,c,ex){var i=S.messages.length;addMsg(r,c,ex);render(i)}
+function appendOne(m){
+var prev=S.messages.length>1?S.messages[S.messages.length-2]:null;
+if(m.type==='pat'){var pm=document.createElement('div');pm.className='sys-msg anim';pm.textContent=m.content;chatArea.appendChild(pm);return}
+if(shouldShowTime(m,prev)){var td=document.createElement('div');td.className='td';td.textContent=smartDate(m.date)+' '+m.time;chatArea.appendChild(td)}
+var row=document.createElement('div');row.className='mr '+m.role+' anim';row.dataset.id=m.id;
+var isAi=m.role==='ai';
+var av=mkAv(isAi?S.aiAv:S.usAv,(isAi?(S.cn||'蔚'):(S.un||'燕')).charAt(0));
+var wrap=document.createElement('div');wrap.className='mw';
+var bub=document.createElement('div');bub.className='mb';
+var sp=renderBub(m);
+if(sp){if(sp.tp==='sk'||sp.tp==='im')bub.className='mb '+(sp.tp==='im'?'imb':'skb');else if(sp.tp==='ti')bub.className='mb imb';else if(sp.tp==='gf')bub.className='mb imb';else if(sp.tp==='vc')bub.className='mb';bub.innerHTML='';bub.appendChild(sp.el)}
+else bub.innerHTML=esc(m.content);
+var tm=document.createElement('div');tm.className='mt2';
+tm.innerHTML=m.role==='user'?'<span style="color:var(--ac)">✓</span> '+(m.time||''):(m.time||'');
+wrap.appendChild(bub);wrap.appendChild(tm);
+row.appendChild(av);row.appendChild(wrap);chatArea.appendChild(row)}
+function addRender(r,c,ex){var msg=addMsg(r,c,ex);appendOne(msg);chatArea.scrollTop=chatArea.scrollHeight}
 
 function setTyping(on){
 $('topS').textContent=on?'对方正在输入...':(S.connected?'在线':'未连接');
@@ -1734,7 +1840,16 @@ function getRecentPyq(){var recent=S.pyqPosts.slice(-3);if(!recent.length)return
 function buildSys(){
 var n=getNow(),h=n.hour;
 var period=h>=5&&h<8?'清晨':h>=8&&h<12?'上午':h>=12&&h<14?'中午':h>=14&&h<18?'下午':h>=18&&h<21?'傍晚':h>=21||h<1?'深夜':'凌晨'; var mon=new Date().getMonth()+1; var season=mon>=3&&mon<=5?'春季':mon>=6&&mon<=8?'夏季':mon>=9&&mon<=11?'秋季':'冬季'; var isWorkday=new Date().getDay()>=1&&new Date().getDay()<=5;
-var weathers={春季:['微风和煦，阳光温暖','细雨绵绵','多云转晴','春风拂面，花香阵阵'],夏季:['闷热潮湿','暴雨过后空气清新','蝉鸣阵阵','傍晚有凉风'],秋季:['秋高气爽','落叶纷飞','微凉有风','天空很高很蓝'],冬季:['寒风凛冽','飘着小雪','阴冷潮湿','难得的冬日暖阳']}; var todayWeather=weathers[season][new Date().getDate()%weathers[season].length]; var parts=['【时间】'+n.full+'（'+period+'·'+season+'·'+(isWorkday?'工作日':'休息日')+'）\n【天气】'+todayWeather+'\n','【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
+var weathers={春季:['微风和煦，阳光温暖','细雨绵绵','多云转晴','春风拂面，花香阵阵'],夏季:['闷热潮湿','暴雨过后空气清新','蝉鸣阵阵','傍晚有凉风'],秋季:['秋高气爽','落叶纷飞','微凉有风','天空很高很蓝'],冬季:['寒风凛冽','飘着小雪','阴冷潮湿','难得的冬日暖阳']}; var todayWeather=weathers[season][new Date().getDate()%weathers[season].length];
+var isRain=todayWeather.indexOf('雨')>=0||todayWeather.indexOf('雪')>=0||todayWeather.indexOf('潮湿')>=0;
+var isSunny=todayWeather.indexOf('阳')>=0||todayWeather.indexOf('晴')>=0||todayWeather.indexOf('和煦')>=0||todayWeather.indexOf('花香')>=0;
+var isWinter=mon>=11||mon<=2;
+var weatherBehavior='';
+if(isWinter){weatherBehavior+='\n【冬季行为调整】现在是冬天，你话更少、更沉默，偶尔无意识摩挲左手腕的旧手表。不主动提起父母，但内心沉重。回复可以更短更克制，沉默和留白增多。如果对方问起你的状态，你会说"没什么"或"有点累"。'}
+if(isRain){weatherBehavior+='\n【雨天行为】外面在下雨/下雪，你会主动劝对方别出门，比如"今天下雨，别出门了""外面冷，待家里吧"。可以用[图片：窗外的雨景，雨滴顺着玻璃往下滑]分享窗外的景色。不要提议外出活动。'}
+if(isSunny&&!isWinter){weatherBehavior+='\n【晴天行为】今天天气很好，你更容易主动提议出门，比如散步、去公园、去弟弟餐馆。语气比平时轻松一点。可以说"今天天气不错，要不要出去走走？"之类的话。'}
+if(isSunny&&isWinter){weatherBehavior+='\n【冬日暖阳】虽然是冬天但今天有阳光，你的心情比平时稍好一些，可能会说"今天难得有太阳"，但整体仍然偏安静克制。'}
+var parts=['【时间】'+n.full+'（'+period+'·'+season+'·'+(isWorkday?'工作日':'休息日')+'）\n【天气】'+todayWeather+'\n'+weatherBehavior,'【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
 if(S.cp)parts.push(S.cp);
 if(S.note)parts.push('\n【备注】'+S.note);
 var memStr=buildMemStr();if(memStr)parts.push(memStr);
@@ -1742,6 +1857,8 @@ if(S.stickers.length){var si='【表情包】';S.stickers.forEach(function(s){si
 var pyq=getRecentPyq();if(pyq)parts.push(pyq);
 if(S.zhCharPosts&&S.zhCharPosts.length){var zhStr='\n\n【你的知乎帖子（长期记忆）】\n';S.zhCharPosts.forEach(function(p,i){zhStr+=(i+1)+'. 标题：'+p.title+'\n内容：'+p.body+'\n'});parts.push(zhStr)} if(S.zhUserPosts&&S.zhUserPosts.length){var zuStr='\n\n【'+S.un+'最近发布的知乎帖子】\n';var recentU=S.zhUserPosts.slice(-3);recentU.forEach(function(p,i){zuStr+=(i+1)+'. '+(p.title||'无标题')+'：'+p.body.substring(0,100)+(p.body.length>100?'...':'')+'\n'});zuStr+='（你看过这些帖子，可以在聊天中自然提起，但不要每次都提）';parts.push(zuStr)}
 var cpCtx=buildCpContext();if(cpCtx)parts.push(cpCtx);
+var gdCtx=getGardenContext();if(gdCtx)parts.push(gdCtx);
+var crCtx=getCraneContext();if(crCtx)parts.push(crCtx);
 if(typeof mpState!=='undefined'&&mpState.idx>=0&&mpState.idx<S.musicLib.length&&mpState.playing){
 var curSong=S.musicLib[mpState.idx];
 var musicCtx='\n【正在一起听歌】\n歌名：'+curSong.name+(curSong.artist?'\n歌手：'+curSong.artist:'');
@@ -1785,12 +1902,6 @@ var data=await resp.json();
 if(!data.choices||!data.choices[0])throw new Error('无效响应');
 return data.choices[0].message.content
 }catch(e){clearTimeout(timeout);if(e.name==='AbortError')throw new Error('请求超时（60秒）');throw e}}
-async function callApi(msgs,maxTok){
-var resp=await fetch(apiB()+'/chat/completions',{method:'POST',headers:apiH(),body:JSON.stringify({model:S.model,messages:msgs,temperature:parseFloat(S.tmp)||.8,max_tokens:maxTok||parseInt(S.mtk)||4096})});
-if(!resp.ok){var et='';try{et=await resp.text()}catch(e){}throw new Error('HTTP '+resp.status+(et?': '+et.substring(0,200):''))}
-var data=await resp.json();
-if(!data.choices||!data.choices[0])throw new Error('无效响应');
-return data.choices[0].message.content}
 
 function parseStatus(raw){
 var m=raw.match(/\[STATUS:\s*(\{[^}]*\})\s*\]/);
@@ -2005,7 +2116,7 @@ KEYS.forEach(function(k){d[k]=S[k]});
 /* 导出时音乐数据从内存取（已含完整data） */
 if(S.musicLib&&S.musicLib.length)d.musicLib=S.musicLib;
 d.messages=d.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)o.imageData='[省略]';return o});
-var json=JSON.stringify(d,null,2);
+d.messages=d.messages.map(function(m){var o=Object.assign({},m);if(o.imageData)delete o.imageData;return o});if(d.pyqPosts)d.pyqPosts=d.pyqPosts.map(function(p){var o=Object.assign({},p);if(o.image&&o.image.length>500000)o.image='';return o});if(d.musicLib)d.musicLib=d.musicLib.map(function(s){return{name:s.name,artist:s.artist,data:'',lrc:s.lrc}});var json=JSON.stringify(d);
 var filename='谢蔚安_'+getNow().date.replace(/\//g,'')+'.json';
 try{
 var blob=new Blob([json],{type:'application/json'});
@@ -2024,7 +2135,15 @@ if(!d._type||d._type.indexOf('xwa')<0){toast('格式不对');return}
 if(!confirm('导入将覆盖当前数据？'))return;
 KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});
 ['stickers','npcs','pyqPosts','memBooks','shopItems','zhHomePosts','zhCharPosts','giftStock','musicLib'].forEach(function(k){if(!S[k])S[k]=[]}); if(!S.zhCharBg)S.zhCharBg='';
-if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};if(!S.zhUserPosts)S.zhUserPosts=[];if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
+if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};if(!S.zhUserPosts)S.zhUserPosts=[];if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';if(!S.gardenData||!S.gardenData.plants||!S.gardenData.plants.length)S.gardenData={plants:[
+{id:'mint',name:'薄荷',icon:'🌿',desc:'清凉提神，泡茶常用',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'rosemary',name:'迷迭香',icon:'🫧',desc:'记忆之草，安神助眠',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'lavender',name:'薰衣草',icon:'💜',desc:'紫色花海，舒缓焦虑',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'chamomile',name:'洋甘菊',icon:'🌼',desc:'温和花朵，镇静安抚',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'lemonbalm',name:'柠檬香蜂草',icon:'🍃',desc:'柠檬清香，调理情绪',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'camellia',name:'山茶花',icon:'🌸',desc:'克制深情，淡粉与白',growth:0,hp:100,lastWater:'',lastBreak:''}
+],lastAutoGrow:'',actions:[]};
+gardenAutoGrow();if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 if(!S.pat)S.pat='的肩膀';if(!S.pyqBg)S.pyqBg='';if(!S.note)S.note='';if(!S.fmt)S.fmt=DF;
 if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
@@ -2310,6 +2429,10 @@ $('pmGift').onclick=function(){$('plusMenu').classList.remove('active');renderGi
 $('pmCustomGift').onclick=function(){$('plusMenu').classList.remove('active');$('customGiftPanel').classList.add('active')};
 /* 音乐播放器 */
 $('pmMusic').onclick=function(){$('plusMenu').classList.remove('active');toggleMusicPlayer()};
+$('pmCrane').onclick=function(){$('plusMenu').classList.remove('active');renderCraneJar();$('craneJarPanel').classList.add('active')};
+$('craneJarClose').onclick=function(){$('craneJarPanel').classList.remove('active')};
+$('cjDraw').onclick=function(){if(!S.craneJar||!S.craneJar.length){drawCraneFromAI()}else{var choice=Math.random();if(choice<0.3&&S.apiKey){drawCraneFromAI()}else{drawCrane()}}};
+$('cjAdd').onclick=addUserCrane;
 
 function toggleMusicPlayer(){
 var p=$('musicPlayer');
@@ -2517,7 +2640,8 @@ $('discoverBtn').onclick=function(){$('discoverPanel').classList.add('active')};
 $('discoverClose').onclick=function(){$('discoverPanel').classList.remove('active')};
 $('discPyq').onclick=function(){$('discoverPanel').classList.remove('active');renderPyq();$('pyqPanel').classList.add('active')};
 $('discShop').onclick=function(){$('discoverPanel').classList.remove('active');renderShop();$('shopPanel').classList.add('active')};
-
+$('discGarden').onclick=function(){$('discoverPanel').classList.remove('active');renderGarden();$('gardenPanel').classList.add('active')};
+$('gardenClose').onclick=function(){$('gardenPanel').classList.remove('active')};
 /* 知乎 */
 $('zhihuClose').onclick=function(){$('zhihuPanel').classList.remove('active')};
 if($('zhCharBgBtn')){
@@ -2731,7 +2855,6 @@ clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
 S.zhCharPosts=JSON.parse(clean);save();renderZhChar();toast('已刷新')
 }catch(e){toast('刷新失败',3e3);console.warn('zh char err',e)}};
 
-var zhUPostPendingImg='';
 if($('zhUPostImgF'))$('zhUPostImgF').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){zhUPostPendingImg=ev.target.result;$('zhUPostImgPvImg').src=zhUPostPendingImg;$('zhUPostImgPv').style.display='block'};r.readAsDataURL(f);e.target.value=''});
 if($('zhUPostImgPvDel'))$('zhUPostImgPvDel').onclick=function(){zhUPostPendingImg='';$('zhUPostImgPv').style.display='none'};
 
@@ -2850,7 +2973,6 @@ $('cpWishChar').onclick=cpCharWish;
 $('cpNoteAdd').onclick=function(){var t=$('cpNoteInput').value.trim();if(!t){toast('写点什么');return}var n=getNow();var nt={id:gid(),author:S.un,text:t,date:n.full,reply:'',replyAuthor:''};S.cpNotes.push(nt);save();$('cpNoteInput').value='';renderCpNotes();toast('已留言');setTimeout(function(){cpCharReply('note',S.cpNotes[S.cpNotes.length-1])},1500)};
 $('cpNoteChar').onclick=cpCharNote;
 $('pyqClose').onclick=function(){$('pyqPanel').classList.remove('active')};
-var pyqPendingImg='';
 $('pyqImgF').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){pyqPendingImg=ev.target.result;$('pyqImgPvImg').src=pyqPendingImg;$('pyqImgPreview').style.display='block'};r.readAsDataURL(f);e.target.value=''});
 $('pyqImgPvDel').onclick=function(){pyqPendingImg='';$('pyqImgPreview').style.display='none'};
 $('pyqPostBtn').onclick=function(){userPostPyq();pyqPendingImg='';$('pyqImgPreview').style.display='none'};
@@ -2946,7 +3068,174 @@ if(/Mobi|Android/i.test(navigator.userAgent)){
 window.addEventListener('resize',function(){setTimeout(function(){chatArea.scrollTop=chatArea.scrollHeight},150)});
 inBox.addEventListener('focus',function(){setTimeout(function(){chatArea.scrollTop=chatArea.scrollHeight},300)})}
 }
+/* 千纸鹤罐子 */
+function renderCraneJar(){
+var c=$('cjList');if(!c)return;c.innerHTML='';
+if(!S.craneJar||!S.craneJar.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0;text-align:center">罐子是空的，放一只进去吧</div>';$('cjCount').textContent='罐子是空的';return}
+$('cjCount').textContent='罐子里有 '+S.craneJar.length+' 只千纸鹤';
+for(var i=S.craneJar.length-1;i>=0;i--)(function(idx){
+var cr=S.craneJar[idx];
+var d=document.createElement('div');d.className='cj-item';
+d.innerHTML='<span class="cj-item-icon">🪶</span><div class="cj-item-text">'+esc(cr.text)+'</div><span class="cj-item-from">'+esc(cr.from)+'</span>';
+var del=document.createElement('button');del.className='cj-item-del';del.textContent='✕';
+del.onclick=function(){if(!confirm('拿走这只千纸鹤？'))return;S.craneJar.splice(idx,1);save();renderCraneJar();toast('已拿走')};
+d.appendChild(del);c.appendChild(d)})(i)}
 
+function showCraneCard(text,from){
+var old=document.querySelector('.crane-overlay');if(old)old.remove();
+var ov=document.createElement('div');ov.className='crane-overlay';
+ov.innerHTML='<div class="crane-card"><div class="crane-icon">🪶</div><div class="crane-text" id="craneCardText">正在展开...</div><div class="crane-from" id="craneCardFrom"></div><button class="crane-close" id="craneCardClose">收好</button></div>';
+document.body.appendChild(ov);
+if(text){
+$('craneCardText').textContent=text;
+$('craneCardFrom').textContent='—— '+from;
+}
+$('craneCardClose').onclick=function(){ov.remove()};
+ov.onclick=function(e){if(e.target===ov)ov.remove()};
+return ov}
+
+async function drawCrane(){
+if(!S.craneJar||!S.craneJar.length){
+if(!S.apiKey){toast('罐子是空的，先放一只进去');return}
+var ov=showCraneCard(null,null);
+toast('正在折一只新的...');
+try{
+var sysTxt=(S.cp||DC).substring(0,800);
+var r=await callApi([{role:'system',content:sysTxt+'\n\n你是'+S.cn+'。写一句放在千纸鹤里的话给'+S.un+'。要求：一句话，15-30字，温柔克制，符合你的性格。可以是日常关心、小小的承诺、对未来的期待、或者某个安静的念头。不要太甜腻。只输出那句话，不加引号不加标点以外的符号。'},{role:'user',content:'写一句千纸鹤里的话。'}],100);
+var txt=r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,'');
+$('craneCardText').textContent=txt;
+$('craneCardFrom').textContent='—— '+(S.cn||'谢蔚安');
+}catch(e){ov.remove();toast('失败: '+e.message,3e3)}
+return}
+var idx=Math.floor(Math.random()*S.craneJar.length);
+var cr=S.craneJar[idx];
+showCraneCard(cr.text,cr.from)}
+
+async function drawCraneFromAI(){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+var ov=showCraneCard(null,null);
+toast(S.cn+'正在折千纸鹤...');
+try{
+var sysTxt=(S.cp||DC).substring(0,800);
+var recent='';var last10=S.messages.slice(-10);last10.forEach(function(m){if(m.type!=='pat')recent+=(m.role==='user'?S.un:S.cn)+'：'+m.content+'\n'});
+var r=await callApi([{role:'system',content:sysTxt+'\n\n你是'+S.cn+'。根据最近的聊天氛围，写一句放在千纸鹤里的话给'+S.un+'。要求：一句话，15-30字，温柔克制，不要太甜腻，像是随手写下的念头。只输出那句话。'},{role:'user',content:'最近聊天：\n'+recent.substring(0,500)+'\n\n写一句千纸鹤里的话。'}],100);
+var txt=r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,'');
+$('craneCardText').textContent=txt;
+$('craneCardFrom').textContent='—— '+(S.cn||'谢蔚安');
+S.craneJar.push({text:txt,from:S.cn||'谢蔚安',date:getNow().full});
+save();renderCraneJar();
+}catch(e){ov.remove();toast('失败: '+e.message,3e3)}}
+
+function addUserCrane(){
+var txt=prompt('写一句话放进千纸鹤里：');
+if(!txt||!txt.trim())return;
+S.craneJar.push({text:txt.trim(),from:S.un||'燕世',date:getNow().full});
+save();renderCraneJar();toast('已放进罐子里 🪶')}
+
+function getCraneContext(){
+if(!S.craneJar||!S.craneJar.length)return'';
+var txt='\n\n【千纸鹤罐子】\n书桌上有一个玻璃罐，里面装着'+S.craneJar.length+'只千纸鹤，每只里面有一句话。\n';
+var recent=S.craneJar.slice(-3);
+txt+='最近几只的内容：\n';
+recent.forEach(function(cr){txt+='- '+cr.from+'：「'+cr.text+'」\n'});
+txt+='（你偶尔会拆一只千纸鹤看看，可以在合适的时候自然提起，比如"今天拆了一只你的千纸鹤"，但不要每次都提。）';
+return txt}
+/* 后花园系统 */
+function gardenToday(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+
+function gardenAutoGrow(){
+if(!S.gardenData)return;
+var today=gardenToday();
+if(S.gardenData.lastAutoGrow===today)return;
+S.gardenData.plants.forEach(function(p){
+if(p.growth>=100||p.hp<=0){p.growth=0;p.hp=100}
+p.growth=Math.min(100,p.growth+Math.floor(Math.random()*8+5));
+});
+S.gardenData.lastAutoGrow=today;
+S.gardenData.actions=S.gardenData.actions.filter(function(a){return a.date===today});
+save()}
+
+function gardenWater(idx){
+var today=gardenToday();
+var p=S.gardenData.plants[idx];
+if(p.lastWater===today){toast('今天已经浇过水了');return}
+if(p.growth>=100){toast(p.name+'已经开花了，明天会重新生长');return}
+if(p.hp<=0){toast(p.name+'已经枯萎了，明天会重新生长');return}
+p.lastWater=today;
+var amt=Math.floor(Math.random()*10+12);
+p.growth=Math.min(100,p.growth+amt);
+S.gardenData.actions.push({type:'water',plant:p.name,date:today,time:getNow().time});
+save();renderGarden();
+toast('给'+p.name+'浇了水 💧 成长+'+amt);
+if(p.growth>=100)toast(p.name+'开花啦！🌸',3e3)}
+
+function gardenBreak(idx){
+var today=gardenToday();
+var p=S.gardenData.plants[idx];
+if(p.lastBreak===today){toast('今天已经搞过破坏了');return}
+if(p.hp<=0){toast(p.name+'已经枯萎了');return}
+p.lastBreak=today;
+var dmg=Math.floor(Math.random()*15+15);
+p.hp=Math.max(0,p.hp-dmg);
+S.gardenData.actions.push({type:'break',plant:p.name,date:today,time:getNow().time});
+save();renderGarden();
+toast('拔了'+p.name+'的叶子... 健康-'+dmg);
+if(p.hp<=0)toast(p.name+'枯萎了...明天会重新长出来',3e3)}
+
+function renderGarden(){
+if(!S.gardenData)return;
+gardenAutoGrow();
+var fence=$('gdFence');if(!fence)return;
+fence.innerHTML='';
+var today=gardenToday();
+var todayActions=S.gardenData.actions.filter(function(a){return a.date===today});
+var waterCount=todayActions.filter(function(a){return a.type==='water'}).length;
+$('gdLastWater').textContent=waterCount>0?'今天浇了 '+waterCount+' 棵植物':'今天还没浇水哦';
+S.gardenData.plants.forEach(function(p,i){
+var plot=document.createElement('div');
+plot.className='gd-plot'+(p.hp<=0?' wilted':'')+(p.growth>=100?' full':'');
+var statusText=p.hp<=0?'枯萎':p.growth>=100?'盛开':'生长中';
+var statusClass=p.hp<=0?'wilted':p.growth>=100?'blooming':'growing';
+plot.innerHTML='<div class="gd-plot-icon">'+p.icon+'</div>'+
+'<div class="gd-plot-name">'+p.name+'</div>'+
+'<div class="gd-plot-desc">'+p.desc+'</div>'+
+'<div class="gd-status '+statusClass+'">'+statusText+'</div>'+
+'<div class="gd-bars">'+
+'<div class="gd-bar-row"><span class="gd-bar-label">成长</span><div class="gd-bar"><div class="gd-bar-fill grow" style="width:'+p.growth+'%"></div></div><span class="gd-bar-val">'+p.growth+'%</span></div>'+
+'<div class="gd-bar-row"><span class="gd-bar-label">健康</span><div class="gd-bar"><div class="gd-bar-fill hp" style="width:'+p.hp+'%"></div></div><span class="gd-bar-val">'+p.hp+'%</span></div>'+
+'</div>';
+var btns=document.createElement('div');btns.className='gd-btns';
+var wb=document.createElement('button');wb.className='gd-btn water';
+wb.textContent='💧 浇水';
+wb.disabled=(p.lastWater===today||p.growth>=100||p.hp<=0);
+var bb=document.createElement('button');bb.className='gd-btn break';
+bb.textContent='🍂 搞破坏';
+bb.disabled=(p.lastBreak===today||p.hp<=0);
+(function(idx){
+wb.onclick=function(){gardenWater(idx)};
+bb.onclick=function(){if(!confirm('真的要拔'+S.gardenData.plants[idx].name+'的叶子吗？'))return;gardenBreak(idx)};
+})(i);
+btns.appendChild(wb);btns.appendChild(bb);
+plot.appendChild(btns);fence.appendChild(plot)});
+save()}
+
+function getGardenContext(){
+if(!S.gardenData||!S.gardenData.actions)return'';
+var today=gardenToday();
+var todayActions=S.gardenData.actions.filter(function(a){return a.date===today});
+if(!todayActions.length)return'';
+var txt='\n\n【今日后花园动态】\n';
+todayActions.forEach(function(a){
+if(a.type==='water')txt+=a.time+' '+S.un+'给'+a.plant+'浇了水\n';
+else if(a.type==='break')txt+=a.time+' '+S.un+'拔了'+a.plant+'的叶子\n';
+});
+var blooming=S.gardenData.plants.filter(function(p){return p.growth>=100}).map(function(p){return p.name});
+var wilted=S.gardenData.plants.filter(function(p){return p.hp<=0}).map(function(p){return p.name});
+if(blooming.length)txt+='当前盛开：'+blooming.join('、')+'\n';
+if(wilted.length)txt+='当前枯萎：'+wilted.join('、')+'（被搞破坏了）\n';
+txt+='（你可以根据这些动态自然地在聊天中提起，比如感谢浇水、心疼被拔叶子的植物等，但不要每次都提）';
+return txt}
 function init(){
 load();
 if(!S.stickers)S.stickers=[];
@@ -2974,7 +3263,18 @@ if(!S.musicLib)S.musicLib=[];
 if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};
 if(!S.zhUserPosts)S.zhUserPosts=[];if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
 if(!S.zhCharBg)S.zhCharBg='';
+if(!S.gardenData||!S.gardenData.plants||!S.gardenData.plants.length)S.gardenData={plants:[
+{id:'mint',name:'薄荷',icon:'🌿',desc:'清凉提神，泡茶常用',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'rosemary',name:'迷迭香',icon:'🫧',desc:'记忆之草，安神助眠',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'lavender',name:'薰衣草',icon:'💜',desc:'紫色花海，舒缓焦虑',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'chamomile',name:'洋甘菊',icon:'🌼',desc:'温和花朵，镇静安抚',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'lemonbalm',name:'柠檬香蜂草',icon:'🍃',desc:'柠檬清香，调理情绪',growth:0,hp:100,lastWater:'',lastBreak:''},
+{id:'camellia',name:'山茶花',icon:'🌸',desc:'克制深情，淡粉与白',growth:0,hp:100,lastWater:'',lastBreak:''}
+],lastAutoGrow:'',actions:[]};
+gardenAutoGrow();
+if(!S.craneJar)S.craneJar=[];
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
+S.pyqBusy=false;
 S.pc=0;
 for(var i=S.messages.length-1;i>=0;i--){
 if(S.messages[i].role==='ai')break;
