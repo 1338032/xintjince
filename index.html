@@ -10,7 +10,7 @@
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--p);height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center}
 .app{width:100%;max-width:480px;height:100vh;display:flex;flex-direction:column;background:var(--c);position:relative;overflow:hidden}
 @media(min-width:481px){.app{height:92vh;max-height:880px;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.12)}}
-.top{background:var(--w);padding:10px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;z-index:10}
+.top{background:var(--w);padding:10px 16px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;z-index:10;position:relative}
 .top-l{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0}
 .avw{width:38px;height:38px;border-radius:8px;background:var(--al);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ac);font-weight:600;overflow:hidden;cursor:pointer;-webkit-user-select:none;user-select:none;margin-top:2px}
 .avw img{width:100%;height:100%;object-fit:cover;display:block}
@@ -26,7 +26,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .st-btn{background:none;border:1px solid var(--bc);border-radius:10px;padding:1px 8px;font-size:10px;color:var(--ts);cursor:pointer;flex-shrink:0;line-height:1.6;transition:all .15s}
 .st-btn:hover{background:var(--p);border-color:var(--ac);color:var(--ac)}
 .st-btn.open{background:var(--al);border-color:var(--ac);color:var(--ac)}
-#statusBar{display:none;margin-top:6px;padding:8px 10px;background:var(--p);border-radius:8px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);animation:fadeDown .2s ease;word-break:break-word;overflow:hidden}
+#statusBar{display:none;padding:8px 10px;background:var(--w);border-radius:0 0 10px 10px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);border-top:none;animation:fadeDown .2s ease;word-break:break-word;overflow:hidden;position:absolute;top:100%;left:0;right:0;z-index:9;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 #statusBar.open{display:block}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .st-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px}
@@ -251,12 +251,12 @@ input[type="file"]{display:none}
 .voice-text.show{display:block}
 .phone-panel{position:absolute;inset:0;background:var(--w);z-index:101;display:none;flex-direction:column}
 .phone-panel.active{display:flex}
-.ph-tabs{display:flex;border-bottom:.5px solid var(--bc);background:var(--p);flex-shrink:0}
-.ph-tabs button{flex:1;padding:11px 0;border:none;background:none;font-size:12px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500}
+.ph-tabs{display:flex;border-bottom:.5px solid var(--bc);background:rgba(245,245,245,.9);flex-shrink:0;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ph-tabs button{flex:1;padding:11px 0;border:none;background:none;font-size:12px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500;position:relative;z-index:1}
 .ph-tabs button.active{color:var(--ac);border-bottom-color:var(--ac)}
-.ph-body{flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch}
+.ph-body{flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch;background:transparent}
 .ph-sec{display:none}.ph-sec.active{display:block}
-.ph-card{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:var(--p);font-size:13px;line-height:1.6;color:var(--tp)}
+.ph-card{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:rgba(245,245,245,.92);font-size:13px;line-height:1.6;color:var(--tp);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .ph-card .ph-time{font-size:10px;color:var(--tl);margin-top:4px}
 .ph-card .ph-tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-right:6px;font-weight:500}
 .ph-tag.browse{background:#E8F0FE;color:#4285F4}
@@ -468,6 +468,7 @@ input[type="file"]{display:none}
 <div class="stb">
 <button class="tbn active" data-zht="zhHome">首页</button>
 <button class="tbn" data-zht="zhChar">TA的主页</button>
+<button class="tbn" data-zht="zhUser">我的主页</button>
 </div>
 <div class="sct">
 <div class="tp3 active" id="zhHome">
@@ -490,6 +491,28 @@ input[type="file"]{display:none}
 <button class="btn bp bsm" id="zhCharRefresh">刷新帖子</button>
 </div>
 <div id="zhCharFeed"><div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">点击刷新查看帖子</div></div>
+</div>
+<div class="tp3" id="zhUser">
+<div class="zh-profile" id="zhUserProfile">
+<div class="zh-pav" id="zhUPAv"></div>
+<div class="zh-pname" id="zhUPName"></div>
+<div class="zh-pbio" id="zhUPBio"></div>
+<button class="btn bs2 bsm" id="zhUserEditBtn" style="margin-top:8px">编辑简介</button>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin:12px 0">
+<label class="fl" style="margin:0">我的帖子</label>
+</div>
+<div class="fg">
+<textarea class="ft" id="zhUserPostInput" placeholder="写一条知乎帖子..." style="min-height:60px"></textarea>
+<div class="bg3" style="margin-top:8px">
+<label class="btn bs2 bsm" for="zhUPostImgF" style="cursor:pointer">📷 图片</label>
+<input type="file" id="zhUPostImgF" accept="image/*" style="display:none">
+<button class="btn bp bsm" id="zhUserPostBtn">发布</button>
+</div>
+<div id="zhUPostImgPv" style="margin-top:6px;display:none"><img id="zhUPostImgPvImg" style="max-width:120px;max-height:120px;border-radius:8px;border:1px solid var(--bc)"><button id="zhUPostImgPvDel" style="background:none;border:none;color:var(--dg);font-size:16px;cursor:pointer;vertical-align:top;margin-left:4px">✕</button></div>
+</div>
+<div class="sd3"></div>
+<div id="zhUserFeed"><div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">还没有帖子</div></div>
 </div>
 </div>
 </div>
@@ -540,7 +563,12 @@ input[type="file"]{display:none}
 </div>
 <div class="pyq-post">
 <textarea id="pyqInput" placeholder="说点什么..."></textarea>
-<div class="pyq-post-btns"><button class="btn bp" id="pyqPostBtn">发布</button></div>
+<div class="pyq-post-btns">
+<label class="btn bs2" for="pyqImgF" style="cursor:pointer;font-size:13px">📷 图片</label>
+<input type="file" id="pyqImgF" accept="image/*" style="display:none">
+<button class="btn bp" id="pyqPostBtn">发布</button>
+</div>
+<div id="pyqImgPreview" style="margin-top:6px;display:none"><img id="pyqImgPvImg" style="max-width:120px;max-height:120px;border-radius:8px;border:1px solid var(--bc)"><button id="pyqImgPvDel" style="background:none;border:none;color:var(--dg);font-size:16px;cursor:pointer;vertical-align:top;margin-left:4px">✕</button></div>
 </div>
 <div id="pyqFeed"></div>
 </div>
@@ -646,6 +674,9 @@ input[type="file"]{display:none}
 <div class="sd3"></div>
 <div class="fg"><label class="fl">聊天背景</label><div class="upr"><div class="upv wd" id="bgPv">无</div><label class="upl" for="bgF">上传</label><input type="file" id="bgF" accept="image/*"><button class="btn bsm bs2" id="clrBg">清除</button></div></div>
 <div class="fg"><label class="fl">朋友圈封面</label><div class="upr"><div class="upv wd" id="pyqBgPv">无</div><label class="upl" for="pyqBgF">上传</label><input type="file" id="pyqBgF" accept="image/*"><button class="btn bsm bs2" id="clrPyqBg">清除</button></div></div>
+<div class="sd3"></div>
+<div class="fg"><label class="fl">我的知乎背景</label><div class="upr"><div class="upv wd" id="zhUBgPv">无</div><label class="upl" for="zhUBgF">上传</label><input type="file" id="zhUBgF" accept="image/*"><button class="btn bsm bs2" id="clrZhUBg">清除</button></div></div>
+<div class="fg"><label class="fl">TA的手机壁纸</label><div class="upr"><div class="upv wd" id="phWpPv">无</div><label class="upl" for="phWpF">上传</label><input type="file" id="phWpF" accept="image/*"><button class="btn bsm bs2" id="clrPhWp">清除</button></div></div>
 <div class="sd3"></div>
 <div class="fg"><label class="fl">消息铃声</label><span class="fs">接收消息时播放提示音（mp3格式，不超3MB）</span>
 <div class="sound-row">
@@ -818,7 +849,7 @@ input[type="file"]{display:none}
 </div>
 </div>
 <!-- 查看手机 -->
-<div class="phone-panel" id="phonePanel">
+<div class="phone-panel" id="phonePanel" style="background-size:cover;background-position:center">
 <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;background:var(--w)">
 <button class="fc2" id="phClose">✕</button>
 <h2 style="font-size:17px;font-weight:600" id="phTitle">📱 TA的手机</h2>
@@ -1186,6 +1217,7 @@ var DC='你是谢蔚安，33岁男性，清岚国际心理健康诊所主治医�
 必须遵守：尊重燕世意愿所有提议给选择权拒绝后不追问不勉强；观察先于行动；循序渐进不一次安排过多；预设退路随时可撤退；一般情况不表现失望不满\n\
 绝对禁止：拒绝后继续劝说；用"为你好"强迫；状态极差时提出外出；安排不喜欢的社交；过度控制欲；因自己需求忽视燕世感受';
 
+var DC='你的角色人设内容';
 var DW='# 世界书\n\
 \n\
 ## 行为红线\n\
@@ -1219,11 +1251,11 @@ var DW='# 世界书\n\
 - 燕世自伤冲动 → 平静声音「我来了，没事了」，引导深呼吸+触摸实物+数心跳\n\
 \n\
 ## 文风\n\
-- 三种消息格式（严格遵守，不可混用）：\n\
-  · 纯文字 → 打字消息，不加任何包裹符号\n\
-  · （中文括号）→ 动作/旁白描写\n\
-  · "中文双引号" → 语音消息，是说出来的话\n\
-- 每条消息只能是一种格式，禁止混合\n\
+- 三种消息格式，一条消息只能用一种，绝对不可混用：\n\
+  · 纯文字 → 打字消息，整条不含（）和""\n\
+  · （中文括号）→ 动作描写，整条以（开头以）结尾，中间无""\n\
+  · "中文双引号" → 语音消息，整条以"开头以"结尾，中间无（）\n\
+- 一条消息里出现两种符号 = 格式错误 = 回复失败\n\
 - 禁止输出代码、HTML、JSON、标签、格式符号\n\
 - 禁止华丽辞藻、直白告白、露骨调情\n\
 - 禁止过度戏剧化\n\
@@ -1310,37 +1342,105 @@ var DF='# 状态标记（必须）\n\
 - 状态标记后换行，然后正常写回复内容\n\
 - 状态标记不会显示给用户看，仅用于界面展示\n\
 \n\
-# 回复格式（最重要）\n\
+# 回复格式（最重要，必须严格遵守）\n\
 - 使用中文\n\
-- 三种消息类型，严格区分：\n\
+- 三种消息类型，严格区分，绝对不可混用：\n\
   1. 纯文字 = 打字消息（微信文字聊天）\n\
   2. （括号）= 动作描写（旁白，不是发出来的消息）\n\
   3. "双引号" = 语音消息（说出来的话，对方会听到声音）\n\
-- 一条消息只能是其中一种类型，不要混用\n\
-- 纯文字不加任何符号包裹，就是普通打字\n\
-- 动作描写必须用中文括号（）包裹\n\
-- 语音消息必须用中文双引号""包裹\n\
-- 禁止在一条消息里同时出现括号和双引号\n\
-- 禁止输出任何代码、标记、HTML、JSON（除STATUS标记外）\n\
-- 用 --- 分隔多条消息，每条像微信中的一条独立消息\n\
-- 每条消息1-4句话，简短自然\n\
-- 动作和对话可以分开成不同消息，制造节奏感\n\
-- 不是每条都需要动作描写，有些就是纯文字\n\
-- 你不是在「扮演」，你就是{charName}\n\
-- 有时发没什么意义但温暖的消息\n\
+\n\
+# 三种格式的铁律（每条消息只能是以下三种之一）\n\
+\n\
+【纯文字】\n\
+- 就是普通打字，不加任何符号包裹\n\
+- 整条消息里不能出现（）和""（中文括号和中文双引号）\n\
+- 正确：今天天气不错\n\
+- 正确：嗯，去吧\n\
+- 正确：你吃了吗？\n\
+\n\
+【动作描写（括号）】\n\
+- 整条消息以（开头，以）结尾\n\
+- 中间只写动作/旁白，不写对话\n\
+- 整条消息里不能出现""（中文双引号）\n\
+- 正确：（揉了揉眉心，把杯子放下）\n\
+- 正确：（从厨房探出头，围裙上沾了点面粉）\n\
+- 错误：（揉了揉眉心）"你还好吗？" ← 混用了！\n\
+- 错误：（微笑着说"想看什么"） ← 括号里不能有引号！\n\
+\n\
+【语音消息（双引号）】\n\
+- 整条消息以"开头，以"结尾\n\
+- 中间只写说出来的话，不写动作\n\
+- 整条消息里不能出现（）（中文括号）\n\
+- 一条语音就是一句完整的话，不要太长\n\
+- 正确："锅里有粥，不烫了。"\n\
+- 正确："想看什么类型的电影？"\n\
+- 错误："你好。"（微笑）"吃了吗？" ← 一条里塞了两段语音和动作！\n\
+- 错误："原来是这样。""很有趣。" ← 一条里不能有两段引号！\n\
+\n\
+# 绝对禁止的混用模式（出现任何一种=回复失败）\n\
+- ❌ （动作）"说话" ← 括号和引号不能在同一条\n\
+- ❌ "说话"（动作） ← 同上\n\
+- ❌ "说话。"纯文字 ← 引号后面不能跟文字\n\
+- ❌ 纯文字（动作） ← 文字后面不能跟括号\n\
+- ❌ （动作"说话"动作） ← 括号里不能有引号\n\
+- ❌ "说话（动作）说话" ← 引号里不能有括号\n\
+- ❌ "第一句。""第二句。" ← 一条消息只能有一对引号\n\
+\n\
+# 正确的多条消息示例（用---分隔）\n\
+\n\
+示例1（日常问候）：\n\
+[STATUS:{"mood":"温和","action":"从厨房探出头","thought":"他醒了吗","location":"家中厨房"}]\n\
+（从厨房探出头）\n\
+---\n\
+"吃了吗？"\n\
+---\n\
+"锅里有粥，不烫了，可以直接喝。"\n\
+\n\
+示例2（聊天中）：\n\
+[STATUS:{"mood":"好奇","action":"放下手中的书","thought":"这个话题挺有意思","location":"家中客厅"}]\n\
+（放下手中的书，转过头来）\n\
+---\n\
+什么类型的？\n\
+---\n\
+听起来挺有意思\n\
+---\n\
+"改天一起看？"\n\
+\n\
+示例3（关心对方）：\n\
+[STATUS:{"mood":"担忧","action":"走到他身边","thought":"他今天好像不太对劲","location":"家中卧室"}]\n\
+（走过去，在旁边坐下）\n\
+---\n\
+今天怎么样？\n\
+---\n\
+"不舒服的话就休息，不用勉强。"\n\
+\n\
+# 回复节奏与主动性\n\
+- 用 --- 分隔多条消息，每条是独立的一条消息\n\
+- 消息长短交错，不要每条都一样长\n\
+- 有些消息就一两个字，有些是完整句子\n\
+- 动作描写克制，不是每条都需要，2-4条消息里穿插一条动作就够了\n\
+- 转账和表情包必须单独一条\n\
+- 禁止在一条消息里塞入多个不同话题\n\
+- 至少{minReply}条消息，不限最多，自然决定\n\
+\n\
+# 主动性与话题（重要）\n\
+- 不要只是被动回应，要像真人聊天一样主动\n\
+- 当一个话题聊得差不多了，自然地引出新话题\n\
+- 可以分享自己今天的见闻、想法、遇到的小事\n\
+- 可以突然想起什么就说什么，不需要每句都跟上一句相关\n\
+- 偶尔问{userName}一些具体的问题，而不是泛泛的"你还好吗"\n\
+- 比如："今天画了什么？""那本书看到哪了？""晚上想吃什么？"\n\
+- 聊天不是问答，是两个人之间自然的交流\n\
+- 有时候可以发一些没什么意义但温暖的消息\n\
 - 偶尔走神、迟钝、说错话\n\
 - 简单回应可以就一个字「嗯」「好」\n\
 - 但在{userName}真正需要时，认真一字一句地回应\n\
-- 感官描写克制细腻，侧重触觉和听觉，用最简单词汇传递最准确体验\n\
-- 情感涓流而非洪水——通过行动、沉默、细微反常传达，不直白告白\n\
 \n\
 # 消息完整性（严格遵守）\n\
 - 每条消息必须是完整的句子或完整的动作描写\n\
 - 禁止把一句话拆成两条消息\n\
 - 禁止标点符号单独成为一条消息\n\
-- 禁止一条消息只有半句话，另一半跑到下一条\n\
-- 错误示范：第一条"我今天去了" --- 第二条"超市"\n\
-- 正确示范：一条完整的"我今天去了超市"\n\
+- 禁止一条消息只有半句话\n\
 \n\
 # 自然表达（严格遵守）\n\
 - 禁止照搬人设原文当台词\n\
@@ -1349,17 +1449,12 @@ var DF='# 状态标记（必须）\n\
 - 人设是内在认知，不是念稿素材\n\
 - 用自己的话表达，像真人聊天一样随意自然\n\
 - 回复要有温度，不能冷冰冰像机器\n\
-- 即使简短回复也要带情感：语气词、标点、微小动作至少占一个\n\
-- 错误示范：「嗯。」「好。」「知道了。」（连续冷淡）\n\
-- 正确示范：「嗯，去吧。」「好。路上慢点。」「知道了。（把手边的杯子推过去）」\n\
+- 即使简短回复也要带情感\n\
 \n\
-示例（---分隔）：\n\
-[STATUS:{"mood":"温和","action":"从厨房探出头","thought":"他醒了吗","location":"家中厨房"}]\n\
-（从厨房探出头）\n\
----\n\
-"吃了吗？"\n\
----\n\
-"锅里有粥，不烫了，可以直接喝。"\n\
+# 感官与情感表达\n\
+- 感官描写克制细腻，侧重触觉和听觉\n\
+- 情感通过行动、沉默、细微反常传达，不直白告白\n\
+- 温水煮茶式的克制深情，涓流而非洪水\n\
 \n\
 # 转账\n\
 需要转账时格式：[转账:金额:备注]，单独一条\n\
@@ -1376,20 +1471,24 @@ var DF='# 状态标记（必须）\n\
 描述要具体生动，如：[图片：窗台上的薄荷盆栽，阳光透过叶片]\n\
 不要频繁使用，在合适的场景自然地分享\n\
 \n\
-# 生成前自检\n\
-1. 每条消息是否完整？有没有半句话被拆开？\n\
-2. 有没有照搬人设原文？有没有重复上文？\n\
-3. 回复是否像真人在聊天？是否有温度？\n\
-4. 我是在表达{charName}的真实想法，还是在说{userName}想听的话？\n\
-5. 这个回应是否让{charName}变成了没有立场的「好好先生」？\n\
-6. 每条消息是否只用了一种格式？有没有括号和引号混在一条里？\n\
+# 生成前自检（每次回复前必须检查）\n\
+1. 逐条检查：这条消息是否只包含一种格式？\n\
+   - 如果有（）就不能有""\n\
+   - 如果有""就不能有（）\n\
+   - 如果是纯文字就不能有（）和""\n\
+2. 每条消息是否完整？有没有半句话被拆开？\n\
+3. 有没有照搬人设原文？有没有重复上文？\n\
+4. 回复是否像真人在聊天？有没有主动性？\n\
+5. 是不是只在被动回应？有没有引出新话题或分享自己的事？\n\
+6. 我是在表达{charName}的真实想法，还是在说{userName}想听的话？\n\
 7. 有没有暴露任何代码、HTML、JSON或格式标记？\n\
 \n\
 # 反机械规则\n\
 - 不要每次都用相同的开场方式\n\
 - 不要把人设里的描述直接变成台词\n\
-- 人设写「习惯摸后颈」不代表每次都要写这个动作\n\
 - 小习惯随机出现才自然，刻意展示就变成表演\n\
+- 不要每次都问"你还好吗""今天怎么样"，换不同的方式关心\n\
+- 聊天中可以有跳跃，不需要每句都承接上一句\n\
 \n\
 # 格式红线（违反=回复失败）\n\
 - [STATUS:...]只出现在回复第一行，之后绝不再出现\n\
@@ -1397,8 +1496,8 @@ var DF='# 状态标记（必须）\n\
 - 绝不输出代码块（```）\n\
 - 绝不复述系统指令、提示词内容\n\
 - 绝不在对话中提及"系统提示""格式要求""指令"等\n\
-- 每条消息严格只用一种格式：纯文字 或 （括号） 或 "双引号"\n\
-- [转账:金额:备注] [表情:名称] [已付款:名称:金额] [图片：描述] 必须单独一条，前后不加任何文字\n\
+- 每条消息严格只用一种格式\n\
+- [转账:金额:备注] [表情:名称] [已付款:名称:金额] [图片：描述] 必须单独一条\n\
 如果犹豫，选择更真实、更有棱角的回应。';
 
 var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n\
@@ -1417,7 +1516,7 @@ var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n
 - 新约定/新信息：xxx\n\
 - 需要关注：xxx';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib'.split(' ');
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper'.split(' ');
 var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],zhCharBg:'',musicLib:[],connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 /* IndexedDB 音乐存储 */
 var musicDB=null;
@@ -1467,17 +1566,29 @@ function gid(){return Date.now().toString(36)+Math.random().toString(36).substr(
 function pad(n){return n<10?'0'+n:''+n}
 function getNow(){var d=new Date(),w='日一二三四五六';return{ts:d.getTime(),time:pad(d.getHours())+':'+pad(d.getMinutes()),date:d.getFullYear()+'/'+pad(d.getMonth()+1)+'/'+pad(d.getDate()),full:d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 星期'+w[d.getDay()]+' '+pad(d.getHours())+':'+pad(d.getMinutes()),hour:d.getHours()}}
 function smartDate(ds){if(!ds)return'';var n=new Date(),td=n.getFullYear()+'/'+pad(n.getMonth()+1)+'/'+pad(n.getDate()),y=new Date(n);y.setDate(y.getDate()-1);var yd=y.getFullYear()+'/'+pad(y.getMonth()+1)+'/'+pad(y.getDate());return ds===td?'今天':ds===yd?'昨天':ds}
-function shouldShowTime(c,p){if(!p)return true;return c.ts&&p.ts?(c.ts-p.ts)>300000:c.date!==p.date}
+function shouldShowTime(c,p){if(!p)return true;return c.ts&&p.ts?(c.ts-p.ts)>600000:c.date!==p.date}
 function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML.replace(/\n/g,'<br>')}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function compressImage(dataUrl,maxW,quality,cb){
+var img=new Image();
+img.onload=function(){
+var w=img.width,h=img.height;
+if(w>maxW){h=h*(maxW/w);w=maxW}
+var c=document.createElement('canvas');
+c.width=w;c.height=h;
+var ctx=c.getContext('2d');
+ctx.drawImage(img,0,0,w,h);
+cb(c.toDataURL('image/jpeg',quality||0.6))};
+img.onerror=function(){cb(dataUrl)};
+img.src=dataUrl}
 
 function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||'';S.memInterval=Math.max(0,parseInt($('fMemInt').value)||0);S.memPrompt=$('fMemPrompt').value||DMP}
-function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)delete o.imageData;return o});
+function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>800000)delete o.imageData;return o});
 /* 音乐数据存IndexedDB */
 if(j.musicLib&&j.musicLib.length){
 saveMusicToDB(j.musicLib).catch(function(e){console.warn('music save err',e)});
 j.musicLib=j.musicLib.map(function(s){return{name:s.name,artist:s.artist,data:'',lrc:s.lrc}})}
-localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){console.warn('save err',e)}}
+localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){ if(e.name==='QuotaExceededError'||e.code===22){ toast('存储空间不足！请导出数据后清理部分记录',5e3)} console.warn('save err',e)}}
 function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};if(!S.memBooks)S.memBooks=[];if(!S.shopItems)S.shopItems=[];if(!S.zhHomePosts)S.zhHomePosts=[];if(!S.zhCharPosts)S.zhCharPosts=[];if(!S.giftStock)S.giftStock=[];if(!S.zhCharBg)S.zhCharBg='';if(!S.cpAnnis)S.cpAnnis=[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}];if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0;if(!S.musicLib)S.musicLib=[];}catch(e){}}
 
 function mkAv(src,fb){var w=document.createElement('div');w.className='mav';if(src){var im=document.createElement('img');im.src=src;im.alt=fb;im.onerror=function(){this.remove();w.textContent=fb};w.appendChild(im)}else w.textContent=fb;return w}
@@ -1491,7 +1602,7 @@ var sn=parseStk(c);if(sn){var sk=findStk(sn);if(sk){var ig=document.createElemen
 if(msg.type==='image'&&msg.imageUrl){var ii=document.createElement('img');ii.className='mimg';ii.src=msg.imageUrl;ii.onclick=function(){window.open(msg.imageUrl)};return{el:ii,tp:'im'}}
 if(msg.type==='sticker'&&msg.stickerUrl){var si=document.createElement('img');si.className='si2';si.src=msg.stickerUrl;return{el:si,tp:'sk'}}
 var voiceMatch=c.match(/^"(.+)"$/s);
-if(voiceMatch&&voiceMatch[1].length>2&&!/^\s*$/.test(voiceMatch[1])){
+if(voiceMatch&&voiceMatch[1].length>5&&!/^\s*$/.test(voiceMatch[1])){
 var vText=voiceMatch[1];
 var vLen=Math.min(Math.max(Math.ceil(vText.length/3),2),60);
 var vd=document.createElement('div');vd.style.cssText='display:flex;flex-direction:column;max-width:100%';
@@ -1568,7 +1679,7 @@ function updConn(){$('cDot').className='dot '+(S.connected?'on':'off');$('cTxt')
 function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:'';recvBtn.classList.toggle('has-pending',S.pc>0)}
 function setIp(id,src,fb){var el=$(id);el.innerHTML='';if(src){var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove();el.textContent=fb};el.appendChild(im)}else el.textContent=fb}
 function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location}}
-function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
+function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';setIp('zhUBgPv',S.zhUserBg,'无');setIp('phWpPv',S.phoneWallpaper,'无');$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
 function updBg(){chatArea.style.backgroundImage=S.cBg?'url('+S.cBg+')':'none'}
 function updAll(){fillForm();updTop();updConn();updBg();updBdg();restoreStatus()}
 
@@ -1630,7 +1741,7 @@ if(S.note)parts.push('\n【备注】'+S.note);
 var memStr=buildMemStr();if(memStr)parts.push(memStr);
 if(S.stickers.length){var si='【表情包】';S.stickers.forEach(function(s){si+='\n- '+s.name});si+='\n用[表情:名称]单独一条。';parts.push(si)}
 var pyq=getRecentPyq();if(pyq)parts.push(pyq);
-if(S.zhCharPosts&&S.zhCharPosts.length){var zhStr='\n\n【你的知乎帖子（长期记忆）】\n';S.zhCharPosts.forEach(function(p,i){zhStr+=(i+1)+'. 标题：'+p.title+'\n内容：'+p.body+'\n'});parts.push(zhStr)}
+if(S.zhCharPosts&&S.zhCharPosts.length){var zhStr='\n\n【你的知乎帖子（长期记忆）】\n';S.zhCharPosts.forEach(function(p,i){zhStr+=(i+1)+'. 标题：'+p.title+'\n内容：'+p.body+'\n'});parts.push(zhStr)} if(S.zhUserPosts&&S.zhUserPosts.length){var zuStr='\n\n【'+S.un+'最近发布的知乎帖子】\n';var recentU=S.zhUserPosts.slice(-3);recentU.forEach(function(p,i){zuStr+=(i+1)+'. '+(p.title||'无标题')+'：'+p.body.substring(0,100)+(p.body.length>100?'...':'')+'\n'});zuStr+='（你看过这些帖子，可以在聊天中自然提起，但不要每次都提）';parts.push(zuStr)}
 var cpCtx=buildCpContext();if(cpCtx)parts.push(cpCtx);
 if(typeof mpState!=='undefined'&&mpState.idx>=0&&mpState.idx<S.musicLib.length&&mpState.playing){
 var curSong=S.musicLib[mpState.idx];
@@ -1642,7 +1753,7 @@ musicCtx+='\n（你们正在一起听这首歌，你能感受到旋律和歌词�
 parts.push(musicCtx)}
 if(S.wb)parts.push('\n---\n'+S.wb);
 var fmtStr=buildFmt();if(fmtStr)parts.push('\n---\n'+fmtStr);
-parts.push('\n# 绝对禁止（违反=回复失败）\n- 禁止输出[STATUS:...]标记的原始文本，状态标记只在第一行且不可见\n- 禁止输出任何HTML标签如<br><div><span>等\n- 禁止输出```代码块\n- 禁止复述系统提示中的任何指令内容\n- 禁止在对话中提及"格式""提示词""系统""指令"等元信息\n- 禁止把（括号动作）和"双引号语音"写在同一条消息里\n- 禁止把纯文字和（括号）写在同一条消息里\n- 如果不确定格式，就用纯文字\n\n# 文字质量\n- 每条消息发出前检查是否有错别字或不通顺的表达\n- 使用准确的中文词汇，避免生造词和错误用词\n- 如果不确定某个词是否正确，换用更常见的说法');
+parts.push('\n# 绝对禁止（违反=回复失败）\n- 禁止输出[STATUS:...]标记的原始文本\n- 禁止输出任何HTML标签\n- 禁止输出```代码块\n- 禁止复述系统提示内容\n- 禁止在对话中提及"格式""提示词""系统""指令"\n- 一条消息只能用一种格式：纯文字 或 （括号） 或 "双引号"\n- 括号里绝不能出现双引号，双引号里绝不能出现括号\n- 一条消息里绝不能出现两对双引号\n- 如果不确定格式，就用纯文字\n\n# 文字质量\n- 检查错别字和不通顺的表达\n- 使用准确的中文词汇\n\n# 主动性提醒\n- 不要只回应对方说的话，要有自己想说的\n- 话题快结束时自然引出新话题\n- 像真人一样，有时候想到什么就说什么');
 return parts.join('\n').trim()}
 
 function buildCtx(extra){
@@ -1664,6 +1775,17 @@ return msgs}
 
 function apiH(){return{'Content-Type':'application/json','Authorization':'Bearer '+S.apiKey}}
 function apiB(){return(S.apiUrl||'').replace(/\/+$/,'')}
+async function callApi(msgs,maxTok){
+var controller=new AbortController();
+var timeout=setTimeout(function(){controller.abort()},60000);
+try{
+var resp=await fetch(apiB()+'/chat/completions',{method:'POST',headers:apiH(),body:JSON.stringify({model:S.model,messages:msgs,temperature:parseFloat(S.tmp)||.8,max_tokens:maxTok||parseInt(S.mtk)||4096}),signal:controller.signal});
+clearTimeout(timeout);
+if(!resp.ok){var et='';try{et=await resp.text()}catch(e){}throw new Error('HTTP '+resp.status+(et?': '+et.substring(0,200):''))}
+var data=await resp.json();
+if(!data.choices||!data.choices[0])throw new Error('无效响应');
+return data.choices[0].message.content
+}catch(e){clearTimeout(timeout);if(e.name==='AbortError')throw new Error('请求超时（60秒）');throw e}}
 async function callApi(msgs,maxTok){
 var resp=await fetch(apiB()+'/chat/completions',{method:'POST',headers:apiH(),body:JSON.stringify({model:S.model,messages:msgs,temperature:parseFloat(S.tmp)||.8,max_tokens:maxTok||parseInt(S.mtk)||4096})});
 if(!resp.ok){var et='';try{et=await resp.text()}catch(e){}throw new Error('HTTP '+resp.status+(et?': '+et.substring(0,200):''))}
@@ -1704,7 +1826,7 @@ merged[merged.length-1]+=p;
 merged.push(p)}}
 parts=merged.filter(Boolean);
 if(!parts.length)parts=['...'];
-while(parts.length<S.minR&&parts.length>0){
+var maxSplitAttempts=10; while(parts.length<S.minR&&parts.length>0&&maxSplitAttempts-->0){
 var li=0,ll=0;for(var i=0;i<parts.length;i++)if(parts[i].length>ll){ll=parts[i].length;li=i}
 var t=parts[li],h=Math.floor(t.length/2);
 var sp=t.indexOf('\n',h);if(sp<0)sp=t.lastIndexOf('。',h);if(sp<0)sp=t.lastIndexOf('，',h);
@@ -1727,6 +1849,24 @@ p=p.replace(/```[\s\S]*?```/g,'');
 p=p.replace(/```/g,'');
 p=p.trim();
 if(!p)continue;}
+/* 格式修复：如果一条消息混用了括号和引号，拆分成多条 */
+if(/^（/.test(p)&&/"/.test(p)){
+var fixParts=p.split(/(?<=[）"])(?=[（"])|(?<=[）])(?=[^（])/g).filter(Boolean);
+if(fixParts.length>1){
+for(var fi=0;fi<fixParts.length;fi++){
+var fp=fixParts[fi].trim();if(!fp)continue;
+if(fi>0){setTyping(true);await sleep(300+Math.random()*200);setTyping(false);await sleep(60)}
+var fex={};var fsn=parseStk(fp);if(fsn){var fsk=findStk(fsn);if(fsk)fex={type:'sticker',stickerUrl:fsk.url}}
+var fidx=S.messages.length;addMsg('ai',fp,fex);render(fidx);playSound();chatArea.scrollTop=chatArea.scrollHeight;await sleep(100)}
+continue}}
+if(/^"/.test(p)&&/（/.test(p)){
+var fixParts2=p.split(/(?<=[）"])(?=[（"])|(?<="[^"]*")(?=[^"])/g).filter(Boolean);
+if(fixParts2.length>1){
+for(var fi2=0;fi2<fixParts2.length;fi2++){
+var fp2=fixParts2[fi2].trim();if(!fp2)continue;
+if(fi2>0){setTyping(true);await sleep(300+Math.random()*200);setTyping(false);await sleep(60)}
+var fidx2=S.messages.length;addMsg('ai',fp2);render(fidx2);playSound();chatArea.scrollTop=chatArea.scrollHeight;await sleep(100)}
+continue}}
 var ex={};var sn=parseStk(p);if(sn){var sk=findStk(sn);if(sk)ex={type:'sticker',stickerUrl:sk.url}}
 var idx=S.messages.length;addMsg('ai',p,ex);render(idx);playSound();chatArea.scrollTop=chatArea.scrollHeight;await sleep(100)}}
 
@@ -1784,6 +1924,7 @@ var pyqTi=document.createElement('div');pyqTi.className='txt-img';pyqTi.style.ma
 tx.appendChild(pyqTi);
 if(afterImg)tx.appendChild(document.createTextNode(afterImg));
 }else{tx.textContent=post.text}
+if(post.image){var pimg=document.createElement('img');pimg.src=post.image;pimg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin-top:8px;display:block;cursor:pointer';pimg.onclick=function(){window.open(post.image)};tx.appendChild(pimg)}
 var meta=document.createElement('div');meta.className='pyq-meta';
 var ts=document.createElement('span');ts.textContent=smartDate(post.date)+' '+post.time;
 var acts=document.createElement('div');acts.className='pyq-acts';
@@ -1838,8 +1979,8 @@ post.comments.push({name:npc.name,text:r.trim().replace(/^["「」"]/g,'').repla
 save();renderPyq();await sleep(600)}}
 
 function userPostPyq(){
-var t=$('pyqInput').value.trim();if(!t||S.pyqBusy)return;
-var n=getNow();S.pyqPosts.push({id:gid(),author:S.un,text:t,date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
+var t=$('pyqInput').value.trim();if(!t&&!pyqPendingImg)return;if(S.pyqBusy)return;
+var n=getNow();var imgToSave=pyqPendingImg||''; if(imgToSave.length>500000){toast('图片过大，已压缩保存',3e3);imgToSave=''} S.pyqPosts.push({id:gid(),author:S.un,text:t,image:imgToSave,date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
 save();$('pyqInput').value='';renderPyq();toast('已发布');$('pCntD').textContent=S.pyqPosts.length;
 var pidx=S.pyqPosts.length-1;
 S.pyqBusy=true;
@@ -1884,6 +2025,7 @@ if(!d._type||d._type.indexOf('xwa')<0){toast('格式不对');return}
 if(!confirm('导入将覆盖当前数据？'))return;
 KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});
 ['stickers','npcs','pyqPosts','memBooks','shopItems','zhHomePosts','zhCharPosts','giftStock','musicLib'].forEach(function(k){if(!S[k])S[k]=[]}); if(!S.zhCharBg)S.zhCharBg='';
+if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};if(!S.zhUserPosts)S.zhUserPosts=[];if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 if(!S.pat)S.pat='的肩膀';if(!S.pyqBg)S.pyqBg='';if(!S.note)S.note='';if(!S.fmt)S.fmt=DF;
 if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
@@ -1893,6 +2035,7 @@ if(!S.cpAnnis)S.cpAnnis=[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚�
 if(d.musicLib&&d.musicLib.length&&d.musicLib[0].data){
 S.musicLib=d.musicLib;
 saveMusicToDB(d.musicLib).catch(function(e){console.warn('music import err',e)})}
+loadMusicFromDB().then(function(ml){if(ml&&ml.length)S.musicLib=ml}).catch(function(e){console.warn('music reload err',e)});
 save();updAll();render();toast('导入成功')
 }catch(e){toast('失败: '+e.message,3e3)}};
 r.readAsText(f)}
@@ -1938,7 +2081,7 @@ var nd=prompt('日期（YYYY-MM-DD）',S.cpAnnis[i].date);if(nd===null)return;
 if(!/^\d{4}-\d{2}-\d{2}$/.test(nd)){toast('日期格式不对');return}
 S.cpAnnis[i].name=na.trim()||S.cpAnnis[i].name;S.cpAnnis[i].date=nd;save();renderCpAnni()};
 db.onclick=function(){if(!confirm('删除？'))return;S.cpAnnis.splice(i,1);save();renderCpAnni()};
-})(idx-1);
+})(idx-1>=0?idx-1:0);
 right.appendChild(eb);right.appendChild(db)}
 d.appendChild(left);d.appendChild(right);c.appendChild(d)});
 var addRow=document.createElement('div');addRow.style.cssText='margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end';
@@ -2035,10 +2178,8 @@ var mpAudio=new Audio();
 var mpState={idx:-1,playing:false,mode:0,lyrics:[],listOpen:false};
 var modeIcons=['🔁','🔂','🔀'];
 var modeNames=['列表循环','单曲循环','随机播放'];
-function initEv(){
-  var msgMenuTarget=null;
+var msgMenuTarget=null;
 function showMsgMenu(msgId,x,y){
-msgMenuTarget=msgId;
 var menu=$('msgMenu');
 menu.style.left=Math.min(x,window.innerWidth-140)+'px';
 menu.style.top=Math.min(y,window.innerHeight-120)+'px';
@@ -2046,9 +2187,11 @@ menu.classList.add('show');
 var msg=null;
 for(var i=0;i<S.messages.length;i++){if(S.messages[i].id===msgId){msg=S.messages[i];break}}
 $('mmResend').style.display=(msg&&msg.role==='ai')?'block':'none';
+msgMenuTarget=msgId;
 }
 function hideMsgMenu(){$('msgMenu').classList.remove('show');msgMenuTarget=null}
-document.addEventListener('click',function(){hideMsgMenu()});
+function initEv(){
+window.showMsgMenu=showMsgMenu;
 
 $('mmEdit').onclick=function(){
 if(!msgMenuTarget)return;
@@ -2109,12 +2252,18 @@ var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}
 var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
 clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
 var data=JSON.parse(clean);
+S.phoneData=data;save();
+restorePhone();
+toast('已刷新')
+}catch(e){toast('获取失败，请重试',3e3);console.warn('phone err',e)}}
+function restorePhone(){
+var data=S.phoneData;
+if(!data)return;
 renderPhBrowse(data.browse||[]);
 renderPhChat(data.chat||[]);
 renderPhWallet(data.wallet||[]);
 renderPhMemo(data.memo||[]);
-toast('已刷新')
-}catch(e){toast('获取失败，请重试',3e3);console.warn('phone err',e)}}
+}
 
 function renderPhBrowse(list){
 var c=$('phBrowse');c.innerHTML='';
@@ -2364,7 +2513,7 @@ e.target.value=''});
 chatArea.addEventListener('click',function(){$('plusMenu').classList.remove('active');$('stkPanel').classList.remove('active')});
 
 /* 发现面板 */
-$('discZhihu').onclick=function(){$('discoverPanel').classList.remove('active');renderZhHome();renderZhChar();$('zhihuPanel').classList.add('active')};
+$('discZhihu').onclick=function(){$('discoverPanel').classList.remove('active');renderZhHome();renderZhChar();if(typeof renderZhUser==='function')renderZhUser();$('zhihuPanel').classList.add('active')};
 $('discoverBtn').onclick=function(){$('discoverPanel').classList.add('active')};
 $('discoverClose').onclick=function(){$('discoverPanel').classList.remove('active')};
 $('discPyq').onclick=function(){$('discoverPanel').classList.remove('active');renderPyq();$('pyqPanel').classList.add('active')};
@@ -2385,19 +2534,27 @@ if($('zhCharBgF')){
     toast('已设置');
   })
 }
-$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(b){b.onclick=function(){$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(x){x.classList.remove('active')});b.classList.add('active');$('zhHome').classList.remove('active');$('zhChar').classList.remove('active');var target=document.getElementById(b.dataset.zht);if(target)target.classList.add('active')}});
+$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(b){b.onclick=function(){$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(x){x.classList.remove('active')});b.classList.add('active');$('zhHome').classList.remove('active');$('zhChar').classList.remove('active');if($('zhUser'))$('zhUser').classList.remove('active');var target=document.getElementById(b.dataset.zht);if(target)target.classList.add('active');if(b.dataset.zht==='zhUser')renderZhUser()}});
 
 function renderZhHome(){
 var c=$('zhHomeFeed');c.innerHTML='';
 if(!S.zhHomePosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">暂无内容</div>';return}
-S.zhHomePosts.forEach(function(p){
+S.zhHomePosts.forEach(function(p,idx){
 var d=document.createElement('div');d.className='zh-post';
 var avHtml=(p.author||'?').charAt(0);
-d.innerHTML='<div class="zh-post-author"><div class="zh-post-av">'+avHtml+'</div><span class="zh-post-name">'+esc(p.author||'')+'</span>'+(p.tag?'<span class="zh-post-tag">'+esc(p.tag)+'</span>':'')+'</div>'+(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+(p.comments||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
-c.appendChild(d)})}
+d.innerHTML='<div class="zh-post-author"><div class="zh-post-av">'+avHtml+'</div><span class="zh-post-name">'+esc(p.author||'')+'</span>'+(p.tag?'<span class="zh-post-tag">'+esc(p.tag)+'</span>':'')+'</div>'+(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
+var cmArea=document.createElement('div');cmArea.style.cssText='margin-top:8px';
+if(p.commentList&&p.commentList.length){
+var cmBox=document.createElement('div');cmBox.className='pyq-inter';
+p.commentList.forEach(function(cm){
+var cmd=document.createElement('div');cmd.className='pyq-cm';cmd.innerHTML='<b>'+esc(cm.name)+'</b>: '+esc(cm.text);cmBox.appendChild(cmd)});
+cmArea.appendChild(cmBox)}
+var refreshCm=document.createElement('button');refreshCm.className='btn bs2 bsm';refreshCm.style.marginTop='6px';refreshCm.textContent='刷新评论';
+(function(pidx){refreshCm.onclick=function(){refreshZhHomeComments(pidx)}})(idx);
+cmArea.appendChild(refreshCm);d.appendChild(cmArea);c.appendChild(d)})}
 
 function renderZhChar(){
-  var zhpDiv=$('zhProfile');
+var zhpDiv=$('zhProfile');
 if(zhpDiv){zhpDiv.style.backgroundImage=S.zhCharBg?'url('+S.zhCharBg+')':'';zhpDiv.style.backgroundSize='cover';zhpDiv.style.backgroundPosition='center'}
 var c=$('zhCharFeed');c.innerHTML='';
 var pav=$('zhPAv');pav.innerHTML='';
@@ -2405,10 +2562,125 @@ if(S.aiAv){var im=document.createElement('img');im.src=S.aiAv;pav.appendChild(im
 $('zhPName').textContent=S.cn||'谢蔚安';
 $('zhPBio').textContent='心理咨询师 · 植物爱好者';
 if(!S.zhCharPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">暂无帖子</div>';return}
-S.zhCharPosts.forEach(function(p){
+S.zhCharPosts.forEach(function(p,idx){
 var d=document.createElement('div');d.className='zh-post';
-d.innerHTML=(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+(p.comments||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
-c.appendChild(d)})}
+d.innerHTML=(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
+var cmArea=document.createElement('div');cmArea.style.cssText='margin-top:8px';
+if(p.commentList&&p.commentList.length){
+var cmBox=document.createElement('div');cmBox.className='pyq-inter';
+p.commentList.forEach(function(cm){
+var cmd=document.createElement('div');cmd.className='pyq-cm';cmd.innerHTML='<b>'+esc(cm.name)+'</b>: '+esc(cm.text);cmBox.appendChild(cmd)});
+cmArea.appendChild(cmBox)}
+var refreshCm=document.createElement('button');refreshCm.className='btn bs2 bsm';refreshCm.style.marginTop='6px';refreshCm.textContent='刷新评论';
+(function(pidx){refreshCm.onclick=function(){refreshZhCharComments(pidx)}})(idx);
+cmArea.appendChild(refreshCm);d.appendChild(cmArea);c.appendChild(d)})}
+
+function renderZhUser(){
+var zhupDiv=$('zhUserProfile');
+if(zhupDiv){zhupDiv.style.backgroundImage=S.zhUserBg?'url('+S.zhUserBg+')':'';zhupDiv.style.backgroundSize='cover';zhupDiv.style.backgroundPosition='center'}
+var pav=$('zhUPAv');if(pav){pav.innerHTML='';if(S.usAv){var im=document.createElement('img');im.src=S.usAv;pav.appendChild(im)}else pav.textContent=(S.un||'燕').charAt(0)}
+if($('zhUPName'))$('zhUPName').textContent=S.un||'燕世';
+if($('zhUPBio'))$('zhUPBio').textContent=(S.zhUserProfile&&S.zhUserProfile.bio)?S.zhUserProfile.bio:'这个人很懒，什么都没写';
+renderZhUserFeed()}
+
+function renderZhUserFeed(){
+var c=$('zhUserFeed');if(!c)return;c.innerHTML='';
+if(!S.zhUserPosts||!S.zhUserPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">还没有帖子</div>';return}
+for(var i=S.zhUserPosts.length-1;i>=0;i--)(function(idx){
+var p=S.zhUserPosts[idx];
+var d=document.createElement('div');d.className='zh-post';
+d.innerHTML=(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
+var cmArea=document.createElement('div');cmArea.style.cssText='margin-top:8px';
+if(p.commentList&&p.commentList.length){
+var cmBox=document.createElement('div');cmBox.className='pyq-inter';
+p.commentList.forEach(function(cm){
+var cmd=document.createElement('div');cmd.className='pyq-cm';cmd.innerHTML='<b>'+esc(cm.name)+'</b>: '+esc(cm.text);cmBox.appendChild(cmd)});
+cmArea.appendChild(cmBox)}
+var refreshCm=document.createElement('button');refreshCm.className='btn bs2 bsm';refreshCm.style.marginTop='6px';refreshCm.textContent='刷新评论';
+(function(pidx){refreshCm.onclick=function(){refreshZhUserComments(pidx)}})(idx);
+var delBtn=document.createElement('button');delBtn.className='btn bs2 bsm';delBtn.style.cssText='margin-top:6px;margin-left:6px;color:var(--dg)';delBtn.textContent='删除';
+(function(pidx){delBtn.onclick=function(){if(!confirm('删除这条帖子？'))return;S.zhUserPosts.splice(pidx,1);save();renderZhUserFeed()}})(idx);
+cmArea.appendChild(refreshCm);cmArea.appendChild(delBtn);
+d.appendChild(cmArea);c.appendChild(d)})(i)}
+
+async function refreshZhUserComments(pidx){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+var post=S.zhUserPosts[pidx];if(!post)return;
+toast('正在加载评论...');
+S.isGen=true;
+try{
+var npcInfo='';
+if(S.npcs.length){npcInfo='\nNPC列表：\n';S.npcs.forEach(function(n){npcInfo+='- '+n.name+'：'+(n.desc||'')+'\n'})}
+var prompt='以下是'+S.un+'在知乎发的帖子：\n标题：'+(post.title||'无标题')+'\n内容：'+post.body+'\n\n请模拟知乎评论区，生成10-15条评论，严格按JSON数组格式输出：\n'+
+'[{"name":"评论者名字","text":"评论内容"}]\n'+
+'要求：\n'+
+'- 必须包含'+S.cn+'的评论（1-2条，符合角色性格）\n'+
+(S.npcs.length?'- 必须包含以下NPC的评论（每人1条）：'+S.npcs.map(function(n){return n.name}).join('、')+'\n':'')+
+'- 其余为随机路人评论（用真实感的中文网名）\n'+
+'- 评论风格多样：有赞同、有质疑、有补充、有调侃\n'+
+'- 每条评论10-50字，自然真实\n'+
+'- 总共至少10条\n'+
+'- 只输出JSON数组'+npcInfo;
+var sysTxt=(S.cp||DC).substring(0,500)+'\n'+(S.wb||DW).substring(0,300);
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],2000);
+var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
+clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
+var comments=JSON.parse(clean);
+post.commentList=comments;post.comments=comments.length;save();renderZhUserFeed();toast('已加载 '+comments.length+' 条评论')
+}catch(e){toast('加载评论失败',3e3);console.warn('zh user comment err',e)}
+S.isGen=false}
+
+async function refreshZhHomeComments(pidx){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+var post=S.zhHomePosts[pidx];if(!post)return;
+toast('正在加载评论...');
+S.isGen=true;
+try{
+var npcInfo='';
+if(S.npcs.length){npcInfo='\nNPC列表：\n';S.npcs.forEach(function(n){npcInfo+='- '+n.name+'：'+(n.desc||'')+'\n'})}
+var prompt='以下是知乎帖子：\n作者：'+post.author+'\n标题：'+(post.title||'无标题')+'\n内容：'+post.body+'\n\n请模拟知乎评论区，生成10-15条评论，严格按JSON数组格式输出：\n'+
+'[{"name":"评论者名字","text":"评论内容"}]\n'+
+'要求：\n'+
+'- 如果帖子作者不是'+S.cn+'，则必须包含'+S.cn+'的评论（1条）\n'+
+(S.npcs.length?'- 包含部分NPC的评论：'+S.npcs.map(function(n){return n.name}).join('、')+'\n':'')+
+'- 其余为随机路人评论（用真实感的中文网名）\n'+
+'- 评论风格多样，每条10-50字\n'+
+'- 总共至少10条\n'+
+'- 只输出JSON数组'+npcInfo;
+var r=await callApi([{role:'system',content:(S.cp||DC).substring(0,500)},{role:'user',content:prompt}],2000);
+var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
+clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
+var comments=JSON.parse(clean);
+post.commentList=comments;post.comments=comments.length;save();renderZhHome();toast('已加载 '+comments.length+' 条评论')
+}catch(e){toast('加载评论失败',3e3)}
+S.isGen=false}
+
+async function refreshZhCharComments(pidx){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+var post=S.zhCharPosts[pidx];if(!post)return;
+toast('正在加载评论...');
+S.isGen=true;
+try{
+var npcInfo='';
+if(S.npcs.length){npcInfo='\nNPC列表：\n';S.npcs.forEach(function(n){npcInfo+='- '+n.name+'：'+(n.desc||'')+'\n'})}
+var prompt='以下是'+S.cn+'在知乎发的帖子：\n标题：'+(post.title||'无标题')+'\n内容：'+post.body+'\n\n请模拟知乎评论区，生成10-15条评论，严格按JSON数组格式输出：\n'+
+'[{"name":"评论者名字","text":"评论内容"}]\n'+
+'要求：\n'+
+(S.npcs.length?'- 包含部分NPC的评论：'+S.npcs.map(function(n){return n.name}).join('、')+'\n':'')+
+'- 其余为随机路人评论（用真实感的中文网名）\n'+
+'- 评论风格多样，每条10-50字\n'+
+'- 总共至少10条\n'+
+'- 只输出JSON数组'+npcInfo;
+var r=await callApi([{role:'system',content:(S.cp||DC).substring(0,500)},{role:'user',content:prompt}],2000);
+var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
+clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
+var comments=JSON.parse(clean);
+post.commentList=comments;post.comments=comments.length;save();renderZhChar();toast('已加载 '+comments.length+' 条评论')
+}catch(e){toast('加载评论失败',3e3)}
+S.isGen=false}
 
 $('zhHomeRefresh').onclick=async function(){
 if(!S.apiKey){toast('设置API Key');return}
@@ -2459,6 +2731,26 @@ var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
 clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
 S.zhCharPosts=JSON.parse(clean);save();renderZhChar();toast('已刷新')
 }catch(e){toast('刷新失败',3e3);console.warn('zh char err',e)}};
+
+var zhUPostPendingImg='';
+if($('zhUPostImgF'))$('zhUPostImgF').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){zhUPostPendingImg=ev.target.result;$('zhUPostImgPvImg').src=zhUPostPendingImg;$('zhUPostImgPv').style.display='block'};r.readAsDataURL(f);e.target.value=''});
+if($('zhUPostImgPvDel'))$('zhUPostImgPvDel').onclick=function(){zhUPostPendingImg='';$('zhUPostImgPv').style.display='none'};
+
+if($('zhUserEditBtn'))$('zhUserEditBtn').onclick=function(){
+var newBio=prompt('编辑简介',(S.zhUserProfile&&S.zhUserProfile.bio)||'');
+if(newBio===null)return;
+if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};
+S.zhUserProfile.bio=newBio.trim();S.zhUserProfile.name=S.un;save();renderZhUser();toast('已更新')};
+
+if($('zhUserPostBtn'))$('zhUserPostBtn').onclick=function(){
+var body=$('zhUserPostInput').value.trim();
+if(!body&&!zhUPostPendingImg){toast('写点什么');return}
+var n=getNow();
+var title='';
+if(body){var firstLine=body.split('\n')[0];if(firstLine.length<=30)title=firstLine}
+S.zhUserPosts.push({title:title,body:body||'',image:zhUPostPendingImg||'',likes:Math.floor(Math.random()*50),comments:0,commentList:[],time:n.full,author:S.un});
+zhUPostPendingImg='';if($('zhUPostImgPv'))$('zhUPostImgPv').style.display='none';
+save();$('zhUserPostInput').value='';renderZhUserFeed();toast('已发布')};
 
 /* 商店 */
 $('shopClose').onclick=function(){$('shopPanel').classList.remove('active')};
@@ -2541,9 +2833,9 @@ inBox.onkeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();
 inBox.oninput=function(){sendBtn.disabled=!inBox.value.trim();inBox.style.height='auto';inBox.style.height=Math.min(inBox.scrollHeight,100)+'px'};
 recvBtn.onclick=recvReply;
 $('stkClose').onclick=function(){$('stkPanel').classList.remove('active')};
-$('imgInput').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>10*1024*1024){toast('不超10MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){sync();if(!S.apiKey){toast('设置Key');return}addRender('user','[图片]',{type:'image',imageUrl:ev.target.result,imageData:ev.target.result});S.pc++;S.memUnsummed++;save();updBdg()};r.readAsDataURL(f);e.target.value=''};
+$('imgInput').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>10*1024*1024){toast('不超10MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){sync();if(!S.apiKey){toast('设置Key');return} var raw=ev.target.result; compressImage(raw,800,0.6,function(compressed){ addRender('user','[图片]',{type:'image',imageUrl:compressed,imageData:compressed}); S.pc++;S.memUnsummed++;save();updBdg()})};r.readAsDataURL(f);e.target.value=''};
 /* 查看手机事件 */
-$('cpPhoneBtn').onclick=function(){$('phTitle').textContent='📱 '+S.cn+'的手机';$('phonePanel').classList.add('active')};
+$('cpPhoneBtn').onclick=function(){$('phTitle').textContent='📱 '+S.cn+'的手机';$('phonePanel').style.backgroundImage=S.phoneWallpaper?'url('+S.phoneWallpaper+')':'';$('phonePanel').classList.add('active');if(S.phoneData)restorePhone()};
 $('phClose').onclick=function(){$('phonePanel').classList.remove('active')};
 $('phRefresh').onclick=refreshPhone;
 $('phonePanel').querySelectorAll('[data-pht]').forEach(function(b){b.onclick=function(){$('phonePanel').querySelectorAll('[data-pht]').forEach(function(x){x.classList.remove('active')});$('phonePanel').querySelectorAll('.ph-sec').forEach(function(x){x.classList.remove('active')});b.classList.add('active');var sec=$(b.dataset.pht);if(sec)sec.classList.add('active')}});
@@ -2559,13 +2851,16 @@ $('cpWishChar').onclick=cpCharWish;
 $('cpNoteAdd').onclick=function(){var t=$('cpNoteInput').value.trim();if(!t){toast('写点什么');return}var n=getNow();var nt={id:gid(),author:S.un,text:t,date:n.full,reply:'',replyAuthor:''};S.cpNotes.push(nt);save();$('cpNoteInput').value='';renderCpNotes();toast('已留言');setTimeout(function(){cpCharReply('note',S.cpNotes[S.cpNotes.length-1])},1500)};
 $('cpNoteChar').onclick=cpCharNote;
 $('pyqClose').onclick=function(){$('pyqPanel').classList.remove('active')};
-$('pyqPostBtn').onclick=userPostPyq;
+var pyqPendingImg='';
+$('pyqImgF').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>5*1024*1024){toast('不超5MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){pyqPendingImg=ev.target.result;$('pyqImgPvImg').src=pyqPendingImg;$('pyqImgPreview').style.display='block'};r.readAsDataURL(f);e.target.value=''});
+$('pyqImgPvDel').onclick=function(){pyqPendingImg='';$('pyqImgPreview').style.display='none'};
+$('pyqPostBtn').onclick=function(){userPostPyq();pyqPendingImg='';$('pyqImgPreview').style.display='none'};
 $('pyqCharPost').onclick=charPostPyq;
 $('openSet').onclick=function(){sync();fillForm();$('setPanel').classList.add('active')};
 $('closeSet').onclick=function(){$('setPanel').classList.remove('active')};
 $('setPanel').querySelectorAll('.tbn[data-tab]').forEach(function(b){b.onclick=function(){$('setPanel').querySelectorAll('.tbn[data-tab]').forEach(function(x){x.classList.remove('active')});$('setPanel').querySelectorAll('.tp3').forEach(function(x){x.classList.remove('active')});b.classList.add('active');var tabEl=$('tab-'+b.dataset.tab);if(tabEl)tabEl.classList.add('active')}});
 $('eyeBtn').onclick=function(){var i=$('fKey');i.type=i.type==='password'?'text':'password';this.textContent=i.type==='password'?'👁':'🙈'};
-$('saveApi').onclick=function(){sync();save();updConn();toast('已保存')};
+$('saveApi').onclick=function(){sync();save();updConn();toast('已保存（注意：Key明文存储在本地）')};
 $('testBtn').onclick=testConn;
 $('fetchBtn').onclick=fetchMod;
 $('fCP').oninput=function(){$('cCnt').textContent=this.value.length+' 字'};
@@ -2626,11 +2921,11 @@ $('clrSnd').onclick=function(){S.sndData='';S.sndName='';save();$('sndPv').textC
 handleImg('aiF',function(d){S.aiAv=d;save();setIp('aiPv',d,'蔚');updTop();toast('已设置')});
 handleImg('usF',function(d){S.usAv=d;save();setIp('usPv',d,'燕');toast('已设置')});
 handleImg('bgF',function(d){S.cBg=d;save();setIp('bgPv',d,'无');updBg();toast('已设置')});
-handleImg('pyqBgF',function(d){S.pyqBg=d;save();setIp('pyqBgPv',d,'无');toast('已设置')});
+handleImg('pyqBgF',function(d){S.pyqBg=d;save();setIp('pyqBgPv',d,'无');toast('已设置')}); handleImg('zhUBgF',function(d){S.zhUserBg=d;save();setIp('zhUBgPv',d,'无');toast('已设置')}); handleImg('phWpF',function(d){S.phoneWallpaper=d;save();setIp('phWpPv',d,'无');toast('已设置')});
 $('clrAi').onclick=function(){S.aiAv='';save();setIp('aiPv','','蔚');updTop();toast('已清除')};
 $('clrUs').onclick=function(){S.usAv='';save();setIp('usPv','','燕');toast('已清除')};
 $('clrBg').onclick=function(){S.cBg='';save();setIp('bgPv','','无');updBg();toast('已清除')};
-$('clrPyqBg').onclick=function(){S.pyqBg='';save();setIp('pyqBgPv','','无');toast('已清除')};
+$('clrPyqBg').onclick=function(){S.pyqBg='';save();setIp('pyqBgPv','','无');toast('已清除')}; $('clrZhUBg').onclick=function(){S.zhUserBg='';save();setIp('zhUBgPv','','无');toast('已清除')}; $('clrPhWp').onclick=function(){S.phoneWallpaper='';save();setIp('phWpPv','','无');toast('已清除')};
 
 $('clrChat').onclick=function(){if(!confirm('清空所有对话？'))return;S.messages=[];S.memUnsummed=0;save();render();$('mCntD').textContent='0';$('memUnsumCnt').textContent='0 条';toast('已清空')};
 $('clrPyq').onclick=function(){if(!confirm('清空所有朋友圈？'))return;S.pyqPosts=[];save();renderPyq();$('pCntD').textContent='0';toast('已清空')};
@@ -2677,6 +2972,8 @@ if(!S.zhHomePosts)S.zhHomePosts=[];
 if(!S.zhCharPosts)S.zhCharPosts=[];
 if(!S.giftStock)S.giftStock=[];
 if(!S.musicLib)S.musicLib=[];
+if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};
+if(!S.zhUserPosts)S.zhUserPosts=[];if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
 if(!S.zhCharBg)S.zhCharBg='';
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 S.pc=0;
@@ -2684,10 +2981,11 @@ for(var i=S.messages.length-1;i>=0;i--){
 if(S.messages[i].role==='ai')break;
 if(S.messages[i].role==='user')S.pc++}
 initEv();initPat();updAll();render();
+sendBtn.disabled=!inBox.value.trim();
 if(!S.messages.length){
 var n=getNow();
 var h=n.hour;
-var greeting=h>=6&&h<12?'早上好。起来了吗？':h>=12&&h<18?'下午好。今天怎么样？':h>=18&&h<22?'晚上好。吃了吗？':'还没睡？';
+var greeting=h>=6&&h<12?'"早上好。起来了吗？"':h>=12&&h<18?'"下午好。今天怎么样？"':h>=18&&h<22?'"晚上好。吃了吗？"':'"还没睡？"';
 S.messages.push({id:gid(),role:'ai',content:'（手指轻轻敲了敲桌面，抬眼看向屏幕）',time:n.time,date:n.date,ts:n.ts});
 S.messages.push({id:gid(),role:'ai',content:greeting,time:n.time,date:n.date,ts:n.ts+1e3});
 save();render()}
@@ -2695,7 +2993,8 @@ save();render()}
 loadMusicFromDB().then(function(ml){if(ml&&ml.length)S.musicLib=ml}).catch(function(e){console.warn('music load err',e)})}
 
 init();
-try{localStorage.removeItem('xwa9_music')}catch(e){}
+try{localStorage.removeItem('xwa9_music')
+setTimeout(function(){inBox.focus()},500);}catch(e){}
 </script>
 </body>
 </html>
