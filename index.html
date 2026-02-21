@@ -39,6 +39,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .mr.ai{align-self:flex-start}
 .mr.user{align-self:flex-end;flex-direction:row-reverse}
 .mr.anim{animation:fadeUp .3s ease}
+.mr .mb{transition:transform .1s}
+.mr .mb:active{transform:scale(.97)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .mav{width:38px;height:38px;border-radius:8px;flex-shrink:0;background:var(--al);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ac);font-weight:600;overflow:hidden}
 .mav img{width:100%;height:100%;object-fit:cover;display:block}
@@ -66,6 +68,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .rb.ld{pointer-events:none;opacity:.5}
 .rb .bdg{position:absolute;top:-5px;right:-5px;background:var(--dg);color:#fff;font-size:9px;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;padding:0 3px}
 .rb .bdg:empty{display:none}
+.rb.has-pending{animation:breathe 2s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 rgba(87,107,92,.3)}50%{box-shadow:0 0 0 6px rgba(87,107,92,0)}}
 .ib{flex:1;border:1px solid var(--bc);border-radius:8px;padding:9px 12px;font-size:15px;line-height:1.45;max-height:100px;overflow-y:auto;outline:none;resize:none;font-family:inherit;background:var(--p);color:var(--tp)}
 .ib:focus{border-color:var(--ac)}
 .sdb{width:36px;height:36px;border-radius:8px;border:none;background:var(--ac);color:#fff;font-size:15px;cursor:pointer;flex-shrink:0;transition:opacity .15s}
@@ -102,8 +106,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
 .dot.on{background:#4CAF50}.dot.off{background:var(--dg)}.dot.tw{background:#FFC107}
 .stxt{font-size:12px;color:var(--ts)}
-.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:rgba(0,0,0,.78);color:#fff;padding:10px 24px;border-radius:10px;font-size:13px;z-index:9999;opacity:0;transition:all .3s;pointer-events:none;max-width:300px;text-align:center;word-break:break-all}
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:rgba(0,0,0,.78);color:#fff;padding:10px 24px;border-radius:10px;font-size:13px;z-index:9999;opacity:0;transition:all .3s;pointer-events:none;max-width:300px;text-align:center;word-break:break-all;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.msg-menu{position:fixed;background:var(--w);border:1px solid var(--bc);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.15);z-index:200;display:none;overflow:hidden;min-width:120px}
+.msg-menu.show{display:block;animation:menuPop .15s ease} @keyframes menuPop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.msg-menu-item{padding:10px 16px;font-size:13px;color:var(--tp);cursor:pointer;border-bottom:.5px solid var(--bc);white-space:nowrap}
+.msg-menu-item:last-child{border-bottom:none}
+.msg-menu-item:hover{background:var(--p)}
+.msg-menu-item.danger{color:var(--dg)}
 input[type="file"]{display:none}
 .cc{font-size:11px;color:var(--tl);text-align:right;margin-top:2px}
 .kr{display:flex;gap:8px;align-items:center}.kr .fi{flex:1}
@@ -203,7 +213,7 @@ input[type="file"]{display:none}
 @keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 .cp-names{color:#fff;font-size:16px;font-weight:600;text-align:center;margin-top:10px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
 .cp-days{color:rgba(255,255,255,.9);font-size:13px;text-align:center;margin-top:6px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.cp-days b{font-size:28px;font-weight:700;color:#fff;margin:0 3px}
+.cp-days b{font-size:28px;font-weight:700;color:#fff;margin:0 3px;display:inline-block;animation:countPulse 3s ease-in-out infinite} @keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .cp-tabs{display:flex;border-bottom:.5px solid var(--bc);background:var(--p);flex-shrink:0}
 .cp-tabs button{flex:1;padding:12px 0;border:none;background:none;font-size:13px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500}
 .cp-tabs button.active{color:var(--ac);border-bottom-color:var(--ac)}
@@ -268,7 +278,7 @@ input[type="file"]{display:none}
 .disc-info{flex:1}
 .disc-name{font-size:15px;font-weight:600;color:var(--tp)}
 .disc-desc{font-size:12px;color:var(--ts);margin-top:2px}
-.zh-profile{text-align:center;padding:20px 16px;border-bottom:1px solid var(--bc);margin-bottom:12px}
+.zh-profile{text-align:center;padding:20px 16px;border-bottom:1px solid var(--bc);margin-bottom:12px;position:relative;border-radius:0;overflow:hidden} .zh-profile[style*="background-image"]::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:0} .zh-profile[style*="background-image"] .zh-pname,.zh-profile[style*="background-image"] .zh-pbio{color:#fff;position:relative;z-index:1;text-shadow:0 1px 4px rgba(0,0,0,.4)} .zh-profile[style*="background-image"] .zh-pav{position:relative;z-index:1;border:2px solid rgba(255,255,255,.5)} .zh-profile[style*="background-image"] .btn{position:relative;z-index:1}
 .zh-pav{width:64px;height:64px;border-radius:50%;background:var(--al);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--ac);font-weight:600;overflow:hidden}
 .zh-pav img{width:100%;height:100%;object-fit:cover}
 .zh-pname{font-size:18px;font-weight:700;color:var(--tp)}
@@ -374,14 +384,11 @@ input[type="file"]{display:none}
 </div>
 <div class="tp3" id="zhChar">
 <div class="zh-profile" id="zhProfile">
-<div class="zh-pav" id="zhPAv">蔚</div>
-<div class="zh-pname" id="zhPName">谢蔚安</div>
-<div class="zh-pbio" id="zhPBio">心理咨询师 | 种植爱好者</div>
-<div class="zh-pstats">
-<div class="zh-pst"><b id="zhFollowing">128</b><span>关注</span></div>
-<div class="zh-pst"><b id="zhFollowers">2.3k</b><span>粉丝</span></div>
-<div class="zh-pst"><b id="zhLikes">5.1k</b><span>获赞</span></div>
-</div>
+<div class="zh-pav" id="zhPAv"></div>
+<div class="zh-pname" id="zhPName"></div>
+<div class="zh-pbio" id="zhPBio"></div>
+<button class="btn bs2 bsm" id="zhCharBgBtn" style="margin-top:8px">更换背景</button>
+<input type="file" id="zhCharBgF" accept="image/*" style="display:none">
 </div>
 <div style="display:flex;justify-content:space-between;align-items:center;margin:12px 0">
 <label class="fl" style="margin:0">TA的帖子</label>
@@ -587,13 +594,13 @@ input[type="file"]{display:none}
 <span class="ct">小红书：27418565861</span><br>
 <span class="ct">微信：Aa9620520</span><br>
 <span class="ct">QQ：962005530</span><br><br>
-<span style="font-size:11px;color:var(--tl)">v2.1.0 · 侵权必究</span> <br><br> <strong style="color:var(--dg)">⚠️ 专属声明</strong><br> 本软件为「谢蔚安」个人专属智能体<br> 不推荐用于其他人设角色聊天<br> 更换人设可能导致功能异常
+<span style="font-size:11px;color:var(--tl)">v2.2.0 · 侵权必究</span> <br><br> <strong style="color:var(--dg)">⚠️ 专属声明</strong><br> 本软件为「谢蔚安」个人专属智能体<br> 不推荐用于其他人设角色聊天<br> 更换人设可能导致功能异常
 </div>
 </div>
 <!-- 手册 -->
 <div class="tp3" id="tab-manual">
 <div class="manual-body">
-<div class="m-title">📖 使用手册 v2.1</div><br>
+<div class="m-title">📖 使用手册 v2.2</div><br>
 <strong>一、首次使用</strong><br>
 1. 打开设置 → API 标签<br>
 2. 填入 API 地址（如 https://api.openai.com/v1）<br>
@@ -677,6 +684,25 @@ input[type="file"]{display:none}
 - 修改后点保存即可生效<br><br>
 <div class="m-tip">💡 情侣空间的内容不会被记忆总结收录，但角色聊天时能看到。</div>
 <br>
+<strong>十五、长按消息菜单</strong><br>
+- 长按任意一条消息可弹出操作菜单<br>
+- 编辑：修改消息内容<br>
+- 重说：让角色重新生成这条回复（仅限角色消息）<br>
+- 删除：删除单条消息<br>
+- 手指移动超过一定距离会自动取消长按，不影响滚动<br><br>
+<strong>十六、知乎与商店</strong><br>
+- 发现 → 知乎：查看知乎首页和角色主页<br>
+- 角色主页可上传自定义背景图<br>
+- 角色头像与聊天界面自动同步<br>
+- 刷新后的内容会自动保存，退出不会丢失<br>
+- 发现 → 商店：搜索商品，可发给角色付款或加入购物车<br><br>
+<strong>十七、购物车与礼物</strong><br>
+- ＋号菜单 → 购物车：查看已加入的商品<br>
+- ＋号菜单 → 自定义礼物：直接送礼物给角色<br>
+- 商店商品可"发给TA付款"或"加入购物车"<br>
+- 角色会根据设定决定是否付款<br><br>
+<div class="m-tip">💡 所有数据（知乎帖子、商店商品、购物车、知乎背景等）都会自动保存到浏览器本地，刷新页面不会丢失。</div>
+<br>
 <div style="border:1.5px solid var(--dg);border-radius:10px;padding:14px 16px;margin:12px 0;background:#FFF8F8">
 <strong style="color:var(--dg)">⚠️ 重要声明</strong><br><br>
 本软件为「谢蔚安」角色专属智能体网站，所有功能、界面、提示词均围绕该角色深度定制开发。<br><br>
@@ -759,6 +785,11 @@ input[type="file"]{display:none}
 </div>
 </div>
 </div>
+</div>
+<div class="msg-menu" id="msgMenu">
+<div class="msg-menu-item" id="mmEdit">编辑</div>
+<div class="msg-menu-item" id="mmResend">重说</div>
+<div class="msg-menu-item danger" id="mmDel">删除</div>
 </div>
 <div class="toast" id="toast"></div>
 </div>
@@ -1287,8 +1318,8 @@ var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n
 - 新约定/新信息：xxx\n\
 - 需要关注：xxx';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock'.split(' ');
-var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg'.split(' ');
+var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],zhCharBg:'',connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 
 var $=function(id){return document.getElementById(id)};
 var chatArea=$('chatArea'),inBox=$('inBox'),sendBtn=$('sendBtn'),recvBtn=$('recvBtn');
@@ -1304,7 +1335,7 @@ function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
 
 function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||'';S.memInterval=Math.max(0,parseInt($('fMemInt').value)||0);S.memPrompt=$('fMemPrompt').value||DMP}
 function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>500000)delete o.imageData;return o});localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){console.warn('save err',e)}}
-function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};if(!S.memBooks)S.memBooks=[];if(!S.shopItems)S.shopItems=[];if(!S.zhHomePosts)S.zhHomePosts=[];if(!S.zhCharPosts)S.zhCharPosts=[];if(!S.giftStock)S.giftStock=[];if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0}catch(e){}}
+function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};if(!S.memBooks)S.memBooks=[];if(!S.shopItems)S.shopItems=[];if(!S.zhHomePosts)S.zhHomePosts=[];if(!S.zhCharPosts)S.zhCharPosts=[];if(!S.giftStock)S.giftStock=[];if(!S.zhCharBg)S.zhCharBg='';if(!S.cpAnnis)S.cpAnnis=[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}];if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0}catch(e){}}
 
 function mkAv(src,fb){var w=document.createElement('div');w.className='mav';if(src){var im=document.createElement('img');im.src=src;im.alt=fb;im.onerror=function(){this.remove();w.textContent=fb};w.appendChild(im)}else w.textContent=fb;return w}
 function findStk(n){for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n)return S.stickers[i];return null}
@@ -1350,6 +1381,16 @@ if(shouldShowTime(m,prev)){var td=document.createElement('div');td.className='td
 var row=document.createElement('div');row.className='mr '+m.role;row.dataset.id=m.id;
 if(animFrom!==undefined&&idx>=animFrom)row.classList.add('anim');
 if(S.selMode){row.classList.add('selectable');if(S.selIds[m.id])row.classList.add('selected');(function(id){row.onclick=function(){togSel(id)}})(m.id)}
+if(!S.selMode){(function(id){
+var lt=null,lp=false,sx=0,sy=0;
+function startL(e){lp=true;if(e.touches){sx=e.touches[0].clientX;sy=e.touches[0].clientY}else{sx=e.clientX;sy=e.clientY}lt=setTimeout(function(){if(lp){showMsgMenu(id,sx,sy);if(navigator.vibrate)navigator.vibrate(30)}},600)}
+function endL(){lp=false;clearTimeout(lt)}
+function moveL(e){if(!lp)return;var mx,my;if(e.touches){mx=e.touches[0].clientX;my=e.touches[0].clientY}else{mx=e.clientX;my=e.clientY}if(Math.abs(mx-sx)>10||Math.abs(my-sy)>10){lp=false;clearTimeout(lt)}}
+row.addEventListener('touchstart',startL,{passive:true});
+row.addEventListener('touchmove',moveL,{passive:true});
+row.addEventListener('touchend',endL);row.addEventListener('touchcancel',endL);
+row.addEventListener('mousedown',startL);row.addEventListener('mouseup',endL);row.addEventListener('mouseleave',endL);
+})(m.id)}
 var isAi=m.role==='ai';
 var av=mkAv(isAi?S.aiAv:S.usAv,(isAi?(S.cn||'蔚'):(S.un||'燕')).charAt(0));
 var wrap=document.createElement('div');wrap.className='mw';
@@ -1381,7 +1422,7 @@ if(S.aiAv){var im=document.createElement('img');im.src=S.aiAv;im.onerror=functio
 else ta.textContent=(S.cn||'蔚').charAt(0);
 if(!S.isGen){$('topS').textContent=S.connected?'在线':'未连接';$('topS').className='top-s';$('topS').style.color=S.connected?'#4CAF50':''}}
 function updConn(){$('cDot').className='dot '+(S.connected?'on':'off');$('cTxt').textContent=S.connected?'已连接 · '+S.model:'未连接';updTop()}
-function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:''}
+function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:'';recvBtn.classList.toggle('has-pending',S.pc>0)}
 function setIp(id,src,fb){var el=$(id);el.innerHTML='';if(src){var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove();el.textContent=fb};el.appendChild(im)}else el.textContent=fb}
 function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location}}
 function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
@@ -1440,7 +1481,7 @@ function getRecentPyq(){var recent=S.pyqPosts.slice(-3);if(!recent.length)return
 function buildSys(){
 var n=getNow(),h=n.hour;
 var period=h>=5&&h<8?'清晨':h>=8&&h<12?'上午':h>=12&&h<14?'中午':h>=14&&h<18?'下午':h>=18&&h<21?'傍晚':h>=21||h<1?'深夜':'凌晨'; var mon=new Date().getMonth()+1; var season=mon>=3&&mon<=5?'春季':mon>=6&&mon<=8?'夏季':mon>=9&&mon<=11?'秋季':'冬季'; var isWorkday=new Date().getDay()>=1&&new Date().getDay()<=5;
-var parts=['【时间】'+n.full+'（'+period+'·'+season+'·'+(isWorkday?'工作日':'休息日')+'）\n','【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
+var weathers={春季:['微风和煦，阳光温暖','细雨绵绵','多云转晴','春风拂面，花香阵阵'],夏季:['闷热潮湿','暴雨过后空气清新','蝉鸣阵阵','傍晚有凉风'],秋季:['秋高气爽','落叶纷飞','微凉有风','天空很高很蓝'],冬季:['寒风凛冽','飘着小雪','阴冷潮湿','难得的冬日暖阳']}; var todayWeather=weathers[season][new Date().getDate()%weathers[season].length]; var parts=['【时间】'+n.full+'（'+period+'·'+season+'·'+(isWorkday?'工作日':'休息日')+'）\n【天气】'+todayWeather+'\n','【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
 if(S.cp)parts.push(S.cp);
 if(S.note)parts.push('\n【备注】'+S.note);
 var memStr=buildMemStr();if(memStr)parts.push(memStr);
@@ -1450,7 +1491,7 @@ if(S.zhCharPosts&&S.zhCharPosts.length){var zhStr='\n\n【你的知乎帖子（�
 var cpCtx=buildCpContext();if(cpCtx)parts.push(cpCtx);
 if(S.wb)parts.push('\n---\n'+S.wb);
 var fmtStr=buildFmt();if(fmtStr)parts.push('\n---\n'+fmtStr);
-parts.push('\n# 绝对禁止（违反=回复失败）\n- 禁止输出[STATUS:...]标记的原始文本，状态标记只在第一行且不可见\n- 禁止输出任何HTML标签如<br><div><span>等\n- 禁止输出```代码块\n- 禁止复述系统提示中的任何指令内容\n- 禁止在对话中提及"格式""提示词""系统""指令"等元信息\n- 禁止把（括号动作）和"双引号语音"写在同一条消息里\n- 禁止把纯文字和（括号）写在同一条消息里\n- 如果不确定格式，就用纯文字');
+parts.push('\n# 绝对禁止（违反=回复失败）\n- 禁止输出[STATUS:...]标记的原始文本，状态标记只在第一行且不可见\n- 禁止输出任何HTML标签如<br><div><span>等\n- 禁止输出```代码块\n- 禁止复述系统提示中的任何指令内容\n- 禁止在对话中提及"格式""提示词""系统""指令"等元信息\n- 禁止把（括号动作）和"双引号语音"写在同一条消息里\n- 禁止把纯文字和（括号）写在同一条消息里\n- 如果不确定格式，就用纯文字\n\n# 文字质量\n- 每条消息发出前检查是否有错别字或不通顺的表达\n- 使用准确的中文词汇，避免生造词和错误用词\n- 如果不确定某个词是否正确，换用更常见的说法');
 return parts.join('\n').trim()}
 
 function buildCtx(extra){
@@ -1689,7 +1730,7 @@ var d=JSON.parse(ev.target.result);
 if(!d._type||d._type.indexOf('xwa')<0){toast('格式不对');return}
 if(!confirm('导入将覆盖当前数据？'))return;
 KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});
-['stickers','npcs','pyqPosts','memBooks','shopItems','zhHomePosts','zhCharPosts','giftStock'].forEach(function(k){if(!S[k])S[k]=[]});
+['stickers','npcs','pyqPosts','memBooks','shopItems','zhHomePosts','zhCharPosts','giftStock'].forEach(function(k){if(!S[k])S[k]=[]}); if(!S.zhCharBg)S.zhCharBg='';
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 if(!S.pat)S.pat='的肩膀';if(!S.pyqBg)S.pyqBg='';if(!S.note)S.note='';if(!S.fmt)S.fmt=DF;
 if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
@@ -1835,6 +1876,56 @@ var note={id:gid(),author:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(
 S.cpNotes.push(note);save();renderCpNotes();toast(S.cn+'留言了')
 }catch(e){toast('失败',3e3)}}
 function initEv(){
+  var msgMenuTarget=null;
+function showMsgMenu(msgId,x,y){
+msgMenuTarget=msgId;
+var menu=$('msgMenu');
+menu.style.left=Math.min(x,window.innerWidth-140)+'px';
+menu.style.top=Math.min(y,window.innerHeight-120)+'px';
+menu.classList.add('show');
+var msg=null;
+for(var i=0;i<S.messages.length;i++){if(S.messages[i].id===msgId){msg=S.messages[i];break}}
+$('mmResend').style.display=(msg&&msg.role==='ai')?'block':'none';
+}
+function hideMsgMenu(){$('msgMenu').classList.remove('show');msgMenuTarget=null}
+document.addEventListener('click',function(){hideMsgMenu()});
+
+$('mmEdit').onclick=function(){
+if(!msgMenuTarget)return;
+var msg=null,idx=-1;
+for(var i=0;i<S.messages.length;i++){if(S.messages[i].id===msgMenuTarget){msg=S.messages[i];idx=i;break}}
+if(!msg)return;hideMsgMenu();
+var newTxt=prompt('编辑消息',msg.content);
+if(newTxt===null)return;
+newTxt=newTxt.trim();
+if(!newTxt){toast('不能为空');return}
+S.messages[idx].content=newTxt;save();render();toast('已编辑')};
+
+$('mmResend').onclick=async function(){
+if(!msgMenuTarget||S.isGen)return;
+var idx=-1;
+for(var i=0;i<S.messages.length;i++){if(S.messages[i].id===msgMenuTarget){idx=i;break}}
+if(idx<0)return;hideMsgMenu();
+if(S.messages[idx].role!=='ai'){toast('只能重说AI消息');return}
+S.messages.splice(idx);save();render();
+sync();if(!S.apiKey){toast('设置API Key');return}
+S.isGen=true;recvBtn.classList.add('ld');setTyping(true);
+try{
+var msgs=buildCtx();
+await sleep(700+Math.random()*500);
+var reply=await callApi(msgs);
+setTyping(false);S.connected=true;
+var parts=splitReply(reply);
+await deliverParts(parts);
+S.pc=0;save()}
+catch(e){setTyping(false);toast('失败: '+e.message,3e3)}
+S.isGen=false;recvBtn.classList.remove('ld');updConn();updBdg()};
+
+$('mmDel').onclick=function(){
+if(!msgMenuTarget)return;
+if(!confirm('删除这条消息？'))return;
+S.messages=S.messages.filter(function(m){return m.id!==msgMenuTarget});
+save();render();hideMsgMenu();toast('已删除')};
   /* 查看手机 */
 async function refreshPhone(){
 if(!S.apiKey){toast('设置API Key');return}
@@ -1912,14 +2003,27 @@ $('pmCustomGift').onclick=function(){$('plusMenu').classList.remove('active');$(
 chatArea.addEventListener('click',function(){$('plusMenu').classList.remove('active');$('stkPanel').classList.remove('active')});
 
 /* 发现面板 */
+$('discZhihu').onclick=function(){$('discoverPanel').classList.remove('active');renderZhHome();renderZhChar();$('zhihuPanel').classList.add('active')};
 $('discoverBtn').onclick=function(){$('discoverPanel').classList.add('active')};
 $('discoverClose').onclick=function(){$('discoverPanel').classList.remove('active')};
 $('discPyq').onclick=function(){$('discoverPanel').classList.remove('active');renderPyq();$('pyqPanel').classList.add('active')};
-$('discZhihu').onclick=function(){$('discoverPanel').classList.remove('active');$('zhihuPanel').classList.add('active')};
-$('discShop').onclick=function(){$('discoverPanel').classList.remove('active');$('shopPanel').classList.add('active')};
+$('discShop').onclick=function(){$('discoverPanel').classList.remove('active');renderShop();$('shopPanel').classList.add('active')};
 
 /* 知乎 */
 $('zhihuClose').onclick=function(){$('zhihuPanel').classList.remove('active')};
+if($('zhCharBgBtn')){
+  $('zhCharBgBtn').onclick=function(){
+    $('zhCharBgF').click();
+  }
+}
+if($('zhCharBgF')){
+  handleImg('zhCharBgF',function(d){
+    S.zhCharBg=d;
+    save();
+    renderZhChar();
+    toast('已设置');
+  })
+}
 $('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(b){b.onclick=function(){$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(x){x.classList.remove('active')});b.classList.add('active');$('zhHome').classList.remove('active');$('zhChar').classList.remove('active');var target=document.getElementById(b.dataset.zht);if(target)target.classList.add('active')}});
 
 function renderZhHome(){
@@ -1932,10 +2036,13 @@ d.innerHTML='<div class="zh-post-author"><div class="zh-post-av">'+avHtml+'</div
 c.appendChild(d)})}
 
 function renderZhChar(){
+  var zhpDiv=$('zhProfile');
+if(zhpDiv){zhpDiv.style.backgroundImage=S.zhCharBg?'url('+S.zhCharBg+')':'';zhpDiv.style.backgroundSize='cover';zhpDiv.style.backgroundPosition='center'}
 var c=$('zhCharFeed');c.innerHTML='';
 var pav=$('zhPAv');pav.innerHTML='';
 if(S.aiAv){var im=document.createElement('img');im.src=S.aiAv;pav.appendChild(im)}else pav.textContent=(S.cn||'蔚').charAt(0);
 $('zhPName').textContent=S.cn||'谢蔚安';
+$('zhPBio').textContent='心理咨询师 · 植物爱好者';
 if(!S.zhCharPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">暂无帖子</div>';return}
 S.zhCharPosts.forEach(function(p){
 var d=document.createElement('div');d.className='zh-post';
@@ -2208,6 +2315,7 @@ if(!S.shopItems)S.shopItems=[];
 if(!S.zhHomePosts)S.zhHomePosts=[];
 if(!S.zhCharPosts)S.zhCharPosts=[];
 if(!S.giftStock)S.giftStock=[];
+if(!S.zhCharBg)S.zhCharBg='';
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 S.pc=0;
 for(var i=S.messages.length-1;i>=0;i--){
