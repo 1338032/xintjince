@@ -948,6 +948,12 @@ input[type="file"]{display:none}
 <div class="fg"><label class="fl">我的知乎背景</label><div class="upr"><div class="upv wd" id="zhUBgPv">无</div><label class="upl" for="zhUBgF">上传</label><input type="file" id="zhUBgF" accept="image/*"><button class="btn bsm bs2" id="clrZhUBg">清除</button></div></div>
 <div class="fg"><label class="fl">TA的手机壁纸</label><div class="upr"><div class="upv wd" id="phWpPv">无</div><label class="upl" for="phWpF">上传</label><input type="file" id="phWpF" accept="image/*"><button class="btn bsm bs2" id="clrPhWp">清除</button></div></div>
 <div class="sd3"></div>
+<div class="fg"><label class="fl">全局字体</label><span class="fs">输入字体文件链接（.ttf/.woff/.woff2），留空则使用默认字体</span>
+<input class="fi" id="fFontUrl" placeholder="https://example.com/font.ttf">
+<div class="bg3" style="margin-top:8px"><button class="btn bp bsm" id="applyFont">应用</button><button class="btn bs2 bsm" id="clearFont">清除</button></div>
+<div id="fontPreview" style="margin-top:6px;font-size:12px;color:var(--ts)"></div>
+</div>
+<div class="sd3"></div>
 <div class="fg"><label class="fl">消息铃声</label><span class="fs">接收消息时播放提示音（mp3格式，不超3MB）</span>
 <div class="sound-row">
 <div class="upv" id="sndPv" style="width:auto;padding:0 8px;font-size:11px">无</div>
@@ -1866,7 +1872,7 @@ var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n
 - 新约定/新信息：xxx\n\
 - 需要关注：xxx';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar roomData nvNovels nvFavNovels nvTags nvStyles nvLongChapters'.split(' ');
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar roomData nvNovels nvFavNovels nvTags nvStyles nvLongChapters customFontUrl'.split(' ');
 var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],zhCharBg:'',musicLib:[],connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 /* IndexedDB 音乐存储 */
 var imgDB=null;
@@ -2146,7 +2152,8 @@ function updConn(){$('cDot').className='dot '+(S.connected?'on':'off');$('cTxt')
 function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:'';recvBtn.classList.toggle('has-pending',S.pc>0)}
 function setIp(id,src,fb){var el=$(id);el.innerHTML='';if(src){var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove();el.textContent=fb};el.appendChild(im)}else el.textContent=fb}
 function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location;if(S.stStatus.outfit)$('stOutfit').textContent=S.stStatus.outfit}}
-function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';setIp('zhUBgPv',S.zhUserBg,'无');setIp('phWpPv',S.phoneWallpaper,'无');$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
+function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';if($('fFontUrl'))$('fFontUrl').value=S.customFontUrl||'';
+if($('fontPreview'))$('fontPreview').textContent=S.customFontUrl?'当前字体：'+S.customFontUrl:'';setIp('zhUBgPv',S.zhUserBg,'无');setIp('phWpPv',S.phoneWallpaper,'无');$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
 function updBg(){chatArea.style.backgroundImage=S.cBg?'url('+S.cBg+')':'none'}
 function updAll(){fillForm();updTop();updConn();updBg();updBdg();restoreStatus()}
 
@@ -2519,7 +2526,7 @@ if(d.musicLib&&d.musicLib.length&&d.musicLib[0].data){
 S.musicLib=d.musicLib;
 saveMusicToDB(d.musicLib).catch(function(e){console.warn('music import err',e)})}
 loadMusicFromDB().then(function(ml){if(ml&&ml.length)S.musicLib=ml}).catch(function(e){console.warn('music reload err',e)});
-save();updAll();render();toast('导入成功')
+save();updAll();render();applyCustomFont();toast('导入成功')
 }catch(e){toast('失败: '+e.message,3e3)}};
 r.readAsText(f)}
 /* 情侣空间 */
@@ -3010,6 +3017,18 @@ $('gardenAchBtn').onclick=showGardenAch;
 $('discRoom').onclick=function(){$('discoverPanel').classList.remove('active');renderRoom();$('roomPanel').classList.add('active')};
 initNovelEvents();
 initCallEvents();
+$('fFontUrl').value=S.customFontUrl||'';
+if(S.customFontUrl)$('fontPreview').textContent='当前字体：'+S.customFontUrl;
+$('applyFont').onclick=function(){
+var url=$('fFontUrl').value.trim();
+if(!url){toast('输入字体链接');return}
+S.customFontUrl=url;save();applyCustomFont();
+$('fontPreview').textContent='已应用：'+url;
+toast('字体已应用')};
+$('clearFont').onclick=function(){
+S.customFontUrl='';$('fFontUrl').value='';save();applyCustomFont();
+$('fontPreview').textContent='';
+toast('已恢复默认字体')};
 $('chatSearchBtn').onclick=function(){
 var kw=$('chatSearchInput').value.trim();
 if(!kw){toast('输入关键词');return}
@@ -3947,6 +3966,7 @@ keyword:keyword
 S.nvNovels.push(novel);
 if(type==='long'){
 if(!S.nvLongChapters)S.nvLongChapters={};
+if(!S.customFontUrl)S.customFontUrl='';
 S.nvLongChapters[novel.id]=[{chapter:1,content:content}]}
 save();renderNvFeed();toast('创作完成！')
 }catch(e){toast('创作失败: '+e.message,3e3);console.warn('novel gen err',e)}
@@ -4135,6 +4155,19 @@ $('callHangupBtn').onclick=endCall;
 $('callMuteBtn').onclick=function(){callState.muted=!callState.muted;this.classList.toggle('on',callState.muted);toast(callState.muted?'已静音':'已取消静音')};
 $('callSendBtn').onclick=callSendMsg;
 $('callInput').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();callSendMsg()}}}
+/* ========== 全局字体 ========== */
+function applyCustomFont(){
+var url=S.customFontUrl;
+var oldStyle=document.getElementById('customFontStyle');
+if(oldStyle)oldStyle.remove();
+if(!url){
+document.body.style.fontFamily='';
+return}
+var style=document.createElement('style');
+style.id='customFontStyle';
+style.textContent='@font-face{font-family:"CustomFont";src:url("'+url+'") format("truetype");font-display:swap} body,textarea,input,button,.ib,.fi,.ft,.mb,.top-n,.top-s,.td,.sys-msg,.mt2,.fl,.fs,.btn,.tbn,.msg-menu-item,.pyq-text,.pyq-cm,.zh-post-body,.zh-post-title,.nv-card-body,.nv-card-title,.call-msg,.call-input-bar input,.manual-body,.decl,.ph-card,.note-card .note-txt,.wish-card .wish-txt,.mem-card,.cp-days,.cp-names{font-family:"CustomFont",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif!important}';
+document.head.appendChild(style);
+}
 function init(){
 load();
 if(!S.stickers)S.stickers=[];
@@ -4178,6 +4211,8 @@ if(!S.nvFavNovels)S.nvFavNovels=[];
 if(!S.nvTags)S.nvTags=['#日常','#甜','#虐','#治愈','#be','#he'];
 if(!S.nvStyles)S.nvStyles=[{name:'内置文风',desc:'日系物哀美学，侧重触觉和听觉，句子短而克制，留白多，情感通过细节和沉默传达，温水煮茶式的深情，涓流而非洪水',builtin:true}];
 if(!S.nvLongChapters)S.nvLongChapters={};
+if(!S.customFontUrl)S.customFontUrl='';
+applyCustomFont();
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 S.pyqBusy=false;
 S.pc=0;
