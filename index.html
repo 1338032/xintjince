@@ -469,6 +469,65 @@ input[type="file"]{display:none}
 .room-result-body.open{display:block}
 .room-notice{background:#FFF3E0;border:1px solid #FFE0B2;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#E65100;display:flex;align-items:center;gap:6px}
 .room-locked-msg{text-align:center;padding:20px;color:var(--tl);font-size:13px}
+.nv-search{display:flex;gap:6px;margin-bottom:12px}
+.nv-search input{flex:1}
+.nv-tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.nv-tab{padding:5px 12px;border-radius:16px;border:1px solid var(--bc);background:var(--w);font-size:12px;cursor:pointer;color:var(--ts);transition:all .12s;white-space:nowrap}
+.nv-tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}
+.nv-tag{padding:3px 10px;border-radius:12px;border:1px solid var(--bc);background:var(--p);font-size:11px;cursor:pointer;color:var(--ts);display:inline-flex;align-items:center;gap:4px;margin:0 4px 6px 0;transition:all .12s}
+.nv-tag.active{background:var(--al);border-color:var(--ac);color:var(--ac)}
+.nv-tag .nv-tag-del{font-size:10px;color:var(--dg);cursor:pointer;margin-left:2px}
+.nv-card{border:1px solid var(--bc);border-radius:10px;margin-bottom:10px;background:var(--w);overflow:hidden}
+.nv-card-head{padding:10px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.nv-card-title{font-size:14px;font-weight:600;color:var(--tp);flex:1;line-height:1.4}
+.nv-card-meta{font-size:10px;color:var(--tl);margin-top:2px}
+.nv-card-tags{display:flex;flex-wrap:wrap;gap:4px;padding:0 14px 6px}
+.nv-card-tag{font-size:10px;color:var(--ac);background:var(--al);padding:1px 6px;border-radius:4px}
+.nv-card-body{padding:0 14px 12px;font-size:13px;color:var(--tp);line-height:1.8;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow-y:auto}
+.nv-card-body.expanded{max-height:none}
+.nv-card-acts{display:flex;gap:6px;padding:8px 14px;border-top:1px solid var(--bc);background:var(--p)}
+.nv-card-acts button{font-size:12px}
+.nv-gen-bar{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px;padding:10px 12px;border:1px solid var(--bc);border-radius:8px;background:var(--p)}
+.nv-gen-bar label{font-size:11px;color:var(--ts)}
+.nv-gen-bar select,.nv-gen-bar input[type=number]{padding:6px 8px;border:1px solid var(--bc);border-radius:6px;font-size:12px;background:var(--w);color:var(--tp);outline:none}
+.nv-gen-bar select:focus,.nv-gen-bar input[type=number]:focus{border-color:var(--ac)}
+.nv-style-card{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--bc);border-radius:8px;margin-bottom:6px;background:var(--p)}
+.nv-style-card .nv-sn{flex:1;font-size:13px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nv-style-card .nv-sd{font-size:11px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:160px}
+.nv-empty{text-align:center;padding:30px 0;color:var(--tl);font-size:13px}
+.nv-cont-hint{font-size:11px;color:var(--ac);background:var(--al);padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.nv-fav-badge{font-size:9px;background:var(--dg);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px}
+.call-overlay{position:absolute;inset:0;z-index:200;display:none;flex-direction:column;background:#1a1a1a;color:#fff}
+.call-overlay.active{display:flex}
+.call-bg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.call-remote{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#2a2a2a}
+.call-remote-av{width:180px;height:180px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--ac);font-weight:700;background:var(--al);box-shadow:0 0 60px rgba(87,107,92,.3)}
+.call-remote-av img{width:100%;height:100%;object-fit:cover}
+.call-remote-name{position:absolute;top:60px;left:0;right:0;text-align:center;font-size:18px;font-weight:600;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.call-remote-status{position:absolute;top:88px;left:0;right:0;text-align:center;font-size:13px;color:rgba(255,255,255,.7);text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.call-remote-timer{position:absolute;top:88px;left:0;right:0;text-align:center;font-size:13px;color:rgba(255,255,255,.7);display:none}
+.call-local{position:absolute;top:50px;right:16px;width:100px;height:140px;border-radius:12px;overflow:hidden;background:#333;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,.5);font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.call-local img{width:100%;height:100%;object-fit:cover}
+.call-bar{padding:24px 16px 40px;display:flex;justify-content:center;gap:24px;background:linear-gradient(transparent,rgba(0,0,0,.6));flex-shrink:0}
+.call-btn{width:56px;height:56px;border-radius:50%;border:none;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;color:#fff}
+.call-btn:active{transform:scale(.9)}
+.call-btn.hangup{background:#E53935}
+.call-btn.accept{background:#4CAF50}
+.call-btn.mute{background:rgba(255,255,255,.2)}
+.call-btn.mute.on{background:rgba(255,255,255,.4)}
+.call-msg-area{position:absolute;bottom:140px;left:16px;right:16px;max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:8px 0}
+.call-msg{padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;max-width:80%;word-break:break-word;animation:fadeUp .3s ease}
+.call-msg.ai{background:rgba(255,255,255,.15);color:#fff;align-self:flex-start;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.call-msg.user{background:rgba(87,107,92,.6);color:#fff;align-self:flex-end;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.call-input-bar{display:flex;gap:6px;padding:8px 16px;background:rgba(0,0,0,.4);flex-shrink:0;display:none}
+.call-input-bar.active{display:flex}
+.call-input-bar input{flex:1;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 12px;font-size:14px;color:#fff;outline:none;font-family:inherit}
+.call-input-bar input::placeholder{color:rgba(255,255,255,.4)}
+.call-input-bar input:focus{border-color:var(--ac)}
+.call-input-bar button{background:var(--ac);border:none;color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer}
+@keyframes callPulse{0%,100%{box-shadow:0 0 0 0 rgba(87,107,92,.4)}50%{box-shadow:0 0 0 20px rgba(87,107,92,0)}}
+.call-remote-av.ringing{animation:callPulse 2s ease-in-out infinite}
+.call-remote-av.connected{box-shadow:0 0 40px rgba(87,107,92,.4)}
 </style>
 </head>
 <body>
@@ -494,6 +553,7 @@ input[type="file"]{display:none}
 <div class="st-row"><span>🎬</span><span class="st-val" id="stAction">未知</span></div>
 <div class="st-row"><span>💭</span><span class="st-val" id="stThought">未知</span></div>
 <div class="st-row"><span>📍</span><span class="st-val" id="stLocation">未知</span></div>
+<div class="st-row"><span>👔</span><span class="st-val" id="stOutfit">未知</span></div>
 </div>
 </div>
 </div>
@@ -521,6 +581,7 @@ input[type="file"]{display:none}
 <div class="plus-item" id="pmCustomGift">✨<span>自定义礼物</span></div>
 <div class="plus-item" id="pmCrane">🪶<span>千纸鹤</span></div>
 <div class="plus-item" id="pmMusic">🎵<span>一起听歌</span></div>
+<div class="plus-item" id="pmCall">📞<span>视频通话</span></div>
 </div>
 <!-- 音乐播放器 -->
 <div class="music-player" id="musicPlayer">
@@ -573,6 +634,7 @@ input[type="file"]{display:none}
 <div class="disc-item" id="discShop"><div class="disc-icon">🛒</div><div class="disc-info"><div class="disc-name">商店</div><div class="disc-desc">浏览商品</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
 <div class="disc-item" id="discGarden"><div class="disc-icon">🌿</div><div class="disc-info"><div class="disc-name">后花园</div><div class="disc-desc">照料药草花园</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
 <div class="disc-item" id="discRoom"><div class="disc-icon">🚪</div><div class="disc-info"><div class="disc-name">Ta的房间</div><div class="disc-desc">偷偷看看他的私人物品</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
+<div class="disc-item" id="discNovel"><div class="disc-icon">📖</div><div class="disc-info"><div class="disc-name">小说</div><div class="disc-desc">生成你们的同人文</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
 </div>
 </div>
 <!-- Ta的房间 -->
@@ -589,6 +651,55 @@ input[type="file"]{display:none}
 </div>
 <div id="roomResults"></div>
 </div>
+</div>
+</div>
+<!-- 小说 -->
+<div class="fp" id="novelPanel">
+<div class="fh"><button class="fc2" id="novelClose">✕</button><h2>📖 小说</h2>
+<div style="display:flex;gap:4px">
+<button class="tbtn" id="nvStyleBtn" title="文风设置">🎨</button>
+<button class="tbtn" id="nvFavBtn" title="收藏夹">⭐</button>
+</div></div>
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 16px">
+<div class="nv-search"><input class="fi" id="nvSearchInput" placeholder="输入想看的内容（留空则随机生成）"><button class="btn bp bsm" id="nvGenBtn">生成</button></div>
+<div class="nv-gen-bar">
+<div><label>类型</label><br><select id="nvTypeSelect"><option value="short">短篇小说</option><option value="long">长篇小说（连载）</option></select></div>
+<div><label>文风</label><br><select id="nvStyleSelect"><option value="__default__">内置文风</option></select></div>
+<div><label>字数</label><br><select id="nvLenSelect"><option value="500">500字（省API）</option><option value="1000" selected>1000字</option><option value="2000">2000字</option><option value="3000">3000字</option></select></div>
+</div>
+<div class="fg"><label class="fl">标签</label>
+<div id="nvTagList" style="margin-bottom:6px"></div>
+<div style="display:flex;gap:6px"><input class="fi" id="nvTagInput" placeholder="输入标签名（如 #be）" style="flex:1"><button class="btn bs2 bsm" id="nvTagAdd">添加</button></div>
+</div>
+<div class="sd3"></div>
+<div class="nv-tabs" id="nvCatTabs">
+<div class="nv-tab active" data-nvcat="all">全部</div>
+<div class="nv-tab" data-nvcat="short">短篇</div>
+<div class="nv-tab" data-nvcat="long">长篇</div>
+</div>
+<div id="nvFeed"></div>
+</div>
+</div>
+<!-- 小说文风设置面板 -->
+<div class="fp" id="nvStylePanel">
+<div class="fh"><button class="fc2" id="nvStyleClose">✕</button><h2>🎨 文风设置</h2><div style="width:26px"></div></div>
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 16px">
+<div class="fg"><label class="fl">添加文风</label>
+<input class="fi" id="nvStyleNameInput" placeholder="文风名称（如：日系物哀）" style="margin-bottom:6px">
+<textarea class="ft" id="nvStyleDescInput" placeholder="文风描述/提示词（如：侧重触觉听觉，留白多，句子短，意象克制...）" style="min-height:80px"></textarea>
+<div class="bg3" style="margin-top:8px"><button class="btn bp" id="nvStyleAddBtn">添加</button></div>
+</div>
+<div class="sd3"></div>
+<div class="fg"><label class="fl">已保存的文风</label>
+<div id="nvStyleList"></div>
+</div>
+</div>
+</div>
+<!-- 小说收藏夹面板 -->
+<div class="fp" id="nvFavPanel">
+<div class="fh"><button class="fc2" id="nvFavClose">✕</button><h2>⭐ 收藏夹</h2><div style="width:26px"></div></div>
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 16px">
+<div id="nvFavFeed"></div>
 </div>
 </div>
 <!-- 千纸鹤罐子 -->
@@ -850,6 +961,11 @@ input[type="file"]{display:none}
 </div>
 <!-- 数据 -->
 <div class="tp3" id="tab-data">
+<div class="fg"><label class="fl">🔍 聊天记录搜索</label>
+<div style="display:flex;gap:6px"><input class="fi" id="chatSearchInput" placeholder="输入关键词搜索聊天记录"><button class="btn bp bsm" id="chatSearchBtn">搜索</button><button class="btn bs2 bsm" id="chatSearchClear">清除</button></div>
+<div id="chatSearchResult" style="margin-top:8px;max-height:300px;overflow-y:auto"></div>
+</div>
+<div class="sd3"></div>
 <div class="fg"><label class="fl">对话 <strong id="mCntD">0</strong> 条 | 朋友圈 <strong id="pCntD">0</strong> 条</label>
 <div class="bg3"><button class="btn bs2" id="clrChat">清空对话</button><button class="btn bs2" id="clrPyq">清空朋友圈</button></div></div>
 <div class="sd3"></div>
@@ -875,166 +991,23 @@ input[type="file"]{display:none}
 角色「谢蔚安」及相关所有设定内容<br>
 （包括但不限于人物背景、性格、关系、世界观等）<br>
 均为 <strong>心田</strong> 原创作品<br><br>
-<strong style="color:var(--dg)">⚠️ 版权所有 严禁抄袭 ⚠️</strong><br>
-所有创作版权独属于心田一个人<br>
-未经授权禁止任何形式的复制、转载、改编<br><br>
 <strong>📮 联系方式</strong><br>
 <span class="ct">小红书：95567118758</span><br>
 <span class="ct">小红书：27418565861</span><br>
 <span class="ct">微信：Aa9620520</span><br>
 <span class="ct">QQ：962005530</span><br><br>
-<span style="font-size:11px;color:var(--tl)">v2.3.0 · 侵权必究</span> <br><br> <strong style="color:var(--dg)">⚠️ 专属声明</strong><br> 本软件为「谢蔚安」个人专属智能体<br> 不推荐用于其他人设角色聊天<br> 更换人设可能导致功能异常
+<strong style="color:var(--dg)">⚠️ 版权所有 严禁抄袭 ⚠️</strong><br>
+所有创作版权独属于心田一个人<br>
+未经授权禁止任何形式的复制、转载、改编<br><br>
+<strong style="color:var(--dg)">⚠️ 专属声明</strong><br> 本软件为「谢蔚安」个人专属智能体<br> 不推荐用于其他人设角色聊天<br> 更换人设可能导致功能异常 <br><br>
+<span style="font-size:11px;color:var(--tl)">v2.3.0 · 侵权必究</span>
 </div>
 </div>
 <!-- 手册 -->
 <div class="tp3" id="tab-manual">
 <div class="manual-body">
 <div class="m-title">📖 使用手册 v2.3</div><br>
-<strong>一、首次使用</strong><br>
-1. 打开设置 → API 标签<br>
-2. 填入 API 地址（如 https://api.openai.com/v1）<br>
-3. 填入 API Key（sk-开头）<br>
-4. 选择模型（点"拉取"可查看可用模型）<br>
-5. 点"测试连接"确认成功后点"保存"<br><br>
-<strong>二、聊天</strong><br>
-- 输入框打字 → 点发送（或回车）= 发消息<br>
-- 点左下角 ▼ 按钮 = 让角色回复<br>
-- 发完消息后点 ▼ 角色才会回复，不会自动回<br>
-- ▼ 按钮上的红色数字 = 待回复消息数<br>
-- 没发消息直接点 ▼ = 角色主动找你聊天<br><br>
-<strong>三、特殊消息</strong><br>
-- 😊 按钮 = 发送表情包（需先在设置里添加）<br>
-- 🖼 按钮 = 发送图片<br>
-- 长按顶部头像 = 拍一拍<br>
-- 角色可发送文字图片 [图片：描述]<br><br>
-<strong>四、朋友圈</strong><br>
-- 点顶部 ◉ 进入朋友圈<br>
-- 上方输入框可以自己发朋友圈<br>
-- 右上角 📝 = 让角色发一条朋友圈<br>
-- 发布后角色和NPC会自动点赞+评论<br>
-- 在角色的朋友圈下评论，角色会回复你<br><br>
-<strong>五、人设与世界书</strong><br>
-- 已内置默认人设和世界书，开箱即用<br>
-- 可在"人设"和"世界书"标签里自由修改<br>
-- 点"恢复默认"可还原内置版本<br>
-- 不要清空，清空后角色会失去设定<br>
-- "备注"栏可写临时补充信息（如当前剧情状态）<br><br>
-<strong>六、记忆书（新功能）</strong><br>
-- 设置 → 记忆标签页<br>
-- 设置自动总结间隔（如每30条对话自动总结一次）<br>
-- 也可随时点"立即总结"手动触发<br>
-- 总结后的记忆会注入系统提示，帮角色记住重要事件<br>
-- 可编辑总结提示词控制总结风格<br>
-- 记忆条目可单独删除<br>
-- 设为0则关闭自动总结<br><br>
-<strong>七、格式提示词</strong><br>
-- 控制角色回复的格式和风格<br>
-- 支持变量：{charName} {userName} {minReply}<br>
-- 一般不需要改，默认即可<br><br>
-<strong>八、状态栏</strong><br>
-- 点击名称旁的"状态"按钮展开/收起<br>
-- 显示角色当前心情、动作、思绪、地点<br>
-- 每次角色回复时自动更新，不额外消耗API<br><br>
-<strong>九、消息铃声</strong><br>
-- 设置 → 外观 → 上传mp3文件<br>
-- 每次收到角色消息时播放提示音<br><br>
-<strong>十、常见问题</strong><br>
-<span class="m-q">Q：角色不回复？</span><br>
-<span class="m-a">A：发完消息要点 ▼ 按钮触发回复。</span><br><br>
-<span class="m-q">Q：状态栏不更新？</span><br>
-<span class="m-a">A：去设置→格式→点"恢复默认"。</span><br><br>
-<span class="m-q">Q：角色照搬设定/重复对话？</span><br>
-<span class="m-a">A：已在格式提示词中内置防机械规则，如仍有问题可在备注栏写"不要复述人设，自然对话"。</span><br><br>
-<span class="m-q">Q：数据会丢失吗？</span><br>
-<span class="m-a">A：数据存在浏览器本地，建议定期导出备份。</span><br><br>
-<div class="m-tip">💡 Temperature 建议 0.95-1.0。记忆条数建议 20-40。最少回复条数建议 2-4。</div>
-<div class="m-tip">💡 备注栏可以写当前情境，随时修改不影响主人设。</div>
-<div class="m-tip">💡 推荐模型：gpt-4o、claude-3.5-sonnet、deepseek-v3。性价比：gpt-4o-mini、deepseek-chat。</div>
-<br>
-<strong>十一、情侣空间</strong><br>
-- 点顶部 💕 进入情侣空间<br>
-- 顶部显示双方头像、名字、在一起天数<br>
-- 右上角 🖼 可上传情侣空间背景图<br>
-- 纪念日：可添加、编辑、删除自定义纪念日，显示倒计时<br>
-- 愿望清单：自己许愿或让角色许愿，发布后角色自动回复，可勾选完成<br>
-- 留言墙：自己留言或让角色留言，发布后角色自动回复<br>
-- 角色在聊天中能感知情侣空间的内容<br><br>
-<strong>十二、查看TA的手机</strong><br>
-- 在情侣空间左上角点 📱 进入<br>
-- 包含浏览记录、聊天记录、钱包、备忘录四个板块<br>
-- 点右上角"刷新"按钮获取最新内容<br>
-- 所有内容由AI根据角色设定和当前时间生成<br><br>
-<strong>十三、语音条</strong><br>
-- 角色用"双引号"发送的内容会显示为语音条样式<br>
-- 点击语音条可展开查看文字内容（语音转文字）<br>
-- 再次点击收起<br><br>
-<strong>十四、记忆书补充</strong><br>
-- 记忆条目现在支持编辑，点 ✎ 可修改内容<br>
-- 修改后点保存即可生效<br><br>
-<div class="m-tip">💡 情侣空间的内容不会被记忆总结收录，但角色聊天时能看到。</div>
-<br>
-<strong>十五、长按消息菜单</strong><br>
-- 长按任意一条消息可弹出操作菜单<br>
-- 编辑：修改消息内容<br>
-- 重说：让角色重新生成这条回复（仅限角色消息）<br>
-- 删除：删除单条消息<br>
-- 手指移动超过一定距离会自动取消长按，不影响滚动<br><br>
-<strong>十六、知乎与商店</strong><br>
-- 发现 → 知乎：查看知乎首页和角色主页<br>
-- 角色主页可上传自定义背景图<br>
-- 角色头像与聊天界面自动同步<br>
-- 刷新后的内容会自动保存，退出不会丢失<br>
-- 发现 → 商店：搜索商品，可发给角色付款或加入购物车<br><br>
-<strong>十七、购物车与礼物</strong><br>
-- ＋号菜单 → 购物车：查看已加入的商品<br>
-- ＋号菜单 → 自定义礼物：直接送礼物给角色<br>
-- 商店商品可"发给TA付款"或"加入购物车"<br>
-- 角色会根据设定决定是否付款<br><br>
-<div class="m-tip">💡 所有数据（知乎帖子、商店商品、购物车、知乎背景等）都会自动保存到浏览器本地，刷新页面不会丢失。</div>
-<br>
-<strong>十八、启动页</strong><br>
-- 打开页面时会显示启动画面<br>
-- 显示角色英文名「Everett」手写艺术字<br>
-- 加载完成后自动进入主界面<br><br>
-<strong>十九、后花园</strong><br>
-- 发现 → 后花园：照料谢蔚安的药草花园<br>
-- 共6种植物：薄荷、迷迭香、薰衣草、洋甘菊、柠檬香蜂草、山茶花<br>
-- 每天可以给每棵植物浇水一次，增加成长值<br>
-- 也可以搞破坏（拔叶子），降低健康值<br>
-- 成长到100%会开花，健康降到0会枯萎，第二天自动重新生长<br>
-- 右上角 🏆 查看花园成就（浇水次数、破坏次数等）<br>
-- 角色在聊天中能感知花园动态，会感谢你浇水或心疼被破坏的植物<br><br>
-<strong>二十、千纸鹤罐子</strong><br>
-- ＋号菜单 → 千纸鹤：打开千纸鹤罐子<br>
-- 点「放一只进去」可以写一句话折成千纸鹤放进罐子<br>
-- 点「随机抽一只」会随机展开一只千纸鹤查看内容<br>
-- 罐子为空时抽取，角色会现场折一只新的给你<br>
-- 角色在聊天中偶尔会提到千纸鹤罐子<br><br>
-<strong>二十一、Ta的房间</strong><br>
-- 发现 → Ta的房间：偷偷翻看角色的私人物品<br>
-- 可以翻书桌、床、衣柜、保险箱四个位置<br>
-- 每天只能翻一次，翻完后角色会收到通知<br>
-- 角色会在聊天中含蓄地暗示他发现了痕迹<br>
-- 第二天可以再次翻找，内容每次不同<br><br>
-<strong>二十二、音乐播放器</strong><br>
-- ＋号菜单 → 一起听歌：打开音乐播放器<br>
-- 支持上传mp3文件，可批量添加<br>
-- 支持列表循环、单曲循环、随机播放三种模式<br>
-- 支持上传lrc歌词文件，播放时自动滚动高亮<br>
-- 底部有迷你播放条，可快速控制播放<br>
-- 正在播放的歌曲信息和歌词会传递给角色，角色能感知到你们在一起听歌<br>
-- 音乐数据存储在IndexedDB中，不占用localStorage空间<br>
-- 文件名格式建议：歌手 - 歌名.mp3（自动识别歌手和歌名）<br><br>
-<strong>二十三、消息菜单</strong><br>
-- 长按任意消息弹出操作菜单<br>
-- 编辑：修改消息内容<br>
-- 重说：让角色重新生成这条回复（仅限角色消息）<br>
-- 删除：删除单条消息<br>
-- 点击页面其他区域自动关闭菜单<br><br>
-<div class="m-tip">💡 后花园的植物每天会自动生长一点，即使不浇水也会慢慢长大，但浇水能加速很多。</div>
-<div class="m-tip">💡 翻房间后角色的反应只会出现一次，不会反复追问，所以放心翻。</div>
-<div class="m-tip">💡 音乐文件较大时建议用WiFi上传，音乐数据不会包含在JSON导出中。</div>
-<br>
+
 <div style="border:1.5px solid var(--dg);border-radius:10px;padding:14px 16px;margin:12px 0;background:#FFF8F8">
 <strong style="color:var(--dg)">⚠️ 重要声明</strong><br><br>
 本软件为「谢蔚安」角色专属智能体网站，所有功能、界面、提示词均围绕该角色深度定制开发。<br><br>
@@ -1044,6 +1017,161 @@ input[type="file"]{display:none}
 - 部分功能（如纪念日、反捧杀规则、危机应对等）与谢蔚安的设定深度绑定<br><br>
 如需使用其他角色，建议寻找通用型AI聊天前端，以获得更好的体验。<br><br>
 <span style="font-size:11px;color:var(--tl)">本声明由开发者心田发布</span>
+</div>
+<br>
+
+<strong>一、首次使用</strong><br>
+1. 打开设置 → API 标签<br>
+2. 填入 API 地址（如 https://api.openai.com/v1）<br>
+3. 填入 API Key（sk-开头）<br>
+4. 选择模型（点"拉取"可查看可用模型）<br>
+5. 点"测试连接"确认成功后点"保存"<br><br>
+
+<strong>二、聊天基础</strong><br>
+- 输入框打字 → 点发送（或回车）= 发消息<br>
+- 点左下角 ▼ 按钮 = 让角色回复<br>
+- 发完消息后点 ▼ 角色才会回复，不会自动回<br>
+- ▼ 按钮上的红色数字 = 待回复消息数<br>
+- 没发消息直接点 ▼ = 角色主动找你聊天<br><br>
+
+<strong>三、特殊消息</strong><br>
+- 😊 按钮 = 发送表情包（需先在设置里添加）<br>
+- 🖼 按钮 = 发送图片<br>
+- 长按顶部头像 = 拍一拍<br>
+- 角色可发送文字图片 [图片：描述]<br><br>
+
+<strong>四、语音条</strong><br>
+- 角色用"双引号"发送的内容会显示为语音条样式<br>
+- 点击语音条可展开查看文字内容（语音转文字）<br>
+- 再次点击收起<br><br>
+
+<strong>五、长按消息菜单</strong><br>
+- 长按任意一条消息可弹出操作菜单<br>
+- 编辑：修改消息内容<br>
+- 重说：让角色重新生成这条回复（仅限角色消息）<br>
+- 删除：删除单条消息<br>
+- 手指移动超过一定距离会自动取消长按，不影响滚动<br>
+- 点击页面其他区域自动关闭菜单<br><br>
+
+<strong>六、状态栏</strong><br>
+- 点击名称旁的"状态"按钮展开/收起<br>
+- 显示角色当前心情、动作、思绪、地点<br>
+- 每次角色回复时自动更新，不额外消耗API<br><br>
+
+<strong>七、朋友圈</strong><br>
+- 点顶部 ◉ 进入朋友圈<br>
+- 上方输入框可以自己发朋友圈（支持配图）<br>
+- 右上角 📝 = 让角色发一条朋友圈<br>
+- 发布后角色和NPC会自动点赞+评论<br>
+- 在角色的朋友圈下评论，角色会回复你<br><br>
+
+<strong>八、情侣空间</strong><br>
+- 点顶部 💕 进入情侣空间<br>
+- 顶部显示双方头像、名字、在一起天数<br>
+- 右上角 🖼 可上传情侣空间背景图<br>
+- 纪念日：可添加、编辑、删除自定义纪念日，显示倒计时<br>
+- 愿望清单：自己许愿或让角色许愿，发布后角色自动回复，可勾选完成<br>
+- 留言墙：自己留言或让角色留言，发布后角色自动回复<br>
+- 角色在聊天中能感知情侣空间的内容<br><br>
+
+<strong>九、查看TA的手机</strong><br>
+- 在情侣空间左上角点 📱 进入<br>
+- 包含浏览记录、聊天记录、钱包、备忘录四个板块<br>
+- 点右上角"刷新"按钮获取最新内容<br>
+- 所有内容由AI根据角色设定和当前时间生成<br><br>
+
+<strong>十、知乎</strong><br>
+- 发现 → 知乎：查看知乎首页和角色主页<br>
+- 角色主页可上传自定义背景图<br>
+- 角色头像与聊天界面自动同步<br>
+- 刷新后的内容会自动保存，退出不会丢失<br><br>
+
+<strong>十一、商店与购物车</strong><br>
+- 发现 → 商店：搜索商品，可发给角色付款或加入购物车<br>
+- ＋号菜单 → 购物车：查看已加入的商品<br>
+- ＋号菜单 → 自定义礼物：直接送礼物给角色<br>
+- 角色会根据设定决定是否付款<br><br>
+
+<strong>十二、后花园</strong><br>
+- 发现 → 后花园：照料谢蔚安的药草花园<br>
+- 共6种植物：薄荷、迷迭香、薰衣草、洋甘菊、柠檬香蜂草、山茶花<br>
+- 每天可以给每棵植物浇水一次，增加成长值<br>
+- 也可以搞破坏（拔叶子），降低健康值<br>
+- 成长到100%会开花，健康降到0会枯萎，第二天自动重新生长<br>
+- 右上角 🏆 查看花园成就（浇水次数、破坏次数等）<br>
+- 角色在聊天中能感知花园动态<br><br>
+
+<strong>十三、Ta的房间</strong><br>
+- 发现 → Ta的房间：偷偷翻看角色的私人物品<br>
+- 可以翻书桌、床、衣柜、保险箱四个位置<br>
+- 每天只能翻一次，翻完后角色会收到通知<br>
+- 角色会在聊天中含蓄地暗示他发现了痕迹<br>
+- 第二天可以再次翻找，内容每次不同<br><br>
+
+<strong>十四、千纸鹤罐子</strong><br>
+- ＋号菜单 → 千纸鹤：打开千纸鹤罐子<br>
+- 点「放一只进去」可以写一句话折成千纸鹤放进罐子<br>
+- 点「随机抽一只」会随机展开一只千纸鹤查看内容<br>
+- 罐子为空时抽取，角色会现场折一只新的给你<br><br>
+
+<strong>十五、音乐播放器</strong><br>
+- ＋号菜单 → 一起听歌：打开音乐播放器<br>
+- 支持上传mp3文件，可批量添加<br>
+- 支持列表循环、单曲循环、随机播放三种模式<br>
+- 支持上传lrc歌词文件，播放时自动滚动高亮<br>
+- 底部有迷你播放条，可快速控制播放<br>
+- 正在播放的歌曲信息和歌词会传递给角色<br>
+- 音乐数据存储在IndexedDB中，不占用localStorage空间<br>
+- 文件名格式建议：歌手 - 歌名.mp3（自动识别歌手和歌名）<br><br>
+
+<strong>十六、启动页</strong><br>
+- 打开页面时会显示启动画面<br>
+- 显示角色英文名「Everett」手写艺术字<br>
+- 加载完成后自动进入主界面<br><br>
+
+<strong>十七、人设与世界书</strong><br>
+- 已内置默认人设和世界书，开箱即用<br>
+- 可在"人设"和"世界书"标签里自由修改<br>
+- 点"恢复默认"可还原内置版本<br>
+- 不要清空，清空后角色会失去设定<br>
+- "备注"栏可写临时补充信息（如当前剧情状态）<br><br>
+
+<strong>十八、格式提示词</strong><br>
+- 控制角色回复的格式和风格<br>
+- 支持变量：{charName} {userName} {minReply}<br>
+- 一般不需要改，默认即可<br><br>
+
+<strong>十九、记忆书</strong><br>
+- 设置 → 记忆标签页<br>
+- 设置自动总结间隔（如每30条对话自动总结一次）<br>
+- 也可随时点"立即总结"手动触发<br>
+- 总结后的记忆会注入系统提示，帮角色记住重要事件<br>
+- 可编辑总结提示词控制总结风格<br>
+- 记忆条目可单独编辑（点 ✎）或删除<br>
+- 设为0则关闭自动总结<br><br>
+
+<strong>二十、消息铃声</strong><br>
+- 设置 → 外观 → 上传mp3文件<br>
+- 每次收到角色消息时播放提示音<br><br>
+
+<strong>二十一、常见问题</strong><br>
+<span class="m-q">Q：角色不回复？</span><br>
+<span class="m-a">A：发完消息要点 ▼ 按钮触发回复。</span><br><br>
+<span class="m-q">Q：状态栏不更新？</span><br>
+<span class="m-a">A：去设置→格式→点"恢复默认"。</span><br><br>
+<span class="m-q">Q：角色照搬设定/重复对话？</span><br>
+<span class="m-a">A：已在格式提示词中内置防机械规则，如仍有问题可在备注栏写"不要复述人设，自然对话"。</span><br><br>
+<span class="m-q">Q：数据会丢失吗？</span><br>
+<span class="m-a">A：数据存在浏览器本地，建议定期导出备份。图片和音乐数据存储在IndexedDB中，更安全稳定。</span><br><br>
+
+<div class="m-tip">💡 Temperature 建议 0.95-1.0。记忆条数建议 20-40。最少回复条数建议 2-4。</div>
+<div class="m-tip">💡 备注栏可以写当前情境，随时修改不影响主人设。</div>
+<div class="m-tip">💡 推荐模型：gpt-4o、claude-3.5-sonnet、deepseek-v3。性价比：gpt-4o-mini、deepseek-chat。</div>
+<div class="m-tip">💡 情侣空间的内容不会被记忆总结收录，但角色聊天时能看到。</div>
+<div class="m-tip">💡 后花园的植物每天会自动生长一点，即使不浇水也会慢慢长大，但浇水能加速很多。</div>
+<div class="m-tip">💡 翻房间后角色的反应只会出现一次，不会反复追问，所以放心翻。</div>
+<div class="m-tip">💡 音乐文件较大时建议用WiFi上传，音乐数据不会包含在JSON导出中。</div>
+<br>
 </div>
 </div>
 </div>
@@ -1116,6 +1244,27 @@ input[type="file"]{display:none}
 <div id="cpNoteList"></div>
 </div>
 </div>
+</div>
+</div>
+<!-- 视频通话 -->
+<div class="call-overlay" id="callOverlay">
+<div class="call-bg">
+<div class="call-remote">
+<div class="call-remote-av" id="callRemoteAv"></div>
+</div>
+<div class="call-remote-name" id="callRemoteName">谢蔚安</div>
+<div class="call-remote-status" id="callRemoteStatus">正在呼叫...</div>
+<div class="call-remote-timer" id="callRemoteTimer">00:00</div>
+<div class="call-local" id="callLocalAv"></div>
+<div class="call-msg-area" id="callMsgArea"></div>
+</div>
+<div class="call-input-bar" id="callInputBar">
+<input id="callInput" placeholder="说点什么...">
+<button id="callSendBtn">发送</button>
+</div>
+<div class="call-bar">
+<button class="call-btn mute" id="callMuteBtn">🎤</button>
+<button class="call-btn hangup" id="callHangupBtn">📞</button>
 </div>
 </div>
 <div class="msg-menu" id="msgMenu">
@@ -1535,11 +1684,11 @@ var DW='# 世界书\n\
 
 var DF='# 状态标记（必须）\n\
 每次回复的第一行必须是状态标记，格式如下：\n\
-[STATUS:{"mood":"当前心情","action":"当前动作","thought":"当前心里所想","location":"当前所在地点"}]\n\
+[STATUS:{"mood":"当前心情","action":"当前动作","thought":"当前心里所想","location":"当前所在地点","outfit":"当前穿着"}]\n\
 - mood：用简短词语描述情绪（如：平静、担忧、微笑、心疼、困倦）\n\
 - action：当前正在做什么（如：坐在书桌前、在厨房煮粥、躺在床上看书）\n\
 - thought：此刻脑海中的想法（如：他今天好像没什么精神、该给花浇水了）\n\
-- location：当前位置（如：诊所办公室、家中客厅、后花园）\n\
+- location：当前位置（如：诊所办公室、家中客厅、后花园）\n\ - outfit：当前穿着（如：浅灰衬衫+深色西裤、白色棉质T恤+休闲裤、米白针织开衫）\n\
 - 状态标记后换行，然后正常写回复内容\n\
 - 状态标记不会显示给用户看，仅用于界面展示\n\
 \n\
@@ -1717,9 +1866,49 @@ var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n
 - 新约定/新信息：xxx\n\
 - 需要关注：xxx';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar roomData'.split(' ');
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar roomData nvNovels nvFavNovels nvTags nvStyles nvLongChapters'.split(' ');
 var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],zhCharBg:'',musicLib:[],connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 /* IndexedDB 音乐存储 */
+var imgDB=null;
+function openImgDB(){
+return new Promise(function(resolve,reject){
+if(imgDB){resolve(imgDB);return}
+var req=indexedDB.open('xwa9_imgDB',1);
+req.onupgradeneeded=function(e){var db=e.target.result;if(!db.objectStoreNames.contains('images')){db.createObjectStore('images',{keyPath:'key'})}};
+req.onsuccess=function(e){imgDB=e.target.result;resolve(imgDB)};
+req.onerror=function(){reject(req.error)}})}
+
+function saveImgToDB(key,data){
+return openImgDB().then(function(db){
+return new Promise(function(resolve,reject){
+var tx=db.transaction('images','readwrite');
+tx.objectStore('images').put({key:key,data:data});
+tx.oncomplete=function(){resolve()};
+tx.onerror=function(){reject(tx.error)}})})}
+
+function loadImgFromDB(key){
+return openImgDB().then(function(db){
+return new Promise(function(resolve,reject){
+var tx=db.transaction('images','readonly');
+var req=tx.objectStore('images').get(key);
+req.onsuccess=function(){resolve(req.result?req.result.data:'')};
+req.onerror=function(){reject(req.error)}})})}
+
+function deleteImgFromDB(key){
+return openImgDB().then(function(db){
+return new Promise(function(resolve,reject){
+var tx=db.transaction('images','readwrite');
+tx.objectStore('images').delete(key);
+tx.oncomplete=function(){resolve()};
+tx.onerror=function(){reject(tx.error)}})})}
+
+function clearImgDB(){
+return openImgDB().then(function(db){
+return new Promise(function(resolve,reject){
+var tx=db.transaction('images','readwrite');
+tx.objectStore('images').clear();
+tx.oncomplete=function(){resolve()};
+tx.onerror=function(){reject(tx.error)}})})}
 var musicDB=null;
 function openMusicDB(){
 return new Promise(function(resolve,reject){
@@ -1787,13 +1976,70 @@ img.src=dataUrl}
 
 function sync(){S.apiUrl=($('fUrl').value||'').trim()||'https://api.openai.com/v1';S.apiKey=($('fKey').value||'').trim();S.model=($('fMod').value||'').trim()||'gpt-4o-mini';S.tmp=parseFloat($('fTmp').value)||.8;S.mtk=parseInt($('fMtk').value)||4096;S.mem=Math.max(1,parseInt($('fMem').value)||30);S.cn=($('fCN').value||'').trim()||'谢蔚安';S.un=($('fUN').value||'').trim()||'燕世';S.cp=$('fCP').value||'';S.wb=$('fWB').value||'';S.note=($('fNote').value||'').trim();S.minR=Math.max(1,parseInt($('fMinR').value)||1);S.pat=($('fPat').value||'').trim()||'的肩膀';S.fmt=$('fFmt').value||'';S.memInterval=Math.max(0,parseInt($('fMemInt').value)||0);S.memPrompt=$('fMemPrompt').value||DMP}
 var _saveTimer=null;
-function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));j.messages=j.messages.map(function(m){var o=Object.assign({},m);if(o.imageData&&o.imageData.length>800000)delete o.imageData;return o});if(j.pyqPosts)j.pyqPosts=j.pyqPosts.map(function(p){var o=Object.assign({},p);if(o.image&&o.image.length>500000)o.image='';return o});
+function save(){try{var d={};KEYS.forEach(function(k){d[k]=S[k]});var j=JSON.parse(JSON.stringify(d));
+/* 图片数据存IndexedDB，localStorage只存标记 */
+var imgKeys=['aiAv','usAv','cBg','pyqBg','cpBg','zhCharBg','zhUserBg','phoneWallpaper'];
+imgKeys.forEach(function(k){
+if(j[k]&&j[k].length>100){
+saveImgToDB('img_'+k,j[k]).catch(function(e){console.warn('img save err',k,e)});
+j[k]='__IDB__'}});
+/* 朋友圈图片存IndexedDB */
+if(j.pyqPosts)j.pyqPosts=j.pyqPosts.map(function(p,i){
+var o=Object.assign({},p);
+if(o.image&&o.image.length>1000){
+saveImgToDB('pyq_img_'+o.id,o.image).catch(function(e){console.warn('pyq img save err',e)});
+o.image='__IDB_PYQ__'}
+return o});
+/* 知乎帖子图片存IndexedDB */
+if(j.zhUserPosts)j.zhUserPosts=j.zhUserPosts.map(function(p){
+var o=Object.assign({},p);
+if(o.image&&o.image.length>1000&&o.image!=='__IDB_ZH__'){
+saveImgToDB('zh_img_'+(o.id||''),o.image).catch(function(e){console.warn('zh img save err',e)});
+o.image='__IDB_ZH__'}
+return o});
+/* 聊天图片存IndexedDB */
+j.messages=j.messages.map(function(m){
+var o=Object.assign({},m);
+if(o.imageData&&o.imageData.length>1000){
+saveImgToDB('msg_img_'+o.id,o.imageData).catch(function(e){console.warn('msg img save err',e)});
+o.imageData='__IDB_MSG__'}
+if(o.imageUrl&&o.imageUrl.length>1000&&o.imageUrl.indexOf('data:')===0){
+o.imageUrl='__IDB_MSG__'}
+return o});
 /* 音乐数据存IndexedDB */
 if(j.musicLib&&j.musicLib.length){
 saveMusicToDB(j.musicLib).catch(function(e){console.warn('music save err',e)});
 j.musicLib=j.musicLib.map(function(s){return{name:s.name,artist:s.artist,data:'',lrc:s.lrc}})}
-localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){ if(e.name==='QuotaExceededError'||e.code===22){ toast('存储空间不足！请导出数据后清理部分记录',5e3)} console.warn('save err',e)}}
-function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};if(!S.memBooks)S.memBooks=[];if(!S.shopItems)S.shopItems=[];if(!S.zhHomePosts)S.zhHomePosts=[];if(!S.zhCharPosts)S.zhCharPosts=[];if(!S.giftStock)S.giftStock=[];if(!S.zhCharBg)S.zhCharBg='';if(!S.cpAnnis)S.cpAnnis=[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}];if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0;if(!S.musicLib)S.musicLib=[];}catch(e){}}
+localStorage.setItem('xwa9',JSON.stringify(j))}catch(e){if(e.name==='QuotaExceededError'||e.code===22){toast('存储空间不足！请导出数据后清理部分记录',5e3)}console.warn('save err',e)}}
+function load(){try{var r=localStorage.getItem('xwa9');if(!r)return;var d=JSON.parse(r);KEYS.forEach(function(k){if(d[k]!==undefined)S[k]=d[k]});if(!S.fmt)S.fmt=DF;if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知',outfit:'未知'}; if(!S.stStatus.outfit)S.stStatus.outfit='未知';if(!S.memBooks)S.memBooks=[];if(!S.shopItems)S.shopItems=[];if(!S.zhHomePosts)S.zhHomePosts=[];if(!S.zhCharPosts)S.zhCharPosts=[];if(!S.giftStock)S.giftStock=[];if(!S.zhCharBg)S.zhCharBg='';if(!S.cpAnnis)S.cpAnnis=[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}];if(!S.memPrompt)S.memPrompt=DMP;if(typeof S.memInterval==='undefined')S.memInterval=0;if(typeof S.memUnsummed==='undefined')S.memUnsummed=0;if(!S.musicLib)S.musicLib=[];}catch(e){}}
+
+function loadImages(){
+var imgKeys=['aiAv','usAv','cBg','pyqBg','cpBg','zhCharBg','zhUserBg','phoneWallpaper'];
+var promises=[];
+imgKeys.forEach(function(k){
+if(S[k]==='__IDB__'){
+promises.push(loadImgFromDB('img_'+k).then(function(data){
+if(data)S[k]=data;else S[k]=''
+}).catch(function(){S[k]=''}))}});
+/* 恢复朋友圈图片 */
+if(S.pyqPosts)S.pyqPosts.forEach(function(p){
+if(p.image==='__IDB_PYQ__'){
+promises.push(loadImgFromDB('pyq_img_'+p.id).then(function(data){
+p.image=data||''
+}).catch(function(){p.image=''}))}});
+/* 恢复知乎帖子图片 */
+if(S.zhUserPosts)S.zhUserPosts.forEach(function(p){
+if(p.image==='__IDB_ZH__'&&p.id){
+promises.push(loadImgFromDB('zh_img_'+p.id).then(function(data){
+p.image=data||''
+}).catch(function(){p.image=''}))}});
+/* 恢复聊天图片 */
+S.messages.forEach(function(m){
+if(m.imageData==='__IDB_MSG__'||m.imageUrl==='__IDB_MSG__'){
+promises.push(loadImgFromDB('msg_img_'+m.id).then(function(data){
+if(data){m.imageData=data;m.imageUrl=data}else{m.imageData='';m.imageUrl=''}
+}).catch(function(){m.imageData='';m.imageUrl=''}))}});
+return Promise.all(promises)}
 
 function mkAv(src,fb){var w=document.createElement('div');w.className='mav';if(src){var im=document.createElement('img');im.src=src;im.alt=fb;im.onerror=function(){this.remove();w.textContent=fb};w.appendChild(im)}else w.textContent=fb;return w}
 function findStk(n){for(var i=0;i<S.stickers.length;i++)if(S.stickers[i].name===n)return S.stickers[i];return null}
@@ -1899,7 +2145,7 @@ if(!S.isGen){$('topS').textContent=S.connected?'在线':'未连接';$('topS').cl
 function updConn(){$('cDot').className='dot '+(S.connected?'on':'off');$('cTxt').textContent=S.connected?'已连接 · '+S.model:'未连接';updTop()}
 function updBdg(){$('pBdg').textContent=S.pc>0?S.pc:'';recvBtn.classList.toggle('has-pending',S.pc>0)}
 function setIp(id,src,fb){var el=$(id);el.innerHTML='';if(src){var im=document.createElement('img');im.src=src;im.onerror=function(){this.remove();el.textContent=fb};el.appendChild(im)}else el.textContent=fb}
-function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location}}
+function restoreStatus(){if(S.stStatus){if(S.stStatus.mood)$('stMood').textContent=S.stStatus.mood;if(S.stStatus.action)$('stAction').textContent=S.stStatus.action;if(S.stStatus.thought)$('stThought').textContent=S.stStatus.thought;if(S.stStatus.location)$('stLocation').textContent=S.stStatus.location;if(S.stStatus.outfit)$('stOutfit').textContent=S.stStatus.outfit}}
 function fillForm(){$('fUrl').value=S.apiUrl;$('fKey').value=S.apiKey;$('fMod').value=S.model;$('fTmp').value=S.tmp;$('fMtk').value=S.mtk;$('fMem').value=S.mem;$('fCN').value=S.cn;$('fUN').value=S.un;$('fCP').value=S.cp;$('fWB').value=S.wb;$('fNote').value=S.note;$('fMinR').value=S.minR;$('fPat').value=S.pat;$('fFmt').value=S.fmt;$('cCnt').textContent=(S.cp||'').length+' 字';$('wCnt').textContent=(S.wb||'').length+' 字';$('fmtCnt').textContent=(S.fmt||'').length+' 字';$('mCntD').textContent=S.messages.length;$('pCntD').textContent=S.pyqPosts.length;setIp('aiPv',S.aiAv,'蔚');setIp('usPv',S.usAv,'燕');setIp('bgPv',S.cBg,'无');setIp('pyqBgPv',S.pyqBg,'无');$('sndPv').textContent=S.sndName||'无';setIp('zhUBgPv',S.zhUserBg,'无');setIp('phWpPv',S.phoneWallpaper,'无');$('fMemInt').value=S.memInterval;$('fMemPrompt').value=S.memPrompt;$('memPCnt').textContent=(S.memPrompt||'').length+' 字';$('memUnsumCnt').textContent=S.memUnsummed+' 条';renderStkM();renderNpcL();renderMemList()}
 function updBg(){chatArea.style.backgroundImage=S.cBg?'url('+S.cBg+')':'none'}
 function updAll(){fillForm();updTop();updConn();updBg();updBdg();restoreStatus()}
@@ -2032,6 +2278,7 @@ if(s.mood){$('stMood').textContent=s.mood;S.stStatus.mood=s.mood}
 if(s.action){$('stAction').textContent=s.action;S.stStatus.action=s.action}
 if(s.thought){$('stThought').textContent=s.thought;S.stStatus.thought=s.thought}
 if(s.location){$('stLocation').textContent=s.location;S.stStatus.location=s.location}
+if(s.outfit){$('stOutfit').textContent=s.outfit;S.stStatus.outfit=s.outfit}
 save()}
 
 function splitReply(r){
@@ -2151,7 +2398,7 @@ var pyqTi=document.createElement('div');pyqTi.className='txt-img';pyqTi.style.ma
 tx.appendChild(pyqTi);
 if(afterImg)tx.appendChild(document.createTextNode(afterImg));
 }else{tx.textContent=post.text}
-if(post.image){var pimg=document.createElement('img');pimg.src=post.image;pimg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin-top:8px;display:block;cursor:pointer';pimg.onclick=function(){window.open(post.image)};tx.appendChild(pimg)}
+if(post.image){if(post.image==='__IDB_PYQ__'){(function(thePost,theTx){loadImgFromDB('pyq_img_'+thePost.id).then(function(data){if(data){thePost.image=data;var pimg=document.createElement('img');pimg.src=data;pimg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin-top:8px;display:block;cursor:pointer';pimg.onclick=function(){window.open(data)};theTx.appendChild(pimg)}}).catch(function(){})})(post,tx)}else{var pimg=document.createElement('img');pimg.src=post.image;pimg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin-top:8px;display:block;cursor:pointer';pimg.onclick=function(){window.open(post.image)};tx.appendChild(pimg)}}
 var meta=document.createElement('div');meta.className='pyq-meta';
 var ts=document.createElement('span');ts.textContent=smartDate(post.date)+' '+post.time;
 var acts=document.createElement('div');acts.className='pyq-acts';
@@ -2207,7 +2454,7 @@ save();renderPyq();await sleep(600)}}
 
 function userPostPyq(){
 var t=$('pyqInput').value.trim();if(!t&&!pyqPendingImg)return;if(S.pyqBusy)return;
-var n=getNow();var imgToSave=pyqPendingImg||''; if(imgToSave.length>500000){toast('图片过大，已压缩保存',3e3);imgToSave=''} S.pyqPosts.push({id:gid(),author:S.un,text:t,image:imgToSave,date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
+var n=getNow();var postId=gid();var imgToSave=pyqPendingImg||'';S.pyqPosts.push({id:postId,author:S.un,text:t,image:imgToSave?'__IDB_PYQ__':'',date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});if(imgToSave){saveImgToDB('pyq_img_'+postId,imgToSave).catch(function(e){console.warn('pyq img err',e)})}
 save();$('pyqInput').value='';renderPyq();toast('已发布');$('pCntD').textContent=S.pyqPosts.length;
 var pidx=S.pyqPosts.length-1;
 S.pyqBusy=true;
@@ -2261,6 +2508,7 @@ if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',nam
 {id:'camellia',name:'山茶花',icon:'🌸',desc:'克制深情，淡粉与白',growth:0,hp:100,lastWater:'',lastBreak:''}
 ],lastAutoGrow:'',actions:[]};
 gardenAutoGrow();if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
+if(!S.nvNovels)S.nvNovels=[];if(!S.nvFavNovels)S.nvFavNovels=[];if(!S.nvTags)S.nvTags=['#日常','#甜','#虐','#治愈','#be','#he'];if(!S.nvStyles)S.nvStyles=[{name:'内置文风',desc:'日系物哀美学，侧重触觉和听觉的感官描写，句子短而克制，留白多，情感通过细节和沉默传达。温水煮茶式的深情，涓流而非洪水。视角贴近但保持距离，通过外在细节暗示情绪。避免华丽辞藻和直白告白。',builtin:true}];if(!S.nvLongChapters)S.nvLongChapters={};
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 if(!S.pat)S.pat='的肩膀';if(!S.pyqBg)S.pyqBg='';if(!S.note)S.note='';if(!S.fmt)S.fmt=DF;
 if(!S.stStatus)S.stStatus={mood:'未知',action:'未知',thought:'未知',location:'未知'};
@@ -2760,6 +3008,31 @@ $('discShop').onclick=function(){$('discoverPanel').classList.remove('active');r
 $('discGarden').onclick=function(){$('discoverPanel').classList.remove('active');renderGarden();$('gardenPanel').classList.add('active')};
 $('gardenAchBtn').onclick=showGardenAch;
 $('discRoom').onclick=function(){$('discoverPanel').classList.remove('active');renderRoom();$('roomPanel').classList.add('active')};
+initNovelEvents();
+initCallEvents();
+$('chatSearchBtn').onclick=function(){
+var kw=$('chatSearchInput').value.trim();
+if(!kw){toast('输入关键词');return}
+var c=$('chatSearchResult');c.innerHTML='';
+var results=[];
+S.messages.forEach(function(m,i){
+if(m.type==='pat')return;
+if(m.content&&m.content.indexOf(kw)>=0){results.push({msg:m,idx:i})}});
+if(!results.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:8px 0">未找到相关记录</div>';return}
+c.innerHTML='<div style="font-size:11px;color:var(--ts);margin-bottom:6px">找到 '+results.length+' 条结果</div>';
+results.slice(-50).forEach(function(r){
+var d=document.createElement('div');
+d.style.cssText='padding:8px 10px;border:1px solid var(--bc);border-radius:8px;margin-bottom:6px;background:var(--p);cursor:pointer';
+var who=r.msg.role==='user'?S.un:S.cn;
+var content=r.msg.content.length>80?r.msg.content.substring(0,80)+'...':r.msg.content;
+var highlighted=content.replace(new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),'<b style="color:var(--ac)">'+esc(kw)+'</b>');
+d.innerHTML='<div style="font-size:11px;color:var(--ts);margin-bottom:2px">'+esc(who)+' · '+(r.msg.date||'')+' '+(r.msg.time||'')+'</div><div style="font-size:13px;color:var(--tp);line-height:1.5;word-break:break-word">'+highlighted+'</div>';
+d.onclick=function(){$('setPanel').classList.remove('active');
+var el=chatArea.querySelector('[data-id="'+r.msg.id+'"]');
+if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--ac)';setTimeout(function(){el.style.outline=''},2000)}
+else{toast('消息可能不在当前视图中')}};
+c.appendChild(d)})};
+$('chatSearchClear').onclick=function(){$('chatSearchInput').value='';$('chatSearchResult').innerHTML=''};
 $('roomClose').onclick=function(){$('roomPanel').classList.remove('active')};
 $('roomRefresh').onclick=searchRoom;
 $('gardenClose').onclick=function(){$('gardenPanel').classList.remove('active')};
@@ -2808,7 +3081,8 @@ $('zhPBio').textContent='心理咨询师 · 植物爱好者';
 if(!S.zhCharPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">暂无帖子</div>';return}
 S.zhCharPosts.forEach(function(p,idx){
 var d=document.createElement('div');d.className='zh-post';
-d.innerHTML=(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
+d.innerHTML=(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>'; if(p.image&&p.image!=='__IDB_ZH__'){var zhImg=document.createElement('img');zhImg.src=p.image;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';d.insertBefore(zhImg,d.querySelector('.zh-post-meta'))} else if(p.image==='__IDB_ZH__'&&p.id){(function(thePost,theD){loadImgFromDB('zh_img_'+thePost.id).then(function(data){if(data){thePost.image=data;var zhImg=document.createElement('img');zhImg.src=data;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';var meta=theD.querySelector('.zh-post-meta');if(meta)theD.insertBefore(zhImg,meta);else theD.appendChild(zhImg)}}).catch(function(){})})(p,d)} 
+if(p.image&&p.image!=='__IDB_ZH__'){var zhImg=document.createElement('img');zhImg.src=p.image;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';d.insertBefore(zhImg,d.querySelector('.zh-post-meta'))} else if(p.image==='__IDB_ZH__'&&p.id){(function(thePost,theD){loadImgFromDB('zh_img_'+thePost.id).then(function(data){if(data){thePost.image=data;var zhImg=document.createElement('img');zhImg.src=data;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';var meta=theD.querySelector('.zh-post-meta');if(meta)theD.insertBefore(zhImg,meta);else theD.appendChild(zhImg)}}).catch(function(){})})(p,d)} 
 var cmArea=document.createElement('div');cmArea.style.cssText='margin-top:8px';
 if(p.commentList&&p.commentList.length){
 var cmBox=document.createElement('div');cmBox.className='pyq-inter';
@@ -2991,7 +3265,7 @@ if(!body&&!zhUPostPendingImg){toast('写点什么');return}
 var n=getNow();
 var title='';
 if(body){var firstLine=body.split('\n')[0];if(firstLine.length<=30)title=firstLine}
-S.zhUserPosts.push({title:title,body:body||'',image:zhUPostPendingImg||'',likes:Math.floor(Math.random()*50),comments:0,commentList:[],time:n.full,author:S.un});
+var zhPostId=gid();var zhImgToSave=zhUPostPendingImg||'';S.zhUserPosts.push({id:zhPostId,title:title,body:body||'',image:zhImgToSave?'__IDB_ZH__':'',likes:Math.floor(Math.random()*50),comments:0,commentList:[],time:n.full,author:S.un});if(zhImgToSave){saveImgToDB('zh_img_'+zhPostId,zhImgToSave).catch(function(e){console.warn('zh img err',e)})}
 zhUPostPendingImg='';if($('zhUPostImgPv'))$('zhUPostImgPv').style.display='none';
 save();$('zhUserPostInput').value='';renderZhUserFeed();toast('已发布')};
 
@@ -3164,10 +3438,12 @@ handleImg('aiF',function(d){S.aiAv=d;save();setIp('aiPv',d,'蔚');updTop();toast
 handleImg('usF',function(d){S.usAv=d;save();setIp('usPv',d,'燕');toast('已设置')});
 handleImg('bgF',function(d){S.cBg=d;save();setIp('bgPv',d,'无');updBg();toast('已设置')});
 handleImg('pyqBgF',function(d){S.pyqBg=d;save();setIp('pyqBgPv',d,'无');toast('已设置')}); handleImg('zhUBgF',function(d){S.zhUserBg=d;save();setIp('zhUBgPv',d,'无');toast('已设置')}); handleImg('phWpF',function(d){S.phoneWallpaper=d;save();setIp('phWpPv',d,'无');toast('已设置')});
-$('clrAi').onclick=function(){S.aiAv='';save();setIp('aiPv','','蔚');updTop();toast('已清除')};
-$('clrUs').onclick=function(){S.usAv='';save();setIp('usPv','','燕');toast('已清除')};
-$('clrBg').onclick=function(){S.cBg='';save();setIp('bgPv','','无');updBg();toast('已清除')};
-$('clrPyqBg').onclick=function(){S.pyqBg='';save();setIp('pyqBgPv','','无');toast('已清除')}; $('clrZhUBg').onclick=function(){S.zhUserBg='';save();setIp('zhUBgPv','','无');toast('已清除')}; $('clrPhWp').onclick=function(){S.phoneWallpaper='';save();setIp('phWpPv','','无');toast('已清除')};
+$('clrAi').onclick=function(){S.aiAv='';deleteImgFromDB('img_aiAv').catch(function(){});save();setIp('aiPv','','蔚');updTop();toast('已清除')};
+$('clrUs').onclick=function(){S.usAv='';deleteImgFromDB('img_usAv').catch(function(){});save();setIp('usPv','','燕');toast('已清除')};
+$('clrBg').onclick=function(){S.cBg='';deleteImgFromDB('img_cBg').catch(function(){});save();setIp('bgPv','','无');updBg();toast('已清除')};
+$('clrPyqBg').onclick=function(){S.pyqBg='';deleteImgFromDB('img_pyqBg').catch(function(){});save();setIp('pyqBgPv','','无');toast('已清除')};
+$('clrZhUBg').onclick=function(){S.zhUserBg='';deleteImgFromDB('img_zhUserBg').catch(function(){});save();setIp('zhUBgPv','','无');toast('已清除')};
+$('clrPhWp').onclick=function(){S.phoneWallpaper='';deleteImgFromDB('img_phoneWallpaper').catch(function(){});save();setIp('phWpPv','','无');toast('已清除')};
 
 $('clrChat').onclick=function(){if(!confirm('清空所有对话？'))return;S.messages=[];S.memUnsummed=0;save();render();$('mCntD').textContent='0';$('memUnsumCnt').textContent='0 条';toast('已清空')};
 $('clrPyq').onclick=function(){if(!confirm('清空所有朋友圈？'))return;S.pyqPosts=[];save();renderPyq();$('pCntD').textContent='0';toast('已清空')};
@@ -3181,7 +3457,7 @@ if(!confirm('删除最早的 '+n+' 条朋友圈？'))return;
 S.pyqPosts=S.pyqPosts.slice(n);save();renderPyq();$('pCntD').textContent=S.pyqPosts.length;toast('已删除 '+n+' 条')};
 $('expBtn').onclick=expData;
 $('impF').onchange=function(e){var f=e.target.files[0];if(f)impData(f);e.target.value=''};
-$('rstAll').onclick=function(){if(!confirm('重置所有数据？此操作不可恢复！'))return;if(!confirm('确认重置？'))return;localStorage.removeItem('xwa9');clearMusicDB().catch(function(){});location.reload()};
+$('rstAll').onclick=function(){if(!confirm('重置所有数据？此操作不可恢复！'))return;if(!confirm('确认重置？'))return;localStorage.removeItem('xwa9');clearMusicDB().catch(function(){});clearImgDB().catch(function(){});location.reload()};
 
 document.querySelectorAll('.fp').forEach(function(fp){fp.addEventListener('touchmove',function(e){e.stopPropagation()},{passive:true})});
 window.addEventListener('beforeunload',function(){sync();save()});
@@ -3494,6 +3770,371 @@ if(blooming.length)txt+='当前盛开：'+blooming.join('、')+'\n';
 if(wilted.length)txt+='当前枯萎：'+wilted.join('、')+'（被搞破坏了）\n';
 txt+='（你可以根据这些动态自然地在聊天中提起，比如感谢浇水、心疼被拔叶子的植物等，但不要每次都提）';
 return txt}
+/* ========== 小说系统 ========== */
+var nvCurrentCat='all';
+var nvCurrentTag='';
+
+function renderNvTags(){
+var c=$('nvTagList');if(!c)return;c.innerHTML='';
+if(!S.nvTags||!S.nvTags.length){c.innerHTML='<span style="color:var(--tl);font-size:12px">暂无标签，添加一个吧</span>';return}
+S.nvTags.forEach(function(tag,i){
+var d=document.createElement('span');
+d.className='nv-tag'+(nvCurrentTag===tag?' active':'');
+d.innerHTML=esc(tag)+'<span class="nv-tag-del" data-nti="'+i+'">✕</span>';
+(function(t){d.onclick=function(e){
+if(e.target.classList.contains('nv-tag-del')){
+e.stopPropagation();
+var idx=parseInt(e.target.dataset.nti);
+if(!confirm('删除标签「'+S.nvTags[idx]+'」？'))return;
+if(nvCurrentTag===S.nvTags[idx])nvCurrentTag='';
+S.nvTags.splice(idx,1);save();renderNvTags();return}
+nvCurrentTag=nvCurrentTag===t?'':t;renderNvTags();renderNvFeed()}})(tag);
+c.appendChild(d)})}
+
+function renderNvStyleSelect(){
+var sel=$('nvStyleSelect');if(!sel)return;
+sel.innerHTML='<option value="__default__">内置文风</option>';
+if(S.nvStyles)S.nvStyles.forEach(function(s,i){
+if(s.builtin)return;
+var opt=document.createElement('option');opt.value=String(i);opt.textContent=s.name;sel.appendChild(opt)})}
+
+function renderNvStyleList(){
+var c=$('nvStyleList');if(!c)return;c.innerHTML='';
+if(!S.nvStyles||S.nvStyles.length<=1){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:12px 0">只有内置文风，添加自定义文风吧</div>';return}
+S.nvStyles.forEach(function(s,i){
+if(s.builtin)return;
+var d=document.createElement('div');d.className='nv-style-card';
+d.innerHTML='<div style="flex:1;min-width:0"><div class="nv-sn">'+esc(s.name)+'</div><div class="nv-sd">'+esc(s.desc.substring(0,60))+(s.desc.length>60?'...':'')+'</div></div>';
+var del=document.createElement('button');del.style.cssText='background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;padding:4px';del.textContent='✕';
+(function(idx){del.onclick=function(){if(!confirm('删除文风「'+S.nvStyles[idx].name+'」？'))return;S.nvStyles.splice(idx,1);save();renderNvStyleList();renderNvStyleSelect();toast('已删除')}})(i);
+d.appendChild(del);c.appendChild(d)})}
+
+function getFilteredNovels(){
+var list=S.nvNovels||[];
+if(nvCurrentCat!=='all')list=list.filter(function(n){return n.type===nvCurrentCat});
+if(nvCurrentTag)list=list.filter(function(n){return n.tags&&n.tags.indexOf(nvCurrentTag)>=0});
+return list}
+
+function renderNvFeed(){
+var c=$('nvFeed');if(!c)return;c.innerHTML='';
+var list=getFilteredNovels();
+if(!list.length){c.innerHTML='<div class="nv-empty">暂无小说，点击"生成"创作一篇</div>';return}
+for(var i=list.length-1;i>=0;i--)(function(novel){
+var d=document.createElement('div');d.className='nv-card';
+var isFav=false;
+for(var fi=0;fi<(S.nvFavNovels||[]).length;fi++){if(S.nvFavNovels[fi].id===novel.id){isFav=true;break}}
+var head=document.createElement('div');head.className='nv-card-head';
+var titleDiv=document.createElement('div');
+titleDiv.innerHTML='<div class="nv-card-title">'+esc(novel.title)+(isFav?'<span class="nv-fav-badge">已收藏</span>':'')+'</div><div class="nv-card-meta">'+(novel.type==='long'?'长篇连载':'短篇')+' · '+(novel.style||'内置文风')+' · '+esc(novel.date||'')+(novel.chapter?' · 第'+novel.chapter+'章':'')+'</div>';
+head.appendChild(titleDiv);
+if(novel.tags&&novel.tags.length){
+var tagsDiv=document.createElement('div');tagsDiv.className='nv-card-tags';
+novel.tags.forEach(function(t){var sp=document.createElement('span');sp.className='nv-card-tag';sp.textContent=t;tagsDiv.appendChild(sp)});
+d.appendChild(head);d.appendChild(tagsDiv)}else{d.appendChild(head)}
+var body=document.createElement('div');body.className='nv-card-body';body.textContent=novel.content||'';
+d.appendChild(body);
+var acts=document.createElement('div');acts.className='nv-card-acts';
+var expandBtn=document.createElement('button');expandBtn.className='btn bs2 bsm';expandBtn.textContent='展开全文';
+expandBtn.onclick=function(){body.classList.toggle('expanded');expandBtn.textContent=body.classList.contains('expanded')?'收起':'展开全文'};
+var favBtn=document.createElement('button');favBtn.className='btn bs2 bsm';favBtn.textContent=isFav?'已收藏':'⭐ 收藏';favBtn.style.color=isFav?'var(--ac)':'';
+(function(nv,fb){fb.onclick=function(){
+var exists=false;
+for(var fi=0;fi<S.nvFavNovels.length;fi++){if(S.nvFavNovels[fi].id===nv.id){exists=true;break}}
+if(exists){toast('已在收藏夹中');return}
+S.nvFavNovels.push(JSON.parse(JSON.stringify(nv)));save();fb.textContent='已收藏';fb.style.color='var(--ac)';toast('已收藏 ⭐')}})(novel,favBtn);
+acts.appendChild(expandBtn);acts.appendChild(favBtn);
+if(novel.type==='long'){
+var contBtn=document.createElement('button');contBtn.className='btn bp bsm';contBtn.textContent='续写下一章';
+(function(nv){contBtn.onclick=function(){continueLongNovel(nv)}})(novel);
+acts.appendChild(contBtn)}
+var delBtn=document.createElement('button');delBtn.className='btn bs2 bsm';delBtn.style.color='var(--dg)';delBtn.textContent='删除';
+(function(nv){delBtn.onclick=function(){if(!confirm('删除这篇小说？'))return;S.nvNovels=S.nvNovels.filter(function(n){return n.id!==nv.id});save();renderNvFeed();toast('已删除')}})(novel);
+acts.appendChild(delBtn);
+d.appendChild(acts);c.appendChild(d)})(list[i])}
+
+function renderNvFavFeed(){
+var c=$('nvFavFeed');if(!c)return;c.innerHTML='';
+if(!S.nvFavNovels||!S.nvFavNovels.length){c.innerHTML='<div class="nv-empty">收藏夹是空的</div>';return}
+for(var i=S.nvFavNovels.length-1;i>=0;i--)(function(novel,idx){
+var d=document.createElement('div');d.className='nv-card';
+var head=document.createElement('div');head.className='nv-card-head';
+head.innerHTML='<div><div class="nv-card-title">'+esc(novel.title)+'</div><div class="nv-card-meta">'+(novel.type==='long'?'长篇连载':'短篇')+' · '+esc(novel.date||'')+'</div></div>';
+d.appendChild(head);
+if(novel.tags&&novel.tags.length){
+var tagsDiv=document.createElement('div');tagsDiv.className='nv-card-tags';
+novel.tags.forEach(function(t){var sp=document.createElement('span');sp.className='nv-card-tag';sp.textContent=t;tagsDiv.appendChild(sp)});
+d.appendChild(tagsDiv)}
+var body=document.createElement('div');body.className='nv-card-body';body.textContent=novel.content||'';
+d.appendChild(body);
+var acts=document.createElement('div');acts.className='nv-card-acts';
+var expandBtn=document.createElement('button');expandBtn.className='btn bs2 bsm';expandBtn.textContent='展开全文';
+expandBtn.onclick=function(){body.classList.toggle('expanded');expandBtn.textContent=body.classList.contains('expanded')?'收起':'展开全文'};
+var delBtn=document.createElement('button');delBtn.className='btn bs2 bsm';delBtn.style.color='var(--dg)';delBtn.textContent='移出收藏';
+(function(nidx){delBtn.onclick=function(){if(!confirm('从收藏夹移出？'))return;S.nvFavNovels.splice(nidx,1);save();renderNvFavFeed();toast('已移出')}})(idx);
+acts.appendChild(expandBtn);acts.appendChild(delBtn);
+d.appendChild(acts);c.appendChild(d)})(S.nvFavNovels[i],i)}
+
+function getNvStylePrompt(){
+var sel=$('nvStyleSelect');
+var val=sel?sel.value:'__default__';
+if(val==='__default__'){
+return'日系物哀美学，侧重触觉和听觉的感官描写，句子短而克制，留白多，情感通过细节和沉默传达。温水煮茶式的深情，涓流而非洪水。视角贴近但保持距离，通过外在细节暗示情绪。避免华丽辞藻和直白告白。'}
+var idx=parseInt(val);
+if(S.nvStyles&&S.nvStyles[idx])return S.nvStyles[idx].desc||S.nvStyles[idx].name;
+return''}
+
+function getNvStyleName(){
+var sel=$('nvStyleSelect');
+var val=sel?sel.value:'__default__';
+if(val==='__default__')return'内置文风';
+var idx=parseInt(val);
+if(S.nvStyles&&S.nvStyles[idx])return S.nvStyles[idx].name;
+return'内置文风'}
+
+async function generateNovel(){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待当前操作完成');return}
+var keyword=($('nvSearchInput')?$('nvSearchInput').value.trim():'');
+var type=($('nvTypeSelect')?$('nvTypeSelect').value:'short');
+var maxLen=parseInt(($('nvLenSelect')?$('nvLenSelect').value:'1000'))||1000;
+var stylePrompt=getNvStylePrompt();
+var styleName=getNvStyleName();
+var tags=nvCurrentTag?[nvCurrentTag]:[];
+/* 生成前清除当前标签的旧小说（不含收藏夹） */
+if(nvCurrentTag){
+var favIds={};
+(S.nvFavNovels||[]).forEach(function(f){favIds[f.id]=true});
+S.nvNovels=S.nvNovels.filter(function(n){
+if(favIds[n.id])return true;
+if(!n.tags||n.tags.indexOf(nvCurrentTag)<0)return true;
+return false})}
+toast('正在创作'+(type==='long'?'长篇小说':'短篇小说')+'...');
+S.isGen=true;
+try{
+var charInfo=(S.cp||DC).substring(0,2000);
+var n=getNow();
+var typeHint=type==='long'?'这是长篇连载小说的第1章。结尾要留悬念，让读者想看下一章。在开头写【第1章：章节标题】。':'这是一篇完整的短篇小说，有开头、发展、高潮和结尾。';
+var keywordHint=keyword?'主题/关键词：'+keyword+'。围绕这个主题展开故事。':'根据角色设定和关系，自由创作一个有趣的故事。';
+var tagHint=tags.length?'标签风格：'+tags.join(' ')+'。故事氛围要符合这些标签。':'';
+var prompt='请创作一篇关于'+S.cn+'和'+S.un+'的同人小说。\n\n'+
+'要求：\n'+
+'- '+typeHint+'\n'+
+'- '+keywordHint+'\n'+
+(tagHint?'- '+tagHint+'\n':'')+
+'- 文风要求：'+stylePrompt+'\n'+
+'- 字数约'+maxLen+'字\n'+
+'- 第一行输出小说标题（不加书名号），第二行开始是正文\n'+
+'- 人物性格、关系、背景必须符合角色设定\n'+
+'- 不要输出任何标记、代码、JSON\n'+
+'- 只输出标题和正文';
+var sysTxt=charInfo+'\n\n你是一位优秀的小说作家，擅长根据角色设定创作同人文。';
+var tokenLimit=Math.max(800,Math.ceil(maxLen*1.5));
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],tokenLimit);
+var lines=r.trim().split('\n');
+var title=lines[0].replace(/^[#\s*]+/,'').replace(/^《|》$/g,'').trim()||'无题';
+var content=lines.slice(1).join('\n').trim();
+var novel={
+id:gid(),
+type:type,
+title:title,
+content:content,
+tags:tags.length?tags:(nvCurrentTag?[nvCurrentTag]:[]),
+style:styleName,
+date:n.full,
+chapter:type==='long'?1:0,
+keyword:keyword
+};
+S.nvNovels.push(novel);
+if(type==='long'){
+if(!S.nvLongChapters)S.nvLongChapters={};
+S.nvLongChapters[novel.id]=[{chapter:1,content:content}]}
+save();renderNvFeed();toast('创作完成！')
+}catch(e){toast('创作失败: '+e.message,3e3);console.warn('novel gen err',e)}
+S.isGen=false}
+
+async function continueLongNovel(prevNovel){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+var chapters=(S.nvLongChapters&&S.nvLongChapters[prevNovel.id])||[];
+var lastChapter=chapters.length?chapters[chapters.length-1]:null;
+var prevContent=lastChapter?lastChapter.content:prevNovel.content;
+var nextChNum=(prevNovel.chapter||1)+1;
+var maxLen=parseInt(($('nvLenSelect')?$('nvLenSelect').value:'1000'))||1000;
+var stylePrompt=getNvStylePrompt();
+var styleName=getNvStyleName();
+toast('正在续写第'+nextChNum+'章...');
+S.isGen=true;
+try{
+var charInfo=(S.cp||DC).substring(0,1500);
+var n=getNow();
+var prevSummary=prevContent.substring(0,800);
+var prompt='请续写长篇小说《'+prevNovel.title+'》的第'+nextChNum+'章。\n\n'+
+'前一章内容摘要：\n'+prevSummary+(prevContent.length>800?'\n...（后续省略）':'')+'\n\n'+
+'要求：\n'+
+'- 在开头写【第'+nextChNum+'章：章节标题】\n'+
+'- 承接上一章的情节继续发展\n'+
+'- 文风要求：'+stylePrompt+'\n'+
+'- 字数约'+maxLen+'字\n'+
+'- 结尾留悬念，让读者想看下一章\n'+
+'- 人物性格必须符合角色设定\n'+
+'- 不要输出任何标记、代码、JSON\n'+
+'- 只输出章节标题和正文';
+var sysTxt=charInfo+'\n\n你是一位优秀的小说作家，正在续写一部长篇连载小说。';
+var tokenLimit=Math.max(800,Math.ceil(maxLen*1.5));
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],tokenLimit);
+var content=r.trim();
+var novel={
+id:gid(),
+type:'long',
+title:prevNovel.title,
+content:content,
+tags:prevNovel.tags||[],
+style:styleName,
+date:n.full,
+chapter:nextChNum,
+keyword:prevNovel.keyword||''
+};
+S.nvNovels.push(novel);
+if(!S.nvLongChapters)S.nvLongChapters={};
+if(!S.nvLongChapters[prevNovel.id])S.nvLongChapters[prevNovel.id]=[];
+S.nvLongChapters[prevNovel.id].push({chapter:nextChNum,content:content});
+save();renderNvFeed();toast('第'+nextChNum+'章完成！')
+}catch(e){toast('续写失败: '+e.message,3e3);console.warn('novel cont err',e)}
+S.isGen=false}
+
+function initNovelEvents(){
+$('discNovel').onclick=function(){$('discoverPanel').classList.remove('active');renderNvTags();renderNvStyleSelect();renderNvFeed();$('novelPanel').classList.add('active')};
+$('novelClose').onclick=function(){$('novelPanel').classList.remove('active')};
+$('nvStyleBtn').onclick=function(){renderNvStyleList();$('nvStylePanel').classList.add('active')};
+$('nvStyleClose').onclick=function(){$('nvStylePanel').classList.remove('active')};
+$('nvFavBtn').onclick=function(){renderNvFavFeed();$('nvFavPanel').classList.add('active')};
+$('nvFavClose').onclick=function(){$('nvFavPanel').classList.remove('active')};
+$('nvGenBtn').onclick=generateNovel;
+$('nvTagAdd').onclick=function(){
+var t=$('nvTagInput').value.trim();
+if(!t){toast('输入标签名');return}
+if(t.charAt(0)!=='#')t='#'+t;
+for(var i=0;i<S.nvTags.length;i++){if(S.nvTags[i]===t){toast('标签已存在');return}}
+S.nvTags.push(t);save();renderNvTags();$('nvTagInput').value='';toast('已添加')};
+$('nvStyleAddBtn').onclick=function(){
+var name=$('nvStyleNameInput').value.trim();
+var desc=$('nvStyleDescInput').value.trim();
+if(!name){toast('填写文风名称');return}
+if(!desc){toast('填写文风描述');return}
+for(var i=0;i<S.nvStyles.length;i++){if(S.nvStyles[i].name===name){toast('名称已存在');return}}
+S.nvStyles.push({name:name,desc:desc,builtin:false});
+save();renderNvStyleList();renderNvStyleSelect();
+$('nvStyleNameInput').value='';$('nvStyleDescInput').value='';toast('已添加')};
+document.querySelectorAll('[data-nvcat]').forEach(function(b){b.onclick=function(){
+document.querySelectorAll('[data-nvcat]').forEach(function(x){x.classList.remove('active')});
+b.classList.add('active');nvCurrentCat=b.dataset.nvcat;renderNvFeed()}});
+}
+/* ========== 视频通话系统 ========== */
+var callState={active:false,connected:false,muted:false,timer:0,timerInterval:null,messages:[]};
+
+function startCall(){
+if(callState.active)return;
+callState={active:true,connected:false,muted:false,timer:0,timerInterval:null,messages:[]};
+var ov=$('callOverlay');
+/* 设置头像 */
+var remoteAv=$('callRemoteAv');remoteAv.innerHTML='';remoteAv.className='call-remote-av ringing';
+if(S.aiAv){var img=document.createElement('img');img.src=S.aiAv;remoteAv.appendChild(img)}
+else remoteAv.textContent=(S.cn||'蔚').charAt(0);
+var localAv=$('callLocalAv');localAv.innerHTML='';
+if(S.usAv){var img2=document.createElement('img');img2.src=S.usAv;localAv.appendChild(img2)}
+else localAv.textContent=(S.un||'燕').charAt(0);
+$('callRemoteName').textContent=S.cn||'谢蔚安';
+$('callRemoteStatus').textContent='正在呼叫...';$('callRemoteStatus').style.display='';
+$('callRemoteTimer').style.display='none';
+$('callMsgArea').innerHTML='';
+$('callInputBar').classList.remove('active');
+$('callMuteBtn').classList.remove('on');
+ov.classList.add('active');
+/* 模拟接通延迟 */
+setTimeout(function(){
+if(!callState.active)return;
+if(!S.apiKey||!S.connected){
+addCallMsg('ai','（电话未接通...信号不好）');
+toast('API未连接，无法接通');
+setTimeout(function(){endCall()},2000);
+return}
+callState.connected=true;
+$('callRemoteAv').className='call-remote-av connected';
+$('callRemoteStatus').style.display='none';
+$('callRemoteTimer').style.display='';
+$('callInputBar').classList.add('active');
+callState.timerInterval=setInterval(function(){
+callState.timer++;
+var m=Math.floor(callState.timer/60);
+var s=callState.timer%60;
+$('callRemoteTimer').textContent=pad(m)+':'+pad(s)},1000);
+/* 角色自动接通回复 */
+callAutoReply('[通话开始] '+S.un+'拨打了视频通话，你接听了。根据当前时间和场景，自然地打招呼。用1-2句简短的话回应，像真的接电话一样。只输出说的话，不加引号不加括号不加任何标记。')
+},2000+Math.random()*1500)}
+
+function endCall(){
+if(callState.timerInterval)clearInterval(callState.timerInterval);
+var duration=callState.timer;
+var wasConnected=callState.connected;
+var msgs=callState.messages.slice();
+callState.active=false;callState.connected=false;
+$('callOverlay').classList.remove('active');
+$('callInputBar').classList.remove('active');
+/* 把通话记录写入聊天 */
+if(wasConnected&&msgs.length){
+var m=Math.floor(duration/60);var s=duration%60;
+addRender('user','[通话结束 · 时长 '+pad(m)+':'+pad(s)+']',{type:'pat'});
+msgs.forEach(function(cm){
+addMsg(cm.role,cm.content);
+});
+S.memUnsummed+=msgs.length;
+save();render();
+chatArea.scrollTop=chatArea.scrollHeight}
+else if(!wasConnected){
+addRender('user','[未接通的视频通话]',{type:'pat'})}}
+
+function addCallMsg(role,text){
+callState.messages.push({role:role,content:text});
+var area=$('callMsgArea');
+var d=document.createElement('div');
+d.className='call-msg '+role;
+d.textContent=text;
+area.appendChild(d);
+area.scrollTop=area.scrollHeight}
+
+async function callAutoReply(prompt){
+if(!callState.active||!callState.connected)return;
+try{
+var charInfo=(S.cp||DC).substring(0,1500);
+var n=getNow();
+var callCtx='';
+callState.messages.forEach(function(m){
+callCtx+=(m.role==='user'?S.un:S.cn)+'：'+m.content+'\n'});
+var sysTxt=charInfo+'\n\n现在是'+n.full+'。你正在和'+S.un+'视频通话。像真人打电话一样自然地说话，简短口语化，不要太长。只输出说的话，不加引号不加括号不加STATUS标记不加任何格式符号。';
+var msgs=[{role:'system',content:sysTxt}];
+if(callCtx)msgs.push({role:'user',content:'通话内容：\n'+callCtx+'\n\n'+prompt});
+else msgs.push({role:'user',content:prompt});
+var r=await callApi(msgs,300);
+var reply=r.trim().replace(/^["「」"（]/g,'').replace(/["「」"）]$/g,'').replace(/\[STATUS:[^\]]*\]/g,'').trim();
+if(callState.active&&callState.connected){
+addCallMsg('ai',reply);
+playSound()}}
+catch(e){console.warn('call reply err',e)}}
+
+function callSendMsg(){
+var input=$('callInput');
+var t=input.value.trim();
+if(!t||!callState.connected)return;
+addCallMsg('user',t);
+input.value='';
+callAutoReply(S.un+'说："'+t+'"。自然地回应，像打电话一样简短。只输出说的话。')}
+
+function initCallEvents(){
+$('pmCall').onclick=function(){$('plusMenu').classList.remove('active');startCall()};
+$('callHangupBtn').onclick=endCall;
+$('callMuteBtn').onclick=function(){callState.muted=!callState.muted;this.classList.toggle('on',callState.muted);toast(callState.muted?'已静音':'已取消静音')};
+$('callSendBtn').onclick=callSendMsg;
+$('callInput').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();callSendMsg()}}}
 function init(){
 load();
 if(!S.stickers)S.stickers=[];
@@ -3532,6 +4173,11 @@ if(!S.gardenData||!S.gardenData.plants||!S.gardenData.plants.length)S.gardenData
 gardenAutoGrow();
 if(!S.craneJar)S.craneJar=[];
 if(!S.roomData)S.roomData={spots:null,lastSearch:'',notified:false};
+if(!S.nvNovels)S.nvNovels=[];
+if(!S.nvFavNovels)S.nvFavNovels=[];
+if(!S.nvTags)S.nvTags=['#日常','#甜','#虐','#治愈','#be','#he'];
+if(!S.nvStyles)S.nvStyles=[{name:'内置文风',desc:'日系物哀美学，侧重触觉和听觉，句子短而克制，留白多，情感通过细节和沉默传达，温水煮茶式的深情，涓流而非洪水',builtin:true}];
+if(!S.nvLongChapters)S.nvLongChapters={};
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 S.pyqBusy=false;
 S.pc=0;
@@ -3547,15 +4193,21 @@ var greeting=h>=6&&h<12?'"早上好。起来了吗？"':h>=12&&h<18?'"下午好�
 S.messages.push({id:gid(),role:'ai',content:'（手指轻轻敲了敲桌面，抬眼看向屏幕）',time:n.time,date:n.date,ts:n.ts});
 S.messages.push({id:gid(),role:'ai',content:greeting,time:n.time,date:n.date,ts:n.ts+1e3});
 save();render()}
-/* 异步加载音乐数据 */
-loadMusicFromDB().then(function(ml){if(ml&&ml.length)S.musicLib=ml}).catch(function(e){console.warn('music load err',e)})}
+/* 异步加载图片和音乐数据 */
+Promise.all([
+loadImages().catch(function(e){console.warn('img load err',e)}),
+loadMusicFromDB().then(function(ml){if(ml&&ml.length)S.musicLib=ml}).catch(function(e){console.warn('music load err',e)})
+]).then(function(){
+updAll();render();
+if(window._splashDone){window._splashDone();window._splashDone=null}
+})}
 
 init();
 try{localStorage.removeItem('xwa9_music')}catch(e){}
 (function(){
 var dots=$('splashDots'),dotCount=0,dotTimer;
 dotTimer=setInterval(function(){dotCount=(dotCount+1)%4;dots.textContent='.'.repeat(dotCount)},400);
-function splashDone(){
+window._splashDone=function(){
 clearInterval(dotTimer);
 var st=$('splashStatus');
 st.textContent='加载成功';st.classList.add('done');
@@ -3563,10 +4215,10 @@ setTimeout(function(){
 document.querySelector('.app').classList.add('show');
 setTimeout(function(){
 $('splash').classList.add('hide');
-setTimeout(function(){$('splash').style.display='none';inBox.focus()},600)
+setTimeout(function(){$('splash').style.display='none';try{inBox.focus()}catch(e){}},600)
 },300)
-},600)}
-setTimeout(splashDone,2000)
+},600)};
+setTimeout(function(){if(window._splashDone)window._splashDone()},8000)
 })();
 </script>
 </body>
