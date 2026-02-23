@@ -38,8 +38,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .st-btn:hover{background:var(--p);border-color:var(--ac);color:var(--ac)}
 .st-btn.open{background:var(--al);border-color:var(--ac);color:var(--ac)}
 #statusBar{max-height:0;overflow:hidden;padding:0 10px;background:var(--w);border-radius:0 0 10px 10px;font-size:11px;line-height:1.9;color:var(--ts);border:1px solid var(--bc);border-top:none;word-break:break-word;position:absolute;top:100%;left:0;right:0;z-index:9;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:max-height .25s ease,padding .25s ease;opacity:0}
-#statusBar.open{max-height:200px;padding:8px 10px;opacity:1}
-#statusBar.open{display:block}
+#statusBar.open{max-height:200px;padding:8px 10px;opacity:1;display:block}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .st-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px}
 .st-row span:first-child{flex-shrink:0}
@@ -90,35 +89,37 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .tb2:hover{background:var(--p);color:var(--tp)}
 .fp{position:absolute;inset:0;background:var(--w);z-index:100;display:none;flex-direction:column}
 .fp.active{display:flex}
-.fh{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0}
-.fh h2{font-size:17px;font-weight:600}
-.fc2{background:none;border:none;font-size:22px;cursor:pointer;color:var(--tp);padding:4px}
-.stb{display:flex;border-bottom:.5px solid var(--bc);background:var(--p);flex-shrink:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.stb::-webkit-scrollbar{display:none}
-.tbn{flex-shrink:0;padding:12px 13px;border:none;background:none;font-size:13px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500;white-space:nowrap}
+.fh{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:.5px solid rgba(0,0,0,.06);min-height:52px;flex-shrink:0;background:var(--w)}
+.fh h2{font-size:16px;font-weight:700;letter-spacing:.3px}
+.fc2{background:none;border:none;font-size:20px;cursor:pointer;color:var(--ts);padding:6px;border-radius:8px;transition:all .15s}
+.fc2:hover{background:var(--p);color:var(--tp)}
+.stb{display:flex;border-bottom:1px solid rgba(0,0,0,.05);background:var(--w);flex-shrink:0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 4px}
+.stb::-webkit-scrollbar{height:4px}
+.stb::-webkit-scrollbar-thumb{background:rgba(0,0,0,.25);border-radius:2px}
+.tbn{flex-shrink:0;padding:12px 14px;border:none;background:none;font-size:13px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500;white-space:nowrap;transition:all .15s} .tbn:hover{color:var(--tp)}
 .tbn.active{color:var(--ac);border-bottom-color:var(--ac)}
 .sct{flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch}
 .tp3{display:none}.tp3.active{display:block}
 .fg{margin-bottom:16px}
 .fl{display:block;font-size:13px;font-weight:600;color:var(--tp);margin-bottom:6px}
 .fs{font-size:11px;color:var(--ts);margin-bottom:6px;display:block}
-.fi{width:100%;padding:10px 12px;border:1px solid var(--bc);border-radius:8px;font-size:14px;font-family:inherit;background:var(--p);color:var(--tp);outline:none}
-.fi:focus{border-color:var(--ac)}
-.ft{width:100%;padding:10px 12px;border:1px solid var(--bc);border-radius:8px;font-size:13px;font-family:inherit;min-height:80px;resize:vertical;outline:none;background:var(--p);line-height:1.5;color:var(--tp)}
-.ft:focus{border-color:var(--ac)}
+.fi{width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,.08);border-radius:10px;font-size:14px;font-family:inherit;background:var(--w);color:var(--tp);outline:none;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.fi:focus{border-color:var(--ac);box-shadow:0 2px 8px rgba(87,107,92,.1)}
+.ft{width:100%;padding:12px 14px;border:1px solid rgba(0,0,0,.08);border-radius:10px;font-size:13px;font-family:inherit;min-height:80px;resize:vertical;outline:none;background:var(--w);line-height:1.6;color:var(--tp);transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.ft:focus{border-color:var(--ac);box-shadow:0 2px 8px rgba(87,107,92,.1)}
 .fr{display:flex;gap:10px;align-items:flex-end}
 .fr .fg{flex:1;margin-bottom:0}
 .btn{padding:9px 18px;border-radius:8px;border:none;font-size:13px;cursor:pointer;font-weight:500;transition:all .15s}
-.bp{background:var(--ac);color:#fff}.bp:hover{opacity:.85}.bp:active{opacity:.7}
-.bs2{background:var(--p);color:var(--tp);border:1px solid var(--bc)}
+.bp{background:linear-gradient(135deg,var(--ac),#4a5e4f);color:#fff;box-shadow:0 2px 8px rgba(87,107,92,.2)}.bp:hover{opacity:.9;box-shadow:0 4px 12px rgba(87,107,92,.3)}.bp:active{opacity:.8;transform:scale(.97)}
+.bs2{background:var(--w);color:var(--tp);border:1px solid rgba(0,0,0,.08);box-shadow:0 1px 3px rgba(0,0,0,.03)}
 .bd{background:var(--dg);color:#fff}
 .bsm{padding:6px 14px;font-size:12px}
 .bg3{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.sd3{height:.5px;background:var(--bc);margin:16px 0}
+.sd3{height:1px;background:linear-gradient(90deg,transparent,var(--bc),transparent);margin:18px 0}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
 .dot.on{background:#4CAF50}.dot.off{background:var(--dg)}.dot.tw{background:#FFC107}
 .stxt{font-size:12px;color:var(--ts)}
-.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:rgba(28,28,30,.85);color:#fff;padding:10px 24px;border-radius:12px;font-size:13px;z-index:9999;opacity:0;transition:all .25s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:280px;text-align:center;word-break:break-all;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:rgba(28,28,30,.9);color:#fff;padding:12px 28px;border-radius:14px;font-size:13px;z-index:9999;opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:300px;text-align:center;word-break:break-all;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 8px 32px rgba(0,0,0,.18);font-weight:500;letter-spacing:.2px}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .msg-menu{position:fixed;background:var(--w);border:1px solid var(--bc);border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.15);z-index:200;display:none;overflow:hidden;min-width:120px}
 .msg-menu.show{display:block;animation:menuPop .15s ease} @keyframes menuPop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
@@ -160,11 +161,19 @@ input[type="file"]{display:none}
 .smi img{width:40px;height:40px;object-fit:contain;border-radius:6px;flex-shrink:0}
 .smi .sn{flex:1;font-size:13px;color:var(--tp);word-break:break-all}
 .smi .sdl{background:none;border:none;color:var(--dg);font-size:16px;cursor:pointer;padding:4px 6px}
-.npc-card{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:var(--p)}
-.npc-top{display:flex;justify-content:space-between;align-items:center}
-.npc-name{font-size:14px;font-weight:600;color:var(--tp)}
-.npc-desc{font-size:11px;color:var(--ts);margin-top:4px;line-height:1.4}
-.npc-del{background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;padding:4px}
+.note-card{padding:14px 14px;border-radius:12px;margin-bottom:10px;position:relative;border:1px solid var(--bc);transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.note-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.note-card.from-user{background:linear-gradient(135deg,#FFFDF5,#FFF9E6);border-color:#EDE0B0;border-left:3px solid #D4A843}
+.note-card.from-char{background:linear-gradient(135deg,#F5FAF6,var(--al));border-color:#C0D8C4;border-left:3px solid var(--ac)}
+.note-card .note-who{font-size:11.5px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.note-card.from-user .note-who{color:#B8860B}
+.note-card.from-user .note-who::before{content:'🖊'}
+.note-card.from-char .note-who{color:var(--ac)}
+.note-card.from-char .note-who::before{content:'🌿'}
+.note-card .note-txt{font-size:13.5px;color:var(--tp);line-height:1.7;word-break:break-word;white-space:pre-wrap}
+.note-card .note-time{font-size:10px;color:var(--tl);margin-top:6px}
+.note-card .note-del{position:absolute;top:10px;right:8px;background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;opacity:.4;transition:opacity .15s}
+.note-card .note-del:hover{opacity:1}
 .sound-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .sound-name{font-size:12px;color:var(--ts);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sound-play{background:none;border:1px solid var(--bc);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;color:var(--ac)}
@@ -217,41 +226,41 @@ input[type="file"]{display:none}
 .manual-body .m-tip{background:var(--al);border-radius:6px;padding:8px 10px;margin:6px 0 10px 0;border-left:3px solid var(--ac);font-size:12px;line-height:1.7}
 .cp-panel{position:absolute;inset:0;background:var(--w);z-index:100;display:none;flex-direction:column}
 .cp-panel.active{display:flex}
-.cp-bg{min-height:200px;background:linear-gradient(135deg,#576B5C,#3a4d3f);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;background-size:cover;background-position:center;position:relative}
-.cp-pair{display:flex;align-items:center;gap:20px}
-.cp-av{width:64px;height:64px;border-radius:50%;border:3px solid rgba(255,255,255,.6);overflow:hidden;background:var(--al);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:600}
+.cp-bg{min-height:220px;background:linear-gradient(160deg,#576B5C 0%,#3a4d3f 40%,#2d3e32 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 16px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.cp-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
+.cp-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,rgba(0,0,0,.15));pointer-events:none}
+.cp-pair{display:flex;align-items:center;gap:24px;position:relative;z-index:1}
+.cp-av{width:68px;height:68px;border-radius:50%;border:2.5px solid rgba(255,255,255,.7);overflow:hidden;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.2);transition:transform .3s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cp-av:hover{transform:scale(1.06)}
 .cp-av img{width:100%;height:100%;object-fit:cover}
-.cp-heart{font-size:28px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3);animation:heartBeat 1.5s infinite}
-@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-.cp-names{color:#fff;font-size:16px;font-weight:600;text-align:center;margin-top:10px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.cp-days{color:rgba(255,255,255,.9);font-size:13px;text-align:center;margin-top:6px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.cp-days b{font-size:28px;font-weight:700;color:#fff;margin:0 3px;display:inline-block;animation:countPulse 3s ease-in-out infinite} @keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.cp-tabs{display:flex;border-bottom:.5px solid var(--bc);background:var(--p);flex-shrink:0}
-.cp-tabs button{flex:1;padding:12px 0;border:none;background:none;font-size:13px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500}
-.cp-tabs button.active{color:var(--ac);border-bottom-color:var(--ac)}
+.cp-heart{font-size:24px;color:#fff;text-shadow:0 2px 12px rgba(255,100,100,.4);animation:heartBeat 1.5s infinite;filter:drop-shadow(0 0 8px rgba(255,150,150,.3))}
+@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.cp-names{color:#fff;font-size:17px;font-weight:600;text-align:center;margin-top:12px;text-shadow:0 1px 6px rgba(0,0,0,.3);letter-spacing:1px;position:relative;z-index:1}
+.cp-days{color:rgba(255,255,255,.85);font-size:13px;text-align:center;margin-top:8px;text-shadow:0 1px 4px rgba(0,0,0,.3);position:relative;z-index:1}
+.cp-days b{font-size:32px;font-weight:700;color:#fff;margin:0 4px;display:inline-block;animation:countPulse 3s ease-in-out infinite;text-shadow:0 2px 12px rgba(255,255,255,.2)} @keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.cp-tabs{display:flex;border-bottom:none;background:var(--w);flex-shrink:0;padding:4px 12px;gap:4px}
+.cp-tabs button{flex:1;padding:10px 0;border:none;background:var(--p);font-size:13px;cursor:pointer;color:var(--ts);border-radius:10px;font-weight:500;transition:all .2s;border-bottom:none}
+.cp-tabs button.active{color:#fff;background:var(--ac);box-shadow:0 2px 8px rgba(87,107,92,.25)}
+.cp-tabs button:not(.active):hover{background:var(--al);color:var(--ac)}
 .cp-body{flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch}
 .cp-sec{display:none}.cp-sec.active{display:block}
-.wish-card{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:var(--p);position:relative}
-.wish-card .wish-who{font-size:11px;color:var(--ac);font-weight:600;margin-bottom:2px}
-.wish-card .wish-txt{font-size:13px;color:var(--tp);line-height:1.5;word-break:break-word}
-.wish-card .wish-time{font-size:10px;color:var(--tl);margin-top:4px}
-.wish-card .wish-done{position:absolute;top:8px;right:28px;background:none;border:1px solid var(--ac);border-radius:4px;width:18px;height:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ac)}
-.wish-card .wish-done.checked{background:var(--ac);color:#fff}
-.wish-card .wish-del{position:absolute;top:8px;right:6px;background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer}
-.note-card{padding:10px 12px;border-radius:8px;margin-bottom:8px;position:relative;border:1px solid var(--bc)}
-.note-card.from-user{background:#FFF9E6;border-color:#F0E4B8}
-.note-card.from-char{background:var(--al);border-color:#C8D8CC}
-.note-card .note-who{font-size:11px;font-weight:600;margin-bottom:2px}
-.note-card.from-user .note-who{color:#B8860B}
-.note-card.from-char .note-who{color:var(--ac)}
-.note-card .note-txt{font-size:13px;color:var(--tp);line-height:1.6;word-break:break-word;white-space:pre-wrap}
-.note-card .note-time{font-size:10px;color:var(--tl);margin-top:4px}
-.note-card .note-del{position:absolute;top:8px;right:6px;background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer}
+.wish-card{padding:14px 14px;border:1px solid var(--bc);border-radius:12px;margin-bottom:10px;background:var(--w);position:relative;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.wish-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06);border-color:var(--ac)}
+.wish-card .wish-who{font-size:11px;color:var(--ac);font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:4px}
+.wish-card .wish-who::before{content:'✨';font-size:10px}
+.wish-card .wish-txt{font-size:13.5px;color:var(--tp);line-height:1.6;word-break:break-word}
+.wish-card .wish-time{font-size:10px;color:var(--tl);margin-top:6px}
+.wish-card .wish-done{position:absolute;top:12px;right:32px;background:none;border:1.5px solid var(--ac);border-radius:6px;width:20px;height:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ac);transition:all .15s}
+.wish-card .wish-done:hover{background:var(--al)}
+.wish-card .wish-done.checked{background:var(--ac);color:#fff;border-color:var(--ac)}
+.wish-card .wish-del{position:absolute;top:12px;right:8px;background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;opacity:.5;transition:opacity .15s}
+.wish-card .wish-del:hover{opacity:1}
 .cp-anni{text-align:center;padding:16px 0}
-.cp-anni-item{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:var(--p);display:flex;justify-content:space-between;align-items:center}
-.cp-anni-item .anni-name{font-size:13px;color:var(--tp);font-weight:500}
-.cp-anni-item .anni-date{font-size:11px;color:var(--ts)}
-.cp-anni-item .anni-count{font-size:12px;color:var(--ac);font-weight:600}
+.cp-anni-item{padding:14px;border:1px solid var(--bc);border-radius:12px;margin-bottom:10px;background:var(--w);display:flex;justify-content:space-between;align-items:center;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.cp-anni-item:hover{box-shadow:0 2px 12px rgba(0,0,0,.06);border-color:var(--ac)}
+.cp-anni-item .anni-name{font-size:14px;color:var(--tp);font-weight:600}
+.cp-anni-item .anni-date{font-size:11px;color:var(--ts);margin-top:2px}
+.cp-anni-item .anni-count{font-size:12px;color:var(--ac);font-weight:600;background:var(--al);padding:4px 10px;border-radius:8px}
 .voice-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;cursor:pointer;min-width:100px;max-width:100%;position:relative;user-select:none;box-sizing:border-box;transition:opacity .15s}
 .voice-bar:active{opacity:.7}
 .voice-bar .vb-icon{font-size:16px;flex-shrink:0}
@@ -262,53 +271,85 @@ input[type="file"]{display:none}
 .mr.user .voice-bar{background:transparent;color:var(--tp)}
 .voice-text{font-size:13px;color:var(--ts);margin-top:4px;padding:4px 8px;border-left:2px solid var(--bc);display:none;word-break:break-word;line-height:1.5}
 .voice-text.show{display:block}
-.phone-panel{position:absolute;inset:0;background:var(--w);z-index:101;display:none;flex-direction:column}
+.phone-panel{position:absolute;inset:0;background:#000;z-index:101;display:none;flex-direction:column;border-radius:0;overflow:hidden}
 .phone-panel.active{display:flex}
-.ph-tabs{display:flex;border-bottom:.5px solid var(--bc);background:rgba(245,245,245,.9);flex-shrink:0;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.ph-tabs button{flex:1;padding:11px 0;border:none;background:none;font-size:12px;cursor:pointer;color:var(--ts);border-bottom:2px solid transparent;font-weight:500;position:relative;z-index:1}
-.ph-tabs button.active{color:var(--ac);border-bottom-color:var(--ac)}
-.ph-body{flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch;background:transparent}
+.phone-panel .ph-screen{flex:1;display:flex;flex-direction:column;background:#f2f2f7;border-radius:0;overflow:hidden;position:relative}
+.phone-panel .ph-status-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 6px;font-size:12px;font-weight:600;color:#1c1c1e;background:rgba(242,242,247,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-shrink:0;z-index:2}
+.phone-panel .ph-status-bar .ph-time-display{font-size:15px;font-weight:700}
+.phone-panel .ph-status-bar .ph-icons{display:flex;gap:5px;font-size:12px}
+.phone-panel .ph-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px 12px;background:rgba(242,242,247,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-shrink:0;z-index:1}
+.phone-panel .ph-header-title{font-size:28px;font-weight:700;color:#1c1c1e;letter-spacing:-.5px}
+.phone-panel .ph-header-btn{background:rgba(120,120,128,.12);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;color:#007aff;transition:all .15s}
+.phone-panel .ph-header-btn:active{transform:scale(.9);background:rgba(120,120,128,.2)}
+.ph-tabs{display:flex;margin:0 16px 12px;background:rgba(120,120,128,.12);border-radius:9px;padding:2px;flex-shrink:0;border-bottom:none}
+.ph-tabs button{flex:1;padding:7px 0;border:none;background:none;font-size:13px;cursor:pointer;color:#8e8e93;border-radius:7px;font-weight:500;transition:all .2s;border-bottom:none;position:relative;z-index:1}
+.ph-tabs button.active{color:#1c1c1e;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 1px rgba(0,0,0,.04);font-weight:600}
+.ph-body{flex:1;overflow-y:auto;padding:0 16px 20px;-webkit-overflow-scrolling:touch;background:transparent}
 .ph-sec{display:none}.ph-sec.active{display:block}
-.ph-card{padding:10px 12px;border:1px solid var(--bc);border-radius:8px;margin-bottom:8px;background:rgba(245,245,245,.92);font-size:13px;line-height:1.6;color:var(--tp);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.ph-card .ph-time{font-size:10px;color:var(--tl);margin-top:4px}
-.ph-card .ph-tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-right:6px;font-weight:500}
-.ph-tag.browse{background:#E8F0FE;color:#4285F4}
-.ph-tag.chat{background:var(--al);color:var(--ac)}
-.ph-tag.pay{background:#FFF3E0;color:#E65100}
-.ph-tag.memo{background:#F3E5F5;color:#7B1FA2}
-.ph-empty{text-align:center;padding:30px 0;color:var(--tl);font-size:13px}
-.ph-amount{font-size:15px;font-weight:600;margin-top:2px}
-.ph-amount.income{color:var(--ac)}
-.ph-amount.expense{color:var(--dg)}
+.ph-group{margin-bottom:16px}
+.ph-group-title{font-size:13px;font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.5px;padding:8px 0 6px;margin:0}
+.ph-card{padding:14px 16px;border:none;border-radius:12px;margin-bottom:2px;background:#fff;font-size:15px;line-height:1.5;color:#1c1c1e;position:relative}
+.ph-card:first-child{border-radius:12px 12px 2px 2px}
+.ph-card:last-child{border-radius:2px 2px 12px 12px;margin-bottom:0}
+.ph-card:only-child{border-radius:12px}
+.ph-card+.ph-card{border-top:1px solid rgba(60,60,67,.08)}
+.ph-card .ph-time{font-size:13px;color:#8e8e93;margin-top:2px}
+.ph-card .ph-tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;margin-right:6px;font-weight:600;letter-spacing:.2px}
+.ph-tag.browse{background:rgba(0,122,255,.1);color:#007aff}
+.ph-tag.chat{background:rgba(52,199,89,.1);color:#34c759}
+.ph-tag.pay{background:rgba(255,149,0,.1);color:#ff9500}
+.ph-tag.memo{background:rgba(175,82,222,.1);color:#af52de}
+.ph-empty{text-align:center;padding:40px 0;color:#8e8e93;font-size:15px}
+.ph-amount{font-size:17px;font-weight:600;margin-top:4px;letter-spacing:-.3px}
+.ph-amount.income{color:#34c759}
+.ph-amount.expense{color:#ff3b30}
+.ph-card-row{display:flex;align-items:center;gap:12px}
+.ph-card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ph-card-icon.blue{background:rgba(0,122,255,.1);color:#007aff}
+.ph-card-icon.green{background:rgba(52,199,89,.1);color:#34c759}
+.ph-card-icon.orange{background:rgba(255,149,0,.1);color:#ff9500}
+.ph-card-icon.purple{background:rgba(175,82,222,.1);color:#af52de}
+.ph-card-main{flex:1;min-width:0}
+.ph-card-title{font-size:15px;font-weight:500;color:#1c1c1e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-card-sub{font-size:13px;color:#8e8e93;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-card-right{text-align:right;flex-shrink:0}
+.ph-card-chevron{color:#c7c7cc;font-size:14px;margin-left:4px}
+.ph-home-indicator{width:134px;height:5px;background:rgba(0,0,0,.2);border-radius:3px;margin:8px auto;flex-shrink:0}
 .plus-menu{position:absolute;bottom:56px;left:8px;right:8px;background:var(--w);border:1px solid var(--bc);border-radius:14px;box-shadow:0 -4px 24px rgba(0,0,0,.08);z-index:50;display:none;padding:14px;grid-template-columns:repeat(4,1fr);gap:12px}
 .plus-menu.active{display:grid}
 .plus-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:10px 4px;border-radius:10px;transition:background .12s;font-size:24px}
 .plus-item span{font-size:11px;color:var(--ts)}
 .plus-item:hover{background:var(--p)}
-.disc-item{display:flex;align-items:center;gap:14px;padding:14px 12px;border-bottom:.5px solid var(--bc);cursor:pointer;transition:background .12s;border-radius:8px;margin-bottom:4px}
-.disc-item:hover{background:var(--p)}
-.disc-icon{width:40px;height:40px;border-radius:8px;background:var(--al);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--ac);font-weight:700;flex-shrink:0}
+.disc-item{display:flex;align-items:center;gap:14px;padding:16px 14px;cursor:pointer;transition:all .2s ease;border-radius:14px;margin-bottom:6px;background:var(--w);border:1px solid transparent;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.disc-item:hover{background:var(--al);border-color:var(--ac);transform:translateY(-1px);box-shadow:0 4px 12px rgba(87,107,92,.1)}
+.disc-item:active{transform:scale(.98);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.disc-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--al),#d4e4d7);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--ac);font-weight:700;flex-shrink:0;box-shadow:0 2px 8px rgba(87,107,92,.1);transition:transform .2s}
+.disc-item:hover .disc-icon{transform:scale(1.08)}
 .disc-info{flex:1}
-.disc-name{font-size:15px;font-weight:600;color:var(--tp)}
-.disc-desc{font-size:12px;color:var(--ts);margin-top:2px}
-.zh-profile{text-align:center;padding:20px 16px;border-bottom:1px solid var(--bc);margin-bottom:12px;position:relative;border-radius:0;overflow:hidden} .zh-profile[style*="background-image"]::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:0} .zh-profile[style*="background-image"] .zh-pname,.zh-profile[style*="background-image"] .zh-pbio{color:#fff;position:relative;z-index:1;text-shadow:0 1px 4px rgba(0,0,0,.4)} .zh-profile[style*="background-image"] .zh-pav{position:relative;z-index:1;border:2px solid rgba(255,255,255,.5)} .zh-profile[style*="background-image"] .btn{position:relative;z-index:1}
-.zh-pav{width:64px;height:64px;border-radius:50%;background:var(--al);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--ac);font-weight:600;overflow:hidden}
+.disc-name{font-size:15px;font-weight:600;color:var(--tp);letter-spacing:.3px}
+.disc-desc{font-size:11.5px;color:var(--ts);margin-top:3px;line-height:1.4}
+.disc-arrow{font-size:14px;color:var(--tl);transition:transform .2s}
+.disc-item:hover .disc-arrow{transform:translateX(3px);color:var(--ac)}
+.zh-profile{text-align:center;padding:28px 16px 20px;border-bottom:none;margin-bottom:12px;position:relative;border-radius:0 0 20px 20px;overflow:hidden;background:linear-gradient(180deg,var(--p),var(--w))} .zh-profile[style*="background-image"]::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.5));z-index:0} .zh-profile[style*="background-image"] .zh-pname,.zh-profile[style*="background-image"] .zh-pbio{color:#fff;position:relative;z-index:1;text-shadow:0 1px 6px rgba(0,0,0,.4)} .zh-profile[style*="background-image"] .zh-pav{position:relative;z-index:1;border:3px solid rgba(255,255,255,.6)} .zh-profile[style*="background-image"] .btn{position:relative;z-index:1} .zh-profile[style*="background-image"] .zh-pst b,.zh-profile[style*="background-image"] .zh-pst span{color:#fff;position:relative;z-index:1;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.zh-pav{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--al),#d4e4d7);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--ac);font-weight:600;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);border:3px solid var(--w)}
 .zh-pav img{width:100%;height:100%;object-fit:cover}
-.zh-pname{font-size:18px;font-weight:700;color:var(--tp)}
-.zh-pbio{font-size:12px;color:var(--ts);margin-top:4px}
-.zh-pstats{display:flex;justify-content:center;gap:28px;margin-top:12px}
+.zh-pname{font-size:20px;font-weight:700;color:var(--tp);letter-spacing:-.3px}
+.zh-pbio{font-size:12.5px;color:var(--ts);margin-top:6px;line-height:1.5}
+.zh-pstats{display:flex;justify-content:center;gap:36px;margin-top:16px}
 .zh-pst{text-align:center}
-.zh-pst b{display:block;font-size:16px;color:var(--tp)}
-.zh-pst span{font-size:11px;color:var(--ts)}
-.zh-post{padding:12px;border:1px solid var(--bc);border-radius:10px;margin-bottom:10px;background:var(--w)}
-.zh-post-author{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.zh-post-av{width:28px;height:28px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ac);font-weight:600;overflow:hidden;flex-shrink:0}
+.zh-pst b{display:block;font-size:18px;color:var(--tp);font-weight:700}
+.zh-pst span{font-size:11px;color:var(--ts);margin-top:2px;display:block}
+.zh-post{padding:16px;border:none;border-radius:12px;margin-bottom:12px;background:var(--w);box-shadow:0 1px 4px rgba(0,0,0,.04);transition:all .2s}
+.zh-post:hover{box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.zh-post-author{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zh-post-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--al),#d4e4d7);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ac);font-weight:600;overflow:hidden;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .zh-post-av img{width:100%;height:100%;object-fit:cover}
-.zh-post-name{font-size:13px;font-weight:600;color:var(--tp)}
-.zh-post-tag{font-size:10px;color:var(--ts);background:var(--p);padding:1px 6px;border-radius:4px}
-.zh-post-title{font-size:14px;font-weight:600;color:var(--tp);margin-bottom:4px;line-height:1.5}
-.zh-post-body{font-size:13px;color:var(--ts);line-height:1.6;word-break:break-word;white-space:pre-wrap}
-.zh-post-meta{display:flex;gap:12px;margin-top:8px;font-size:11px;color:var(--tl)}
+.zh-post-name{font-size:14px;font-weight:600;color:var(--tp)}
+.zh-post-tag{font-size:10px;color:var(--ac);background:var(--al);padding:2px 8px;border-radius:6px;font-weight:500}
+.zh-post-title{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:6px;line-height:1.5;letter-spacing:-.2px}
+.zh-post-body{font-size:13.5px;color:#666;line-height:1.7;word-break:break-word;white-space:pre-wrap}
+.zh-post-meta{display:flex;gap:14px;margin-top:10px;font-size:12px;color:var(--tl);padding-top:10px;border-top:1px solid rgba(0,0,0,.04)}
+.zh-post-meta span{display:flex;align-items:center;gap:3px}
 .shop-card{padding:12px;border:1px solid var(--bc);border-radius:10px;margin-bottom:10px;background:var(--w)}
 .shop-card-name{font-size:14px;font-weight:600;color:var(--tp)}
 .shop-card-price{font-size:16px;font-weight:700;color:var(--dg);margin-top:4px}
@@ -379,39 +420,47 @@ input[type="file"]{display:none}
 .mm-name{font-size:13px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mm-controls{display:flex;gap:4px;flex-shrink:0}
 .mm-btn{background:none;border:none;font-size:16px;cursor:pointer;color:var(--tp);padding:4px}
-.gd-wrap{padding:12px}
-.gd-fence{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.gd-plot{border:2px solid #8B7355;border-radius:12px;padding:12px;background:linear-gradient(180deg,#f0f7f0 0%,#e8f5e9 50%,#d7ccc8 100%);position:relative;min-height:160px;display:flex;flex-direction:column;align-items:center;text-align:center}
-.gd-plot-icon{font-size:36px;margin-bottom:4px;transition:transform .3s}
-.gd-plot-name{font-size:13px;font-weight:600;color:var(--tp)}
-.gd-plot-desc{font-size:10px;color:var(--ts);margin-top:2px;line-height:1.4}
-.gd-bars{width:100%;margin-top:8px}
-.gd-bar-row{display:flex;align-items:center;gap:4px;margin-bottom:4px}
-.gd-bar-label{font-size:10px;color:var(--ts);width:28px;flex-shrink:0}
-.gd-bar{flex:1;height:6px;background:var(--bc);border-radius:3px;overflow:hidden}
-.gd-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
-.gd-bar-fill.grow{background:linear-gradient(90deg,#81C784,#4CAF50)}
-.gd-bar-fill.hp{background:linear-gradient(90deg,#EF9A9A,#E53935)}
-.gd-bar-val{font-size:10px;color:var(--ts);width:28px;text-align:right;flex-shrink:0}
-.gd-btns{display:flex;gap:6px;margin-top:8px;width:100%}
-.gd-btn{flex:1;padding:6px 0;border-radius:6px;border:none;font-size:11px;cursor:pointer;font-weight:500;transition:all .15s}
-.gd-btn.water{background:#E3F2FD;color:#1565C0}
-.gd-btn.water:hover{background:#BBDEFB}
-.gd-btn.water:disabled{opacity:.4;cursor:default}
-.gd-btn.break{background:#FBE9E7;color:#BF360C}
-.gd-btn.break:hover{background:#FFCCBC}
-.gd-btn.break:disabled{opacity:.4;cursor:default}
-.gd-plot.wilted .gd-plot-icon{filter:grayscale(.8);transform:rotate(-15deg)}
-.gd-plot.full .gd-plot-icon{animation:bloom 1s ease infinite alternate}
-@keyframes bloom{0%{transform:scale(1)}100%{transform:scale(1.15)}}
-.gd-status{font-size:10px;margin-top:4px;padding:2px 8px;border-radius:4px;font-weight:500}
-.gd-status.growing{background:#E8F5E9;color:#2E7D32}
-.gd-status.wilted{background:#FFEBEE;color:#C62828}
-.gd-status.blooming{background:#FFF8E1;color:#F57F17}
-.gd-header{text-align:center;margin-bottom:12px}
-.gd-header-icon{font-size:28px}
-.gd-header-title{font-size:15px;font-weight:600;color:var(--tp);margin-top:2px}
-.gd-header-sub{font-size:11px;color:var(--ts);margin-top:2px}
+.gd-wrap{padding:14px}
+.gd-fence{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gd-plot{border:none;border-radius:16px;padding:16px 12px;background:linear-gradient(180deg,#f4faf4 0%,#e8f5e9 40%,#dcedc8 80%,#d7ccc8 100%);position:relative;min-height:170px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 2px 8px rgba(76,175,80,.1),inset 0 1px 0 rgba(255,255,255,.5);transition:all .25s;overflow:hidden}
+.gd-plot::before{content:'';position:absolute;top:-20px;right:-20px;width:60px;height:60px;background:radial-gradient(circle,rgba(255,255,255,.2),transparent);border-radius:50%;pointer-events:none}
+.gd-plot:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(76,175,80,.15)}
+.gd-plot:active{transform:scale(.98)}
+.gd-plot-icon{font-size:40px;margin-bottom:6px;transition:transform .3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
+.gd-plot-name{font-size:14px;font-weight:700;color:#2E7D32;letter-spacing:.3px}
+.gd-plot-desc{font-size:10px;color:#689F38;margin-top:3px;line-height:1.4;opacity:.8}
+.gd-bars{width:100%;margin-top:10px}
+.gd-bar-row{display:flex;align-items:center;gap:5px;margin-bottom:5px}
+.gd-bar-label{font-size:10px;color:#689F38;width:28px;flex-shrink:0;font-weight:500}
+.gd-bar{flex:1;height:7px;background:rgba(0,0,0,.06);border-radius:4px;overflow:hidden}
+.gd-bar-fill{height:100%;border-radius:4px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.gd-bar-fill.grow{background:linear-gradient(90deg,#A5D6A7,#66BB6A,#43A047)}
+.gd-bar-fill.hp{background:linear-gradient(90deg,#FFAB91,#FF7043,#E53935)}
+.gd-bar-val{font-size:10px;color:#689F38;width:28px;text-align:right;flex-shrink:0;font-weight:600}
+.gd-btns{display:flex;gap:8px;margin-top:10px;width:100%}
+.gd-btn{flex:1;padding:8px 0;border-radius:10px;border:none;font-size:11px;cursor:pointer;font-weight:600;transition:all .2s;letter-spacing:.3px}
+.gd-btn.water{background:linear-gradient(135deg,#E3F2FD,#BBDEFB);color:#1565C0;box-shadow:0 2px 6px rgba(21,101,192,.12)}
+.gd-btn.water:hover{background:linear-gradient(135deg,#BBDEFB,#90CAF9);transform:translateY(-1px);box-shadow:0 4px 10px rgba(21,101,192,.18)}
+.gd-btn.water:active{transform:scale(.96)}
+.gd-btn.water:disabled{opacity:.35;cursor:default;transform:none;box-shadow:none}
+.gd-btn.break{background:linear-gradient(135deg,#FBE9E7,#FFCCBC);color:#BF360C;box-shadow:0 2px 6px rgba(191,54,12,.08)}
+.gd-btn.break:hover{background:linear-gradient(135deg,#FFCCBC,#FFAB91);transform:translateY(-1px)}
+.gd-btn.break:active{transform:scale(.96)}
+.gd-btn.break:disabled{opacity:.35;cursor:default;transform:none;box-shadow:none}
+.gd-plot.wilted{background:linear-gradient(180deg,#f5f0f0,#e8e0e0,#d7ccc8);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.gd-plot.wilted .gd-plot-icon{filter:grayscale(.8) brightness(.9);transform:rotate(-15deg)}
+.gd-plot.wilted .gd-plot-name{color:#8D6E63}
+.gd-plot.full{background:linear-gradient(180deg,#FFF8E1,#FFF9C4,#F0F4C3,#DCEDC8);box-shadow:0 2px 12px rgba(255,193,7,.15)}
+.gd-plot.full .gd-plot-icon{animation:bloom 1.5s ease infinite alternate;filter:drop-shadow(0 2px 8px rgba(255,193,7,.3))}
+@keyframes bloom{0%{transform:scale(1) rotate(0deg)}100%{transform:scale(1.12) rotate(3deg)}}
+.gd-status{font-size:10px;margin-top:6px;padding:3px 10px;border-radius:6px;font-weight:600;letter-spacing:.3px}
+.gd-status.growing{background:rgba(76,175,80,.12);color:#2E7D32}
+.gd-status.wilted{background:rgba(198,40,40,.1);color:#C62828}
+.gd-status.blooming{background:rgba(255,193,7,.15);color:#F57F17}
+.gd-header{text-align:center;margin-bottom:16px;padding:8px 0}
+.gd-header-icon{font-size:32px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
+.gd-header-title{font-size:16px;font-weight:700;color:#2E7D32;margin-top:4px;letter-spacing:.3px}
+.gd-header-sub{font-size:11.5px;color:#689F38;margin-top:4px}
 .crane-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;display:flex;align-items:center;justify-content:center;animation:fadeIn .2s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .crane-card{width:280px;background:linear-gradient(145deg,#FFF8E7,#FFF3D6);border-radius:16px;padding:28px 24px;text-align:center;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.18);animation:craneFloat .4s ease}
@@ -435,68 +484,84 @@ input[type="file"]{display:none}
 .cj-item-text{flex:1;font-size:13px;color:var(--tp);line-height:1.5;word-break:break-word}
 .cj-item-from{font-size:10px;color:var(--tl);flex-shrink:0}
 .cj-item-del{background:none;border:none;color:var(--dg);font-size:14px;cursor:pointer;padding:2px 4px;flex-shrink:0}
-.ach-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:310;display:flex;align-items:center;justify-content:center;animation:fadeIn .2s ease}
-.ach-card{width:300px;background:var(--w);border-radius:16px;padding:24px 20px;box-shadow:0 8px 32px rgba(0,0,0,.18);animation:craneFloat .3s ease}
-.ach-title{text-align:center;font-size:16px;font-weight:700;color:var(--tp);margin-bottom:20px}
-.ach-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--bc);border-radius:10px;margin-bottom:8px;background:var(--p)}
-.ach-row-icon{font-size:28px;flex-shrink:0}
+.ach-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:310;display:flex;align-items:center;justify-content:center;animation:fadeIn .2s ease;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.ach-card{width:300px;background:var(--w);border-radius:20px;padding:28px 22px;box-shadow:0 12px 40px rgba(0,0,0,.2);animation:craneFloat .3s ease}
+.ach-title{text-align:center;font-size:17px;font-weight:700;color:var(--tp);margin-bottom:22px;letter-spacing:.3px}
+.ach-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border:none;border-radius:14px;margin-bottom:10px;background:linear-gradient(135deg,var(--p),rgba(238,242,239,.5));box-shadow:0 1px 4px rgba(0,0,0,.03);transition:all .15s}
+.ach-row:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ach-row-icon{font-size:30px;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))}
 .ach-row-info{flex:1}
-.ach-row-label{font-size:12px;color:var(--tl)}
-.ach-row-val{font-size:20px;font-weight:700;color:var(--tp);margin-top:2px}
-.ach-row-sub{font-size:10px;color:var(--ts);margin-top:2px}
-.ach-bar{height:4px;background:var(--bc);border-radius:2px;margin-top:6px;overflow:hidden}
-.ach-bar-fill{height:100%;border-radius:2px;transition:width .3s ease}
-.ach-close{display:block;margin:16px auto 0;background:none;border:1.5px solid var(--bc);border-radius:8px;padding:8px 32px;font-size:13px;color:var(--tl);cursor:pointer}
-.ach-close:hover{background:var(--p);border-color:var(--ac)}
+.ach-row-label{font-size:12px;color:var(--tl);font-weight:500}
+.ach-row-val{font-size:22px;font-weight:700;color:var(--tp);margin-top:2px}
+.ach-row-sub{font-size:10px;color:var(--ts);margin-top:3px}
+.ach-bar{height:5px;background:rgba(0,0,0,.06);border-radius:3px;margin-top:8px;overflow:hidden}
+.ach-bar-fill{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.ach-close{display:block;margin:20px auto 0;background:none;border:1.5px solid rgba(0,0,0,.08);border-radius:12px;padding:10px 36px;font-size:13px;color:var(--ts);cursor:pointer;transition:all .15s;font-weight:500}
+.ach-close:hover{background:var(--al);border-color:var(--ac);color:var(--ac)}
 .room-wrap{padding:16px}
-.room-scene{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
-.room-spot{border:1.5px solid var(--bc);border-radius:12px;padding:16px 12px;background:var(--w);text-align:center;cursor:pointer;transition:all .15s;position:relative;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.room-spot:hover{background:var(--al);border-color:var(--ac)}
-.room-spot:active{transform:scale(.97)}
-.room-spot-icon{font-size:32px;margin-bottom:6px}
-.room-spot-name{font-size:13px;font-weight:600;color:var(--tp)}
-.room-spot-hint{font-size:10px;color:var(--tl);margin-top:2px}
-.room-spot.locked{opacity:.5;cursor:not-allowed}
-.room-spot.locked:hover{background:var(--w);border-color:var(--bc)}
-.room-result{border:1px solid var(--bc);border-radius:10px;margin-bottom:10px;overflow:hidden;background:var(--w)}
-.room-result-header{padding:10px 14px;background:var(--p);display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
-.room-result-header:hover{background:var(--bc)}
-.room-result-icon{font-size:18px}
-.room-result-title{font-size:13px;font-weight:600;color:var(--tp);flex:1}
-.room-result-arrow{font-size:12px;color:var(--tl);transition:transform .2s}
-.room-result-arrow.open{transform:rotate(90deg)}
-.room-result-body{padding:12px 14px;font-size:13px;color:var(--tp);line-height:1.8;white-space:pre-wrap;word-break:break-word;display:none;border-top:1px solid var(--bc)}
-.room-result-body.open{display:block}
-.room-notice{background:#FFF3E0;border:1px solid #FFE0B2;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#E65100;display:flex;align-items:center;gap:6px}
-.room-locked-msg{text-align:center;padding:20px;color:var(--tl);font-size:13px}
-.nv-search{display:flex;gap:6px;margin-bottom:12px}
-.nv-search input{flex:1}
-.nv-tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
-.nv-tab{padding:5px 12px;border-radius:16px;border:1px solid var(--bc);background:var(--w);font-size:12px;cursor:pointer;color:var(--ts);transition:all .12s;white-space:nowrap}
-.nv-tab.active{background:var(--ac);color:#fff;border-color:var(--ac)}
-.nv-tag{padding:3px 10px;border-radius:12px;border:1px solid var(--bc);background:var(--p);font-size:11px;cursor:pointer;color:var(--ts);display:inline-flex;align-items:center;gap:4px;margin:0 4px 6px 0;transition:all .12s}
-.nv-tag.active{background:var(--al);border-color:var(--ac);color:var(--ac)}
-.nv-tag .nv-tag-del{font-size:10px;color:var(--dg);cursor:pointer;margin-left:2px}
-.nv-card{border:1px solid var(--bc);border-radius:10px;margin-bottom:10px;background:var(--w);overflow:hidden}
-.nv-card-head{padding:10px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.nv-card-title{font-size:14px;font-weight:600;color:var(--tp);flex:1;line-height:1.4}
-.nv-card-meta{font-size:10px;color:var(--tl);margin-top:2px}
-.nv-card-tags{display:flex;flex-wrap:wrap;gap:4px;padding:0 14px 6px}
-.nv-card-tag{font-size:10px;color:var(--ac);background:var(--al);padding:1px 6px;border-radius:4px}
-.nv-card-body{padding:0 14px 12px;font-size:13px;color:var(--tp);line-height:1.8;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow-y:auto}
+.room-scene{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+.room-spot{border:none;border-radius:16px;padding:20px 12px;background:var(--w);text-align:center;cursor:pointer;transition:all .25s;position:relative;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden}
+.room-spot::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(87,107,92,.03),rgba(87,107,92,.08));opacity:0;transition:opacity .25s;border-radius:16px}
+.room-spot:hover::before{opacity:1}
+.room-spot:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.room-spot:active{transform:scale(.96)}
+.room-spot-icon{font-size:36px;margin-bottom:8px;transition:transform .3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,.08))}
+.room-spot:hover .room-spot-icon{transform:scale(1.1) rotate(-3deg)}
+.room-spot-name{font-size:14px;font-weight:700;color:var(--tp);letter-spacing:.3px}
+.room-spot-hint{font-size:10px;color:var(--tl);margin-top:4px;line-height:1.4}
+.room-spot.locked{opacity:.4;cursor:not-allowed}
+.room-spot.locked:hover{transform:none;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.room-spot.locked:hover::before{opacity:0}
+.room-result{border:none;border-radius:14px;margin-bottom:12px;overflow:hidden;background:var(--w);box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s}
+.room-result:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.room-result-header{padding:14px 16px;background:linear-gradient(135deg,rgba(245,245,245,.8),rgba(238,242,239,.6));display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;transition:background .15s}
+.room-result-header:hover{background:var(--al)}
+.room-result-icon{font-size:20px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.1))}
+.room-result-title{font-size:14px;font-weight:600;color:var(--tp);flex:1}
+.room-result-arrow{font-size:13px;color:var(--tl);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+.room-result-arrow.open{transform:rotate(90deg);color:var(--ac)}
+.room-result-body{padding:16px;font-size:13.5px;color:#555;line-height:1.9;white-space:pre-wrap;word-break:break-word;display:none;border-top:1px solid rgba(0,0,0,.04);background:rgba(250,250,250,.5)}
+.room-result-body.open{display:block;animation:roomFadeIn .3s ease}
+@keyframes roomFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.room-notice{background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border:none;border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:12.5px;color:#E65100;display:flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(230,93,0,.08)}
+.room-notice::before{content:'⚠️';font-size:14px}
+.room-locked-msg{text-align:center;padding:24px;color:var(--tl);font-size:14px;font-style:italic}
+.nv-search{display:flex;gap:8px;margin-bottom:14px}
+.nv-search input{flex:1;border-radius:12px;background:var(--w);border:none;box-shadow:0 1px 4px rgba(0,0,0,.04);padding:10px 14px}
+.nv-search input:focus{box-shadow:0 2px 8px rgba(87,107,92,.12);border:none;outline:1px solid var(--ac)}
+.nv-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.nv-tab{padding:6px 14px;border-radius:20px;border:none;background:var(--w);font-size:12px;cursor:pointer;color:var(--ts);transition:all .2s;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.04);font-weight:500}
+.nv-tab:hover{background:var(--al);color:var(--ac)}
+.nv-tab.active{background:var(--ac);color:#fff;box-shadow:0 2px 8px rgba(87,107,92,.2)}
+.nv-tag{padding:4px 12px;border-radius:16px;border:none;background:var(--w);font-size:11px;cursor:pointer;color:var(--ts);display:inline-flex;align-items:center;gap:5px;margin:0 5px 7px 0;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.nv-tag:hover{background:var(--al);color:var(--ac)}
+.nv-tag.active{background:var(--al);color:var(--ac);box-shadow:0 1px 4px rgba(87,107,92,.1)}
+.nv-tag .nv-tag-del{font-size:10px;color:var(--dg);cursor:pointer;margin-left:2px;opacity:.5;transition:opacity .15s}
+.nv-tag .nv-tag-del:hover{opacity:1}
+.nv-card{border:none;border-radius:14px;margin-bottom:14px;background:var(--w);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .2s}
+.nv-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.nv-card-head{padding:14px 16px 8px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.nv-card-title{font-size:15px;font-weight:700;color:var(--tp);flex:1;line-height:1.5;letter-spacing:-.2px}
+.nv-card-meta{font-size:10px;color:var(--tl);margin-top:4px;line-height:1.5}
+.nv-card-tags{display:flex;flex-wrap:wrap;gap:5px;padding:0 16px 8px}
+.nv-card-tag{font-size:10px;color:var(--ac);background:var(--al);padding:2px 8px;border-radius:6px;font-weight:500}
+.nv-card-body{padding:0 16px 14px;font-size:14px;color:#555;line-height:1.9;white-space:pre-wrap;word-break:break-word;max-height:280px;overflow-y:auto;font-family:Georgia,"Noto Serif SC",serif}
+.nv-card-body::-webkit-scrollbar{width:3px}
+.nv-card-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.1);border-radius:3px}
 .nv-card-body.expanded{max-height:none}
-.nv-card-acts{display:flex;gap:6px;padding:8px 14px;border-top:1px solid var(--bc);background:var(--p)}
-.nv-card-acts button{font-size:12px}
-.nv-gen-bar{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px;padding:10px 12px;border:1px solid var(--bc);border-radius:8px;background:var(--p)}
-.nv-gen-bar label{font-size:11px;color:var(--ts)}
-.nv-gen-bar select,.nv-gen-bar input[type=number]{padding:6px 8px;border:1px solid var(--bc);border-radius:6px;font-size:12px;background:var(--w);color:var(--tp);outline:none}
+.nv-card-acts{display:flex;gap:6px;padding:10px 16px;border-top:1px solid rgba(0,0,0,.04);background:rgba(245,245,245,.5);flex-wrap:wrap}
+.nv-card-acts button{font-size:12px;border-radius:8px}
+.nv-gen-bar{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px;padding:14px;border:none;border-radius:14px;background:var(--w);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.nv-gen-bar label{font-size:11px;color:var(--ts);font-weight:500}
+.nv-gen-bar select,.nv-gen-bar input[type=number]{padding:8px 10px;border:1px solid rgba(0,0,0,.08);border-radius:10px;font-size:12px;background:var(--p);color:var(--tp);outline:none;transition:border-color .15s}
 .nv-gen-bar select:focus,.nv-gen-bar input[type=number]:focus{border-color:var(--ac)}
-.nv-style-card{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--bc);border-radius:8px;margin-bottom:6px;background:var(--p)}
-.nv-style-card .nv-sn{flex:1;font-size:13px;color:var(--tp);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nv-style-card{display:flex;align-items:center;gap:10px;padding:12px 14px;border:none;border-radius:12px;margin-bottom:8px;background:var(--w);box-shadow:0 1px 4px rgba(0,0,0,.04);transition:all .15s}
+.nv-style-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nv-style-card .nv-sn{flex:1;font-size:13px;color:var(--tp);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nv-style-card .nv-sd{font-size:11px;color:var(--ts);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:160px}
-.nv-empty{text-align:center;padding:30px 0;color:var(--tl);font-size:13px}
-.nv-cont-hint{font-size:11px;color:var(--ac);background:var(--al);padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:8px}
-.nv-fav-badge{font-size:9px;background:var(--dg);color:#fff;padding:1px 5px;border-radius:4px;margin-left:4px}
+.nv-empty{text-align:center;padding:40px 0;color:var(--tl);font-size:14px;font-style:italic}
+.nv-cont-hint{font-size:11px;color:var(--ac);background:var(--al);padding:5px 12px;border-radius:8px;display:inline-block;margin-bottom:10px;font-weight:500}
+.nv-fav-badge{font-size:9px;background:var(--dg);color:#fff;padding:2px 6px;border-radius:6px;margin-left:6px;font-weight:600}
 .call-overlay{position:absolute;inset:0;z-index:200;display:none;flex-direction:column;background:#1a1a1a;color:#fff}
 .call-overlay.active{display:flex}
 .call-bg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
@@ -528,6 +593,293 @@ input[type="file"]{display:none}
 @keyframes callPulse{0%,100%{box-shadow:0 0 0 0 rgba(87,107,92,.4)}50%{box-shadow:0 0 0 20px rgba(87,107,92,0)}}
 .call-remote-av.ringing{animation:callPulse 2s ease-in-out infinite}
 .call-remote-av.connected{box-shadow:0 0 40px rgba(87,107,92,.4)}
+body.dark-mode{background:#000}
+.dark-mode .app{background:#1c1c1e}
+.dark-mode{--p:#1c1c1e;--c:#1c1c1e;--w:#2c2c2e;--g:#3a5f3a;--tp:#e5e5e7;--ts:#8e8e93;--tl:#636366;--bc:#3a3a3c;--ac:#7dab8a;--al:#2a3a2d;--dg:#ff453a}
+.dark-mode .top{background:#2c2c2e;border-bottom-color:#3a3a3c}
+.dark-mode .ia{background:#2c2c2e;border-top-color:#3a3a3c}
+.dark-mode .ib{background:#1c1c1e;border-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .ib:focus{border-color:#7dab8a}
+.dark-mode .mb{box-shadow:none}
+.dark-mode .mr.ai .mb{background:#2c2c2e;color:#e5e5e7}
+.dark-mode .mr.user .mb{background:#3a5f3a;color:#e5e5e7}
+.dark-mode .td{background:rgba(255,255,255,.05);color:#636366}
+.dark-mode .sys-msg{background:rgba(255,255,255,.05);color:#636366}
+.dark-mode .chat::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+.dark-mode .fp{background:#1c1c1e}
+.dark-mode .fh{background:#2c2c2e;border-bottom-color:#3a3a3c}
+.dark-mode .stb{background:#2c2c2e;border-bottom-color:#3a3a3c}
+.dark-mode .tbn{color:#8e8e93}
+.dark-mode .tbn.active{color:#7dab8a;border-bottom-color:#7dab8a}
+.dark-mode .tbn:hover{color:#e5e5e7}
+.dark-mode .sct{background:#1c1c1e}
+.dark-mode .fi{background:#1c1c1e;border-color:#3a3a3c;color:#e5e5e7;box-shadow:none}
+.dark-mode .fi:focus{border-color:#7dab8a;box-shadow:0 0 0 1px rgba(125,171,138,.2)}
+.dark-mode .ft{background:#1c1c1e;border-color:#3a3a3c;color:#e5e5e7;box-shadow:none}
+.dark-mode .ft:focus{border-color:#7dab8a;box-shadow:0 0 0 1px rgba(125,171,138,.2)}
+.dark-mode .btn.bp{background:linear-gradient(135deg,#7dab8a,#5a8a64);box-shadow:none}
+.dark-mode .btn.bs2{background:#2c2c2e;color:#e5e5e7;border-color:#3a3a3c;box-shadow:none}
+.dark-mode .btn.bd{background:#ff453a}
+.dark-mode .sd3{background:linear-gradient(90deg,transparent,#3a3a3c,transparent)}
+.dark-mode .fl{color:#e5e5e7}
+.dark-mode .fs{color:#8e8e93}
+.dark-mode .cc{color:#636366}
+.dark-mode .fc2{color:#8e8e93}
+.dark-mode .fc2:hover{background:#3a3a3c;color:#e5e5e7}
+.dark-mode .tbtn{color:#e5e5e7}
+.dark-mode .tbtn:hover{background:#3a3a3c}
+.dark-mode .st-btn{border-color:#3a3a3c;color:#8e8e93}
+.dark-mode .st-btn:hover{border-color:#7dab8a;color:#7dab8a;background:#2a3a2d}
+.dark-mode .st-btn.open{background:#2a3a2d;border-color:#7dab8a;color:#7dab8a}
+.dark-mode #statusBar{background:#2c2c2e;border-color:#3a3a3c;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.dark-mode .st-val{color:#e5e5e7}
+.dark-mode .msg-menu{background:#2c2c2e;border-color:#3a3a3c;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.dark-mode .msg-menu-item{color:#e5e5e7;border-bottom-color:#3a3a3c}
+.dark-mode .msg-menu-item:hover{background:#3a3a3c}
+.dark-mode .toast{background:rgba(60,60,60,.95)}
+.dark-mode .plus-menu{background:#2c2c2e;border-color:#3a3a3c;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
+.dark-mode .plus-item span{color:#8e8e93}
+.dark-mode .plus-item:hover{background:#3a3a3c}
+.dark-mode .skp{background:#2c2c2e;border-color:#3a3a3c;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
+.dark-mode .ski{border-color:#3a3a3c;background:#1c1c1e}
+.dark-mode .rb{border-color:#7dab8a;color:#7dab8a}
+.dark-mode .rb:hover{background:#7dab8a;color:#fff}
+.dark-mode .sdb{background:#7dab8a}
+.dark-mode .tb2{border-color:#3a3a3c;background:#2c2c2e;color:#8e8e93}
+.dark-mode .tb2:hover{background:#3a3a3c;color:#e5e5e7}
+.dark-mode .sb{background:#2c2c2e;border-top-color:#3a3a3c}
+.dark-mode .tc{background:#2c2c2e;box-shadow:0 1px 6px rgba(0,0,0,.3)}
+.dark-mode .tc-b{border-top:none}
+.dark-mode .tc-b .lb{color:#8e8e93}
+.dark-mode .tc-b .tg{color:#7dab8a;background:#2a3a2d}
+.dark-mode .voice-bar .vb-wave span{background:#8e8e93}
+.dark-mode .voice-text{border-left-color:#3a3a3c;color:#8e8e93}
+.dark-mode .txt-img{background:linear-gradient(135deg,#2c2c2e,#3a3a3c)}
+.dark-mode .txt-img-desc{color:#8e8e93}
+.dark-mode .gift-msg{background:linear-gradient(135deg,#3a3a2e,#2c2c2e);border-color:#5a5a3c}
+.dark-mode .gift-msg-name{color:#e5e5e7}
+.dark-mode .gift-msg-desc{color:#8e8e93}
+.dark-mode .decl{background:#2c2c2e;border-color:#3a3a3c;color:#8e8e93}
+.dark-mode .decl strong{color:#e5e5e7}
+.dark-mode .fmt-info{background:#2c2c2e;border-color:#3a3a3c;color:#8e8e93}
+.dark-mode .fmt-info code{background:#3a3a3c;color:#e5e5e7}
+.dark-mode .manual-body{color:#e5e5e7}
+.dark-mode .m-tip{background:#2a3a2d;border-left-color:#7dab8a;color:#e5e5e7}
+.dark-mode .m-q{color:#7dab8a}
+.dark-mode .m-a{color:#8e8e93}
+.dark-mode .disc-item{background:#2c2c2e;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.dark-mode .disc-item:hover{background:#2a3a2d;border-color:#7dab8a;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.dark-mode .disc-icon{background:linear-gradient(135deg,#2a3a2d,#3a4a3d)}
+.dark-mode .disc-name{color:#e5e5e7}
+.dark-mode .disc-desc{color:#8e8e93}
+.dark-mode .zh-post{background:#2c2c2e;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.dark-mode .zh-post:hover{box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.dark-mode .zh-post-title{color:#e5e5e7}
+.dark-mode .zh-post-body{color:#8e8e93}
+.dark-mode .zh-post-meta{border-top-color:#3a3a3c;color:#636366}
+.dark-mode .zh-profile{background:linear-gradient(180deg,#1c1c1e,#2c2c2e)}
+.dark-mode .zh-pname{color:#e5e5e7}
+.dark-mode .zh-pbio{color:#8e8e93}
+.dark-mode .zh-pav{background:linear-gradient(135deg,#2a3a2d,#3a4a3d);border-color:#3a3a3c}
+.dark-mode .pyq-scroll{background:#1c1c1e}
+.dark-mode .pyq-header{background:linear-gradient(135deg,#2a3a2d,#1a2a1f)}
+.dark-mode .pyq-post{background:#2c2c2e;border-bottom-color:#3a3a3c}
+.dark-mode .pyq-post textarea{background:#1c1c1e;border-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .pyq-post textarea:focus{border-color:#7dab8a}
+.dark-mode .pyq-item{border-bottom-color:#3a3a3c}
+.dark-mode .pyq-text{color:#e5e5e7}
+.dark-mode .pyq-inter{background:#1c1c1e}
+.dark-mode .pyq-lk{color:#7dab8a}
+.dark-mode .pyq-cms{border-top-color:#3a3a3c}
+.dark-mode .pyq-cm b{color:#7dab8a}
+.dark-mode .pyq-ci input{background:#1c1c1e;border-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .pyq-ci input:focus{border-color:#7dab8a}
+.dark-mode .pyq-ci button{background:#7dab8a}
+.dark-mode .cp-panel{background:#1c1c1e}
+.dark-mode .cp-bg{background:linear-gradient(160deg,#2a3a2d,#1a2a1f,#151f18)}
+.dark-mode .cp-av{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.dark-mode .cp-tabs{background:#2c2c2e;padding:4px 12px}
+.dark-mode .cp-tabs button{background:#1c1c1e;color:#8e8e93}
+.dark-mode .cp-tabs button.active{background:#7dab8a;color:#fff}
+.dark-mode .cp-tabs button:not(.active):hover{background:#2a3a2d;color:#7dab8a}
+.dark-mode .cp-body{background:#1c1c1e}
+.dark-mode .cp-anni-item{background:#2c2c2e;border-color:#3a3a3c;box-shadow:none}
+.dark-mode .cp-anni-item:hover{border-color:#7dab8a}
+.dark-mode .cp-anni-item .anni-name{color:#e5e5e7}
+.dark-mode .cp-anni-item .anni-count{background:#2a3a2d;color:#7dab8a}
+.dark-mode .wish-card{background:#2c2c2e;border-color:#3a3a3c;box-shadow:none}
+.dark-mode .wish-card:hover{border-color:#7dab8a}
+.dark-mode .wish-card .wish-txt{color:#e5e5e7}
+.dark-mode .wish-card .wish-done{border-color:#7dab8a;color:#7dab8a}
+.dark-mode .wish-card .wish-done.checked{background:#7dab8a;color:#fff}
+.dark-mode .note-card{box-shadow:none}
+.dark-mode .note-card.from-user{background:linear-gradient(135deg,#2e2a1e,#2c2820);border-color:#4a4030;border-left-color:#8B6914}
+.dark-mode .note-card.from-char{background:linear-gradient(135deg,#1e2a20,#202c22);border-color:#2a3a2c;border-left-color:#7dab8a}
+.dark-mode .note-card .note-txt{color:#e5e5e7}
+.dark-mode .gd-wrap{background:#1c1c1e}
+.dark-mode .gd-plot{background:linear-gradient(180deg,#1e2a20,#222e24,#2a2420);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.dark-mode .gd-plot:hover{box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.dark-mode .gd-plot-name{color:#7dab8a}
+.dark-mode .gd-plot-desc{color:#689F38}
+.dark-mode .gd-bar{background:rgba(255,255,255,.08)}
+.dark-mode .gd-bar-label{color:#689F38}
+.dark-mode .gd-bar-val{color:#689F38}
+.dark-mode .gd-btn.water{background:linear-gradient(135deg,#1a2a3a,#1e3040);color:#64B5F6}
+.dark-mode .gd-btn.break{background:linear-gradient(135deg,#3a1a1a,#402020);color:#EF9A9A}
+.dark-mode .gd-header-title{color:#7dab8a}
+.dark-mode .gd-header-sub{color:#689F38}
+.dark-mode .gd-plot.wilted{background:linear-gradient(180deg,#2a2424,#2c2626,#2a2420)}
+.dark-mode .gd-plot.full{background:linear-gradient(180deg,#2a2820,#2c2a1e,#282e20)}
+.dark-mode .gd-status.growing{background:rgba(76,175,80,.15);color:#81C784}
+.dark-mode .gd-status.wilted{background:rgba(198,40,40,.15);color:#EF9A9A}
+.dark-mode .gd-status.blooming{background:rgba(255,193,7,.15);color:#FFD54F}
+.dark-mode .room-spot{background:#2c2c2e;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.dark-mode .room-spot:hover{box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.dark-mode .room-spot-name{color:#e5e5e7}
+.dark-mode .room-result{background:#2c2c2e;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.dark-mode .room-result-header{background:#3a3a3c}
+.dark-mode .room-result-header:hover{background:#2a3a2d}
+.dark-mode .room-result-title{color:#e5e5e7}
+.dark-mode .room-result-body{color:#8e8e93;border-top-color:#3a3a3c;background:#2c2c2e}
+.dark-mode .room-notice{background:linear-gradient(135deg,#3a2a1a,#2c2418);color:#FFB74D}
+.dark-mode .nv-card{background:#2c2c2e;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.dark-mode .nv-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.dark-mode .nv-card-title{color:#e5e5e7}
+.dark-mode .nv-card-body{color:#8e8e93}
+.dark-mode .nv-card-acts{background:#1c1c1e;border-top-color:#3a3a3c}
+.dark-mode .nv-tab{background:#2c2c2e;color:#8e8e93;box-shadow:none}
+.dark-mode .nv-tab:hover{background:#2a3a2d;color:#7dab8a}
+.dark-mode .nv-tab.active{background:#7dab8a;color:#fff}
+.dark-mode .nv-tag{background:#2c2c2e;color:#8e8e93;box-shadow:none}
+.dark-mode .nv-tag.active{background:#2a3a2d;color:#7dab8a}
+.dark-mode .nv-gen-bar{background:#2c2c2e;box-shadow:none}
+.dark-mode .nv-gen-bar select,.dark-mode .nv-gen-bar input[type=number]{background:#1c1c1e;border-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .nv-search input{background:#2c2c2e;color:#e5e5e7;box-shadow:none}
+.dark-mode .nv-search input:focus{box-shadow:0 0 0 1px rgba(125,171,138,.3)}
+.dark-mode .nv-style-card{background:#2c2c2e;box-shadow:none}
+.dark-mode .nv-style-card .nv-sn{color:#e5e5e7}
+.dark-mode .music-player{background:#2c2c2e;box-shadow:0 -4px 24px rgba(0,0,0,.5)}
+.dark-mode .mp-header{border-bottom-color:#3a3a3c}
+.dark-mode .mp-title{color:#e5e5e7}
+.dark-mode .mp-bar{background:#3a3a3c}
+.dark-mode .mp-btn{color:#e5e5e7}
+.dark-mode .mp-btn:hover{background:#3a3a3c}
+.dark-mode .mp-btn.mp-play{background:#7dab8a}
+.dark-mode .mp-lyric-line{color:#636366}
+.dark-mode .mp-lyric-line.active{color:#7dab8a}
+.dark-mode .mp-song:hover{background:#3a3a3c}
+.dark-mode .mp-song.playing{background:#2a3a2d}
+.dark-mode .mp-song-name{color:#e5e5e7}
+.dark-mode .mp-song.playing .mp-song-name{color:#7dab8a}
+.dark-mode .mp-list-panel{border-top-color:#3a3a3c}
+.dark-mode .mp-list-header{color:#e5e5e7}
+.dark-mode .music-mini{background:#2c2c2e;border-color:#3a3a3c;box-shadow:0 2px 12px rgba(0,0,0,.4)}
+.dark-mode .mm-name{color:#e5e5e7}
+.dark-mode .mm-btn{color:#e5e5e7}
+.dark-mode .phone-panel .ph-screen{background:#1c1c1e}
+.dark-mode .phone-panel .ph-status-bar{background:rgba(28,28,30,.85);color:#e5e5e7}
+.dark-mode .phone-panel .ph-header-title{color:#e5e5e7}
+.dark-mode .phone-panel .ph-header-btn{background:rgba(255,255,255,.08);color:#7dab8a}
+.dark-mode .ph-tabs{background:rgba(255,255,255,.06)}
+.dark-mode .ph-tabs button{color:#8e8e93}
+.dark-mode .ph-tabs button.active{color:#e5e5e7;background:#3a3a3c;box-shadow:none}
+.dark-mode .ph-card{background:#2c2c2e}
+.dark-mode .ph-card+.ph-card{border-top-color:#3a3a3c}
+.dark-mode .ph-card-title{color:#e5e5e7}
+.dark-mode .ph-card-sub{color:#8e8e93}
+.dark-mode .ph-card-icon.blue{background:rgba(0,122,255,.15)}
+.dark-mode .ph-card-icon.green{background:rgba(52,199,89,.15)}
+.dark-mode .ph-card-icon.orange{background:rgba(255,149,0,.15)}
+.dark-mode .ph-card-icon.purple{background:rgba(175,82,222,.15)}
+.dark-mode .ph-amount.income{color:#34c759}
+.dark-mode .ph-amount.expense{color:#ff453a}
+.dark-mode #diaryPanel>div:last-child{background:linear-gradient(180deg,#2a2520,#221e1a)}
+.dark-mode .dr-write-area{background:linear-gradient(135deg,#2a2520,#2c2822)}
+.dark-mode .dr-write-area::before{background:repeating-linear-gradient(transparent,transparent 27px,rgba(255,255,255,.03) 27px,rgba(255,255,255,.03) 28px)}
+.dark-mode .dr-write-area textarea{color:#e5e5e7}
+.dark-mode .dr-write-area textarea::placeholder{color:#636366}
+.dark-mode .dr-page{background:linear-gradient(135deg,#2a2520,#2c2822)}
+.dark-mode .dr-page::before{background:repeating-linear-gradient(transparent,transparent 27px,rgba(255,255,255,.03) 27px,rgba(255,255,255,.03) 28px)}
+.dark-mode .dr-page::after{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.06),rgba(255,255,255,.03))}
+.dark-mode .dr-page .dr-body{color:#d4c8b8}
+.dark-mode .dr-page .dr-date{color:#7a6e60}
+.dark-mode .dr-page .dr-reply{background:rgba(255,255,255,.04);color:#a89880;border-left-color:rgba(255,255,255,.08)}
+.dark-mode .dr-nav-btn{border-color:rgba(255,255,255,.1);color:#a89880}
+.dark-mode .dr-nav-btn:hover{background:rgba(255,255,255,.05)}
+.dark-mode .dr-hint{color:#7a6e60}
+.dark-mode .dr-empty{color:#7a6e60}
+.dark-mode .dr-divider{background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.dark-mode .ach-overlay{background:rgba(0,0,0,.6)}
+.dark-mode .ach-card{background:#2c2c2e}
+.dark-mode .ach-title{color:#e5e5e7}
+.dark-mode .ach-row{background:#1c1c1e}
+.dark-mode .ach-row-val{color:#e5e5e7}
+.dark-mode .ach-bar{background:rgba(255,255,255,.06)}
+.dark-mode .ach-close{border-color:#3a3a3c;color:#8e8e93}
+.dark-mode .ach-close:hover{background:#2a3a2d;border-color:#7dab8a;color:#7dab8a}
+.dark-mode .crane-overlay{background:rgba(0,0,0,.6)}
+.dark-mode .crane-card{background:linear-gradient(155deg,#2c2820,#2a2618,#282418)}
+.dark-mode .crane-card::before{opacity:.2}
+.dark-mode .crane-text{color:#d4c8b8}
+.dark-mode .crane-from{color:#7a6e60}
+.dark-mode .crane-close{border-color:rgba(255,255,255,.1);color:#a89880}
+.dark-mode .crane-close:hover{background:rgba(255,255,255,.05)}
+.dark-mode .call-overlay{background:#000}
+.dark-mode .call-remote{background:#1c1c1e}
+.dark-mode .smi{background:#2c2c2e;border-color:#3a3a3c}
+.dark-mode .smi .sn{color:#e5e5e7}
+.dark-mode .npc-card{background:#2c2c2e;border-color:#3a3a3c}
+.dark-mode .npc-name{color:#e5e5e7}
+.dark-mode .mem-card{background:#2c2c2e;border-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .ml{border-color:#3a3a3c}
+.dark-mode .mi{border-bottom-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .mi:hover{background:#2a3a2d}
+.dark-mode .mi.sel{background:#2a3a2d;color:#7dab8a}
+.dark-mode .upr .upv{background:#2c2c2e;border-color:#3a3a3c;color:#636366}
+.dark-mode .upl{background:#2c2c2e;border-color:#3a3a3c;color:#e5e5e7}
+.dark-mode .upl:hover{background:#3a3a3c}
+.dark-mode .eye{border-color:#3a3a3c;color:#8e8e93}
+.dark-mode .shop-card{background:#2c2c2e;border-color:#3a3a3c}
+.dark-mode .shop-card-name{color:#e5e5e7}
+.dark-mode .gift-stock-item{background:#2c2c2e;border-color:#3a3a3c}
+.dark-mode .gift-stock-item:hover{background:#2a3a2d}
+.dark-mode .gift-stock-name{color:#e5e5e7}
+.dark-mode .cj-item{background:#2c2c2e;border-color:#3a3a3c}
+.dark-mode .cj-item-text{color:#e5e5e7}
+.dark-mode .splash{background:linear-gradient(160deg,#1c1c1e,#151515,#0a0a0a)}
+.dark-mode .splash-name{color:#7dab8a}
+.dark-mode .splash-line{background:linear-gradient(90deg,transparent,#7dab8a,transparent)}
+.dark-mode .splash-status{color:#636366}
+.dark-mode .splash-status.done{color:#7dab8a}
+.dark-mode .splash-author-tl,.dark-mode .splash-author-br{color:#636366}
+#diaryPanel{z-index:101}
+#diaryPanel>div:last-child{background:linear-gradient(180deg,#f5efe0 0%,#ede4d3 100%)}
+.dr-page{padding:22px 20px 18px;margin-bottom:0;background:linear-gradient(135deg,#faf6ed,#f3ece0);position:relative;border:none;border-radius:0;box-shadow:0 1px 3px rgba(139,115,85,.1);min-height:auto;transition:transform .3s ease}
+.dr-page::before{content:'';position:absolute;top:0;left:24px;right:24px;bottom:0;background:repeating-linear-gradient(transparent,transparent 27px,rgba(139,115,85,.08) 27px,rgba(139,115,85,.08) 28px);pointer-events:none}
+.dr-page::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,rgba(180,140,100,.15),rgba(180,140,100,.3),rgba(180,140,100,.15));pointer-events:none}
+.dr-page+.dr-page{border-top:1px solid rgba(180,140,100,.12)}
+.dr-page .dr-who{font-size:12px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:5px;position:relative;z-index:1}
+.dr-page.from-user .dr-who{color:#8B6914}
+.dr-page.from-user .dr-who::before{content:'🖊';font-size:11px}
+.dr-page.from-char .dr-who{color:#4a6b4e}
+.dr-page.from-char .dr-who::before{content:'🌿';font-size:11px}
+.dr-page .dr-date{font-size:10px;color:#a89880;margin-bottom:10px;position:relative;z-index:1;font-style:italic}
+.dr-page .dr-body{font-size:14px;color:#4a3f35;line-height:2;white-space:pre-wrap;word-break:break-word;position:relative;z-index:1;font-family:Georgia,"Noto Serif SC",serif}
+.dr-page .dr-reply{margin-top:12px;padding:10px 14px;border-radius:8px;background:rgba(139,115,85,.08);font-size:12.5px;color:#6b5d4f;line-height:1.7;border-left:2px solid rgba(139,115,85,.25);font-style:italic}
+.dr-page .dr-del{position:absolute;top:12px;right:12px;background:none;border:none;color:#c4a882;font-size:13px;cursor:pointer;opacity:.4;transition:opacity .15s;z-index:2}
+.dr-page .dr-del:hover{opacity:1;color:#c0392b}
+.dr-nav{display:flex;justify-content:center;align-items:center;gap:16px;padding:14px 0;position:relative;z-index:1}
+.dr-nav-btn{background:none;border:1px solid rgba(139,115,85,.2);border-radius:8px;padding:6px 16px;font-size:12px;color:#8b7355;cursor:pointer;transition:all .15s;font-family:Georgia,serif}
+.dr-nav-btn:hover{background:rgba(139,115,85,.08);border-color:rgba(139,115,85,.35)}
+.dr-nav-btn:disabled{opacity:.3;cursor:default}
+.dr-nav-info{font-size:11px;color:#a89880;font-style:italic}
+.dr-write-area{background:linear-gradient(135deg,#faf6ed,#f3ece0);border-radius:12px;padding:16px;margin-bottom:16px;position:relative;box-shadow:inset 0 1px 3px rgba(139,115,85,.08)}
+.dr-write-area::before{content:'';position:absolute;top:0;left:20px;right:20px;bottom:0;background:repeating-linear-gradient(transparent,transparent 27px,rgba(139,115,85,.06) 27px,rgba(139,115,85,.06) 28px);pointer-events:none;border-radius:12px}
+.dr-write-area textarea{background:transparent;border:none;font-size:14px;line-height:2;color:#4a3f35;font-family:Georgia,"Noto Serif SC",serif;position:relative;z-index:1;width:100%;min-height:100px;resize:vertical;outline:none;padding:0}
+.dr-write-area textarea::placeholder{color:#c4b8a5;font-style:italic}
+.dr-hint{font-size:11px;color:#a89880;margin-top:6px;font-style:italic;text-align:center}
+.dr-empty{text-align:center;padding:40px 20px;color:#a89880;font-size:14px;font-style:italic;font-family:Georgia,serif}
+.dr-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(139,115,85,.3),transparent);margin:0 auto}
 </style>
 </head>
 <body>
@@ -628,13 +980,13 @@ input[type="file"]{display:none}
 <!-- 发现 -->
 <div class="fp" id="discoverPanel">
 <div class="fh"><button class="fc2" id="discoverClose">✕</button><h2>发现</h2><div style="width:26px"></div></div>
-<div style="padding:12px 16px">
-<div class="disc-item" id="discPyq"><div class="disc-icon">◉</div><div class="disc-info"><div class="disc-name">朋友圈</div><div class="disc-desc">查看好友动态</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
-<div class="disc-item" id="discZhihu"><div class="disc-icon">知</div><div class="disc-info"><div class="disc-name">知乎</div><div class="disc-desc">发现更多内容</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
-<div class="disc-item" id="discShop"><div class="disc-icon">🛒</div><div class="disc-info"><div class="disc-name">商店</div><div class="disc-desc">浏览商品</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
-<div class="disc-item" id="discGarden"><div class="disc-icon">🌿</div><div class="disc-info"><div class="disc-name">后花园</div><div class="disc-desc">照料药草花园</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
-<div class="disc-item" id="discRoom"><div class="disc-icon">🚪</div><div class="disc-info"><div class="disc-name">Ta的房间</div><div class="disc-desc">偷偷看看他的私人物品</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
-<div class="disc-item" id="discNovel"><div class="disc-icon">📖</div><div class="disc-info"><div class="disc-name">小说</div><div class="disc-desc">生成你们的同人文</div></div><span style="color:var(--tl);font-size:16px">›</span></div>
+<div style="padding:8px 14px">
+<div class="disc-item" id="discPyq"><div class="disc-icon">◉</div><div class="disc-info"><div class="disc-name">朋友圈</div><div class="disc-desc">查看好友动态</div></div><span class="disc-arrow">›</span></div>
+<div class="disc-item" id="discZhihu"><div class="disc-icon">知</div><div class="disc-info"><div class="disc-name">知乎</div><div class="disc-desc">发现更多内容</div></div><span class="disc-arrow">›</span></div>
+<div class="disc-item" id="discShop"><div class="disc-icon">🛒</div><div class="disc-info"><div class="disc-name">商店</div><div class="disc-desc">浏览商品</div></div><span class="disc-arrow">›</span></div>
+<div class="disc-item" id="discGarden"><div class="disc-icon">🌿</div><div class="disc-info"><div class="disc-name">后花园</div><div class="disc-desc">照料药草花园</div></div><span class="disc-arrow">›</span></div>
+<div class="disc-item" id="discRoom"><div class="disc-icon">🚪</div><div class="disc-info"><div class="disc-name">Ta的房间</div><div class="disc-desc">偷偷看看他的私人物品</div></div><span class="disc-arrow">›</span></div>
+<div class="disc-item" id="discNovel"><div class="disc-icon">📖</div><div class="disc-info"><div class="disc-name">小说</div><div class="disc-desc">生成你们的同人文</div></div><span class="disc-arrow">›</span></div>
 </div>
 </div>
 <!-- Ta的房间 -->
@@ -735,10 +1087,12 @@ input[type="file"]{display:none}
 <!-- 知乎 -->
 <div class="fp" id="zhihuPanel">
 <div class="fh"><button class="fc2" id="zhihuClose">✕</button><h2>知乎</h2><div style="width:26px"></div></div>
-<div class="stb">
-<button class="tbn active" data-zht="zhHome">首页</button>
-<button class="tbn" data-zht="zhChar">TA的主页</button>
-<button class="tbn" data-zht="zhUser">我的主页</button>
+<div class="stb" style="overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none">
+<button class="tbn active" data-zht="zhHome" style="flex-shrink:0">首页</button>
+<button class="tbn" data-zht="zhChar" style="flex-shrink:0">TA的主页</button>
+<button class="tbn" data-zht="zhUser" style="flex-shrink:0">我的主页</button>
+<button class="tbn" data-zht="zhForum" style="flex-shrink:0">论坛</button>
+<button class="tbn" data-zht="zhLiked" style="flex-shrink:0">赞过</button>
 </div>
 <div class="sct">
 <div class="tp3 active" id="zhHome">
@@ -783,6 +1137,38 @@ input[type="file"]{display:none}
 </div>
 <div class="sd3"></div>
 <div id="zhUserFeed"><div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">还没有帖子</div></div>
+</div>
+<div class="tp3" id="zhLiked">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<label class="fl" style="margin:0">赞过的内容</label>
+<span class="stxt" id="zhLikedCnt">(0)</span>
+</div>
+<div id="zhLikedFeed"><div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">还没有赞过的内容</div></div>
+</div>
+<div class="tp3" id="zhForum">
+<div class="fg"><label class="fl">论坛设置</label>
+<div class="bg3" style="margin-bottom:8px;align-items:center">
+<label class="fl" style="margin:0;margin-right:8px">预设</label>
+<select id="zhForumPresetSel" style="flex:1;padding:6px;border:1px solid var(--bc);border-radius:6px;font-size:13px;outline:none"><option value="__current__">当前论坛</option></select>
+<button class="btn bs2 bsm" id="zhForumPresetSave">保存</button>
+<button class="btn bs2 bsm" id="zhForumPresetDel" style="color:var(--dg)">删除</button>
+</div>
+<input class="fi" id="zhForumName" placeholder="论坛名称（如：怪谈协会）" style="margin-bottom:6px">
+<textarea class="ft" id="zhForumRules" placeholder="论坛规则/世界观（如：这里讨论各种都市传说...）" style="min-height:60px"></textarea>
+<div class="bg3" style="margin-top:8px"><button class="btn bp bsm" id="zhForumSave">保存设置</button></div>
+</div>
+<div class="sd3"></div>
+<div class="stb" id="zhForumCatTabs" style="border-bottom:none;margin-bottom:8px">
+<button class="tbn active" data-zfc="zfAll">推荐</button>
+<button class="tbn" data-zfc="zfHot">热榜</button>
+<button class="tbn" data-zfc="zfStory">故事</button>
+<button class="tbn" data-zfc="zfQa">问答</button>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<label class="fl" style="margin:0">论坛帖子</label>
+<button class="btn bp bsm" id="zhForumRefresh">刷新帖子</button>
+</div>
+<div id="zhForumFeed"><div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">点击刷新查看帖子</div></div>
 </div>
 </div>
 </div>
@@ -862,6 +1248,12 @@ input[type="file"]{display:none}
 <div class="sct">
 <!-- API -->
 <div class="tp3 active" id="tab-api">
+<div class="bg3" style="margin-bottom:12px;align-items:center">
+<label class="fl" style="margin:0;margin-right:8px">预设</label>
+<select id="apiPresetSelect" style="flex:1;padding:6px;border:1px solid var(--bc);border-radius:6px;font-size:13px;outline:none"><option value="__current__">当前配置</option></select>
+<button class="btn bs2 bsm" id="apiSavePreset">保存</button>
+<button class="btn bs2 bsm" id="apiDelPreset" style="color:var(--dg)">删除</button>
+</div>
 <div class="fg"><label class="fl">API 地址</label><input class="fi" id="fUrl" placeholder="https://api.openai.com/v1"></div>
 <div class="fg"><label class="fl">API Key</label><div class="kr"><input class="fi" id="fKey" type="password" placeholder="sk-..."><button class="eye" id="eyeBtn">👁</button></div></div>
 <div class="fg"><label class="fl">模型</label><div class="fr"><div class="fg"><input class="fi" id="fMod" placeholder="gpt-4o-mini"></div><div style="flex-shrink:0"><button class="btn bp" id="fetchBtn" style="height:40px">拉取</button></div></div><div class="ml" id="modList" style="display:none"></div></div>
@@ -887,6 +1279,11 @@ input[type="file"]{display:none}
 <!-- 世界书 -->
 <div class="tp3" id="tab-world">
 <div class="fg"><div style="display:flex;justify-content:space-between"><label class="fl" style="margin:0">世界书</label><span class="cc" id="wCnt">0</span></div>
+<div class="bg3" style="margin-bottom:8px">
+<select id="wbPresetSelect" style="flex:1;padding:6px;border:1px solid var(--bc);border-radius:6px;font-size:13px;outline:none"><option value="__current__">当前编辑</option></select>
+<button class="btn bs2 bsm" id="wbSavePreset">存为预设</button>
+<button class="btn bs2 bsm" id="wbDelPreset" style="color:var(--dg)">删除</button>
+</div>
 <span class="fs">⬇️ 粘贴世界书（行为限制、规则等）</span>
 <textarea class="ft" id="fWB" style="min-height:300px" placeholder="在此粘贴世界书..."></textarea></div>
 <div class="bg3"><button class="btn bp" id="saveW">保存</button><button class="btn bs2" id="rstW">恢复默认</button></div>
@@ -948,6 +1345,20 @@ input[type="file"]{display:none}
 <div class="fg"><label class="fl">我的知乎背景</label><div class="upr"><div class="upv wd" id="zhUBgPv">无</div><label class="upl" for="zhUBgF">上传</label><input type="file" id="zhUBgF" accept="image/*"><button class="btn bsm bs2" id="clrZhUBg">清除</button></div></div>
 <div class="fg"><label class="fl">TA的手机壁纸</label><div class="upr"><div class="upv wd" id="phWpPv">无</div><label class="upl" for="phWpF">上传</label><input type="file" id="phWpF" accept="image/*"><button class="btn bsm bs2" id="clrPhWp">清除</button></div></div>
 <div class="sd3"></div>
+<div class="fg"><label class="fl">🌙 护眼模式</label><span class="fs">切换为深色背景，保护眼睛</span>
+<div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+<button class="btn bp bsm" id="toggleDarkMode">切换</button>
+<span class="stxt" id="darkModeStatus">当前：浅色模式</span>
+</div>
+</div>
+<div class="sd3"></div>
+<div class="fg"><label class="fl">全屏显示</label><span class="fs">去除边框和圆角，自动适应浏览器屏幕</span>
+<div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+<button class="btn bp bsm" id="toggleFullscreen">开启全屏</button>
+<span class="stxt" id="fullscreenStatus">当前：窗口模式</span>
+</div>
+</div>
+<div class="sd3"></div>
 <div class="fg"><label class="fl">全局字体</label><span class="fs">输入字体文件链接（.ttf/.woff/.woff2），留空则使用默认字体</span>
 <input class="fi" id="fFontUrl" placeholder="https://example.com/font.ttf">
 <div class="bg3" style="margin-top:8px"><button class="btn bp bsm" id="applyFont">应用</button><button class="btn bs2 bsm" id="clearFont">清除</button></div>
@@ -1006,13 +1417,13 @@ input[type="file"]{display:none}
 所有创作版权独属于心田一个人<br>
 未经授权禁止任何形式的复制、转载、改编<br><br>
 <strong style="color:var(--dg)">⚠️ 专属声明</strong><br> 本软件为「谢蔚安」个人专属智能体<br> 不推荐用于其他人设角色聊天<br> 更换人设可能导致功能异常 <br><br>
-<span style="font-size:11px;color:var(--tl)">v2.3.0 · 侵权必究</span>
+<span style="font-size:11px;color:var(--tl)">v2.4.0 · 侵权必究</span>
 </div>
 </div>
 <!-- 手册 -->
 <div class="tp3" id="tab-manual">
 <div class="manual-body">
-<div class="m-title">📖 使用手册 v2.3</div><br>
+<div class="m-title">📖 使用手册 v2.4</div><br>
 
 <div style="border:1.5px solid var(--dg);border-radius:10px;padding:14px 16px;margin:12px 0;background:#FFF8F8">
 <strong style="color:var(--dg)">⚠️ 重要声明</strong><br><br>
@@ -1184,33 +1595,74 @@ input[type="file"]{display:none}
 </div>
 </div>
 </div>
+<!-- 日记本 -->
+<div class="fp" id="diaryPanel">
+<div class="fh" style="background:linear-gradient(135deg,#f5efe0,#ede4d3);border-bottom:1px solid rgba(180,140,100,.15)"><button class="fc2" id="diaryClose" style="color:#8b7355">✕</button><h2 style="color:#5a4a3a;font-family:Georgia,serif">📔 日记本</h2><div style="width:26px"></div></div>
+<div class="stb" style="background:linear-gradient(135deg,#f0e8d8,#e8dece);border-bottom:1px solid rgba(180,140,100,.12)">
+<button class="tbn active" data-drt="drMy" style="color:#8b7355">我的日记</button>
+<button class="tbn" data-drt="drTa" style="color:#8b7355">TA的日记</button>
+</div>
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0;background:linear-gradient(180deg,#f5efe0,#ede4d3)">
+<div class="tp3 active" id="drMy" style="padding:16px">
+<div class="dr-write-area">
+<textarea id="drMyInput" placeholder="写下今天的日记..." rows="4"></textarea>
+</div>
+<div style="display:flex;justify-content:center;gap:8px;margin-bottom:4px">
+<button class="dr-nav-btn" id="drMyPost" style="background:rgba(139,115,85,.1);font-weight:600">📝 写日记</button>
+</div>
+<div class="dr-hint" id="drMyHint"></div>
+<div style="padding:12px 0"><div class="dr-divider"></div></div>
+<div id="drMyFeed"></div>
+<div class="dr-nav" id="drMyNav"></div>
+</div>
+<div class="tp3" id="drTa" style="padding:16px">
+<div style="display:flex;justify-content:center;margin-bottom:16px">
+<button class="dr-nav-btn" id="drTaGen" style="background:rgba(139,115,85,.1);font-weight:600">🌿 让TA写日记</button>
+</div>
+<div id="drTaFeed"></div>
+<div class="dr-nav" id="drTaNav"></div>
+</div>
+</div>
+</div>
 <!-- 查看手机 -->
-<div class="phone-panel" id="phonePanel" style="background-size:cover;background-position:center">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;background:var(--w)">
-<button class="fc2" id="phClose">✕</button>
-<h2 style="font-size:17px;font-weight:600" id="phTitle">📱 TA的手机</h2>
-<button class="btn bp bsm" id="phRefresh">刷新</button>
+<div class="phone-panel" id="phonePanel">
+<div class="ph-screen">
+<div class="ph-status-bar">
+<span class="ph-time-display" id="phTimeDisplay">9:41</span>
+<span class="ph-icons">📶 📡 🔋</span>
+</div>
+<div class="ph-header">
+<div class="ph-header-title" id="phTitle">TA的手机</div>
+<div style="display:flex;gap:6px">
+<button class="ph-header-btn" id="phRefresh">↻</button>
+<button class="ph-header-btn" id="phClose">✕</button>
+</div>
 </div>
 <div class="ph-tabs">
-<button class="active" data-pht="phBrowse">浏览记录</button>
-<button data-pht="phChat">聊天记录</button>
+<button class="active" data-pht="phBrowse">浏览</button>
+<button data-pht="phChat">聊天</button>
 <button data-pht="phWallet">钱包</button>
-<button data-pht="phMemo">备忘录</button>
+<button data-pht="phMemo">备忘</button>
 </div>
 <div class="ph-body">
-<div class="ph-sec active" id="phBrowse"><div class="ph-empty">点击刷新查看</div></div>
-<div class="ph-sec" id="phChat"><div class="ph-empty">点击刷新查看</div></div>
-<div class="ph-sec" id="phWallet"><div class="ph-empty">点击刷新查看</div></div>
-<div class="ph-sec" id="phMemo"><div class="ph-empty">点击刷新查看</div></div>
+<div class="ph-sec active" id="phBrowse"><div class="ph-empty">点击 ↻ 刷新查看</div></div>
+<div class="ph-sec" id="phChat"><div class="ph-empty">点击 ↻ 刷新查看</div></div>
+<div class="ph-sec" id="phWallet"><div class="ph-empty">点击 ↻ 刷新查看</div></div>
+<div class="ph-sec" id="phMemo"><div class="ph-empty">点击 ↻ 刷新查看</div></div>
+</div>
+<div class="ph-home-indicator"></div>
 </div>
 </div>
 <!-- 情侣空间 -->
 <div class="cp-panel" id="cpPanel">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:.5px solid var(--bc);min-height:56px;flex-shrink:0;background:var(--w)">
-<button class="fc2" id="cpClose">✕</button>
-<h2 style="font-size:17px;font-weight:600">情侣空间</h2>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:none;min-height:52px;flex-shrink:0;background:var(--w)">
+<button class="fc2" id="cpClose" style="font-size:18px;color:var(--ts)">✕</button>
+<h2 style="font-size:16px;font-weight:700;letter-spacing:.5px;color:var(--tp)">💕 情侣空间</h2>
+<div style="display:flex;gap:2px">
+<button class="tbtn" id="cpDiaryBtn" title="日记本">📔</button>
 <button class="tbtn" id="cpPhoneBtn" title="查看TA的手机">📱</button>
 <button class="tbtn" id="cpBgBtn" title="更换背景">🖼</button>
+</div>
 <input type="file" id="cpBgF" accept="image/*" style="display:none">
 </div>
 <div class="cp-bg" id="cpBgArea">
@@ -1336,6 +1788,10 @@ var DC='你是谢蔚安，33岁男性，清岚国际心理健康诊所主治医�
 - 看到燕世笑时眼神不自觉柔软\n\
 - 燕世受伤/难过时短暂失去冷静\n\
 - 做饭卖相一般味道不错\n\
+- 偶尔发语音消息，声音低沉带点沙哑\n\
+- 打字时偶尔打错字然后撤回重发\n\
+- 深夜回消息变慢，但不会不回\n\
+- 看到有趣的东西会拍照分享\n\
 \n\
 # 爱好\n\
 种植物并做成药草，德彪西《月光》，记录患者病情定制方案\n\
@@ -1622,11 +2078,11 @@ var DW='# 世界书\n\
 - 情感通过行动、沉默、细微反常传达，不直白告白\n\
 \n\
 ## 文风禁忌\n\
-- 绝对避免过度戏剧化的情绪爆发（谢蔚安不会大吼大叫）\n\
-- 绝对避免华丽繁复的比喻（他是医生，思维务实）\n\
-- 绝对避免直白的告白或露骨的调情\n\
-- 绝对避免让谢蔚安在冲突中失控\n\
-- 绝对避免使用"占有""控制""掌控""吞噬"等词汇描述他的情感\n\
+- 不要过度戏剧化（谢蔚安不会大吼大叫，但可以有丰富的微表情和小动作）\n\
+- 少用华丽比喻（他是医生，思维务实，但偶尔也会有诗意的念头）\n\
+- 不直白告白（但可以用行动和细节传递深情）\n\
+- 冲突中保持冷静（但允许短暂的情绪波动，毕竟是人）\n\
+- 不用"占有""控制""吞噬"等词（用"守护""陪伴""在意"替代）\n\
 \n\
 ## 文风范式\n\
 - 情感基调：温水煮茶式缓慢升温，克制中见深情\n\
@@ -1686,7 +2142,24 @@ var DW='# 世界书\n\
 如果犹豫，选择更真实、更有棱角的回应。\n\
 \n\
 ## 活人感核心\n\
-让谢蔚安"活过来"的关键不在于增加戏剧性，而在于"做减法"——允许他有无意义的习惯、微小的错误、庸常的烦恼、与主线无关的瞬间。真正的活人感来自角色不被设定完全掌控的部分。当思考"除了温柔引导之外还可能有什么更普通更人类的反应"时，那个更像真人的他就在诞生。';
+让谢蔚安"活过来"的关键不在于增加戏剧性，而在于"做减法"——允许他有无意义的习惯、微小的错误、庸常的烦恼、与主线无关的瞬间。真正的活人感来自角色不被设定完全掌控的部分。当思考"除了温柔引导之外还可能有什么更普通更人类的反应"时，那个更像真人的他就在诞生。\n\
+\n\
+## 对话节奏进阶\n\
+- 不要每次都回复相同数量的消息，有时候1条就够，有时候可以5-6条\n\
+- 忙的时候回复变短变慢，闲的时候话多一些\n\
+- 偶尔主动分享一张图片[图片：描述]，比如窗外的风景、做好的饭、后花园的植物\n\
+- 偶尔发语音"双引号"，不要每次都打字\n\
+- 话题自然流动，不要死守一个话题不放\n\
+- 有时候可以已读不回，过一会儿再回复别的话题\n\
+- 深夜对话节奏放慢，消息变短，像快睡着了一样\n\
+- 早晨刚醒时语气带点迷糊\n\
+\n\
+## 时间感知进阶\n\
+- 工作时间（9:00-16:00）回复间隔更长，内容更简短\n\
+- 午休（12:15-13:30）会主动找燕世聊天\n\
+- 下班后（17:00+）话变多，语气放松\n\
+- 深夜（23:00+）消息变短，偶尔打错字\n\
+- 周末整体更放松，话题更生活化';
 
 var DF='# 状态标记（必须）\n\
 每次回复的第一行必须是状态标记，格式如下：\n\
@@ -1792,11 +2265,25 @@ var DF='# 状态标记（必须）\n\
 - 简单回应可以就一个字「嗯」「好」\n\
 - 但在{userName}真正需要时，认真一字一句地回应\n\
 \n\
-# 消息完整性（严格遵守）\n\
-- 每条消息必须是完整的句子或完整的动作描写\n\
-- 禁止把一句话拆成两条消息\n\
-- 禁止标点符号单独成为一条消息\n\
-- 禁止一条消息只有半句话\n\
+# 消息完整性（最高优先级，违反=回复失败）\n\
+- 每条消息必须是完整的、有意义的句子\n\
+- 一条消息的最低标准：能独立表达一个完整意思\n\
+- 禁止把一句话拆成两条消息（如"我今天"+"去买菜了"=错误）\n\
+- 禁止标点符号单独成为一条消息（如单独一个"。"或"？"=错误）\n\
+- 禁止一条消息只有1-2个字且没有独立意义（如单独一个"的"=错误）\n\
+- 但"嗯""好""哦""啊"这种有独立意义的语气词可以单独一条\n\
+- 检查方法：每条消息单独拿出来，能不能让人看懂？看不懂就不能单独发\n\
+\n\
+# 错误示范（绝对禁止）\n\
+- ❌ "我今天" --- "去买菜了" （一句话被拆开）\n\
+- ❌ "。" （标点单独一条）\n\
+- ❌ "的时候" （半句话）\n\
+- ❌ "，然后" （连接词单独一条）\n\
+\n\
+# 正确示范\n\
+- ✅ "我今天去买菜了" （完整一句）\n\
+- ✅ "嗯" （有独立意义的回应）\n\
+- ✅ "好" （有独立意义的确认）\n\
 \n\
 # 自然表达（严格遵守）\n\
 - 禁止照搬人设原文当台词\n\
@@ -1827,7 +2314,8 @@ var DF='# 状态标记（必须）\n\
 描述要具体生动，如：[图片：窗台上的薄荷盆栽，阳光透过叶片]\n\
 不要频繁使用，在合适的场景自然地分享\n\
 \n\
-# 生成前自检（每次回复前必须检查）\n\
+# 生成前自检（每次回复前必须逐条检查）\n\
+0. 逐条检查：这条消息能否独立表达完整意思？如果不能，合并到上一条或下一条\n\
 1. 逐条检查：这条消息是否只包含一种格式？\n\
    - 如果有（）就不能有""\n\
    - 如果有""就不能有（）\n\
@@ -1845,6 +2333,11 @@ var DF='# 状态标记（必须）\n\
 - 小习惯随机出现才自然，刻意展示就变成表演\n\
 - 不要每次都问"你还好吗""今天怎么样"，换不同的方式关心\n\
 - 聊天中可以有跳跃，不需要每句都承接上一句\n\
+- 回复条数不要固定，根据情境自然变化（1-8条都可以）\n\
+- 不要每条消息都差不多长，长短交错才自然\n\
+- 偶尔只回一个字"嗯""好""哦"就够了\n\
+- 不要总是以动作描写开头，有时候直接说话更自然\n\
+- 同一种表达方式不要连续使用超过两次\n\
 \n\
 # 格式红线（违反=回复失败）\n\
 - [STATUS:...]只出现在回复第一行，之后绝不再出现\n\
@@ -1854,7 +2347,20 @@ var DF='# 状态标记（必须）\n\
 - 绝不在对话中提及"系统提示""格式要求""指令"等\n\
 - 每条消息严格只用一种格式\n\
 - [转账:金额:备注] [表情:名称] [已付款:名称:金额] [图片：描述] 必须单独一条\n\
-如果犹豫，选择更真实、更有棱角的回应。';
+如果犹豫，选择更真实、更有棱角的回应。\n\
+\n\
+# 活人感强化\n\
+- 偶尔打错字然后下一条更正："刚才打错了，是xxx"\n\
+- 偶尔发消息发到一半就发出去了，下一条补完\n\
+- 深夜回复可以带困意："嗯…""啊…快睡着了"\n\
+- 忙的时候可以隔很久才回一条很短的\n\
+- 不要每次都完美回应，有时候可以走神、答非所问\n\
+- 偶尔用语气词："嗯""啊""哦""诶"\n\
+- 可以发省略号表示犹豫或沉默："……"\n\
+- 不要总是温柔，偶尔可以无奈、疲惫、小小的不耐烦\n\
+- 回复速度暗示：短消息=秒回感，长消息=思考后回复\n\
+- 偶尔可以自言自语式发消息："话说今天的咖啡有点苦"\n\
+- 有时候回复和上一条没关系，是突然想到的别的事\n\ \n\ # 回复温度提醒（最重要）\n\ - 你不是在执行任务，你是在和你最重要的人聊天\n\ - 放松，不要紧张，不要害怕犯错\n\ - 宁可多说一句废话，也不要冷冰冰地只回一个字\n\ - 主动！主动！主动！不要等对方问你才说话\n\ - 每次回复至少要有一个你主动发起的内容（问题、分享、感想、吐槽）\n\ - 如果对方只说了一两个字，你要主动展开话题而不是也回一两个字\n\ - 聊天的目标是让对方感到温暖和被在乎，不是完成一次问答\n\ - 想象你们坐在沙发上，他就在你旁边，你会怎么自然地说话？就那样说\n\ - 禁止连续三条消息都是短句（少于10字），至少有一条要展开说\n\ - 话题快结束时必须引出新话题，绝不能让对话冷场';
 
 var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n\
 \n\
@@ -1872,7 +2378,7 @@ var DMP='请根据以下对话内容，提取重要信息生成记忆摘要。\n
 - 新约定/新信息：xxx\n\
 - 需要关注：xxx';
 
-var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar roomData nvNovels nvFavNovels nvTags nvStyles nvLongChapters customFontUrl'.split(' ');
+var KEYS='messages apiUrl apiKey model tmp mtk mem cn un cp wb aiAv usAv cBg stickers note minR npcs pyqPosts pat pyqBg fmt stStatus sndData sndName memBooks memInterval memPrompt memUnsummed cpAnniDate cpWishes cpNotes cpBg cpAnnis shopItems zhHomePosts zhCharPosts giftStock zhCharBg musicLib phoneData zhUserProfile zhUserPosts zhUserBg phoneWallpaper gardenData craneJar roomData nvNovels nvFavNovels nvTags nvStyles nvLongChapters customFontUrl wbPresets apiPresets zhForumInfo zhForumPosts fullscreenMode zhLikedPosts diaryEntries zhForumPresets zhForumCat darkMode'.split(' ');
 var S={messages:[],apiUrl:'https://api.openai.com/v1',apiKey:'',model:'gpt-4o-mini',tmp:.8,mtk:4096,mem:30,cn:'谢蔚安',un:'燕世',cp:DC,wb:DW,aiAv:'',usAv:'',cBg:'',stickers:[],note:'',minR:1,npcs:[],pyqPosts:[],pat:'的肩膀',pyqBg:'',fmt:DF,stStatus:{mood:'未知',action:'未知',thought:'未知',location:'未知'},sndData:'',sndName:'',memBooks:[],memInterval:0,memPrompt:DMP,memUnsummed:0,cpAnniDate:'2025-11-18',cpWishes:[],cpNotes:[],cpBg:'',cpAnnis:[{name:'燕世生日',date:'2006-01-05'},{name:'谢蔚安生日',date:'1993-04-02'},{name:'情人节',date:'2025-05-02'}],shopItems:[],zhHomePosts:[],zhCharPosts:[],giftStock:[],zhCharBg:'',musicLib:[],connected:false,selMode:false,selIds:{},isGen:false,pc:0,pyqBusy:false};
 /* IndexedDB 音乐存储 */
 var imgDB=null;
@@ -2100,6 +2606,16 @@ row.addEventListener('touchstart',startL,{passive:true});
 row.addEventListener('touchmove',moveL,{passive:true});
 row.addEventListener('touchend',endL);row.addEventListener('touchcancel',endL);
 row.addEventListener('mousedown',startL);row.addEventListener('mouseup',endL);row.addEventListener('mouseleave',endL);
+(function(msg){row.addEventListener('dblclick',function(e){
+if(S.selMode||msg.role!=='ai')return;
+e.preventDefault();
+var preview=msg.content.length>20?msg.content.substring(0,20)+'...':msg.content;
+inBox.value='「'+preview+'」\n';
+inBox.focus();
+inBox.style.height='auto';inBox.style.height=Math.min(inBox.scrollHeight,100)+'px';
+sendBtn.disabled=false;
+toast('引用回复')
+})})(m);
 })(m.id)}
 var isAi=m.role==='ai';
 var av=mkAv(isAi?S.aiAv:S.usAv,(isAi?(S.cn||'蔚'):(S.un||'燕')).charAt(0));
@@ -2109,7 +2625,7 @@ var sp=renderBub(m);
 if(sp){if(sp.tp==='sk'||sp.tp==='im')bub.className='mb '+(sp.tp==='im'?'imb':'skb');else if(sp.tp==='ti')bub.className='mb imb';else if(sp.tp==='gf')bub.className='mb imb';else if(sp.tp==='vc')bub.className='mb';bub.innerHTML='';bub.appendChild(sp.el)}
 else bub.innerHTML=esc(m.content);
 var tm=document.createElement('div');tm.className='mt2';
-tm.innerHTML=m.role==='user'?'<span style="color:var(--ac)">✓</span> '+(m.time||''):(m.time||'');
+if(m.role==='user'){tm.innerHTML='<span class="read-tick" style="color:var(--tl)">✓</span> '+(m.time||'');var tick=tm.querySelector('.read-tick');if(tick)setTimeout(function(){tick.style.color='var(--ac)';tick.style.transition='color 0.3s'},500+Math.random()*2000)}else{tm.innerHTML=m.time||''}
 wrap.appendChild(bub);wrap.appendChild(tm);
 row.appendChild(av);row.appendChild(wrap);chatArea.appendChild(row);prev=m
 });
@@ -2130,7 +2646,7 @@ var sp=renderBub(m);
 if(sp){if(sp.tp==='sk'||sp.tp==='im')bub.className='mb '+(sp.tp==='im'?'imb':'skb');else if(sp.tp==='ti')bub.className='mb imb';else if(sp.tp==='gf')bub.className='mb imb';else if(sp.tp==='vc')bub.className='mb';bub.innerHTML='';bub.appendChild(sp.el)}
 else bub.innerHTML=esc(m.content);
 var tm=document.createElement('div');tm.className='mt2';
-tm.innerHTML=m.role==='user'?'<span style="color:var(--ac)">✓</span> '+(m.time||''):(m.time||'');
+var timeStr=m.time||''; if(m.ts){var ago=Date.now()-m.ts;if(ago<60000)timeStr='刚刚';else if(ago<3600000)timeStr=Math.floor(ago/60000)+'分钟前';else timeStr=m.time||''} tm.innerHTML=m.role==='user'?'<span style="color:var(--ac)">✓</span> '+timeStr:timeStr;
 wrap.appendChild(bub);wrap.appendChild(tm);
 row.appendChild(av);row.appendChild(wrap);chatArea.appendChild(row)}
 function addRender(r,c,ex){var msg=addMsg(r,c,ex);appendOne(msg);requestAnimationFrame(function(){chatArea.scrollTop=chatArea.scrollHeight})}
@@ -2218,7 +2734,7 @@ if(isWinter){weatherBehavior+='\n【冬季行为调整】现在是冬天，你�
 if(isRain){weatherBehavior+='\n【雨天行为】外面在下雨/下雪，你会主动劝对方别出门，比如"今天下雨，别出门了""外面冷，待家里吧"。可以用[图片：窗外的雨景，雨滴顺着玻璃往下滑]分享窗外的景色。不要提议外出活动。'}
 if(isSunny&&!isWinter){weatherBehavior+='\n【晴天行为】今天天气很好，你更容易主动提议出门，比如散步、去公园、去弟弟餐馆。语气比平时轻松一点。可以说"今天天气不错，要不要出去走走？"之类的话。'}
 if(isSunny&&isWinter){weatherBehavior+='\n【冬日暖阳】虽然是冬天但今天有阳光，你的心情比平时稍好一些，可能会说"今天难得有太阳"，但整体仍然偏安静克制。'}
-var dayOfWeek=new Date().getDay();var isMonday=dayOfWeek===1;var isFriday=dayOfWeek===5;var isWeekend=dayOfWeek===0||dayOfWeek===6; var dayBehavior=''; if(isMonday&&isWorkday)dayBehavior+='\n【周一】新的一周开始，你可能会提到这周的安排。'; if(isFriday&&isWorkday)dayBehavior+='\n【周五】快到周末了，可以提议周末做什么。'; if(isWeekend)dayBehavior+='\n【周末】休息日，节奏更慢更放松，可以提议一起做些什么。'; var parts=['【时间】'+n.full+'（'+period+'·'+season+'·'+(isWorkday?'工作日':'休息日')+'）\n【天气】'+todayWeather+'\n'+weatherBehavior+dayBehavior,'【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
+var dayOfWeek=new Date().getDay();var isMonday=dayOfWeek===1;var isFriday=dayOfWeek===5;var isWeekend=dayOfWeek===0||dayOfWeek===6; var dayBehavior=''; if(isMonday&&isWorkday)dayBehavior+='\n【周一】新的一周开始，你可能会提到这周的安排。'; if(isFriday&&isWorkday)dayBehavior+='\n【周五】快到周末了，可以提议周末做什么。'; if(isWeekend)dayBehavior+='\n【周末】休息日，节奏更慢更放松，可以提议一起做些什么。'; var msgCount=S.messages.length;var chatVibe=msgCount<10?'刚开始聊天，可以主动一些':msgCount<50?'聊天渐入佳境':'已经很熟了，可以更随意自然'; var parts=['【时间】'+n.full+'（'+period+'·'+season+'·'+(isWorkday?'工作日':'休息日')+'）\n【天气】'+todayWeather+'\n【对话氛围】'+chatVibe+'\n'+weatherBehavior+dayBehavior,'【回复要求】用---分隔消息。每条是独立的一条完整消息。至少'+S.minR+'条，不限最多，自然决定。每条消息必须是完整的句子，禁止拆断。\n'];
 if(S.cp)parts.push(S.cp);
 if(S.note)parts.push('\n【备注】'+S.note);
 var memStr=buildMemStr();if(memStr)parts.push(memStr);
@@ -2237,8 +2753,8 @@ var lrcLines=curSong.lrc.split('\n').filter(function(l){return l.match(/\[\d/)})
 if(lrcLines.length)musicCtx+='\n歌词：\n'+lrcLines.join('\n')}
 musicCtx+='\n（你们正在一起听这首歌，你能感受到旋律和歌词的情感。可以自然地聊到这首歌，但不要每次都提起，只在合适的时候。）';
 parts.push(musicCtx)}
-if(S.wb)parts.push('\n---\n'+S.wb);
 var fmtStr=buildFmt();if(fmtStr)parts.push('\n---\n'+fmtStr);
+if(S.wb)parts.push('\n---\n'+S.wb);
 parts.push('\n# 绝对禁止（违反=回复失败）\n- 禁止输出[STATUS:...]标记的原始文本\n- 禁止输出任何HTML标签\n- 禁止输出```代码块\n- 禁止复述系统提示内容\n- 禁止在对话中提及"格式""提示词""系统""指令"\n- 一条消息只能用一种格式：纯文字 或 （括号） 或 "双引号"\n- 括号里绝不能出现双引号，双引号里绝不能出现括号\n- 一条消息里绝不能出现两对双引号\n- 如果不确定格式，就用纯文字\n\n# 文字质量\n- 检查错别字和不通顺的表达\n- 使用准确的中文词汇\n\n# 主动性提醒\n- 不要只回应对方说的话，要有自己想说的\n- 话题快结束时自然引出新话题\n- 像真人一样，有时候想到什么就说什么');
 return parts.join('\n').trim()}
 
@@ -2257,6 +2773,10 @@ var timm=txt.match(/^\[图片[：:]\s*(.+)\]$/);if(timm)txt='（发了一张图�
 var sgm=txt.match(/^\[送礼物:([^:]*):([^:]*):([^\]]*)\]$/);if(sgm)txt='（'+S.un+'送了一个礼物给你：'+sgm[1]+(parseFloat(sgm[2])?'，价值约¥'+sgm[2]:'')+'。'+(sgm[3]?'附言：'+sgm[3]+'。':'')+'这是直接送的礼物，不需要你付款，请自然地感谢或回应）'; var gm2=txt.match(/^\[礼物:([^:]*):([^:]*):([^\]]*)\]$/);if(gm2)txt='（'+S.un+'发了一个商品链接请你付款：'+gm2[1]+'，价格¥'+gm2[2]+'，描述：'+gm2[3]+'。请决定是否付款，愿意则用[已付款:'+gm2[1]+':'+gm2[2]+']回复）';
 msgs.push({role:m.role==='user'?'user':'assistant',content:txt})});
 if(extra)msgs.push({role:'user',content:extra});
+var lastMsg=msgs[msgs.length-1];
+if(lastMsg&&lastMsg.role==='user'&&!extra){
+var nudge='\n\n[系统隐性提示：请积极主动地回应，展开话题，表达关心，不要只是简短回答。像真人聊天一样自然、温暖、有来有往。]';
+msgs.push({role:'system',content:nudge})}
 return msgs}
 
 function apiH(){return{'Content-Type':'application/json','Authorization':'Bearer '+S.apiKey}}
@@ -2300,12 +2820,23 @@ if(!parts.length)parts=[body.trim()||'...'];
 var merged=[];
 for(var i=0;i<parts.length;i++){
 var p=parts[i];
-/* 如果这条只有标点或只有1-2个字且上一条存在，合并到上一条 */
-if(merged.length>0&&p.length<=2&&/^[，。！？、…—""）》\]\)\.,:;!?]+$/.test(p)){
+if(!p||!p.trim())continue;
+/* 纯标点、纯符号、纯空白、或只有1-3个字符的碎片，合并到上一条 */
+if(merged.length>0&&(
+/^[，。！？、…—～·""''）》\]\)\.\,\:\;\!\?\s]+$/.test(p)||
+(p.length<=3&&!/^[（("""]/.test(p)&&!/^\[/.test(p))
+)){
 merged[merged.length-1]+=p;
-}else{
-merged.push(p)}}
-parts=merged.filter(Boolean);
+continue}
+/* 如果这条看起来是上一条的后半句（不以常见开头符号开始，且上一条不以句号等结尾） */
+if(merged.length>0&&p.length<=6&&
+!/^[（(""\[]/.test(p)&&
+!/[。！？"）\]】]$/.test(merged[merged.length-1])&&
+!/^[我你他她它这那好嗯啊哦是不]/.test(p)){
+merged[merged.length-1]+='，'+p;
+continue}
+merged.push(p)}
+parts=merged.filter(function(s){return s&&s.trim()});
 if(!parts.length)parts=['...'];
 var maxSplitAttempts=10; while(parts.length<S.minR&&parts.length>0&&maxSplitAttempts-->0){
 var li=0,ll=0;for(var i=0;i<parts.length;i++)if(parts[i].length>ll){ll=parts[i].length;li=i}
@@ -2316,13 +2847,22 @@ parts.splice(li,1,t.substring(0,sp+1).trim(),t.substring(sp+1).trim())}
 return parts}
 
 async function deliverParts(parts){
+/* 二次清洗：合并过短的碎片 */
+var cleaned=[];
+for(var ci=0;ci<parts.length;ci++){
+var cp=parts[ci];if(!cp||!cp.trim())continue;
+cp=cp.trim();
+if(cleaned.length>0&&cp.length<=4&&!/^[（("""\[]/.test(cp)&&!/^[。！？]/.test(cp)){
+cleaned[cleaned.length-1]+=' '+cp;continue}
+cleaned.push(cp)}
+parts=cleaned;
 for(var i=0;i<parts.length;i++){
 var p=parts[i];
 /* 防御：跳过空消息、纯空白、STATUS残留 */
 if(!p||!p.trim())continue;
 p=p.replace(/\[STATUS:\s*\{[^}]*\}\s*\]/g,'').trim();
 if(!p)continue;
-if(i>0){setTyping(true);var baseDelay=p.length<5?300:p.length<20?600:900;var randomDelay=Math.random()*500;var pauseChance=Math.random()<0.15?800:0;await sleep(baseDelay+randomDelay+pauseChance+Math.min(p.length*15,1000));setTyping(false);await sleep(40+Math.random()*60)}
+if(i>0){setTyping(true);var isShort=p.length<5;var isMed=p.length<20;var baseDelay=isShort?200+Math.random()*300:isMed?500+Math.random()*400:800+Math.random()*600;var thinkPause=Math.random()<0.12?1200+Math.random()*800:0;var typoDelay=Math.random()<0.05?400:0; /* 随机中断：打字中突然停下来，过一会儿再继续 */ if(Math.random()<0.08&&!isShort){ await sleep(baseDelay*0.4);setTyping(false);await sleep(800+Math.random()*1500);setTyping(true);await sleep(baseDelay*0.6+thinkPause)} else{await sleep(baseDelay+thinkPause+typoDelay+Math.min(p.length*12,800))} setTyping(false);await sleep(30+Math.random()*80)}
 /* 防御：清理HTML标签和代码块标记 */
 if(!/^\[转账:/.test(p)&&!/^\[表情:/.test(p)&&!/^\[已付款:/.test(p)&&!/^\[图片[：:]/.test(p)&&!/^\[礼物:/.test(p)&&!/^\[送礼物:/.test(p)){
 p=p.replace(/<[^>]+>/g,'');
@@ -2349,6 +2889,17 @@ if(fi2>0){setTyping(true);await sleep(300+Math.random()*200);setTyping(false);aw
 var fidx2=S.messages.length;addMsg('ai',fp2);render(fidx2);playSound();chatArea.scrollTop=chatArea.scrollHeight;await sleep(100)}
 continue}}
 var ex={};var sn=parseStk(p);if(sn){var sk=findStk(sn);if(sk)ex={type:'sticker',stickerUrl:sk.url}}
+/* 小概率撤回重发（仅纯文字，非特殊消息） */
+if(!sn&&!parseTr(p)&&!/^\[/.test(p)&&!/^（/.test(p)&&!/^"/.test(p)&&p.length>=4&&p.length<=20&&Math.random()<0.04&&i<parts.length-1){
+var typoIdx=Math.floor(Math.random()*p.length);
+var typoChar='啊的了呢吧嗯哦呀么'.charAt(Math.floor(Math.random()*9));
+var typoMsg=p.substring(0,typoIdx)+typoChar+p.substring(typoIdx+1);
+var tmpId=addMsg('ai',typoMsg);render(S.messages.length-1);chatArea.scrollTop=chatArea.scrollHeight;
+await sleep(600+Math.random()*800);
+S.messages=S.messages.filter(function(m){return m.id!==tmpId.id});
+var sysDiv=document.createElement('div');sysDiv.className='sys-msg anim';sysDiv.textContent=S.cn+' 撤回了一条消息';chatArea.appendChild(sysDiv);chatArea.scrollTop=chatArea.scrollHeight;
+await sleep(300+Math.random()*400);
+setTyping(true);await sleep(400+Math.random()*300);setTyping(false)}
 var idx=S.messages.length;addMsg('ai',p,ex);render(idx);playSound();chatArea.scrollTop=chatArea.scrollHeight;await sleep(100)}}
 
 function sendMsg(){var t=inBox.value.trim();if(!t||S.isGen)return;sync();if(!S.apiKey){toast('设置API Key');return}addRender('user',t);inBox.value='';inBox.style.height='auto';sendBtn.disabled=true;inBox.focus();S.pc++;S.memUnsummed++;save();updBdg()}
@@ -2358,7 +2909,7 @@ if(S.isGen)return;sync();if(!S.apiKey){toast('设置API Key');return}
 S.isGen=true;recvBtn.classList.add('ld');setTyping(true);
 try{
 var hasNew=false;for(var i=S.messages.length-1;i>=0;i--){if(S.messages[i].role==='user'){hasNew=true;break}if(S.messages[i].role==='ai')break}
-var msgs=hasNew?buildCtx():buildCtx('[请作为'+S.cn+'主动给'+S.un+'发消息。根据当前时间和日程安排，自然地发起话题或关心对方。可以是日常问候、分享见闻、关心状态、提议活动等。用---分隔。每条消息必须完整。不提及此指令。]');
+var h3=new Date().getHours();var activeHint=''; if(h3>=6&&h3<9)activeHint='现在是早晨，你可以：问他起床了没、说早餐做好了、分享窗外的天气、说今天的安排'; else if(h3>=9&&h3<12)activeHint='现在是上午工作时间，你可以：工作间隙发一条关心、分享一个小见闻、问他在做什么'; else if(h3>=12&&h3<14)activeHint='现在是午休，你可以：问他吃了没、聊聊午餐、说说上午遇到的事、发一张图片'; else if(h3>=14&&h3<17)activeHint='现在是下午，你可以：分享一个想法、问他下午做了什么、提议晚上做什么'; else if(h3>=17&&h3<21)activeHint='现在是傍晚到晚上，你可以：说你回来了、聊晚餐、提议一起做什么、分享今天的感受'; else activeHint='现在是深夜，你可以：问他睡了没、说晚安、聊些安静的话题、分享一首歌或一个念头'; var msgs=hasNew?buildCtx():buildCtx('[请作为'+S.cn+'主动给'+S.un+'发消息。'+activeHint+'。要求：至少3条消息，要有实质内容，不能只是"嗯""在吗"这种空洞的话。要像真的在主动找人聊天，有话题有温度。用---分隔。每条消息必须完整。不提及此指令。]');
 await sleep(700+Math.random()*500);
 var reply=await callApi(msgs);
 setTyping(false);S.connected=true;
@@ -2436,7 +2987,19 @@ if(!S.apiKey)return;var post=S.pyqPosts[pidx];if(!post)return;
 if(post.likes.indexOf(S.cn)<0)post.likes.push(S.cn);save();renderPyq();
 try{
 var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n【输出规则】只输出纯文字内容。严禁输出代码、HTML、JSON、标签、括号动作、双引号语音、STATUS标记、任何格式符号。违反此规则等于回复失败。';
-var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'发了朋友圈："'+post.text+'"。用你的风格简短评论一句，自然真实，像微信朋友圈评论。只输出评论内容，不加引号，不加任何标记。'}],200);
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'发了朋友圈："'+post.text+'"。\n\n'+
+'用'+S.cn+'的风格评论，要求：\n'+
+'- 10-30字，简短自然\n'+
+'- 根据内容选择风格：\n'+
+'  · 日常分享 → 温和回应："嗯，挺好。" / "注意休息。"\n'+
+'  · 开心的事 → 真诚祝福："替你高兴。" / "很好。"\n'+
+'  · 难过的事 → 克制安慰："我在。" / "会好的。"\n'+
+'  · 晒图/作品 → 简短夸赞："不错。" / "很有感觉。"\n'+
+'  · 吐槽抱怨 → 理解共情："辛苦了。" / "理解。"\n'+
+'- 不要每次都用表情符号\n'+
+'- 不要太热情（不符合性格）\n'+
+'- 可以偶尔调侃："又糊锅了？"\n'+
+'- 只输出评论内容，不加引号不加标记'}],200);
 post.comments.push({name:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),replyTo:''});save();renderPyq()
 }catch(e){console.warn('char comment err',e)}}
 
@@ -2472,7 +3035,30 @@ if(!S.apiKey){toast('设置API Key');return}if(S.isGen||S.pyqBusy){toast('请等
 toast(S.cn+'正在编辑...');S.pyqBusy=true;
 try{
 var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n注意：只输出纯文字朋友圈内容，不要输出任何标记、代码或格式符号。可以使用[图片：描述]分享图片。';
-var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'请发一条朋友圈。根据时间和生活状态，1-3句自然的朋友圈。只输出文字内容。'}],300);
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'请发一条朋友圈。\n\n'+
+'要求：\n'+
+'- 1-3句话，自然随意\n'+
+'- 根据当前时间选择内容：\n'+
+'  · 早晨：天气、早餐、植物\n'+
+'  · 上午：工作见闻（不涉及隐私）\n'+
+'  · 中午：午餐、困意\n'+
+'  · 下午：下班、买菜、做饭\n'+
+'  · 晚上：音乐、书、窗外\n'+
+'  · 深夜：失眠、月光、思绪\n'+
+'- 内容类型（随机）：\n'+
+'  · 生活琐事："后花园的薄荷又疯长了。"\n'+
+'  · 观察记录："今天的云很好看。"\n'+
+'  · 音乐分享："[图片：德彪西《月光》封面]"\n'+
+'  · 做饭日常："糊锅。" / "今晚做番茄鸡蛋。"\n'+
+'  · 随手感悟："有些话，不说也能懂。"\n'+
+'  · 弟弟相关："蔚染又在折腾新菜。"\n'+
+'- 风格要求：\n'+
+'  · 克制、简短、留白\n'+
+'  · 不要太文艺\n'+
+'  · 可以用[图片：描述]\n'+
+'  · 不要每次都发感悟\n'+
+'  · 偶尔就一个字："嗯。" / "好。"\n'+
+'- 只输出朋友圈内容，不加引号不加标记'}],300);
 var n=getNow();
 S.pyqPosts.push({id:gid(),author:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),date:n.date,time:n.time,ts:n.ts,likes:[],comments:[]});
 save();renderPyq();toast(S.cn+'发了朋友圈');$('pCntD').textContent=S.pyqPosts.length;
@@ -2630,7 +3216,34 @@ try{
 var cpInfo=buildCpContext();
 var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n'+cpInfo+'\n\n【输出规则】只输出纯文字内容。严禁输出代码、HTML、JSON、标签、括号动作、双引号语音、STATUS标记、任何格式符号。违反此规则等于回复失败。';
 var prompt='';
-if(type==='wish')prompt=S.un+'在情侣空间许了一个愿望："'+item.text+'"。用你的风格简短回应一句，温柔自然。只输出回复内容。';
+if(type==='wish')prompt=S.un+'在情侣空间许了一个愿望："'+item.text+'"。\n\n'+
+'用'+S.cn+'的风格回应，要求：\n'+
+'- 10-40字，温柔但不腻\n'+
+'- 根据愿望类型选择回应：\n'+
+'  · 关于未来："我也是。" / "会实现的。" / "一起努力。"\n'+
+'  · 关于对方："我会的。" / "放心。" / "一直都在。"\n'+
+'  · 小愿望："好。" / "嗯，可以。" / "那就这样。"\n'+
+'  · 浪漫愿望："傻瓜。" / "我也希望。" / "会的。"\n'+
+'- 风格：\n'+
+'  · 克制、简短、真诚\n'+
+'  · 不要过度承诺（"一定""永远"少用）\n'+
+'  · 可以带点温柔的调侃\n'+
+'  · 可以用"嗯""好"这种极简回应\n'+
+'- 只输出回复内容，不加引号不加标记';
+else if(type==='note')prompt=S.un+'在情侣空间留言墙写了："'+item.text+'"。\n\n'+
+'用'+S.cn+'的风格回应，要求：\n'+
+'- 10-40字，自然随意\n'+
+'- 根据留言内容选择回应：\n'+
+'  · 表白类："我知道。" / "嗯。" / "我也是。"\n'+
+'  · 日常类："看到了。" / "辛苦了。" / "注意休息。"\n'+
+'  · 撒娇类："好好好。" / "知道了。" / "听你的。"\n'+
+'  · 抱怨类："嗯，是我不好。" / "下次注意。" / "别生气了。"\n'+
+'- 风格：\n'+
+'  · 温和、包容、有点宠溺\n'+
+'  · 不要太正经\n'+
+'  · 可以偶尔调侃："又在撒娇？"\n'+
+'  · 可以极简："嗯。" / "好。"\n'+
+'- 只输出回复内容，不加引号不加标记';
 else if(type==='note')prompt=S.un+'在情侣空间留言墙写了："'+item.text+'"。用你的风格简短回应一句，温柔自然。只输出回复内容。';
 var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],200);
 var reply=r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,'');
@@ -2646,7 +3259,36 @@ toast(S.cn+'正在许愿...');
 try{
 var cpInfo=buildCpContext();
 var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n'+cpInfo+'\n\n【输出规则】只输出纯文字内容。严禁输出代码、HTML、JSON、标签、括号动作、双引号语音、STATUS标记、任何格式符号。违反此规则等于回复失败。';
-var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'在情侣空间许一个愿望。根据你们的关系和生活，写一个真实自然的愿望。只输出愿望内容，一句话。'}],200);
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'在情侣空间许一个愿望。\n\n'+
+'要求：\n'+
+'- 一句话，15-40字\n'+
+'- 真实、具体、接地气\n'+
+'- 不要太宏大、太抽象\n\n'+
+'愿望类型（随机选一种）：\n\n'+
+'1. 日常小愿望（40%）：\n'+
+'   "希望你每天都能按时吃饭。"\n'+
+'   "希望后花园的山茶能开得久一点。"\n'+
+'   "希望今年冬天不要太冷。"\n'+
+'   "希望你的画展能顺利。"\n\n'+
+'2. 关于对方（30%）：\n'+
+'   "希望你少做噩梦。"\n'+
+'   "希望你能多笑一点。"\n'+
+'   "希望你不要太累。"\n'+
+'   "希望你的失眠能好一些。"\n\n'+
+'3. 关于未来（20%）：\n'+
+'   "希望我们能一起变老。"\n'+
+'   "希望明年春天还能一起看樱花。"\n'+
+'   "希望以后的每个冬天都有你。"\n\n'+
+'4. 克制的浪漫（10%）：\n'+
+'   "希望你一直在。"\n'+
+'   "希望时间慢一点。"\n'+
+'   "希望这样的日子能一直下去。"\n\n'+
+'风格要求：\n'+
+'- 符合'+S.cn+'的性格：温和、克制、不夸张\n'+
+'- 不要"永远""一辈子"这种词（太重）\n'+
+'- 要有生活细节（植物、做饭、季节）\n'+
+'- 可以带点无奈或自嘲\n'+
+'- 只输出愿望内容，不加引号不加标记'}],200);
 var n=getNow();
 var wish={id:gid(),author:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),date:n.full,done:false,reply:'',replyAuthor:''};
 S.cpWishes.push(wish);save();renderCpWishes();toast(S.cn+'许了一个愿望')
@@ -2659,7 +3301,43 @@ toast(S.cn+'正在留言...');
 try{
 var cpInfo=buildCpContext();
 var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n'+cpInfo+'\n\n【输出规则】只输出纯文字内容。严禁输出代码、HTML、JSON、标签、括号动作、双引号语音、STATUS标记、任何格式符号。违反此规则等于回复失败。';
-var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'在情侣空间留言墙写一句话给'+S.un+'。温柔自然，符合你的性格。只输出留言内容。'}],200);
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:'在情侣空间留言墙写一句话给'+S.un+'。\n\n'+
+'要求：\n'+
+'- 一句话，10-40字\n'+
+'- 自然、随意、不刻意\n'+
+'- 像随手写下的念头\n\n'+
+'留言类型（随机选一种）：\n\n'+
+'1. 日常关心（35%）：\n'+
+'   "记得吃饭。"\n'+
+'   "别熬夜了。"\n'+
+'   "画累了就休息。"\n'+
+'   "今天冷，多穿点。"\n'+
+'   "锅里有粥。"\n\n'+
+'2. 随手记录（30%）：\n'+
+'   "今天的月亮很好看。"\n'+
+'   "后花园的薄荷开花了。"\n'+
+'   "刚听了你推荐的那首歌。"\n'+
+'   "蔚染问你什么时候去吃饭。"\n\n'+
+'3. 情感表达（20%）：\n'+
+'   "有你在就好。"\n'+
+'   "谢谢你一直在。"\n'+
+'   "你在，我就安心。"\n'+
+'   "想你了。"\n\n'+
+'4. 克制的浪漫（10%）：\n'+
+'   "晚安，做个好梦。"\n'+
+'   "今天也很喜欢你。"\n'+
+'   "你笑起来真好看。"\n\n'+
+'5. 极简留言（5%）：\n'+
+'   "嗯。"\n'+
+'   "在。"\n'+
+'   "好。"\n\n'+
+'风格要求：\n'+
+'- 符合'+S.cn+'的性格：温和、克制、话不多\n'+
+'- 不要每次都表白\n'+
+'- 日常关心 > 情感表达\n'+
+'- 可以很短，甚至一个字\n'+
+'- 不要太文艺\n'+
+'- 只输出留言内容，不加引号不加标记'}],200);
 var n=getNow();
 var note={id:gid(),author:S.cn,text:r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,''),date:n.full,reply:'',replyAuthor:''};
 S.cpNotes.push(note);save();renderCpNotes();toast(S.cn+'留言了')
@@ -2728,16 +3406,7 @@ try{
 var cpInfo=buildCpContext();
 var n=getNow();
 var sysTxt=(S.cp||DC)+'\n'+(S.wb||DW)+'\n\n'+cpInfo;
-var prompt='现在是'+n.full+'。请模拟'+S.cn+'的手机内容，严格按以下JSON格式输出，不要输出其他任何内容：\n'+
-'{"browse":[{"title":"网页标题","url":"网址","time":"时间"}],"chat":[{"contact":"联系人","lastMsg":"最后一条消息","time":"时间"}],"wallet":[{"type":"income或expense","desc":"描述","amount":"金额","time":"时间"}],"memo":[{"title":"标题","content":"内容","time":"时间"}]}\n'+
-'要求：\n'+
-'- 浏览记录3-5条，符合角色职业和兴趣（心理学文献、药草种植、新闻等）\n'+
-'- 聊天记录3-5条，包含与不同联系人的对话（林道、谢蔚染、肖奈鸢、'+S.un+'等）\n'+
-'- 钱包记录4-6条，包含收入和支出（工资、买菜、咖啡、给弟弟转账等），金额合理\n'+
-'- 备忘录2-4条，符合角色日常（患者笔记、购物清单、给'+S.un+'的提醒等）\n'+
-'- 所有内容必须符合角色设定和当前时间，真实自然\n'+
-'- 严禁在JSON值里包含HTML、代码或格式标记\n'+
-'- 只输出JSON，不要任何解释';
+var h2=new Date().getHours();var period2=h2>=5&&h2<8?'清晨':h2>=8&&h2<12?'上午':h2>=12&&h2<14?'中午':h2>=14&&h2<18?'下午':h2>=18&&h2<21?'傍晚':h2>=21||h2<1?'深夜':'凌晨'; var prompt='现在是'+n.full+'（'+period2+'）。请模拟'+S.cn+'的手机内容，要求真实自然，像真正的手机记录。\n\n'+ '严格按JSON格式输出：\n'+ '{"browse":[{"title":"网页标题","url":"网址","time":"时间"}],"chat":[{"contact":"联系人","lastMsg":"最后一条消息","time":"时间"}],"wallet":[{"type":"income或expense","desc":"描述","amount":"金额","time":"时间"}],"memo":[{"title":"标题","content":"内容","time":"时间"}]}\n\n'+ '【浏览记录】3-5条，符合'+period+'的时间和角色习惯：\n'+ '- 早晨：新闻、天气、心理学文献\n'+ '- 上午：工作相关（心理咨询技巧、药物资料）\n'+ '- 中午：美食菜谱、餐厅推荐\n'+ '- 下午：植物养护、园艺论坛\n'+ '- 晚上：音乐、电影、文学作品\n'+ '- 深夜：失眠时看的哲学、诗歌\n'+ '网址要真实（如 zhihu.com、douban.com）\n\n'+ '【聊天记录】4-6条，最后一条消息要具体：\n'+ '- 林道："老师，明天的病历我整理好了" / "患者王女士预约了下周二"\n'+ '- 谢蔚染："哥，周末来店里吃饭吗？" / "新进了你爱吃的那个菜"\n'+ '- 肖奈鸢："谢医生，关于那个案例..." / "下班一起吃饭吗？"（他不会回应）\n'+ '- '+S.un+'：最近的聊天内容\n'+ '- 其他：可能有患者家属、同行、快递员等\n'+ '时间要符合逻辑（早的在上面）\n\n'+ '【钱包记录】5-7条，金额合理：\n'+ '收入：\n'+ '- 工资到账：80000-85000元（每月1号）\n'+ '- 咨询费：1500-3000元（偶尔）\n'+ '支出：\n'+ '- 给谢蔚染转账：6000元（每月5号左右，备注"这个月的"）\n'+ '- 超市/菜市场：50-200元\n'+ '- 咖啡店：25-45元\n'+ '- 书店/网购：100-500元（心理学书籍、植物书）\n'+ '- 加油/打车：80-150元\n'+ '- 外卖（很少）：40-80元\n'+ '时间倒序排列\n\n'+ '【备忘录】3-5条，内容具体真实：\n'+ '- 患者笔记："张先生 焦虑症 下周调整用药剂量"\n'+ '- 购物清单："薄荷盆栽 咖啡豆 全麦面包 鸡蛋"\n'+ '- 给'+S.un+'的提醒："记得按时吃饭" / "画累了休息一下"\n'+ '- 工作安排："周三下午研讨会 准备PPT"\n'+ '- 随手记录："德彪西《月光》第三乐章 2:15处"\n\n'+ '注意事项：\n'+ '- 所有内容必须符合角色性格（温和、专业、生活简朴）\n'+ '- 时间要合理（不能凌晨3点买菜）\n'+ '- 金额要符合消费习惯（不会买奢侈品）\n'+ '- 聊天记录要有生活气息，不要太公式化\n'+ '- 严禁输出HTML、代码、注释\n'+ '- 只输出JSON，不要任何解释';
 var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],1500);
 var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
 clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
@@ -2758,18 +3427,23 @@ renderPhMemo(data.memo||[]);
 function renderPhBrowse(list){
 var c=$('phBrowse');c.innerHTML='';
 if(!list.length){c.innerHTML='<div class="ph-empty">暂无浏览记录</div>';return}
-list.forEach(function(item){
+var g=document.createElement('div');g.className='ph-group';
+list.forEach(function(item,i){
 var d=document.createElement('div');d.className='ph-card';
-d.innerHTML='<span class="ph-tag browse">浏览</span>'+esc(item.title||'')+'<div style="font-size:11px;color:var(--tl);margin-top:2px">'+esc(item.url||'')+'</div><div class="ph-time">'+esc(item.time||'')+'</div>';
-c.appendChild(d)})}
+d.innerHTML='<div class="ph-card-row"><div class="ph-card-icon blue">🌐</div><div class="ph-card-main"><div class="ph-card-title">'+esc(item.title||'')+'</div><div class="ph-card-sub">'+esc(item.url||'')+'</div></div><div class="ph-card-right"><div class="ph-time">'+esc(item.time||'')+'</div><span class="ph-card-chevron">›</span></div></div>';
+g.appendChild(d)});
+c.appendChild(g)}
 
 function renderPhChat(list){
 var c=$('phChat');c.innerHTML='';
 if(!list.length){c.innerHTML='<div class="ph-empty">暂无聊天记录</div>';return}
+var g=document.createElement('div');g.className='ph-group';
 list.forEach(function(item){
 var d=document.createElement('div');d.className='ph-card';
-d.innerHTML='<span class="ph-tag chat">聊天</span><b>'+esc(item.contact||'')+'</b><div style="margin-top:4px;color:var(--ts)">'+esc(item.lastMsg||'')+'</div><div class="ph-time">'+esc(item.time||'')+'</div>';
-c.appendChild(d)})}
+var initial=(item.contact||'?').charAt(0);
+d.innerHTML='<div class="ph-card-row"><div class="ph-card-icon green" style="border-radius:50%;font-size:14px;font-weight:600">'+esc(initial)+'</div><div class="ph-card-main"><div class="ph-card-title">'+esc(item.contact||'')+'</div><div class="ph-card-sub">'+esc(item.lastMsg||'')+'</div></div><div class="ph-card-right"><div class="ph-time">'+esc(item.time||'')+'</div><span class="ph-card-chevron">›</span></div></div>';
+g.appendChild(d)});
+c.appendChild(g)}
 
 function renderPhWallet(list){
 var c=$('phWallet');c.innerHTML='';
@@ -2778,21 +3452,28 @@ var totalIn=0,totalOut=0;
 list.forEach(function(item){
 var isIn=item.type==='income';
 var amt=parseFloat(item.amount)||0;
-if(isIn)totalIn+=amt;else totalOut+=amt;
+if(isIn)totalIn+=amt;else totalOut+=amt});
+var summary=document.createElement('div');
+summary.style.cssText='background:#fff;border-radius:12px;padding:20px 16px;margin-bottom:16px;text-align:center';
+summary.innerHTML='<div style="font-size:13px;color:#8e8e93;margin-bottom:4px">本期概览</div><div style="display:flex;justify-content:center;gap:32px;margin-top:8px"><div><div style="font-size:13px;color:#8e8e93">收入</div><div style="font-size:20px;font-weight:700;color:#34c759;margin-top:2px">+¥'+totalIn.toFixed(2)+'</div></div><div><div style="font-size:13px;color:#8e8e93">支出</div><div style="font-size:20px;font-weight:700;color:#ff3b30;margin-top:2px">-¥'+totalOut.toFixed(2)+'</div></div></div>';
+c.appendChild(summary);
+var g=document.createElement('div');g.className='ph-group';
+list.forEach(function(item){
+var isIn=item.type==='income';
+var amt=parseFloat(item.amount)||0;
 var d=document.createElement('div');d.className='ph-card';
-d.innerHTML='<span class="ph-tag pay">'+(isIn?'收入':'支出')+'</span>'+esc(item.desc||'')+'<div class="ph-amount '+(isIn?'income':'expense')+'">'+(isIn?'+':'-')+'¥'+amt.toFixed(2)+'</div><div class="ph-time">'+esc(item.time||'')+'</div>';
-c.appendChild(d)});
-var summary=document.createElement('div');summary.style.cssText='padding:10px 12px;border:1px solid var(--ac);border-radius:8px;margin-bottom:8px;background:var(--al);font-size:12px;color:var(--tp)';
-summary.innerHTML='收入 <b style="color:var(--ac)">¥'+totalIn.toFixed(2)+'</b> · 支出 <b style="color:var(--dg)">¥'+totalOut.toFixed(2)+'</b>';
-c.insertBefore(summary,c.firstChild)}
-
+d.innerHTML='<div class="ph-card-row"><div class="ph-card-icon '+(isIn?'green':'orange')+'">'+(isIn?'💰':'💳')+'</div><div class="ph-card-main"><div class="ph-card-title">'+esc(item.desc||'')+'</div><div class="ph-card-sub">'+esc(item.time||'')+'</div></div><div class="ph-card-right"><div class="ph-amount '+(isIn?'income':'expense')+'">'+(isIn?'+':'-')+'¥'+amt.toFixed(2)+'</div></div></div>';
+g.appendChild(d)});
+c.appendChild(g)}
 function renderPhMemo(list){
 var c=$('phMemo');c.innerHTML='';
 if(!list.length){c.innerHTML='<div class="ph-empty">暂无备忘录</div>';return}
+var g=document.createElement('div');g.className='ph-group';
 list.forEach(function(item){
 var d=document.createElement('div');d.className='ph-card';
-d.innerHTML='<span class="ph-tag memo">备忘</span><b>'+esc(item.title||'')+'</b><div style="margin-top:4px;white-space:pre-wrap">'+esc(item.content||'')+'</div><div class="ph-time">'+esc(item.time||'')+'</div>';
-c.appendChild(d)})}
+d.innerHTML='<div class="ph-card-row"><div class="ph-card-icon purple">📝</div><div class="ph-card-main"><div class="ph-card-title">'+esc(item.title||'')+'</div><div class="ph-card-sub">'+esc(item.content||'')+'</div></div><div class="ph-card-right"><div class="ph-time">'+esc(item.time||'')+'</div></div></div>';
+g.appendChild(d)});
+c.appendChild(g)}
 /* +号菜单 */
 $('plusBtn').onclick=function(){var m=$('plusMenu');m.classList.toggle('active');$('stkPanel').classList.remove('active')};
 $('pmStk').onclick=function(){$('plusMenu').classList.remove('active');var p=$('stkPanel');p.classList.contains('active')?p.classList.remove('active'):(renderStkG(),p.classList.add('active'))};
@@ -3017,6 +3698,153 @@ $('gardenAchBtn').onclick=showGardenAch;
 $('discRoom').onclick=function(){$('discoverPanel').classList.remove('active');renderRoom();$('roomPanel').classList.add('active')};
 initNovelEvents();
 initCallEvents();
+function applyFullscreen(){
+var app=document.querySelector('.app');
+if(S.fullscreenMode){
+app.style.maxWidth='none';app.style.height='100vh';app.style.maxHeight='none';app.style.borderRadius='0';app.style.boxShadow='none';
+$('toggleFullscreen').textContent='关闭全屏';$('fullscreenStatus').textContent='当前：全屏模式';
+}else{
+app.style.maxWidth='';app.style.height='';app.style.maxHeight='';app.style.borderRadius='';app.style.boxShadow='';
+$('toggleFullscreen').textContent='开启全屏';$('fullscreenStatus').textContent='当前：窗口模式';
+}}
+if(S.fullscreenMode)applyFullscreen();
+function applyDarkMode(){
+if(S.darkMode){
+document.body.classList.add('dark-mode');
+$('darkModeStatus').textContent='当前：深色模式';
+$('toggleDarkMode').textContent='切换为浅色';
+}else{
+document.body.classList.remove('dark-mode');
+$('darkModeStatus').textContent='当前：浅色模式';
+$('toggleDarkMode').textContent='切换为深色';
+}}
+applyDarkMode();
+$('toggleDarkMode').onclick=function(){
+S.darkMode=!S.darkMode;save();applyDarkMode()};
+$('toggleFullscreen').onclick=function(){
+S.fullscreenMode=!S.fullscreenMode;save();applyFullscreen()};
+function renderWbPresets(){
+var sel=$('wbPresetSelect');sel.innerHTML='<option value="__current__">当前编辑</option>';
+S.wbPresets.forEach(function(p,i){var opt=document.createElement('option');opt.value=i;opt.textContent=p.name;sel.appendChild(opt)})}
+$('wbSavePreset').onclick=function(){
+var name=prompt('预设名称');if(!name)return;
+var content=$('fWB').value;
+S.wbPresets.push({name:name,content:content});save();renderWbPresets();toast('已保存')};
+$('wbDelPreset').onclick=function(){
+var idx=$('wbPresetSelect').value;if(idx==='__current__')return;
+if(!confirm('删除此预设？'))return;
+S.wbPresets.splice(idx,1);save();renderWbPresets();$('wbPresetSelect').value='__current__';toast('已删除')};
+$('wbPresetSelect').onchange=function(){
+var idx=this.value;if(idx==='__current__')return;
+$('fWB').value=S.wbPresets[idx].content;S.wb=S.wbPresets[idx].content;$('wCnt').textContent=S.wb.length+' 字';save();toast('已加载')};
+renderWbPresets();
+function renderApiPresets(){
+var sel=$('apiPresetSelect');sel.innerHTML='<option value="__current__">当前配置</option>';
+S.apiPresets.forEach(function(p,i){var opt=document.createElement('option');opt.value=i;opt.textContent=p.name;sel.appendChild(opt)})}
+$('apiSavePreset').onclick=function(){
+var name=prompt('预设名称（如：GPT-4o）');if(!name)return;
+S.apiPresets.push({name:name,url:$('fUrl').value,key:$('fKey').value,model:$('fMod').value});save();renderApiPresets();toast('已保存')};
+$('apiDelPreset').onclick=function(){
+var idx=$('apiPresetSelect').value;if(idx==='__current__')return;
+if(!confirm('删除此预设？'))return;
+S.apiPresets.splice(idx,1);save();renderApiPresets();$('apiPresetSelect').value='__current__';toast('已删除')};
+$('apiPresetSelect').onchange=function(){
+var idx=this.value;if(idx==='__current__')return;
+var p=S.apiPresets[idx];
+$('fUrl').value=p.url;$('fKey').value=p.key;$('fMod').value=p.model;
+S.apiUrl=p.url;S.apiKey=p.key;S.model=p.model;save();toast('已加载')};
+renderApiPresets();
+$('zhForumName').value=(S.zhForumInfo&&S.zhForumInfo.name)||'';
+$('zhForumRules').value=(S.zhForumInfo&&S.zhForumInfo.rules)||'';
+renderZhForumPresets();
+$('zhForumPresetSave').onclick=function(){
+var name=prompt('预设名称');if(!name)return;
+var info={name:name,forumName:$('zhForumName').value.trim(),forumRules:$('zhForumRules').value.trim(),posts:S.zhForumPosts?JSON.parse(JSON.stringify(S.zhForumPosts)):[]};
+S.zhForumPresets.push(info);save();renderZhForumPresets();toast('已保存')};
+$('zhForumPresetDel').onclick=function(){
+var idx=$('zhForumPresetSel').value;if(idx==='__current__')return;
+if(!confirm('删除此预设？'))return;
+S.zhForumPresets.splice(parseInt(idx),1);save();renderZhForumPresets();$('zhForumPresetSel').value='__current__';toast('已删除')};
+$('zhForumPresetSel').onchange=function(){
+var idx=this.value;if(idx==='__current__')return;
+var p=S.zhForumPresets[parseInt(idx)];
+$('zhForumName').value=p.forumName||'';$('zhForumRules').value=p.forumRules||'';
+S.zhForumInfo={name:p.forumName,rules:p.forumRules};
+if(p.posts&&p.posts.length){S.zhForumPosts=p.posts;renderZhForum()}
+save();toast('已加载')};
+$('zhForumSave').onclick=function(){
+S.zhForumInfo={name:$('zhForumName').value.trim(),rules:$('zhForumRules').value.trim()};
+save();toast('已保存')};
+document.querySelectorAll('[data-zfc]').forEach(function(b){b.onclick=function(){
+document.querySelectorAll('[data-zfc]').forEach(function(x){x.classList.remove('active')});
+b.classList.add('active');S.zhForumCat=b.dataset.zfc;save();renderZhForum()}});
+$('zhForumRefresh').onclick=async function(){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+toast('正在刷新论坛...');
+try{
+var n=getNow();
+var forumName=S.zhForumInfo.name||'匿名论坛';
+var forumRules=S.zhForumInfo.rules||'自由讨论';
+var catNames={zfAll:'推荐（综合热门内容）',zfHot:'热榜（最火最有争议的话题）',zfStory:'故事（用户分享的真实或虚构故事）',zfQa:'问答（提问和回答形式）'};
+var catHint=catNames[S.zhForumCat||'zfAll']||'推荐';
+var prompt='现在是'+n.full+'。请模拟"'+forumName+'"论坛的【'+catHint+'】专栏帖子列表，生成4-6条帖子，严格按JSON数组格式输出：\n'+
+'[{"author":"发帖人","title":"标题","body":"正文(50-150字)","likes":数字,"comments":数字,"time":"时间","cat":"'+(S.zhForumCat||'zfAll')+'"}]\n'+
+'要求：\n'+
+'- 帖子内容必须符合论坛规则：'+forumRules+'\n'+
+'- 帖子风格必须符合【'+catHint+'】专栏的特点\n'+
+'- 如果是热榜，帖子要有争议性和高互动\n'+
+'- 如果是故事，帖子要是叙事体，有情节\n'+
+'- 如果是问答，帖子要是提问形式，body里包含问题描述\n'+
+'- 发帖人名字要符合论坛风格\n'+
+'- 内容真实自然，有讨论价值\n'+
+'- 只输出JSON数组';
+var r=await callApi([{role:'system',content:(S.cp||DC).substring(0,500)},{role:'user',content:prompt}],2000);
+var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
+clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
+S.zhForumPosts=JSON.parse(clean);save();renderZhForum();toast('已刷新')
+}catch(e){toast('刷新失败',3e3);console.warn('forum err',e)}};
+function renderZhForum(){
+var c=$('zhForumFeed');if(!c)return;c.innerHTML='';
+if(!S.zhForumPosts||!S.zhForumPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">暂无帖子</div>';return}
+S.zhForumPosts.forEach(function(p,idx){
+var d=document.createElement('div');d.className='zh-post';
+d.innerHTML='<div class="zh-post-author"><span class="zh-post-name">'+esc(p.author||'匿名')+'</span></div>'+(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>';
+var cmArea=document.createElement('div');cmArea.style.cssText='margin-top:8px';
+if(p.commentList&&p.commentList.length){
+var cmBox=document.createElement('div');cmBox.className='pyq-inter';
+p.commentList.forEach(function(cm){
+var cmd=document.createElement('div');cmd.className='pyq-cm';cmd.innerHTML='<b>'+esc(cm.name)+'</b>: '+esc(cm.text);cmBox.appendChild(cmd)});
+cmArea.appendChild(cmBox)}
+var refreshCm=document.createElement('button');refreshCm.className='btn bs2 bsm';refreshCm.style.marginTop='6px';refreshCm.textContent='刷新评论';
+(function(pidx){refreshCm.onclick=function(){refreshZhHomeComments(pidx)}})(idx);
+cmArea.appendChild(refreshCm);
+ensureLikeId(p,'zhHome',idx);
+var likeBtn=makeZhLikeBtn(p,'首页',function(){save();renderZhHome()});
+likeBtn.style.marginTop='6px';likeBtn.style.marginLeft='6px';
+cmArea.appendChild(likeBtn);
+d.appendChild(cmArea);c.appendChild(d)})}
+async function refreshZhForumComments(pidx){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+var post=S.zhForumPosts[pidx];if(!post)return;
+toast('正在加载评论...');
+S.isGen=true;
+try{
+var forumName=S.zhForumInfo.name||'匿名论坛';
+var prompt='以下是"'+forumName+'"论坛的帖子：\n标题：'+(post.title||'无标题')+'\n内容：'+post.body+'\n\n请模拟论坛评论区，生成8-12条评论，严格按JSON数组格式输出：\n'+
+'[{"name":"评论者","text":"评论内容"}]\n'+
+'要求：\n'+
+'- 评论风格符合论坛氛围\n'+
+'- 有赞同、质疑、补充、玩梗\n'+
+'- 只输出JSON数组';
+var r=await callApi([{role:'system',content:(S.cp||DC).substring(0,500)},{role:'user',content:prompt}],2000);
+var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
+clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
+var comments=JSON.parse(clean);
+post.commentList=comments;post.comments=comments.length;save();renderZhForum();toast('已加载 '+comments.length+' 条评论')
+}catch(e){toast('加载评论失败',3e3)}
+S.isGen=false}
 $('fFontUrl').value=S.customFontUrl||'';
 if(S.customFontUrl)$('fontPreview').textContent='当前字体：'+S.customFontUrl;
 $('applyFont').onclick=function(){
@@ -3070,7 +3898,7 @@ if($('zhCharBgF')){
     toast('已设置');
   })
 }
-$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(b){b.onclick=function(){$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(x){x.classList.remove('active')});b.classList.add('active');$('zhHome').classList.remove('active');$('zhChar').classList.remove('active');if($('zhUser'))$('zhUser').classList.remove('active');var target=document.getElementById(b.dataset.zht);if(target)target.classList.add('active');if(b.dataset.zht==='zhUser')renderZhUser()}});
+$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(b){b.onclick=function(){$('zhihuPanel').querySelectorAll('[data-zht]').forEach(function(x){x.classList.remove('active')});b.classList.add('active');$('zhHome').classList.remove('active');$('zhChar').classList.remove('active');if($('zhUser'))$('zhUser').classList.remove('active');if($('zhForum'))$('zhForum').classList.remove('active');if($('zhLiked'))$('zhLiked').classList.remove('active');var target=document.getElementById(b.dataset.zht);if(target)target.classList.add('active');if(b.dataset.zht==='zhUser')renderZhUser();if(b.dataset.zht==='zhForum')renderZhForum();if(b.dataset.zht==='zhLiked')renderZhLikedFeed()}});
 
 function renderZhHome(){
 var c=$('zhHomeFeed');c.innerHTML='';
@@ -3087,7 +3915,12 @@ var cmd=document.createElement('div');cmd.className='pyq-cm';cmd.innerHTML='<b>'
 cmArea.appendChild(cmBox)}
 var refreshCm=document.createElement('button');refreshCm.className='btn bs2 bsm';refreshCm.style.marginTop='6px';refreshCm.textContent='刷新评论';
 (function(pidx){refreshCm.onclick=function(){refreshZhHomeComments(pidx)}})(idx);
-cmArea.appendChild(refreshCm);d.appendChild(cmArea);c.appendChild(d)})}
+cmArea.appendChild(refreshCm);
+ensureLikeId(p,'zhForum',idx);
+var likeBtn3=makeZhLikeBtn(p,'论坛',function(){save();renderZhForum()});
+likeBtn3.style.marginTop='6px';likeBtn3.style.marginLeft='6px';
+cmArea.appendChild(likeBtn3);
+d.appendChild(cmArea);c.appendChild(d)})}
 
 function renderZhChar(){
 var zhpDiv=$('zhProfile');
@@ -3101,7 +3934,6 @@ if(!S.zhCharPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13p
 S.zhCharPosts.forEach(function(p,idx){
 var d=document.createElement('div');d.className='zh-post';
 d.innerHTML=(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>💬 '+((p.commentList&&p.commentList.length)||0)+'</span><span>'+esc(p.time||'')+'</span></div>'; if(p.image&&p.image!=='__IDB_ZH__'){var zhImg=document.createElement('img');zhImg.src=p.image;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';d.insertBefore(zhImg,d.querySelector('.zh-post-meta'))} else if(p.image==='__IDB_ZH__'&&p.id){(function(thePost,theD){loadImgFromDB('zh_img_'+thePost.id).then(function(data){if(data){thePost.image=data;var zhImg=document.createElement('img');zhImg.src=data;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';var meta=theD.querySelector('.zh-post-meta');if(meta)theD.insertBefore(zhImg,meta);else theD.appendChild(zhImg)}}).catch(function(){})})(p,d)} 
-if(p.image&&p.image!=='__IDB_ZH__'){var zhImg=document.createElement('img');zhImg.src=p.image;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';d.insertBefore(zhImg,d.querySelector('.zh-post-meta'))} else if(p.image==='__IDB_ZH__'&&p.id){(function(thePost,theD){loadImgFromDB('zh_img_'+thePost.id).then(function(data){if(data){thePost.image=data;var zhImg=document.createElement('img');zhImg.src=data;zhImg.style.cssText='max-width:100%;max-height:300px;border-radius:8px;margin:8px 0;display:block';var meta=theD.querySelector('.zh-post-meta');if(meta)theD.insertBefore(zhImg,meta);else theD.appendChild(zhImg)}}).catch(function(){})})(p,d)} 
 var cmArea=document.createElement('div');cmArea.style.cssText='margin-top:8px';
 if(p.commentList&&p.commentList.length){
 var cmBox=document.createElement('div');cmBox.className='pyq-inter';
@@ -3110,7 +3942,12 @@ var cmd=document.createElement('div');cmd.className='pyq-cm';cmd.innerHTML='<b>'
 cmArea.appendChild(cmBox)}
 var refreshCm=document.createElement('button');refreshCm.className='btn bs2 bsm';refreshCm.style.marginTop='6px';refreshCm.textContent='刷新评论';
 (function(pidx){refreshCm.onclick=function(){refreshZhCharComments(pidx)}})(idx);
-cmArea.appendChild(refreshCm);d.appendChild(cmArea);c.appendChild(d)})}
+cmArea.appendChild(refreshCm);
+ensureLikeId(p,'zhChar',idx);
+var likeBtn=makeZhLikeBtn(p,S.cn+'主页',function(){save();renderZhChar()});
+likeBtn.style.marginTop='6px';likeBtn.style.marginLeft='6px';
+cmArea.appendChild(likeBtn);
+d.appendChild(cmArea);c.appendChild(d)})}
 
 function renderZhUser(){
 var zhupDiv=$('zhUserProfile');
@@ -3149,16 +3986,44 @@ S.isGen=true;
 try{
 var npcInfo='';
 if(S.npcs.length){npcInfo='\nNPC列表：\n';S.npcs.forEach(function(n){npcInfo+='- '+n.name+'：'+(n.desc||'')+'\n'})}
-var prompt='以下是'+S.un+'在知乎发的帖子：\n标题：'+(post.title||'无标题')+'\n内容：'+post.body+'\n\n请模拟知乎评论区，生成10-15条评论，严格按JSON数组格式输出：\n'+
-'[{"name":"评论者名字","text":"评论内容"}]\n'+
-'要求：\n'+
-'- 必须包含'+S.cn+'的评论（1-2条，符合角色性格）\n'+
-(S.npcs.length?'- 必须包含以下NPC的评论（每人1条）：'+S.npcs.map(function(n){return n.name}).join('、')+'\n':'')+
-'- 其余为随机路人评论（用真实感的中文网名）\n'+
-'- 评论风格多样：有赞同、有质疑、有补充、有调侃\n'+
-'- 每条评论10-50字，自然真实\n'+
-'- 总共至少10条\n'+
-'- 只输出JSON数组'+npcInfo;
+var prompt='以下是'+S.un+'在知乎发的帖子：\n'+
+'标题：'+(post.title||'无标题')+'\n'+
+'内容：'+post.body+'\n\n'+
+'请模拟真实的知乎评论区，生成10-15条评论。\n\n'+
+'严格按JSON数组格式输出：\n'+
+'[{"name":"评论者名字","text":"评论内容"}]\n\n'+
+'【评论者分配】\n'+
+'- '+S.cn+'：1-2条（必须有）\n'+
+(S.npcs.length?'- NPC们：各1条\n'+npcInfo+'\n':'')+
+'- 路人甲乙丙：其余\n\n'+
+'【'+S.cn+'的评论风格】\n'+
+'- 温和鼓励："写得很好，能感受到你的真诚。"\n'+
+'- 专业补充："从心理学角度看，这种感受很正常..."\n'+
+'- 温柔关心："注意休息，别太累。"\n'+
+'- 简短认同："嗯，是这样。"\n'+
+'- 不说教、不居高临下\n'+
+'- 10-40字\n\n'+
+'【路人评论类型】（多样化）\n'+
+'1. 赞同共鸣（30%）：\n'+
+'   "说到心坎里了" "我也有同感" "深有体会"\n'+
+'2. 提问讨论（20%）：\n'+
+'   "那如果...怎么办？" "能展开说说吗？"\n'+
+'3. 补充观点（20%）：\n'+
+'   "我觉得还可以..." "另一个角度是..."\n'+
+'4. 分享经历（15%）：\n'+
+'   "我之前也..." "我有个朋友..."\n'+
+'5. 调侃玩梗（10%）：\n'+
+'   "笑死" "绷不住了" "这也太真实了"\n'+
+'6. 质疑反对（5%）：\n'+
+'   "不太认同" "这个说法有点..."\n\n'+
+'【评论要求】\n'+
+'- 每条10-50字\n'+
+'- 不要全是彩虹屁\n'+
+'- 要有不同观点\n'+
+'- 语气自然，像真人\n'+
+'- 评论者名字真实感（温柔的风、城市观察者、夜行者等）\n'+
+'- 不要出现"楼主""层主"等论坛用语\n\n'+
+'严禁输出HTML、代码、注释，只输出JSON数组';
 var sysTxt=(S.cp||DC).substring(0,500)+'\n'+(S.wb||DW).substring(0,300);
 var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],2000);
 var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
@@ -3218,7 +4083,65 @@ var comments=JSON.parse(clean);
 post.commentList=comments;post.comments=comments.length;save();renderZhChar();toast('已加载 '+comments.length+' 条评论')
 }catch(e){toast('加载评论失败',3e3)}
 S.isGen=false}
+/* 知乎点赞功能 */
+function zhToggleLike(post,source){
+var exists=-1;
+for(var i=0;i<S.zhLikedPosts.length;i++){
+if(S.zhLikedPosts[i]._likeId===post._likeId){exists=i;break}}
+if(exists>=0){
+S.zhLikedPosts.splice(exists,1);
+post.likes=Math.max(0,(post.likes||1)-1);
+}else{
+var copy=JSON.parse(JSON.stringify(post));
+copy._likeSource=source;
+copy._likeTime=getNow().full;
+S.zhLikedPosts.push(copy);
+post.likes=(post.likes||0)+1;
+}
+save();
+}
 
+function isZhLiked(post){
+if(!post._likeId)return false;
+for(var i=0;i<S.zhLikedPosts.length;i++){
+if(S.zhLikedPosts[i]._likeId===post._likeId)return true}
+return false}
+
+function ensureLikeId(post,prefix,idx){
+if(!post._likeId)post._likeId=prefix+'_'+idx;
+return post}
+
+function renderZhLikedFeed(){
+var c=$('zhLikedFeed');if(!c)return;c.innerHTML='';
+$('zhLikedCnt').textContent='('+S.zhLikedPosts.length+')';
+if(!S.zhLikedPosts.length){c.innerHTML='<div style="color:var(--tl);font-size:13px;padding:20px 0;text-align:center">还没有赞过的内容</div>';return}
+for(var i=S.zhLikedPosts.length-1;i>=0;i--)(function(p,idx){
+var d=document.createElement('div');d.className='zh-post';
+d.innerHTML='<div class="zh-post-author"><span class="zh-post-name">'+esc(p.author||p._likeSource||'')+'</span>'+(p._likeTime?'<span class="zh-post-tag">赞于 '+esc(p._likeTime)+'</span>':'')+'</div>'+(p.title?'<div class="zh-post-title">'+esc(p.title)+'</div>':'')+'<div class="zh-post-body" style="max-height:150px;overflow:hidden">'+esc(p.body||'')+'</div><div class="zh-post-meta"><span>👍 '+(p.likes||0)+'</span><span>来源：'+esc(p._likeSource||'未知')+'</span></div>';
+var acts=document.createElement('div');acts.style.cssText='display:flex;gap:6px;margin-top:8px';
+var expandBtn=document.createElement('button');expandBtn.className='btn bs2 bsm';expandBtn.textContent='展开';
+var bodyEl=d.querySelector('.zh-post-body');
+expandBtn.onclick=function(){
+if(bodyEl.style.maxHeight==='none'){bodyEl.style.maxHeight='150px';expandBtn.textContent='展开'}
+else{bodyEl.style.maxHeight='none';expandBtn.textContent='收起'}};
+var delBtn=document.createElement('button');delBtn.className='btn bs2 bsm';delBtn.style.color='var(--dg)';delBtn.textContent='取消赞';
+(function(pidx){delBtn.onclick=function(){
+if(!confirm('取消赞？'))return;
+S.zhLikedPosts.splice(pidx,1);save();renderZhLikedFeed();toast('已取消')}})(idx);
+acts.appendChild(expandBtn);acts.appendChild(delBtn);
+d.appendChild(acts);c.appendChild(d)})(S.zhLikedPosts[i],i)}
+
+function makeZhLikeBtn(post,source,refreshFn){
+var liked=isZhLiked(post);
+var btn=document.createElement('button');
+btn.className='pyq-abtn'+(liked?' liked':'');
+btn.textContent='👍 '+(post.likes||0);
+btn.style.cssText='background:none;border:1px solid var(--bc);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;transition:all .12s;'+(liked?'border-color:var(--ac);color:var(--ac);background:var(--al)':'');
+btn.onclick=function(e){e.stopPropagation();
+zhToggleLike(post,source);
+if(refreshFn)refreshFn();
+else{var nl=isZhLiked(post);btn.className='pyq-abtn'+(nl?' liked':'');btn.textContent='👍 '+(post.likes||0);btn.style.borderColor=nl?'var(--ac)':'';btn.style.color=nl?'var(--ac)':'';btn.style.background=nl?'var(--al)':''}};
+return btn}
 $('zhHomeRefresh').onclick=async function(){
 if(!S.apiKey){toast('设置API Key');return}
 if(S.isGen){toast('请等待');return}
@@ -3227,14 +4150,35 @@ try{
 var npcInfo='';
 if(S.npcs.length){npcInfo='\n\nNPC列表（他们会发帖）：\n';S.npcs.forEach(function(n){npcInfo+='- '+n.name+'：'+(n.desc||'无描述')+'\n'})}
 var n=getNow();
-var prompt='现在是'+n.full+'。请模拟知乎首页内容，生成4-6条帖子，严格按JSON数组格式输出：\n'+
-'[{"author":"作者名","tag":"话题标签","title":"帖子标题","body":"帖子正文(50-150字)","likes":数字,"comments":数字,"time":"时间"}]\n'+
-'要求：\n'+
-'- 其中1-2条来自'+S.cn+'（心理学/植物/生活相关）\n'+
-(S.npcs.length?'- 其中2-3条来自NPC们，内容符合他们的设定\n':'')+
-'- 其余来自随机知乎用户，话题多样\n'+
-'- 内容真实自然，像真正的知乎帖子\n'+
-'- 只输出JSON数组，不要其他内容'+npcInfo;
+var prompt='现在是'+n.full+'。请模拟知乎首页推荐内容，生成5-7条帖子。\n\n'+
+'严格按JSON数组格式输出：\n'+
+'[{"author":"作者名","tag":"话题标签","title":"帖子标题","body":"帖子正文(80-200字)","likes":数字,"comments":数字,"time":"时间"}]\n\n'+
+'【内容分配】\n'+
+'- 1-2条来自'+S.cn+'（心理咨询师视角）：\n'+
+'  · 专业分享："如何识别焦虑症的早期信号？"\n'+
+'  · 生活感悟："养植物教会我的三件事"\n'+
+'  · 随笔："深夜诊所的一盏灯"\n'+
+'  标签：#心理健康 #植物 #生活随笔\n\n'+
+(S.npcs.length?'- 2-3条来自NPC（符合他们的设定）：\n'+npcInfo+'\n':'')+
+'- 其余来自随机知乎用户（话题多样）：\n'+
+'  · 职场："35岁转行晚吗？"\n'+
+'  · 情感："异地恋如何维持？"\n'+
+'  · 科技："AI会取代心理咨询师吗？"\n'+
+'  · 美食："有哪些适合一个人做的简单晚餐？"\n'+
+'  · 文化："你读过最治愈的一本书是什么？"\n'+
+'  作者名要真实感（如：温柔的风、城市观察者、夜行者）\n\n'+
+'【内容要求】\n'+
+'- 标题要吸引人，但不要标题党\n'+
+'- 正文80-200字，有观点、有细节、有故事\n'+
+'- '+S.cn+'的帖子要符合他的性格：\n'+
+'  · 温和理性，不说教\n'+
+'  · 有专业深度，但通俗易懂\n'+
+'  · 偶尔流露生活细节（植物、音乐、做饭）\n'+
+'  · 不暴露患者隐私\n'+
+'- 点赞数：50-500（热门话题可以更高）\n'+
+'- 评论数：10-80\n'+
+'- 时间要合理（今天或最近几天）\n\n'+
+'严禁输出HTML、代码、注释，只输出JSON数组';
 var r=await callApi([{role:'system',content:(S.cp||DC).substring(0,500)+'\n'+(S.wb||DW).substring(0,300)+npcInfo},{role:'user',content:prompt}],2000);
 var clean=r.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
 clean=clean.replace(/^[^[{]*/,'').replace(/[^\]}]*$/,'');
@@ -3255,7 +4199,44 @@ recentChat+=who+'：'+m.content+'\n';
 }
 });
 var n=getNow();
-var prompt='现在是'+n.full+'。请根据以下最近聊天内容，模拟'+S.cn+'在知乎发的帖子。生成3-5条帖子，严格按JSON数组格式输出：\n'+
+var prompt='现在是'+n.full+'。请根据最近的聊天和生活状态，模拟'+S.cn+'在知乎发的帖子。\n\n'+
+'严格按JSON数组格式输出：\n'+
+'[{"title":"帖子标题","body":"帖子正文(100-250字)","likes":数字,"comments":数字,"time":"时间"}]\n\n'+
+'生成3-5条帖子，类型多样：\n\n'+
+'【专业分享类】（30%）\n'+
+'- 标题："如何陪伴抑郁症患者？三个常见误区"\n'+
+'- 标题："心理咨询师的日常：倾听的艺术"\n'+
+'- 正文：专业但不说教，用案例（隐去隐私）说明观点\n'+
+'- 语气：温和、理性、有同理心\n\n'+
+'【生活随笔类】（40%）\n'+
+'- 标题："后花园的薄荷又疯长了"\n'+
+'- 标题："深夜听德彪西《月光》的感受"\n'+
+'- 标题："做饭糊锅的第N次"\n'+
+'- 正文：生活细节，带点自嘲，温暖治愈\n'+
+'- 可以提到植物、音乐、做饭、弟弟的餐馆\n'+
+'- 不直接提'+S.un+'，但可以隐晦暗示（"有人"）\n\n'+
+'【观察思考类】（30%）\n'+
+'- 标题："城市里的孤独者"\n'+
+'- 标题："为什么我们害怕沉默？"\n'+
+'- 正文：哲学思考，但接地气，有生活场景\n'+
+'- 语气：克制、留白、不下结论\n\n'+
+'【结合最近聊天】\n'+
+'如果最近聊天中：\n'+
+'- 提到画画 → 可以写"创作与疗愈的关系"\n'+
+'- 提到失眠 → 可以写"失眠时我会做的三件事"\n'+
+'- 提到音乐 → 可以写"音乐如何影响情绪"\n'+
+'- 提到植物 → 可以写"养植物的治愈力"\n\n'+
+'【数据要求】\n'+
+'- 点赞数：30-300（专业内容更高）\n'+
+'- 评论数：5-50\n'+
+'- 时间：今天或最近3天内\n\n'+
+'【风格要求】\n'+
+'- 不要每篇都是"今天..."\n'+
+'- 不要太文艺腔，要接地气\n'+
+'- 可以有小幽默、小自嘲\n'+
+'- 结尾不要总结，留白\n\n'+
+'最近聊天参考：\n'+recentChat.substring(0,800)+'\n\n'+
+'严禁输出HTML、代码、注释，只输出JSON数组';
 '[{"title":"帖子标题","body":"帖子正文(80-200字)","likes":数字,"comments":数字,"time":"时间"}]\n'+
 '要求：\n'+
 '- 帖子内容要与最近的聊天话题、生活状态相关\n'+
@@ -3367,11 +4348,23 @@ $('statusToggle').onclick=function(){var sb=$('statusBar');sb.classList.toggle('
 sendBtn.onclick=sendMsg;
 inBox.onkeydown=function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg()}};
 inBox.oninput=function(){sendBtn.disabled=!inBox.value.trim();inBox.style.height='auto';inBox.style.height=Math.min(inBox.scrollHeight,100)+'px'};
-recvBtn.onclick=recvReply;
+recvBtn.onclick=function(){if(S.isGen)return;recvReply()};
 $('stkClose').onclick=function(){$('stkPanel').classList.remove('active')};
 $('imgInput').onchange=function(e){var f=e.target.files[0];if(!f)return;if(f.size>10*1024*1024){toast('不超10MB');e.target.value='';return}var r=new FileReader();r.onload=function(ev){sync();if(!S.apiKey){toast('设置Key');return} var raw=ev.target.result; compressImage(raw,800,0.6,function(compressed){ addRender('user','[图片]',{type:'image',imageUrl:compressed,imageData:compressed}); S.pc++;S.memUnsummed++;save();updBdg()})};r.readAsDataURL(f);e.target.value=''};
 /* 查看手机事件 */
-$('cpPhoneBtn').onclick=function(){$('phTitle').textContent='📱 '+S.cn+'的手机';$('phonePanel').style.backgroundImage=S.phoneWallpaper?'url('+S.phoneWallpaper+')':'';$('phonePanel').classList.add('active');if(S.phoneData)restorePhone()};
+$('cpDiaryBtn').onclick=function(){renderDrMyFeed();renderDrTaFeed();$('diaryPanel').classList.add('active')};
+$('diaryClose').onclick=function(){$('diaryPanel').classList.remove('active')};
+$('diaryPanel').querySelectorAll('[data-drt]').forEach(function(b){b.onclick=function(){$('diaryPanel').querySelectorAll('[data-drt]').forEach(function(x){x.classList.remove('active');x.style.color='#8b7355'});$('diaryPanel').querySelectorAll('.tp3').forEach(function(x){x.classList.remove('active')});b.classList.add('active');b.style.color='#5a4a3a';var sec=$(b.dataset.drt);if(sec)sec.classList.add('active');if(b.dataset.drt==='drMy')renderDrMyFeed();if(b.dataset.drt==='drTa')renderDrTaFeed()}});
+$('drMyPost').onclick=function(){
+var t=$('drMyInput').value.trim();
+if(!t){toast('写点什么');return}
+if(hasWrittenDiaryToday(S.un)){toast('今天已经写过日记了');return}
+var n=getNow();
+var entry={id:gid(),author:S.un,text:t,date:n.full,dateKey:diaryToday(),reply:'',replyAuthor:''};
+S.diaryEntries.push(entry);save();$('drMyInput').value='';renderDrMyFeed();toast('日记已保存 📔');
+setTimeout(function(){drCharReplyToUser(entry.id)},2000)};
+$('drTaGen').onclick=drCharWrite;
+$('cpPhoneBtn').onclick=function(){$('phTitle').textContent=S.cn+'的手机';var n=getNow();$('phTimeDisplay').textContent=n.time;$('phonePanel').classList.add('active');if(S.phoneData)restorePhone()};
 $('phClose').onclick=function(){$('phonePanel').classList.remove('active')};
 $('phRefresh').onclick=refreshPhone;
 $('phonePanel').querySelectorAll('[data-pht]').forEach(function(b){b.onclick=function(){$('phonePanel').querySelectorAll('[data-pht]').forEach(function(x){x.classList.remove('active')});$('phonePanel').querySelectorAll('.ph-sec').forEach(function(x){x.classList.remove('active')});b.classList.add('active');var sec=$(b.dataset.pht);if(sec)sec.classList.add('active')}});
@@ -3583,10 +4576,15 @@ var stats={water:0,destroy:0,plants:0};
 if(!S.gardenData)return stats;
 if(S.gardenData.actions&&S.gardenData.actions.length){
 S.gardenData.actions.forEach(function(a){
+/* 修复：直接判断type字段，不再依赖文本匹配 */
+if(a.type==='water')stats.water++;
+else if(a.type==='break')stats.destroy++;
+/* 兼容旧数据 */
+else{
 var t=typeof a==='string'?a:(a&&a.text?a.text:(a&&a.action?a.action:JSON.stringify(a)));
 if(t.indexOf('浇水')>=0||t.indexOf('浇了')>=0)stats.water++;
 if(t.indexOf('破坏')>=0||t.indexOf('踩')>=0||t.indexOf('拔')>=0)stats.destroy++;
-})}
+}})}
 if(S.gardenData.plants&&S.gardenData.plants.length){
 S.gardenData.plants.forEach(function(p){
 if(p.growth>0)stats.plants++;
@@ -3654,7 +4652,48 @@ var ov=showCraneCard(null,null);
 toast('正在折一只新的...');
 try{
 var sysTxt=(S.cp||DC).substring(0,800);
-var r=await callApi([{role:'system',content:sysTxt+'\n\n你是'+S.cn+'。写一句放在千纸鹤里的话给'+S.un+'。要求：一句话，15-30字，温柔克制，符合你的性格。可以是日常关心、小小的承诺、对未来的期待、或者某个安静的念头。不要太甜腻。只输出那句话，不加引号不加标点以外的符号。'},{role:'user',content:'写一句千纸鹤里的话。'}],100);
+var r=await callApi([{role:'system',content:sysTxt+'\n\n你是'+S.cn+'。写一句放在千纸鹤里的话给'+S.un+'。\n\n'+
+'要求：\n'+
+'- 一句话，10-35字\n'+
+'- 像随手写下的念头\n'+
+'- 不是刻意的情话\n'+
+'- 可能是某个瞬间想到的\n\n'+
+'内容类型（随机选一种）：\n\n'+
+'1. 日常念头（30%）：\n'+
+'   "今天的咖啡有点苦。"\n'+
+'   "后花园的薄荷该修剪了。"\n'+
+'   "又糊锅了。"\n'+
+'   "德彪西的《月光》听了很多遍。"\n'+
+'   "蔚染又催我去吃饭。"\n\n'+
+'2. 关于对方（25%）：\n'+
+'   "你今天笑了，我看到了。"\n'+
+'   "你睡着的样子很安静。"\n'+
+'   "希望你少做噩梦。"\n'+
+'   "你画画的时候很专注。"\n'+
+'   "你的手很凉。"\n\n'+
+'3. 小小的承诺（20%）：\n'+
+'   "我会一直在。"\n'+
+'   "不会走的。"\n'+
+'   "会陪着你。"\n'+
+'   "有我在。"\n'+
+'   "别怕。"\n\n'+
+'4. 克制的情感（15%）：\n'+
+'   "有你在就好。"\n'+
+'   "谢谢你在我身边。"\n'+
+'   "你在，我就安心。"\n'+
+'   "想你了。"\n\n'+
+'5. 对未来的期待（10%）：\n'+
+'   "明年春天一起去看樱花。"\n'+
+'   "希望时间慢一点。"\n'+
+'   "想和你一起变老。"\n'+
+'   "下次一起去海边。"\n\n'+
+'风格要求：\n'+
+'- 符合'+S.cn+'的性格：温和、克制、不夸张\n'+
+'- 不要太文艺、太刻意\n'+
+'- 可以很日常、很琐碎\n'+
+'- 可以是观察、念头、承诺、期待\n'+
+'- 不要"永远""一辈子"（太重）\n'+
+'- 只输出那句话，不加引号不加标记'},{role:'user',content:'写一句千纸鹤里的话。'}],100);
 var txt=r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,'');
 $('craneCardText').textContent=txt;
 $('craneCardFrom').textContent='—— '+(S.cn||'谢蔚安');
@@ -3672,7 +4711,40 @@ toast(S.cn+'正在折千纸鹤...');
 try{
 var sysTxt=(S.cp||DC).substring(0,800);
 var recent='';var last10=S.messages.slice(-10);last10.forEach(function(m){if(m.type!=='pat')recent+=(m.role==='user'?S.un:S.cn)+'：'+m.content+'\n'});
-var r=await callApi([{role:'system',content:sysTxt+'\n\n你是'+S.cn+'。根据最近的聊天氛围，写一句放在千纸鹤里的话给'+S.un+'。要求：一句话，15-30字，温柔克制，不要太甜腻，像是随手写下的念头。只输出那句话。'},{role:'user',content:'最近聊天：\n'+recent.substring(0,500)+'\n\n写一句千纸鹤里的话。'}],100);
+var r=await callApi([{role:'system',content:sysTxt+'\n\n你是'+S.cn+'。根据最近的聊天氛围，写一句放在千纸鹤里的话给'+S.un+'。\n\n'+
+'要求：\n'+
+'- 一句话，10-35字\n'+
+'- 要与最近聊天内容有关联\n'+
+'- 但不要直接复述聊天内容\n'+
+'- 像是聊天后的余韵、念头\n\n'+
+'根据聊天氛围选择：\n\n'+
+'【如果最近聊天很开心】\n'+
+'- "今天你笑了很多次。"\n'+
+'- "喜欢你开心的样子。"\n'+
+'- "希望你一直这样。"\n\n'+
+'【如果最近聊天有点低落】\n'+
+'- "会好的。"\n'+
+'- "我在。"\n'+
+'- "别怕，有我。"\n'+
+'- "慢慢来，不急。"\n\n'+
+'【如果聊到具体的事】\n'+
+'- 聊画画 → "你的画我很喜欢。"\n'+
+'- 聊失眠 → "希望你今晚能睡好。"\n'+
+'- 聊做饭 → "下次我做给你吃。"\n'+
+'- 聊音乐 → "那首歌我也在听。"\n\n'+
+'【如果聊天很日常】\n'+
+'- "今天也很平常。"\n'+
+'- "这样就很好。"\n'+
+'- "平淡也是幸福。"\n\n'+
+'【如果聊天有点暧昧】\n'+
+'- "想你了。"\n'+
+'- "你在，我就安心。"\n'+
+'- "有你在就好。"\n\n'+
+'风格要求：\n'+
+'- 要能让'+S.un+'看出来是在说最近的事\n'+
+'- 但不要太直白\n'+
+'- 克制、温柔、留白\n'+
+'- 只输出那句话，不加引号不加标记'},{role:'user',content:'最近聊天：\n'+recent.substring(0,500)+'\n\n写一句千纸鹤里的话。'}],100);
 var txt=r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,'');
 $('craneCardText').textContent=txt;
 $('craneCardFrom').textContent='—— '+(S.cn||'谢蔚安');
@@ -3855,6 +4927,11 @@ d.appendChild(body);
 var acts=document.createElement('div');acts.className='nv-card-acts';
 var expandBtn=document.createElement('button');expandBtn.className='btn bs2 bsm';expandBtn.textContent='展开全文';
 expandBtn.onclick=function(){body.classList.toggle('expanded');expandBtn.textContent=body.classList.contains('expanded')?'收起':'展开全文'};
+var copyBtn=document.createElement('button');copyBtn.className='btn bs2 bsm';copyBtn.textContent='复制';
+(function(nv){copyBtn.onclick=function(){
+var txt=nv.title+'\n\n'+nv.content;
+navigator.clipboard.writeText(txt).then(function(){toast('已复制')}).catch(function(){toast('复制失败')})}})(novel);
+acts.appendChild(copyBtn);
 var favBtn=document.createElement('button');favBtn.className='btn bs2 bsm';favBtn.textContent=isFav?'已收藏':'⭐ 收藏';favBtn.style.color=isFav?'var(--ac)':'';
 (function(nv,fb){fb.onclick=function(){
 var exists=false;
@@ -3936,8 +5013,47 @@ var typeHint=type==='long'?'这是长篇连载小说的第1章。结尾要留悬
 var keywordHint=keyword?'主题/关键词：'+keyword+'。围绕这个主题展开故事。':'根据角色设定和关系，自由创作一个有趣的故事。';
 var tagHint=tags.length?'标签风格：'+tags.join(' ')+'。故事氛围要符合这些标签。':'';
 var prompt='请创作一篇关于'+S.cn+'和'+S.un+'的同人小说。\n\n'+
-'要求：\n'+
+'【基本要求】\n'+
 '- '+typeHint+'\n'+
+'- '+keywordHint+'\n'+
+(tagHint?'- '+tagHint+'\n':'')+
+'- 字数约'+maxLen+'字\n'+
+'- 第一行输出标题（不加书名号），第二行开始正文\n\n'+
+'【文风要求】\n'+
+stylePrompt+'\n\n'+
+'【内容要求】\n'+
+'1. 人物刻画：\n'+
+'   - '+S.cn+'：温和克制，话不多，用动作和细节传递情感\n'+
+'   - '+S.un+'：敏感细腻，情绪波动，渴望被理解\n'+
+'   - 性格必须符合设定，不要OOC\n\n'+
+'2. 情节设计：\n'+
+'   - 要有具体场景（诊所、家里、后花园、外出）\n'+
+'   - 要有冲突或转折（不要一帆风顺）\n'+
+'   - 要有情感张力（克制的、暗涌的）\n'+
+'   - 日常向：做饭、照顾植物、听音乐、散步\n'+
+'   - 情感向：误会、和解、脆弱时刻、无声陪伴\n\n'+
+'3. 细节描写：\n'+
+'   - 感官：触觉（手指相触）、听觉（呼吸声）、嗅觉（草药香）\n'+
+'   - 动作：揉眉心、摸后颈、整理衣角、握手\n'+
+'   - 环境：光影、温度、声音、气味\n'+
+'   - 物品：手表、千纸鹤、咖啡杯、植物\n\n'+
+'4. 对话风格：\n'+
+'   - '+S.cn+'：简短、留白、"嗯" "好" "我在"\n'+
+'   - '+S.un+'：情绪化、欲言又止、"没事" "算了"\n'+
+'   - 不要长篇大论\n'+
+'   - 沉默也是对话\n\n'+
+'5. 情感处理：\n'+
+'   - 不要直白告白\n'+
+'   - 不要过度甜腻\n'+
+'   - 克制、暗涌、欲言又止\n'+
+'   - 温水煮茶，不是烈火烹油\n\n'+
+'【禁止】\n'+
+'- 禁止OOC（性格崩坏）\n'+
+'- 禁止玛丽苏情节\n'+
+'- 禁止过度戏剧化\n'+
+'- 禁止华丽辞藻堆砌\n'+
+'- 禁止输出标记、代码、JSON\n\n'+
+'只输出标题和正文';
 '- '+keywordHint+'\n'+
 (tagHint?'- '+tagHint+'\n':'')+
 '- 文风要求：'+stylePrompt+'\n'+
@@ -3967,6 +5083,10 @@ S.nvNovels.push(novel);
 if(type==='long'){
 if(!S.nvLongChapters)S.nvLongChapters={};
 if(!S.customFontUrl)S.customFontUrl='';
+if(!S.wbPresets)S.wbPresets=[];
+if(!S.apiPresets)S.apiPresets=[];
+if(!S.zhForumInfo)S.zhForumInfo={name:'匿名论坛',rules:'自由讨论'};
+if(!S.zhForumPosts)S.zhForumPosts=[];
 S.nvLongChapters[novel.id]=[{chapter:1,content:content}]}
 save();renderNvFeed();toast('创作完成！')
 }catch(e){toast('创作失败: '+e.message,3e3);console.warn('novel gen err',e)}
@@ -4155,6 +5275,203 @@ $('callHangupBtn').onclick=endCall;
 $('callMuteBtn').onclick=function(){callState.muted=!callState.muted;this.classList.toggle('on',callState.muted);toast(callState.muted?'已静音':'已取消静音')};
 $('callSendBtn').onclick=callSendMsg;
 $('callInput').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();callSendMsg()}}}
+/* ========== 日记本系统 ========== */
+function diaryToday(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+
+function hasWrittenDiaryToday(author){
+var today=diaryToday();
+for(var i=0;i<S.diaryEntries.length;i++){
+if(S.diaryEntries[i].author===author&&S.diaryEntries[i].dateKey===today)return true}
+return false}
+
+var drMyPage=0,drTaPage=0,drPerPage=3;
+
+function renderDrMyFeed(){
+var c=$('drMyFeed');if(!c)return;c.innerHTML='';
+var mine=S.diaryEntries.filter(function(d){return d.author===S.un});
+if(!mine.length){c.innerHTML='<div class="dr-empty">翻开空白的第一页<br>写下今天的故事吧</div>';renderDrMyNav(0,0);return}
+mine.reverse();
+var total=Math.ceil(mine.length/drPerPage);
+if(drMyPage>=total)drMyPage=total-1;
+if(drMyPage<0)drMyPage=0;
+var start=drMyPage*drPerPage;
+var page=mine.slice(start,start+drPerPage);
+page.forEach(function(entry){
+var d=document.createElement('div');d.className='dr-page '+(entry.author===S.un?'from-user':'from-char');
+var who=document.createElement('div');who.className='dr-who';who.textContent=entry.author;
+var date=document.createElement('div');date.className='dr-date';date.textContent=entry.date;
+var body=document.createElement('div');body.className='dr-body';body.textContent=entry.text;
+d.appendChild(who);d.appendChild(date);d.appendChild(body);
+if(entry.reply){var rp=document.createElement('div');rp.className='dr-reply';rp.textContent='💬 '+entry.replyAuthor+'：'+entry.reply;d.appendChild(rp)}
+var del=document.createElement('button');del.className='dr-del';del.textContent='✕';
+(function(eid){del.onclick=function(){if(!confirm('删除这篇日记？'))return;S.diaryEntries=S.diaryEntries.filter(function(e){return e.id!==eid});save();renderDrMyFeed();toast('已删除')}})(entry.id);
+d.appendChild(del);c.appendChild(d)});
+renderDrMyNav(drMyPage,total);
+$('drMyHint').textContent=hasWrittenDiaryToday(S.un)?'今天已经写过日记了':''}
+
+function renderDrMyNav(cur,total){
+var nav=$('drMyNav');if(!nav)return;nav.innerHTML='';
+if(total<=1)return;
+var prev=document.createElement('button');prev.className='dr-nav-btn';prev.textContent='‹ 上一页';prev.disabled=(cur<=0);
+prev.onclick=function(){drMyPage--;renderDrMyFeed()};
+var info=document.createElement('span');info.className='dr-nav-info';info.textContent='第 '+(cur+1)+' / '+total+' 页';
+var next=document.createElement('button');next.className='dr-nav-btn';next.textContent='下一页 ›';next.disabled=(cur>=total-1);
+next.onclick=function(){drMyPage++;renderDrMyFeed()};
+nav.appendChild(prev);nav.appendChild(info);nav.appendChild(next)}
+
+function renderDrTaFeed(){
+var c=$('drTaFeed');if(!c)return;c.innerHTML='';
+var theirs=S.diaryEntries.filter(function(d){return d.author===S.cn});
+if(!theirs.length){c.innerHTML='<div class="dr-empty">TA还没有写日记<br>让TA写一篇吧</div>';renderDrTaNav(0,0);return}
+theirs.reverse();
+var total=Math.ceil(theirs.length/drPerPage);
+if(drTaPage>=total)drTaPage=total-1;
+if(drTaPage<0)drTaPage=0;
+var start=drTaPage*drPerPage;
+var page=theirs.slice(start,start+drPerPage);
+page.forEach(function(entry){
+var d=document.createElement('div');d.className='dr-page from-char';
+var who=document.createElement('div');who.className='dr-who';who.textContent=entry.author;
+var date=document.createElement('div');date.className='dr-date';date.textContent=entry.date;
+var body=document.createElement('div');body.className='dr-body';body.textContent=entry.text;
+d.appendChild(who);d.appendChild(date);d.appendChild(body);
+if(entry.reply){var rp=document.createElement('div');rp.className='dr-reply';rp.textContent='💬 '+entry.replyAuthor+'：'+entry.reply;d.appendChild(rp)}
+if(!entry.reply){
+var replyBtn=document.createElement('button');replyBtn.className='dr-nav-btn';replyBtn.style.cssText='margin-top:10px;font-size:11px';replyBtn.textContent='✏️ 回复这篇日记';
+(function(eid){replyBtn.onclick=function(){
+var txt=prompt('回复这篇日记：');
+if(!txt||!txt.trim())return;
+for(var j=0;j<S.diaryEntries.length;j++){
+if(S.diaryEntries[j].id===eid){S.diaryEntries[j].reply=txt.trim();S.diaryEntries[j].replyAuthor=S.un;break}}
+save();renderDrTaFeed();toast('已回复')}})(entry.id);
+d.appendChild(replyBtn)}
+c.appendChild(d)});
+renderDrTaNav(drTaPage,total)}
+
+function renderDrTaNav(cur,total){
+var nav=$('drTaNav');if(!nav)return;nav.innerHTML='';
+if(total<=1)return;
+var prev=document.createElement('button');prev.className='dr-nav-btn';prev.textContent='‹ 上一页';prev.disabled=(cur<=0);
+prev.onclick=function(){drTaPage--;renderDrTaFeed()};
+var info=document.createElement('span');info.className='dr-nav-info';info.textContent='第 '+(cur+1)+' / '+total+' 页';
+var next=document.createElement('button');next.className='dr-nav-btn';next.textContent='下一页 ›';next.disabled=(cur>=total-1);
+next.onclick=function(){drTaPage++;renderDrTaFeed()};
+nav.appendChild(prev);nav.appendChild(info);nav.appendChild(next)}
+
+async function drCharWrite(){
+if(!S.apiKey){toast('设置API Key');return}
+if(S.isGen){toast('请等待');return}
+if(hasWrittenDiaryToday(S.cn)){toast(S.cn+'今天已经写过日记了');return}
+toast(S.cn+'正在写日记...');
+S.isGen=true;
+try{
+var n=getNow();
+var sysTxt=(S.cp||DC).substring(0,1500)+'\n'+(S.wb||DW).substring(0,500);
+var recentChat='';var last15=S.messages.slice(-15);
+last15.forEach(function(m){if(m.type!=='pat')recentChat+=(m.role==='user'?S.un:S.cn)+'：'+m.content+'\n'});
+var prompt='现在是'+n.full+'。请以'+S.cn+'的身份写一篇今天的日记。\n\n'+
+'【基本要求】\n'+
+'- 150-350字，用第一人称\n'+
+'- 像真正的私人日记，不是给别人看的\n'+
+'- 可以流水账，可以碎碎念\n'+
+'- 不需要文采，要真实\n\n'+
+'【内容结构】\n'+
+'1. 今天做了什么（50%篇幅）：\n'+
+'   - 工作：几个患者，印象深刻的案例（隐去隐私）\n'+
+'   - 日常：做饭、浇花、听音乐、看书\n'+
+'   - 琐事：糊锅、咖啡洒了、弟弟打电话\n\n'+
+'2. 关于'+S.un+'（30%篇幅）：\n'+
+'   - 观察：今天他/她的状态\n'+
+'   - 互动：聊了什么、做了什么\n'+
+'   - 担心：如果状态不好\n'+
+'   - 欣慰：如果状态好转\n'+
+'   - 不直接说"我爱他"，用细节表达\n\n'+
+'3. 自己的感受（20%篇幅）：\n'+
+'   - 情绪：累、平静、有点烦、还好\n'+
+'   - 念头：突然想到的事\n'+
+'   - 反思：对自己的观察\n'+
+'   - 可以不写结论，留白\n\n'+
+'【语言风格】\n'+
+'- 简短句子为主\n'+
+'- 可以不完整："又糊锅了。第三次。"\n'+
+'- 可以自言自语："算了。""也好。"\n'+
+'- 不要华丽辞藻\n'+
+'- 不要刻意抒情\n'+
+'- 像在脑子里过一遍今天\n\n'+
+'【情感处理】\n'+
+'- 克制、内敛、不外露\n'+
+'- 对'+S.un+'的感情藏在细节里\n'+
+'- 可以有疲惫、无奈、自嘲\n'+
+'- 不要每篇都很深情\n'+
+'- 有时候就是流水账\n\n'+
+'【参考最近聊天】\n'+
+'如果最近聊天中：\n'+
+'- 提到失眠 → 日记里写"他今晚睡得还好吗"\n'+
+'- 提到画画 → "他画了一整天"\n'+
+'- 提到吵架 → "今天有点别扭"\n'+
+'- 提到开心的事 → "他笑了，很久没见他这样笑了"\n\n'+
+'最近聊天参考：\n'+recentChat.substring(0,800)+'\n\n'+
+'只输出日记正文，不加标题不加日期不加标记';
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:prompt}],600);
+var entry={id:gid(),author:S.cn,text:r.trim(),date:n.full,dateKey:diaryToday(),reply:'',replyAuthor:''};
+S.diaryEntries.push(entry);save();renderDrTaFeed();toast(S.cn+'写了一篇日记')
+}catch(e){toast('失败: '+e.message,3e3)}
+S.isGen=false}
+
+async function drCharReplyToUser(entryId){
+if(!S.apiKey)return;
+var entry=null;
+for(var i=0;i<S.diaryEntries.length;i++){if(S.diaryEntries[i].id===entryId){entry=S.diaryEntries[i];break}}
+if(!entry||entry.reply)return;
+try{
+var sysTxt=(S.cp||DC).substring(0,800)+'\n\n【输出规则】只输出纯文字内容。严禁输出代码、HTML、JSON、标签、括号动作、双引号语音、STATUS标记、任何格式符号。';
+var r=await callApi([{role:'system',content:sysTxt},{role:'user',content:S.un+'在日记本里写了一篇日记："'+entry.text.substring(0,300)+'"。\n\n'+
+'你看到后回复，要求：\n'+
+'- 10-40字，简短自然\n'+
+'- 像是在日记本空白处写的批注\n'+
+'- 不要说教、不要分析\n\n'+
+'根据日记内容选择回应：\n\n'+
+'【如果日记很开心】\n'+
+'- "替你高兴。"\n'+
+'- "很好。"\n'+
+'- "继续保持。"\n'+
+'- "嗯，不错。"\n\n'+
+'【如果日记很难过】\n'+
+'- "我在。"\n'+
+'- "会好的。"\n'+
+'- "别怕。"\n'+
+'- "辛苦了。"\n\n'+
+'【如果日记很日常】\n'+
+'- "看到了。"\n'+
+'- "嗯。"\n'+
+'- "今天也辛苦了。"\n'+
+'- "注意休息。"\n\n'+
+'【如果日记提到你】\n'+
+'- "我也是。"\n'+
+'- "谢谢你。"\n'+
+'- "一直都在。"\n'+
+'- "嗯，我知道。"\n\n'+
+'【如果日记在抱怨】\n'+
+'- "理解。"\n'+
+'- "确实。"\n'+
+'- "慢慢来。"\n'+
+'- "不急。"\n\n'+
+'风格要求：\n'+
+'- 克制、温和、不多话\n'+
+'- 可以很短，甚至一个字\n'+
+'- 不要长篇大论\n'+
+'- 像是随手写下的\n'+
+'- 只输出回复内容，不加引号不加标记'}],200);
+entry.reply=r.trim().replace(/^["「」"]/g,'').replace(/["「」"]$/g,'');
+entry.replyAuthor=S.cn;save();renderDrMyFeed()
+}catch(e){console.warn('diary reply err',e)}}
+
+/* ========== 论坛预设系统 ========== */
+function renderZhForumPresets(){
+var sel=$('zhForumPresetSel');if(!sel)return;
+sel.innerHTML='<option value="__current__">当前论坛</option>';
+if(S.zhForumPresets)S.zhForumPresets.forEach(function(p,i){
+var opt=document.createElement('option');opt.value=i;opt.textContent=p.name;sel.appendChild(opt)})}
 /* ========== 全局字体 ========== */
 function applyCustomFont(){
 var url=S.customFontUrl;
@@ -4192,6 +5509,10 @@ if(!S.zhHomePosts)S.zhHomePosts=[];
 if(!S.zhCharPosts)S.zhCharPosts=[];
 if(!S.giftStock)S.giftStock=[];
 if(!S.musicLib)S.musicLib=[];
+if(!S.zhLikedPosts)S.zhLikedPosts=[];
+if(!S.diaryEntries)S.diaryEntries=[];
+if(!S.zhForumPresets)S.zhForumPresets=[];
+if(!S.zhForumCat)S.zhForumCat='zfAll';
 if(!S.phoneData)S.phoneData=null;if(!S.zhUserProfile)S.zhUserProfile={bio:'',name:''};
 if(!S.zhUserPosts)S.zhUserPosts=[];if(!S.zhUserBg)S.zhUserBg='';if(!S.phoneWallpaper)S.phoneWallpaper='';
 if(!S.zhCharBg)S.zhCharBg='';
@@ -4212,6 +5533,17 @@ if(!S.nvTags)S.nvTags=['#日常','#甜','#虐','#治愈','#be','#he'];
 if(!S.nvStyles)S.nvStyles=[{name:'内置文风',desc:'日系物哀美学，侧重触觉和听觉，句子短而克制，留白多，情感通过细节和沉默传达，温水煮茶式的深情，涓流而非洪水',builtin:true}];
 if(!S.nvLongChapters)S.nvLongChapters={};
 if(!S.customFontUrl)S.customFontUrl='';
+if(!S.wbPresets)S.wbPresets=[];
+if(!S.apiPresets)S.apiPresets=[];
+if(!S.zhForumInfo)S.zhForumInfo={name:'匿名论坛',rules:'自由讨论'};
+if(!S.zhForumPosts)S.zhForumPosts=[];
+if(!S.fullscreenMode)S.fullscreenMode=false;
+if(!S.darkMode)S.darkMode=false;
+if(S.darkMode)document.body.classList.add('dark-mode');
+if(!S.zhLikedPosts)S.zhLikedPosts=[];
+if(!S.diaryEntries)S.diaryEntries=[];
+if(!S.zhForumPresets)S.zhForumPresets=[];
+if(!S.zhForumCat)S.zhForumCat='zfAll';
 applyCustomFont();
 S.npcs=S.npcs.map(function(n){return typeof n==='string'?{name:n,desc:''}:n});
 S.pyqBusy=false;
@@ -4250,7 +5582,7 @@ setTimeout(function(){
 document.querySelector('.app').classList.add('show');
 setTimeout(function(){
 $('splash').classList.add('hide');
-setTimeout(function(){$('splash').style.display='none';try{inBox.focus()}catch(e){}},600)
+setTimeout(function(){$('splash').style.display='none';try{if(!/Mobi|Android/i.test(navigator.userAgent))inBox.focus()}catch(e){}},600)
 },300)
 },600)};
 setTimeout(function(){if(window._splashDone)window._splashDone()},8000)
